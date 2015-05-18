@@ -32,34 +32,10 @@ public class Panel_InferredCodePattern extends JPanel {
 	 * Create the panel.
 	 */
 	public Panel_InferredCodePattern() {
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{450, 0};
-		gridBagLayout.rowHeights = new int[] {250, 50, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
-		
-		JPanel panel_2 = new JPanel();
-		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-		gbc_panel_2.fill = GridBagConstraints.BOTH;
-		gbc_panel_2.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_2.gridx = 0;
-		gbc_panel_2.gridy = 0;
-		add(panel_2, gbc_panel_2);
-		panel_2.setLayout(new BorderLayout(0, 0));
-		
-		JPanel panel = new JPanel();
-		panel_2.add(panel);
-		panel.setLayout(new GridLayout(0, 2, 0, 0));
-		
-		Panel_ShowCodePattern panel_ShowCodePattern = new Panel_ShowCodePattern();
-		panel.add(panel_ShowCodePattern);
-		
-		Panel_ShowCodePattern panel_ShowCodePattern_1 = new Panel_ShowCodePattern();
-		panel.add(panel_ShowCodePattern_1);
+		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_3 = new JPanel();
-		panel_2.add(panel_3, BorderLayout.NORTH);
+		add(panel_3, BorderLayout.NORTH);
 		panel_3.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JLabel lblNewLabel = new JLabel("Inferred");
@@ -70,15 +46,15 @@ public class Panel_InferredCodePattern extends JPanel {
 		lblBasic.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_3.add(lblBasic);
 		
-		JPanel panel_1 = new JPanel();
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 1;
-		add(panel_1, gbc_panel_1);
+		JPanel panel = new JPanel();
+		add(panel, BorderLayout.CENTER);
+		panel.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		Panel_CommonMethods panel_CommonMethods = new Panel_CommonMethods();
-		panel_1.add(panel_CommonMethods);
+		Panel_ShowCodePattern panel_ShowCodePattern = new Panel_ShowCodePattern();
+		panel.add(panel_ShowCodePattern);
+		
+		Panel_ShowCodePattern panel_ShowCodePattern_1 = new Panel_ShowCodePattern();
+		panel.add(panel_ShowCodePattern_1);
 
 	}
 }
