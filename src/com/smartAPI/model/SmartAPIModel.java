@@ -768,4 +768,36 @@ public class SmartAPIModel {
 		log.warning(Common.NO_CODE_MESS);
 		return Common.NO_CODE_MESS;
 	}
+	
+	public String getCpKeyword(String cp){
+		Individual ind = getOntModel().getIndividual(Common.NS + cp);
+		StmtIterator iter = ind.listProperties();
+		while (iter.hasNext()) {
+            Statement stmt      = iter.nextStatement();
+            Property  predicate = stmt.getPredicate();   // get the predicate
+            Object obj = stmt.getObject();
+            Resource subject = stmt.getSubject();
+            
+            if(predicate.getLocalName().contains(Common.HAS_KEYWORD)){
+            	log.info("Found keyword " + obj.toString());
+            	return (obj.toString());
+            }
+        }
+		log.warning(Common.NO_CODE_MESS);
+		return Common.NO_CODE_MESS;
+	}
+	
+	/**
+	 * This method will return one 'CodePattern_Category' for
+	 * each category of codePattern.
+	 * @return
+	 */
+	public ArrayList<CodePattern_Category> getAllCodePatternForCategory(){
+		ArrayList<CodePattern_Category> toReturn = new ArrayList<CodePattern_Category>();
+		ArrayList<Resource> patternCategory_s = getPatternCategory();
+		for (Resource r:patternCategory_s){
+			toReturn.add(getPatternOfCategory(r.getLocalName()));
+		}
+		return toReturn;
+	}
 }
