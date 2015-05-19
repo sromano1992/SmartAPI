@@ -91,7 +91,6 @@ public class Panel_InsertCP extends JPanel {
 				 String categoria = (String) jcb.getSelectedItem();
 					if(categoria.equals("Altro...")){
 						newCategoria.setVisible(true);
-						categoria = newCategoria.getText();
 					}
 					if(!categoria.equals(""))System.out.println("Categoria: "+categoria);
 				}
