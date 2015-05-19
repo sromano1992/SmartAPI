@@ -33,6 +33,7 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.sun.xml.internal.fastinfoset.sax.Properties;
 
 /**
  * 
@@ -718,5 +719,52 @@ public class SmartAPIModel {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * This method will return owner for input codePattern.
+	 * @param cp
+	 * @return
+	 */
+	public String getCpOwner(String cp){
+		Individual ind = getOntModel().getIndividual(Common.NS + cp);
+		StmtIterator iter = ind.listProperties();
+		while (iter.hasNext()) {
+            Statement stmt      = iter.nextStatement();
+            Property  predicate = stmt.getPredicate();   // get the predicate
+            Object obj = stmt.getObject();
+            Resource subject = stmt.getSubject();
+            
+            if(predicate.getLocalName().contains(Common.HAS_OWNER)){
+            	log.info("Found owner: " + ((Resource)obj).getLocalName());
+            	return ((Resource)obj).getLocalName();
+            }
+        }
+		log.warning(Common.NO_OWNER_MESS);
+		return Common.NO_OWNER_MESS;
+	}
+	
+	/**
+	 * This method will return source code for 
+	 * the input codePattern.
+	 * @param cp
+	 * @return
+	 */
+	public String getCpSourceCode(String cp){
+		Individual ind = getOntModel().getIndividual(Common.NS + cp);
+		StmtIterator iter = ind.listProperties();
+		while (iter.hasNext()) {
+            Statement stmt      = iter.nextStatement();
+            Property  predicate = stmt.getPredicate();   // get the predicate
+            Object obj = stmt.getObject();
+            Resource subject = stmt.getSubject();
+            
+            if(predicate.getLocalName().contains(Common.HAS_CODE)){
+            	log.info("Found code");
+            	return (obj.toString());
+            }
+        }
+		log.warning(Common.NO_CODE_MESS);
+		return Common.NO_CODE_MESS;
 	}
 }
