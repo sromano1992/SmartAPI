@@ -1,5 +1,4 @@
 package com.smartAPI.view;
-
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -36,7 +35,7 @@ import java.awt.Toolkit;
 import javax.swing.JComboBox;
 
 
-public class CreateNewAccount {
+public class CreateNewAccount extends JFrame{
 
 	private JFrame frame;
 	private JTextField userField;
@@ -47,46 +46,24 @@ public class CreateNewAccount {
 	private JPasswordField passwordField_3;
 	private JLabel lblIcon;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CreateNewAccount window = new CreateNewAccount();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
+	
 	public CreateNewAccount() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(new Color(2, 94, 137));
-		frame.setBounds(100, 100, 425, 537);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setResizable(false);
+		getContentPane().setBackground(new Color(2, 94, 137));
+		setBounds(100, 100, 425, 537);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 		
 		JLabel lblCreateNewAccount = new JLabel("Create Account");
 		lblCreateNewAccount.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCreateNewAccount.setForeground(Color.WHITE);
 		lblCreateNewAccount.setFont(new Font("Lucida Grande", Font.PLAIN, 26));
 		lblCreateNewAccount.setBounds(6, 21, 417, 37);
-		frame.getContentPane().add(lblCreateNewAccount);
+		getContentPane().add(lblCreateNewAccount);
 		
 		JLabel lblUser = new JLabel("User");
 		lblUser.setOpaque(true);
@@ -94,12 +71,12 @@ public class CreateNewAccount {
 		lblUser.setForeground(Color.WHITE);
 		lblUser.setBackground(new Color(2, 66, 96));
 		lblUser.setBounds(47, 195, 95, 31);
-		frame.getContentPane().add(lblUser);
+		getContentPane().add(lblUser);
 		
 		userField = new JTextField();
 		userField.setColumns(10);
 		userField.setBounds(139, 192, 204, 37);
-		frame.getContentPane().add(userField);
+		getContentPane().add(userField);
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setOpaque(true);
@@ -107,16 +84,16 @@ public class CreateNewAccount {
 		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setBackground(new Color(2, 66, 96));
 		lblPassword.setBounds(47, 226, 95, 31);
-		frame.getContentPane().add(lblPassword);
+		getContentPane().add(lblPassword);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(139, 222, 204, 37);
-		frame.getContentPane().add(passwordField);
+		getContentPane().add(passwordField);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
 		textField.setBounds(139, 282, 204, 37);
-		frame.getContentPane().add(textField);
+		getContentPane().add(textField);
 		
 		JLabel lblNome = new JLabel("Name");
 		lblNome.setOpaque(true);
@@ -124,7 +101,7 @@ public class CreateNewAccount {
 		lblNome.setForeground(Color.WHITE);
 		lblNome.setBackground(new Color(2, 66, 96));
 		lblNome.setBounds(47, 286, 95, 31);
-		frame.getContentPane().add(lblNome);
+		getContentPane().add(lblNome);
 		
 		JLabel lblCognome = new JLabel("Surname");
 		lblCognome.setOpaque(true);
@@ -132,15 +109,15 @@ public class CreateNewAccount {
 		lblCognome.setForeground(Color.WHITE);
 		lblCognome.setBackground(new Color(2, 66, 96));
 		lblCognome.setBounds(47, 316, 95, 31);
-		frame.getContentPane().add(lblCognome);
+		getContentPane().add(lblCognome);
 		
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setBounds(139, 312, 204, 37);
-		frame.getContentPane().add(passwordField_1);
+		getContentPane().add(passwordField_1);
 		
 		JButton btnCreate = new JButton("Create Account");
 		btnCreate.setBounds(69, 437, 274, 37);
-		frame.getContentPane().add(btnCreate);
+		getContentPane().add(btnCreate);
 		
 		JLabel lblRepatPassw = new JLabel("Confirm Passw");
 		lblRepatPassw.setOpaque(true);
@@ -148,15 +125,15 @@ public class CreateNewAccount {
 		lblRepatPassw.setForeground(Color.WHITE);
 		lblRepatPassw.setBackground(new Color(2, 66, 96));
 		lblRepatPassw.setBounds(47, 257, 95, 31);
-		frame.getContentPane().add(lblRepatPassw);
+		getContentPane().add(lblRepatPassw);
 		
 		passwordField_2 = new JPasswordField();
 		passwordField_2.setBounds(139, 252, 204, 37);
-		frame.getContentPane().add(passwordField_2);
+		getContentPane().add(passwordField_2);
 		
 		passwordField_3 = new JPasswordField();
 		passwordField_3.setBounds(139, 342, 204, 37);
-		frame.getContentPane().add(passwordField_3);
+		getContentPane().add(passwordField_3);
 		
 		JLabel lblEmail = new JLabel("Email");
 		lblEmail.setOpaque(true);
@@ -164,14 +141,13 @@ public class CreateNewAccount {
 		lblEmail.setForeground(Color.WHITE);
 		lblEmail.setBackground(new Color(2, 66, 96));
 		lblEmail.setBounds(47, 346, 95, 31);
-		frame.getContentPane().add(lblEmail);
+		getContentPane().add(lblEmail);
 		
-		lblIcon = new JLabel("Icon");
+		lblIcon = new JLabel("");
 		MyImageIcon imgicon = new MyImageIcon("/Users/iCiro/Desktop/Magistrale/GPS/WorkspaceGPS/TestGraphic/bin/res/1.png");
 		lblIcon.setIcon(imgicon.getImageResponsive());
-		lblIcon.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIcon.setBounds(81, 80, 80, 71);
-		frame.getContentPane().add(lblIcon);
+		getContentPane().add(lblIcon);
 		
 		
 		Vector comboBoxItems=new Vector();
@@ -182,24 +158,21 @@ public class CreateNewAccount {
 	    comboBoxItems.add("img - 5");
 	    comboBoxItems.add("img - 6");
 	    final DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
-	    JComboBox comboBox = new JComboBox(model);
+	    final JComboBox comboBox = new JComboBox(model);
 	    comboBox.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				String s=(String)comboBox.getSelectedItem();
 				String[] parts = s.split(" - ");
 				String path="res/"+parts[1]+".png";
-				System.out.println(path);
-				String pathIcon = getClass().getResource(path).getFile();
-				System.out.println(pathIcon);
-				
+				String pathIcon = getClass().getResource(path).getFile();				
 				MyImageIcon imgicon = new MyImageIcon(pathIcon);
 				lblIcon.setIcon(imgicon.getImageResponsive());
 			}
 		});
 		
 		comboBox.setBounds(214, 101, 109, 31);
-		frame.getContentPane().add(comboBox);
+		getContentPane().add(comboBox);
 		
 		
 	}
