@@ -18,6 +18,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.BevelBorder;
 import java.awt.SystemColor;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class Panel_ShowCodePattern extends JPanel {
 
@@ -25,6 +27,7 @@ public class Panel_ShowCodePattern extends JPanel {
 	 * Create the panel.
 	 */
 	public Panel_ShowCodePattern() {
+		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -63,15 +66,20 @@ public class Panel_ShowCodePattern extends JPanel {
 		scrollPane_1.setViewportView(txtpaneCode);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(SystemColor.activeCaption, 1, true));
 		add(panel_1, BorderLayout.NORTH);
 		panel_1.setLayout(new GridLayout(0, 5, 0, 0));
 		
-		JLabel labelUserName = new JLabel("Username");
+		MyJLabel labelUserName = new MyJLabel("Username");
 		panel_1.add(labelUserName);
 		
+		JPanel panel_2 = new JPanel();
+		add(panel_2, BorderLayout.SOUTH);
+		panel_2.setLayout(new GridLayout(2, 1, 0, 0));
+		
 		Panel_CodePatternScore panel_CodePatternScore = new Panel_CodePatternScore();
-		panel_CodePatternScore.setBorder(new BevelBorder(BevelBorder.LOWERED, SystemColor.activeCaption, null, null, null));
-		add(panel_CodePatternScore, BorderLayout.SOUTH);
+		panel_2.add(panel_CodePatternScore);
+		panel_CodePatternScore.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(153, 180, 209), SystemColor.inactiveCaption, null, null));
 
 	}
 }
