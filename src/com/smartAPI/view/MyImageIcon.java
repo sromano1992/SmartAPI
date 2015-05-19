@@ -10,10 +10,10 @@ public class MyImageIcon extends ImageIcon{
 	private Image newimg;
 	private ImageIcon imageIcon;
 	
-	public MyImageIcon(String path){
+	public MyImageIcon(String path, int width, int height){
 		imageIcon = new ImageIcon(path);
 		image = imageIcon.getImage();
-		newimg = image.getScaledInstance(80, 75,  java.awt.Image.SCALE_SMOOTH); 
+		newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); 
 		imageIcon = new ImageIcon(newimg);
 	}
 	

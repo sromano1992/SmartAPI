@@ -146,7 +146,7 @@ public class CreateNewAccount extends JFrame{
 		lblIcon = new JLabel("");
 		String path="res/1.png";
 		String pathIcon = getClass().getResource(path).getFile();
-		MyImageIcon imgicon = new MyImageIcon(pathIcon);
+		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblIcon.setIcon(imgicon.getImageResponsive());
 		lblIcon.setBounds(81, 80, 80, 71);
 		getContentPane().add(lblIcon);
@@ -168,7 +168,7 @@ public class CreateNewAccount extends JFrame{
 				String[] parts = s.split(" - ");
 				String path="res/"+parts[1]+".png";
 				String pathIcon = getClass().getResource(path).getFile();				
-				MyImageIcon imgicon = new MyImageIcon(pathIcon);
+				MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 				lblIcon.setIcon(imgicon.getImageResponsive());
 			}
 		});
