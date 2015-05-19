@@ -53,7 +53,7 @@ public class Panel_InsertCP extends JPanel {
 	 * Create the panel.
 	 */
 	public Panel_InsertCP() {
-		setBackground(new Color(211, 211, 211));
+		setBackground(new Color(2, 94, 137));
 		setLayout(null);
 		
 		nomeCP = new JTextField();
@@ -61,18 +61,21 @@ public class Panel_InsertCP extends JPanel {
 		add(nomeCP);
 		nomeCP.setColumns(20);
 		
+		
+		
 		txtCodePattern = new JTextArea();
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
 		txtCodePattern.setBorder(border);
 		txtCodePattern.setBounds(102, 211, 378, 220);
 		add(txtCodePattern);
 		
+		
 		keyword = new JTextField();
 		keyword.setColumns(20);
 		keyword.setBounds(98, 102, 149, 25);
 		add(keyword);
 
-		 
+		
 		Vector v = new Vector();
 		 
 		    v.add("Storage");
@@ -85,13 +88,16 @@ public class Panel_InsertCP extends JPanel {
 		    jcb.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
-					String categoria = (String) jcb.getSelectedItem();
-					System.out.println(categoria);
+				 String categoria = (String) jcb.getSelectedItem();
 					if(categoria.equals("Altro...")){
 						newCategoria.setVisible(true);
+						categoria = newCategoria.getText();
 					}
+					if(!categoria.equals(""))System.out.println("Categoria: "+categoria);
 				}
 			});
+		    
+		    
 		    
 		    newCategoria = new JTextField();
 		    newCategoria.setBounds(564, 71, 149, 25);
@@ -116,6 +122,19 @@ public class Panel_InsertCP extends JPanel {
 		    MyJLabel categoriaLabel = new MyJLabel("Categoria");
 		    categoriaLabel.setBounds(316, 71, 94, 25);
 		    add(categoriaLabel);
+		    
+		    JButton addCP = new JButton("Inserisci");
+		    addCP.addActionListener(new ActionListener() {
+		    	public void actionPerformed(ActionEvent e) {
+		    		String val_nome = nomeCP.getText();
+		    		String val_CP = txtCodePattern.getText();
+		    		String val_keyword = keyword.getText();
+		    		if(!newCategoria.getText().equals("")) System.out.println("categoria: "+newCategoria.getText());
+		    		System.out.println("Nome: "+val_nome+" Key: "+val_keyword+" Cp: "+val_CP);
+		    	}
+		    });
+		    addCP.setBounds(235, 445, 120, 35);
+		    add(addCP);
 		    setVisible(true);
 	}
 }
