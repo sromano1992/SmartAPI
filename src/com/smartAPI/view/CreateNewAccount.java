@@ -1,15 +1,21 @@
 package com.smartAPI.view;
+
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Image;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import java.awt.Font;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.IOException;
 import java.nio.file.DirectoryStream.Filter;
+import java.util.Vector;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -20,6 +26,14 @@ import javax.swing.ImageIcon;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+
+import javax.swing.text.html.ImageView;
+import javax.swing.text.Element;
+
+import java.awt.Toolkit;
+
+import javax.swing.JComboBox;
 
 
 public class CreateNewAccount {
@@ -31,7 +45,7 @@ public class CreateNewAccount {
 	private JPasswordField passwordField_1;
 	private JPasswordField passwordField_2;
 	private JPasswordField passwordField_3;
-	private JLabel lblImage;
+	private JLabel lblIcon;
 
 	/**
 	 * Launch the application.
@@ -128,36 +142,6 @@ public class CreateNewAccount {
 		btnCreate.setBounds(69, 437, 274, 37);
 		frame.getContentPane().add(btnCreate);
 		
-		lblImage = new JLabel("Image");
-		lblImage.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImage.setIcon(new ImageIcon("/Users/iCiro/Desktop/screenshot_26.png"));
-		lblImage.setBounds(86, 70, 88, 92);
-		frame.getContentPane().add(lblImage);
-		
-		JButton btnNewButton = new JButton("Upload");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setAcceptAllFileFilterUsed(false);
-				fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Images", "jpg", "png","gif","bmp"));
-
-		        int returnValue = fileChooser.showOpenDialog(null);
-		        if (returnValue == JFileChooser.APPROVE_OPTION) {
-		          File selectedFile = fileChooser.getSelectedFile();
-		          
-		          System.out.println("getCurrentDirectory(): " + fileChooser.getCurrentDirectory());
-		          System.out.println("getSelectedFile() : " + fileChooser.getSelectedFile());
-		          System.out.println(selectedFile.getPath());
-		          
-		        ImageIcon image = new ImageIcon(selectedFile.getPath());
-		        
-		  		lblImage.setIcon(image);
-		        }
-			}
-		});
-		btnNewButton.setBounds(207, 103, 117, 29);
-		frame.getContentPane().add(btnNewButton);
-		
 		JLabel lblRepatPassw = new JLabel("Confirm Passw");
 		lblRepatPassw.setOpaque(true);
 		lblRepatPassw.setHorizontalAlignment(SwingConstants.CENTER);
@@ -181,6 +165,41 @@ public class CreateNewAccount {
 		lblEmail.setBackground(new Color(2, 66, 96));
 		lblEmail.setBounds(47, 346, 95, 31);
 		frame.getContentPane().add(lblEmail);
+		
+		lblIcon = new JLabel("Icon");
+		MyImageIcon imgicon = new MyImageIcon("/Users/iCiro/Desktop/Magistrale/GPS/WorkspaceGPS/TestGraphic/bin/res/1.png");
+		lblIcon.setIcon(imgicon.getImageResponsive());
+		lblIcon.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIcon.setBounds(81, 80, 80, 71);
+		frame.getContentPane().add(lblIcon);
+		
+		
+		Vector comboBoxItems=new Vector();
+	    comboBoxItems.add("img - 1");
+	    comboBoxItems.add("img - 2");
+	    comboBoxItems.add("img - 3");
+	    comboBoxItems.add("img - 4");
+	    comboBoxItems.add("img - 5");
+	    comboBoxItems.add("img - 6");
+	    final DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
+	    JComboBox comboBox = new JComboBox(model);
+	    comboBox.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				String s=(String)comboBox.getSelectedItem();
+				String[] parts = s.split(" - ");
+				String path="res/"+parts[1]+".png";
+				System.out.println(path);
+				String pathIcon = getClass().getResource(path).getFile();
+				System.out.println(pathIcon);
+				
+				MyImageIcon imgicon = new MyImageIcon(pathIcon);
+				lblIcon.setIcon(imgicon.getImageResponsive());
+			}
+		});
+		
+		comboBox.setBounds(214, 101, 109, 31);
+		frame.getContentPane().add(comboBox);
 		
 		
 	}
