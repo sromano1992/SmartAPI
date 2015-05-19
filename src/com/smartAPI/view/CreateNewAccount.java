@@ -144,7 +144,9 @@ public class CreateNewAccount extends JFrame{
 		getContentPane().add(lblEmail);
 		
 		lblIcon = new JLabel("");
-		MyImageIcon imgicon = new MyImageIcon("/Users/iCiro/Desktop/Magistrale/GPS/WorkspaceGPS/TestGraphic/bin/res/1.png");
+		String path="res/1.png";
+		String pathIcon = getClass().getResource(path).getFile();
+		MyImageIcon imgicon = new MyImageIcon(pathIcon);
 		lblIcon.setIcon(imgicon.getImageResponsive());
 		lblIcon.setBounds(81, 80, 80, 71);
 		getContentPane().add(lblIcon);
