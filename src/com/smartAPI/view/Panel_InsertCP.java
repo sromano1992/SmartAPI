@@ -5,11 +5,13 @@ import javax.swing.JPanel;
 import java.awt.Choice;
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JMenu;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -31,6 +33,11 @@ import javax.swing.JMenuBar;
 import java.awt.Font;
 import java.util.Vector;
 
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.DropMode;
+import javax.swing.border.Border;
+
 /**
  * Pannello che permette all'utente di inserire un code pattern
  * @author iolrin
@@ -38,7 +45,7 @@ import java.util.Vector;
  */
 public class Panel_InsertCP extends JPanel {
 	private JTextField nomeCP;
-	private JTextField txtCodePattern;
+	private JTextArea txtCodePattern;
 	private JTextField keyword;
 	private JTextField newCategoria;
 
@@ -46,45 +53,24 @@ public class Panel_InsertCP extends JPanel {
 	 * Create the panel.
 	 */
 	public Panel_InsertCP() {
-		setBackground(new Color(2, 94, 137));
+		setBackground(new Color(211, 211, 211));
 		setLayout(null);
 		
 		nomeCP = new JTextField();
-		nomeCP.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				nomeCP.setText(" ");
-			}
-		});
-	
-		nomeCP.setText("Nome code pattern");
-		nomeCP.setBounds(6, 6, 149, 36);
+		nomeCP.setBounds(98, 39, 149, 25);
 		add(nomeCP);
 		nomeCP.setColumns(20);
 		
-		txtCodePattern = new JTextField();
-		txtCodePattern.setText("Code Pattern...");
-		txtCodePattern.setBounds(6, 85, 293, 190);
+		txtCodePattern = new JTextArea();
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+		txtCodePattern.setBorder(border);
+		txtCodePattern.setBounds(102, 211, 378, 220);
 		add(txtCodePattern);
-		txtCodePattern.setColumns(10);
-		txtCodePattern.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				txtCodePattern.setText(" ");
-			}
-		});
 		
 		keyword = new JTextField();
-		keyword.setText("Keyword");
 		keyword.setColumns(20);
-		keyword.setBounds(194, 6, 149, 36);
+		keyword.setBounds(98, 102, 149, 25);
 		add(keyword);
-		keyword.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				keyword.setText(" ");
-			}
-		});
 
 		 
 		Vector v = new Vector();
@@ -94,7 +80,7 @@ public class Panel_InsertCP extends JPanel {
 		    v.add("Altro...");
 		    DefaultComboBoxModel model = new DefaultComboBoxModel(v);
 		  final JComboBox jcb = new JComboBox(model);
-		    jcb.setBounds(400, 6, 149, 36);
+		    jcb.setBounds(408, 66, 149, 36);
 		    add(jcb);
 		    jcb.addActionListener(new ActionListener() {
 				
@@ -108,19 +94,28 @@ public class Panel_InsertCP extends JPanel {
 			});
 		    
 		    newCategoria = new JTextField();
-		    newCategoria.setText("Inserisci la categoria");
-		    newCategoria.setBounds(400, 54, 166, 36);
+		    newCategoria.setBounds(564, 71, 149, 25);
 		    add(newCategoria);
 		    newCategoria.setColumns(10);
 		    newCategoria.setVisible(false);		
-		    newCategoria.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					newCategoria.setText(" ");
-				}
-			});
 		
-		    setSize(633, 249);
+		    setSize(753, 480);
+		    
+		    MyJLabel cpLabel = new MyJLabel("Code Pattern");
+		    cpLabel.setBounds(6, 211, 94, 25);
+		    add(cpLabel);
+		    
+		    MyJLabel nomeLabel = new MyJLabel("Nome");
+		    nomeLabel.setBounds(6, 39, 94, 25);
+		    add(nomeLabel);
+		    
+		    MyJLabel keywordLabel = new MyJLabel("Keyword");
+		    keywordLabel.setBounds(6, 102, 94, 25);
+		    add(keywordLabel);
+		    
+		    MyJLabel categoriaLabel = new MyJLabel("Categoria");
+		    categoriaLabel.setBounds(316, 71, 94, 25);
+		    add(categoriaLabel);
 		    setVisible(true);
 	}
 }
