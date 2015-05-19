@@ -61,4 +61,12 @@ public class CodePattern_Category {
 					+ inferred.getCommonWithBasic() + "\n";
 		return toReturn;
 	}
+	
+	public ArrayList<CodePattern> getInferredCodePattern() {
+		return inferredCodePattern;
+	}
+	
+	public ArrayList<CodePattern> getBasicCodePattern() {
+		return basicCodePattern;
+	}
 }

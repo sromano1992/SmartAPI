@@ -432,40 +432,85 @@ public class SmartAPIModel {
 	 * 
 	 */
 	
-	public boolean addUser(String nome, String cognome, String email, String username, String password) {
+	public boolean addUser(String nome, String cognome, String email, String username, String password, boolean isAdmin) {
 		OntClass userClass = getOntModel().getOntClass(Common.NS + Common.USER);
+		System.out.println("qui");
 		if(!userAlreadyExists(userClass.getLocalName(), username)) {
-			try {
-				Utente user = new Utente(nome, cognome, email, username, password);
-				getOntModel();
-				String userId = calculateID(userClass.getLocalName());
-				String newUserId = String.valueOf(Integer.parseInt(userId) + 1);
-				System.out.println(newUserId);
-				
-				Individual individualUser1 = getOntModel().createIndividual(Common.NS + "u" + newUserId , userClass);
-				DatatypeProperty hasUsername = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_USERNAME);
-				DatatypeProperty hasPassword = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_PASSWORD);
-				DatatypeProperty hasName = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_NAME);
-				DatatypeProperty hasSurname = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_SURNAME);
-				DatatypeProperty hasEmail = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_EMAIL);
-		
-				individualUser1.addProperty(hasUsername, username);
-				individualUser1.addProperty(hasPassword, password);
-				individualUser1.addProperty(hasEmail, email);
-				individualUser1.addProperty(hasName, nome);
-				individualUser1.addProperty(hasSurname, cognome);
-				storeOntModel();							
-			}
-			catch(UserException e) {
-				log.severe(e.getMessage());
-				return false;
-			}
+			System.out.println("qui");
+			Utente user = new Utente(nome, cognome, email, username, password, false);
+			getOntModel();
+			String userId = calculateID(userClass.getLocalName());
+			String newUserId = String.valueOf(Integer.parseInt(userId) + 1);
 			
+			Individual individualUser1 = getOntModel().createIndividual(Common.NS + "u" + newUserId , userClass);
+			DatatypeProperty hasUsername = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_USERNAME);
+			DatatypeProperty hasPassword = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_PASSWORD);
+			DatatypeProperty hasName = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_NAME);
+			DatatypeProperty hasSurname = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_SURNAME);
+			DatatypeProperty hasEmail = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_EMAIL);
+			DatatypeProperty isAdministrator = getOntModel().getDatatypeProperty(Common.NS + Common.IS_ADMINISTRATOR);
+	
+			individualUser1.addProperty(hasUsername, username);
+			individualUser1.addProperty(hasPassword, password);
+			individualUser1.addProperty(hasEmail, email);
+			individualUser1.addProperty(hasName, nome);
+			individualUser1.addProperty(hasSurname, cognome);
+			if(isAdmin) {
+				individualUser1.addProperty(isAdministrator, "si");
+			}
+			else {
+				individualUser1.addProperty(isAdministrator, "no");
+			}
+			storeOntModel();							
 			return true;
 		}
 		else
 			return false;
 	}
+	
+	/**
+	 * Controlla se il login effettuato è corretto.
+	 * @author Amedeo Leo
+	 */
+	public boolean exists(String username, String password) {
+		ArrayList<Resource> list = getIndividualOfClass("User");
+		Resource subject = null;
+		
+		for(int i = 0; i < list.size(); i++) {
+			Resource resource = list.get(i);
+			StmtIterator iter = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
+			while (iter.hasNext()) {
+				Statement stmt = iter.nextStatement();
+				Property predicate = stmt.getPredicate();
+				RDFNode object = stmt.getObject();
+
+				if(predicate.getLocalName().equals("hasUsername")) {
+					if(object.toString().equals(username)) {
+						subject = stmt.getSubject();
+						break;
+					}
+				}
+			}
+		}
+		
+		if(subject != null) {
+			StmtIterator iter = getOntModel().listStatements(new SimpleSelector(subject,null,(RDFNode)null));
+			while (iter.hasNext()) {
+				Statement stmt = iter.nextStatement();
+				Property predicate = stmt.getPredicate();
+				RDFNode object = stmt.getObject();
+				if(predicate.getLocalName().equals("hasPassword")) {
+					if(object.toString().equals(password)) {
+						return true;
+					}
+				}
+			}
+		}
+		else 
+			throw new UserException("Username non esistente");
+		throw new UserException("Password errata");
+	}
+	
 	/**
 	 * Controlla se un utente esiste gia'.
 	 * @author Amedeo Leo, Ciro Amati
@@ -479,7 +524,6 @@ public class SmartAPIModel {
 				Statement stmt = iter.nextStatement();
 				Property predicate = stmt.getPredicate();
 				RDFNode object = stmt.getObject();
-
 				if(predicate.getLocalName().equals("hasUsername")) {
 					if(object.toString().equals(username)) {
 						return true;
@@ -494,7 +538,7 @@ public class SmartAPIModel {
 	 * Calcola l'id dell'ultimo utente inserito
 	 * @author Amedeo Leo, Ciro Amati
 	 */
-	private String calculateID(String userClass) {
+	public String calculateID(String userClass) {
 		String id = "0";
 		ArrayList<Resource> list = getIndividualOfClass(userClass);
 		for(int i = 0; i < list.size(); i++) {
@@ -502,7 +546,7 @@ public class SmartAPIModel {
 			StmtIterator iter = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
 			while (iter.hasNext()) {
 				Statement stmt = iter.nextStatement();
-				Resource subject = stmt.getSubject(); // get the subject
+				Resource subject = stmt.getSubject();
 				Property predicate = stmt.getPredicate();
 				
 				if(predicate.getLocalName().equals("type")) {
@@ -513,5 +557,166 @@ public class SmartAPIModel {
 			}
 		}
 		return id;
+	}
+	
+	/**
+	 * Restituisce tutti gli utenti.
+	 * @author Amedeo Leo
+	 */
+	public ArrayList<Utente> getUsers() {
+		ArrayList<Utente> utenti = new ArrayList<Utente>();
+		ArrayList<Resource> list = getIndividualOfClass("User");
+		for(int i = 0; i < list.size(); i++) {
+			Resource resource = list.get(i);
+			StmtIterator iterResource = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
+			String nome = "", cognome = "", username = "", password = "", email = "";
+			boolean amministratore = false;
+			while (iterResource.hasNext()) {
+				Statement stmtResource = iterResource.nextStatement();
+				Resource subjectResource = stmtResource.getSubject();
+				Property predicateResource = stmtResource.getPredicate();
+				if(predicateResource.getLocalName().equals("type")) {
+					StmtIterator iterSubject = getOntModel().listStatements(new SimpleSelector(subjectResource,null,(RDFNode)null));
+					while (iterSubject.hasNext()) {
+						Statement stmt = iterSubject.nextStatement();
+						Property predicate = stmt.getPredicate();
+						RDFNode object = stmt.getObject();
+											
+						if(predicate.getLocalName().equals(Common.HAS_NAME)) {
+							nome = object.toString();
+						}
+						if(predicate.getLocalName().equals(Common.HAS_SURNAME)) {
+							cognome = object.toString();
+						}
+						if(predicate.getLocalName().equals(Common.HAS_USERNAME)) {
+							username = object.toString();
+						}
+						if(predicate.getLocalName().equals(Common.HAS_PASSWORD)) {
+							password = object.toString();
+						}
+						if(predicate.getLocalName().equals(Common.HAS_EMAIL)) {
+							email = object.toString();
+						}
+						if(predicate.getLocalName().equals(Common.IS_ADMINISTRATOR)) {
+							if(object.toString().equals("si")) {
+								amministratore = true;
+							}
+							else
+								amministratore = false;
+						}
+					}
+				}
+			}
+			utenti.add(new Utente(nome,cognome,email,username,password,amministratore));
+
+		}
+		return utenti;
+	}
+	
+	/**
+	 * Controlla se un utente è un amministratore.
+	 * @author Amedeo Leo
+	 */
+	public boolean isAdministrator(String username) {
+		ArrayList<Resource> list = getIndividualOfClass("User");
+		for(int i = 0; i < list.size(); i++) {
+			Resource resource = list.get(i);
+			StmtIterator iter = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
+			while (iter.hasNext()) {
+				Statement stmt = iter.nextStatement();
+				Resource subject = stmt.getSubject();
+				Property predicate = stmt.getPredicate();
+				RDFNode object = stmt.getObject();
+
+				if(predicate.getLocalName().equals("hasUsername")) {
+					if(object.toString().equals(username)) {
+						StmtIterator utente = getOntModel().listStatements(new SimpleSelector(subject,null,(RDFNode)null));
+						while (utente.hasNext()) {
+							Statement stmt1 = utente.nextStatement();
+							Property predicate1 = stmt1.getPredicate();
+							RDFNode object1 = stmt1.getObject();
+
+							if(predicate1.getLocalName().equals("isAdministrator")) {
+								if(object1.toString().equals("si")) {
+									return true;
+								}
+								else
+									return false;
+							}
+						}
+					}
+				}
+				
+			}
+		}
+		return false;
+	}
+	
+	/** 
+	 * Elimina un utente.
+	 * @author Amedeo Leo
+	 */
+	public boolean deleteUser(String username) {
+		ArrayList<Resource> list = getIndividualOfClass("User");
+		OntModel o = getOntModel();
+		ArrayList<Statement> statements = new ArrayList<Statement>();
+		for(int i = 0; i < list.size(); i++) {
+			Resource resource = list.get(i);
+			StmtIterator iter = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
+			while (iter.hasNext()) {
+				Statement stmt = iter.nextStatement();
+				Resource user = stmt.getSubject();
+				Property predicate = stmt.getPredicate();
+				RDFNode object = stmt.getObject();
+
+				if(predicate.getLocalName().equals("hasUsername")) {
+					if(object.toString().equals(username)) {
+						StmtIterator iterUser = getOntModel().listStatements(new SimpleSelector(user,null,(RDFNode)null));
+						while (iterUser.hasNext()) {
+							Statement stmtUser = iterUser.nextStatement();
+							statements.add(stmtUser);
+						}
+					}
+				}
+			}
+		}
+		if(statements.size() != 0) {
+			o.remove(statements);
+			storeOntModel();
+			return true;
+		}
+		return false;
+	}
+	
+	/** 
+	 * Elimina un codePattern.
+	 * @author Amedeo Leo
+	 * Nota: non elimina i metodi che appartengono solo al quel code pattern. Modificare?
+	 */
+	public boolean deleteCodePattern(String codePattern) {
+		ArrayList<Resource> list = getInferredIndividualOfClass(Common.CODE_PATTERN);
+		OntModel o = getOntModel();
+		ArrayList<Statement> statements = new ArrayList<Statement>();
+		for(int i = 0; i < list.size(); i++) {
+			Resource resource = list.get(i);
+			StmtIterator iter = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
+			while (iter.hasNext()) {
+				Statement stmt = iter.nextStatement();
+				Resource code = stmt.getSubject();
+				if(code.getLocalName().equals(codePattern)) {
+					StmtIterator iterCode = getOntModel().listStatements(new SimpleSelector(code,null,(RDFNode)null));
+					while (iterCode.hasNext()) {
+						Statement stmtCode = iterCode.nextStatement();
+						statements.add(stmtCode);
+					}
+				}
+			}
+		}
+		if(statements.size() != 0) {
+			o.remove(statements);
+			storeOntModel();
+			return true;
+		}
+		return false;
 	}
 }

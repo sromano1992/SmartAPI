@@ -85,4 +85,8 @@ public class CodePattern {
 		}
 		return (ArrayList<Resource>) intersection(this.getUsedMethod_s(), relativeBasicPattern.getUsedMethod_s());
 	}
+	
+	public String toString(){
+		return this.cp.getLocalName();
+	}
 }
