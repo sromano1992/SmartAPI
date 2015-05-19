@@ -89,4 +89,21 @@ public class CodePattern {
 	public String toString(){
 		return this.cp.getLocalName();
 	}
+	
+	/**
+	 * Will return user who inserted this cp.
+	 * @return
+	 */
+	public String getOwner(){
+		return new SmartAPIModel().getCpOwner(cp.getLocalName());
+	}
+	
+	/**
+	 * This method will return relative source code
+	 * for this code pattern.
+	 * @return
+	 */
+	public String getCode(){
+		return new SmartAPIModel().getCpSourceCode(cp.getLocalName());
+	}
 }
