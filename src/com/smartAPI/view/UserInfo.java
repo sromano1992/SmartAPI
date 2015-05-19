@@ -8,6 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UserInfo extends JPanel {
 
@@ -46,6 +49,7 @@ public class UserInfo extends JPanel {
 		add(label);
 		
 		userField = new JTextField(user);
+		userField.setEditable(false);
 		userField.setColumns(10);
 		userField.setBounds(110, 170, 204, 37);
 		add(userField);
@@ -59,6 +63,7 @@ public class UserInfo extends JPanel {
 		add(label_1);
 		
 		passwordField = new JPasswordField(password);
+		passwordField.setEditable(false);
 		passwordField.setBounds(110, 200, 204, 37);
 		add(passwordField);
 		
@@ -71,6 +76,7 @@ public class UserInfo extends JPanel {
 		add(label_2);
 		
 		nameField = new JTextField(name);
+		nameField.setEditable(false);
 		nameField.setColumns(10);
 		nameField.setBounds(110, 260, 204, 37);
 		add(nameField);
@@ -84,6 +90,7 @@ public class UserInfo extends JPanel {
 		add(label_3);
 		
 		surnameField = new JTextField(surname);
+		surnameField.setEditable(false);
 		surnameField.setBounds(110, 290, 204, 37);
 		add(surnameField);
 		
@@ -96,8 +103,48 @@ public class UserInfo extends JPanel {
 		add(label_4);
 		
 		emailField = new JTextField(email);
+		emailField.setEditable(false);
 		emailField.setBounds(110, 320, 204, 37);
 		add(emailField);
+		
+		JButton btnModName = new JButton("");
+		btnModName.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nameField.setEditable(true);
+			}
+		});
+		btnModName.setBounds(309, 264, 26, 29);
+		path="res/pencil.png";
+		pathIcon = getClass().getResource(path).getFile();
+		imgicon = new MyImageIcon(pathIcon,20,20);
+		btnModName.setIcon(imgicon.getImageResponsive());
+		add(btnModName);
+		
+		JButton buttonSurname = new JButton("");
+		buttonSurname.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				surnameField.setEditable(true);
+			}
+		});
+		path="res/pencil.png";
+		pathIcon = getClass().getResource(path).getFile();
+		imgicon = new MyImageIcon(pathIcon,20,20);
+		buttonSurname.setIcon(imgicon.getImageResponsive());
+		buttonSurname.setBounds(309, 294, 26, 29);
+		add(buttonSurname);
+		
+		JButton buttonEmail = new JButton("");
+		buttonEmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				emailField.setEditable(true);
+			}
+		});
+		path="res/pencil.png";
+		pathIcon = getClass().getResource(path).getFile();
+		imgicon = new MyImageIcon(pathIcon,20,20);
+		buttonEmail.setIcon(imgicon.getImageResponsive());
+		buttonEmail.setBounds(309, 325, 26, 29);
+		add(buttonEmail);
 		ImageIcon star=new ImageIcon();
 		path="res/star.png";
 		pathIcon = getClass().getResource(path).getFile();
