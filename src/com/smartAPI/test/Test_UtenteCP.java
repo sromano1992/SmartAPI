@@ -12,8 +12,9 @@ public class Test_UtenteCP {
 
 	public static void main(String[] args) {
 		SmartAPIModel model = new SmartAPIModel();
-		String utente = "utente";
-		String codePattern = "codePattern";
+		String utente = "u1";
+		String codePattern = "c1";
+		
 		
 		model.addObjectPropertyInstance(Common.HAS_OWNER, codePattern, utente);
 		model.storeOntModel();
