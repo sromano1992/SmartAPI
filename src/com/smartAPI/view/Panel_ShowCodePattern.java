@@ -16,6 +16,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.border.BevelBorder;
+import java.awt.SystemColor;
 
 public class Panel_ShowCodePattern extends JPanel {
 
@@ -68,6 +70,7 @@ public class Panel_ShowCodePattern extends JPanel {
 		panel_1.add(labelUserName);
 		
 		Panel_CodePatternScore panel_CodePatternScore = new Panel_CodePatternScore();
+		panel_CodePatternScore.setBorder(new BevelBorder(BevelBorder.LOWERED, SystemColor.activeCaption, null, null, null));
 		add(panel_CodePatternScore, BorderLayout.SOUTH);
 
 	}
