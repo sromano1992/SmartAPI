@@ -12,7 +12,7 @@ public class PanelInsertTest {
 					Panel_InsertCP window = new Panel_InsertCP();
 					JFrame fr = new JFrame();
 					fr.add(window);
-					fr.setBounds(6, 6, 800, 400);
+					fr.setBounds(6, 6, 800, 600);
 					fr.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
