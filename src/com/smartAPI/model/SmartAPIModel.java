@@ -442,7 +442,9 @@ public class SmartAPIModel {
 			String userId = calculateID(userClass.getLocalName());
 			String newUserId = String.valueOf(Integer.parseInt(userId) + 1);
 			
-			Individual individualUser1 = getOntModel().createIndividual(Common.NS + "u" + newUserId , userClass);
+			//modificare!
+			Individual individualUser1 = getOntModel().createIndividual(Common.NS + username, userClass);
+			//Individual individualUser1 = getOntModel().createIndividual(Common.NS + "u" + newUserId , userClass);
 			DatatypeProperty hasUsername = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_USERNAME);
 			DatatypeProperty hasPassword = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_PASSWORD);
 			DatatypeProperty hasName = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_NAME);

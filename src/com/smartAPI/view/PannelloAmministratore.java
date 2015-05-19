@@ -14,22 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.event.TreeModelEvent;
-import javax.swing.event.TreeModelListener;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.MutableTreeNode;
-import javax.swing.tree.TreePath;
-import javax.swing.tree.TreeSelectionModel;
-
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.awt.BorderLayout;
@@ -49,8 +33,11 @@ import javax.swing.JLabel;
 
 import java.awt.Color;
 
-import javax.swing.JTree;
-
+/** 
+ * 
+ * @author Amedeo Leo
+ *
+ */
 
 public class PannelloAmministratore extends JFrame {
 
@@ -76,9 +63,6 @@ public class PannelloAmministratore extends JFrame {
 	
 	private void initialize() {	
 		JPanel panel = new JPanel();
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_1 = new JPanel();
 		
@@ -110,7 +94,7 @@ public class PannelloAmministratore extends JFrame {
 		panel_1.setLayout(gl_panel_1);
 		
 		JButton button_1 = new JButton("Elimina");
-		DynamicTreeDemo dynamicTreeDemo = new DynamicTreeDemo(this, button_1, model);
+		
 		
 		JPanel panel_3 = new JPanel();
 		
@@ -141,18 +125,26 @@ public class PannelloAmministratore extends JFrame {
 					.addContainerGap())
 		);
 		panel_3.setLayout(gl_panel_3);
+		
+		JPanel panel_2 = new JPanel();
+		
+		JTreeEvents treeEvents_1 = new JTreeEvents(model, false, null);
+		JTreeEvents treeEvents = new JTreeEvents(model, true, treeEvents_1);
+		
+		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(dynamicTreeDemo, GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
-						.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+						.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(treeEvents_1, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -160,26 +152,35 @@ public class PannelloAmministratore extends JFrame {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(28)
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(11)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(50)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-									.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
-									.addGap(31))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(18)
-									.addComponent(dynamicTreeDemo, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)))
-							.addGap(28))
+							.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(18))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(11)
-							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(320, Short.MAX_VALUE))))
+							.addComponent(treeEvents_1, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+					.addGap(28))
 		);
+		
+		JPanel panel_4 = new JPanel();
+		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
+		gl_panel_2.setHorizontalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(379, Short.MAX_VALUE))
+		);
+		gl_panel_2.setVerticalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+		);
+		panel_4.setLayout(new BorderLayout(0, 0));
+		panel_4.add(treeEvents);
+		panel_2.setLayout(gl_panel_2);
 		
 		table = new JTable();
 		final VectorTableModel tableModel = new VectorTableModel(new Vector<Utente>(model.getUsers()));
@@ -195,7 +196,6 @@ public class PannelloAmministratore extends JFrame {
 				}
 				tableModel.fireTableDataChanged();
 				selectedCells.removeAll(selectedCells);
-				//?? repaint();
 			}
 		});
 		table.getTableHeader().setReorderingAllowed(false);		
