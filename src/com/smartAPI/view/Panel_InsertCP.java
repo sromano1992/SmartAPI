@@ -30,6 +30,11 @@ import javax.swing.JMenuBar;
 import java.awt.Font;
 import java.util.Vector;
 
+/**
+ * Pannello che permette all'utente di inserire un code pattern
+ * @author iolrin
+ *
+ */
 public class Panel_InsertCP extends JPanel {
 	private JTextField nomeCP;
 	private JTextField txtCodePattern;
@@ -50,7 +55,7 @@ public class Panel_InsertCP extends JPanel {
 			}
 		});
 	
-		nomeCP.setText("Nome");
+		nomeCP.setText("Nome code pattern");
 		nomeCP.setBounds(6, 6, 149, 36);
 		add(nomeCP);
 		nomeCP.setColumns(20);
@@ -87,7 +92,6 @@ public class Panel_InsertCP extends JPanel {
 
 		    jcb.setBounds(400, 6, 149, 36);
 		    jcb.setName("Categoria");
-		    
 		    add(jcb);
 
 		    setSize(633, 249);

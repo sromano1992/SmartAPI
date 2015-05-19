@@ -7,6 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Color;
 
+/**
+ * Pannello che mostra all'utente le operazioni che può effettuare
+ * @author iolrin
+ *
+ */
 public class Panel_UserOptions extends JPanel {
 
 	/**
