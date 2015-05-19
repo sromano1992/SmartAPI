@@ -19,6 +19,7 @@ public class Common {
 	public static final String HAS_NAME = "hasName";
 	public static final String HAS_SURNAME = "hasSurname";
 	public static final String HAS_EMAIL = "hasEmail";
+	public static final String IS_ADMINISTRATOR = "isAdministrator";
 	
 	
 }
