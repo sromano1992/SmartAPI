@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import java.awt.Choice;
 import java.awt.Color;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JMenu;
@@ -39,6 +40,7 @@ public class Panel_InsertCP extends JPanel {
 	private JTextField nomeCP;
 	private JTextField txtCodePattern;
 	private JTextField keyword;
+	private JTextField newCategoria;
 
 	/**
 	 * Create the panel.
@@ -83,20 +85,42 @@ public class Panel_InsertCP extends JPanel {
 				keyword.setText(" ");
 			}
 		});
-		
-		
-		 Vector v = new Vector();
+
+		 
+		Vector v = new Vector();
+		 
 		    v.add("Storage");
 		    v.add("Database");
-		    JComboBox jcb = new JComboBox(v);
-
+		    v.add("Altro...");
+		    DefaultComboBoxModel model = new DefaultComboBoxModel(v);
+		  final JComboBox jcb = new JComboBox(model);
 		    jcb.setBounds(400, 6, 149, 36);
-		    jcb.setName("Categoria");
 		    add(jcb);
-
-		    setSize(633, 249);
-		    setVisible(true);		
+		    jcb.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent e) {
+					String categoria = (String) jcb.getSelectedItem();
+					System.out.println(categoria);
+					if(categoria.equals("Altro...")){
+						newCategoria.setVisible(true);
+					}
+				}
+			});
+		    
+		    newCategoria = new JTextField();
+		    newCategoria.setText("Inserisci la categoria");
+		    newCategoria.setBounds(400, 54, 166, 36);
+		    add(newCategoria);
+		    newCategoria.setColumns(10);
+		    newCategoria.setVisible(false);		
+		    newCategoria.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					newCategoria.setText(" ");
+				}
+			});
 		
-
+		    setSize(633, 249);
+		    setVisible(true);
 	}
 }
