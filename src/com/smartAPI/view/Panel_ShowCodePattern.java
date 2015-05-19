@@ -29,9 +29,9 @@ public class Panel_ShowCodePattern extends JPanel {
 		add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{450, 0};
-		gbl_panel.rowHeights = new int[] {200, 86, 0, 0};
+		gbl_panel.rowHeights = new int[] {200, 86, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -66,6 +66,9 @@ public class Panel_ShowCodePattern extends JPanel {
 		
 		JLabel labelUserName = new JLabel("Username");
 		panel_1.add(labelUserName);
+		
+		Panel_CodePatternScore panel_CodePatternScore = new Panel_CodePatternScore();
+		add(panel_CodePatternScore, BorderLayout.SOUTH);
 
 	}
 }
