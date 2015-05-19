@@ -80,6 +80,18 @@ public class Panel_ShowCodePattern extends JPanel {
 		Panel_CodePatternScore panel_CodePatternScore = new Panel_CodePatternScore();
 		panel_2.add(panel_CodePatternScore);
 		panel_CodePatternScore.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(153, 180, 209), SystemColor.inactiveCaption, null, null));
+		
+		JPanel panel_3 = new JPanel();
+		panel_2.add(panel_3);
+		
+		MyJLabel mjlblVota = new MyJLabel("Username");
+		mjlblVota.setOpaque(true);
+		mjlblVota.setBackground(new Color(4, 113, 36));
+		mjlblVota.setText("Vota");
+		panel_3.add(mjlblVota);
+		
+		Panel_CodePatternSetScore panel_CodePatternSetScore = new Panel_CodePatternSetScore();
+		panel_3.add(panel_CodePatternSetScore);
 
 	}
 }
