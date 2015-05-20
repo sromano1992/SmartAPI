@@ -80,7 +80,7 @@ public class Panel_InsertCP extends JPanel {
 		 
 		    v.add("Storage");
 		    v.add("Database");
-		    v.add("Altro...");
+		    v.add("Other...");
 		    DefaultComboBoxModel model = new DefaultComboBoxModel(v);
 		  final JComboBox jcb = new JComboBox(model);
 		    jcb.setBounds(408, 66, 149, 36);
@@ -89,7 +89,7 @@ public class Panel_InsertCP extends JPanel {
 				
 				public void actionPerformed(ActionEvent e) {
 				 String categoria = (String) jcb.getSelectedItem();
-					if(categoria.equals("Altro...")){
+					if(categoria.equals("Other...")){
 						newCategoria.setVisible(true);
 					}
 					if(!categoria.equals(""))System.out.println("Categoria: "+categoria);
@@ -110,7 +110,7 @@ public class Panel_InsertCP extends JPanel {
 		    cpLabel.setBounds(6, 211, 94, 25);
 		    add(cpLabel);
 		    
-		    MyJLabel nomeLabel = new MyJLabel("Nome");
+		    MyJLabel nomeLabel = new MyJLabel("Name");
 		    nomeLabel.setBounds(6, 39, 94, 25);
 		    add(nomeLabel);
 		    
@@ -118,11 +118,11 @@ public class Panel_InsertCP extends JPanel {
 		    keywordLabel.setBounds(6, 102, 94, 25);
 		    add(keywordLabel);
 		    
-		    MyJLabel categoriaLabel = new MyJLabel("Categoria");
+		    MyJLabel categoriaLabel = new MyJLabel("Category");
 		    categoriaLabel.setBounds(316, 71, 94, 25);
 		    add(categoriaLabel);
 		    
-		    JButton addCP = new JButton("Inserisci");
+		    JButton addCP = new JButton("Insert");
 		    addCP.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		    		String val_nome = nomeCP.getText();
