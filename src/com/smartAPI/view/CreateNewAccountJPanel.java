@@ -26,6 +26,7 @@ public class CreateNewAccountJPanel extends JPanel {
 	private JLabel lblIcon;
 	private JLabel lblCreateNewAccount;
 	private JLabel lblUser;
+	private JLabel lblError;
 
 		public CreateNewAccountJPanel() {
 			setLayout(null);
@@ -147,6 +148,13 @@ public class CreateNewAccountJPanel extends JPanel {
 			
 			comboBox.setBounds(214, 101, 118, 31);
 			add(comboBox);
+			
+			lblError = new JLabel("Errror");
+			lblError.setHorizontalAlignment(SwingConstants.LEFT);
+			lblError.setForeground(Color.RED);
+			lblError.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+			lblError.setBounds(47, 391, 120, 16);
+			add(lblError);
 
 	}
 
