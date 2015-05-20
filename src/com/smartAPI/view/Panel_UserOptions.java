@@ -20,7 +20,7 @@ public class Panel_UserOptions extends JPanel {
 	public Panel_UserOptions() {
 		setBackground(new Color(72, 209, 204));
 		
-		JButton VisualizzaUtenti = new JButton("Visualizza Utenti");
+		JButton VisualizzaUtenti = new JButton("Show users");
 		VisualizzaUtenti.setBounds(387, 6, 123, 36);
 		VisualizzaUtenti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -28,11 +28,11 @@ public class Panel_UserOptions extends JPanel {
 		});
 		setLayout(null);
 		
-		JButton Ricerca = new JButton("Ricerca");
+		JButton Ricerca = new JButton("Search");
 		Ricerca.setBounds(17, 6, 123, 36);
 		add(Ricerca);
 		
-		JButton Inserisci = new JButton("Inserisci");
+		JButton Inserisci = new JButton("Insert");
 		Inserisci.setBounds(210, 6, 107, 36);
 		add(Inserisci);
 		add(VisualizzaUtenti);
