@@ -106,4 +106,8 @@ public class CodePattern {
 	public String getCode(){
 		return new SmartAPIModel().getCpSourceCode(cp.getLocalName());
 	}
+	
+	public String getKeyWord(){
+		return new SmartAPIModel().getCpKeyword(cp.getLocalName());
+	}
 }

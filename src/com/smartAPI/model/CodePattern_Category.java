@@ -69,4 +69,8 @@ public class CodePattern_Category {
 	public ArrayList<CodePattern> getBasicCodePattern() {
 		return basicCodePattern;
 	}
+	
+	public String getCategoryName(){
+		return category;
+	}
 }

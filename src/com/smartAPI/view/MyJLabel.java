@@ -12,6 +12,7 @@ public class MyJLabel  extends JTextField{
 		this.setHorizontalAlignment(SwingConstants.CENTER);
 		this.setForeground(Color.WHITE);
 		this.setBackground(new Color(2, 66, 96));
+		this.setEditable(false);
 	}
 	
 }

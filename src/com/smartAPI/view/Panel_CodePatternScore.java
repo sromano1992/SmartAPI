@@ -19,13 +19,13 @@ import javax.swing.JButton;
 
 public class Panel_CodePatternScore extends JPanel {
 	private static Logger log = Logger.getLogger("global");
-	private static int _MAX_SCORE = 10;
+	private static int _MAX_SCORE = 11;
 	private static int _MIN_SCORE = 0;
 	
 	/**
 	 * Create the panel.
 	 */
-	public Panel_CodePatternScore(int score) {
+	public Panel_CodePatternScore(double score) {
 		if(score > _MAX_SCORE){
 			log.severe("Max score is " + _MAX_SCORE + "; will be show " + _MAX_SCORE);
 			score = _MAX_SCORE;
@@ -38,11 +38,13 @@ public class Panel_CodePatternScore extends JPanel {
 	    }
 	    for (int i=0; i<_MAX_SCORE-score; i++)
 	    	add(new JLabel());
+	    add(new JLabel(""+score));
 	}
 
 	public Panel_CodePatternScore() {
 		log.info("Score not defined...will be showed 4 stars");
 		setLayout(new GridLayout(1, _MAX_SCORE, 0, 0));
+		
 		String starIco = this.getClass().getResource("res/star.png").getFile();
 		ImageIcon pic = new ImageIcon(starIco);
 	    for (int i=0; i<4; i++){
@@ -50,5 +52,6 @@ public class Panel_CodePatternScore extends JPanel {
 	    }
 	    for (int i=0; i<_MAX_SCORE-4; i++)
 	    	add(new JLabel());
+	    add(new JLabel("4.2"));
 	}
 }
