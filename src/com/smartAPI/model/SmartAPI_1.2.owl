@@ -131,7 +131,7 @@
  
     // Il codice seguente sostituisce i punti di domanda con stringhe o interi.
     // Il primo parametro indica la posizione in cui il valore va inserito, 
-    // il secondo parametro è il valore da inserire.
+    // il secondo parametro Ã¨ il valore da inserire.
     ps.setString(1, "Poor Yorick");
     ps.setInt(2, 8008);
  
