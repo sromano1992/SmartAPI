@@ -18,12 +18,9 @@ public class Test_28 {
 	public static void main(String[] args) {
 		SmartAPIModel s = new SmartAPIModel();
 		String category = "Storage";		
-		String name = "CodePattern";
+		String codePattern = "Ste_CodePattern";
 		
-		OntClass o = s.getOntModel().getOntClass(Common.NS+category);
-		Individual p1 = s.getOntModel().createIndividual(Common.NS+name,o);
-		
-		s.storeOntModel();
+		s.associateCatAndCodePattern(category, codePattern);
 		
 	}
 

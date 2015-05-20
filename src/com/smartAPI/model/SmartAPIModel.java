@@ -186,7 +186,7 @@ public class SmartAPIModel {
 		}
 	}
 
-	private OntClass getOntClass(String className) {
+	public OntClass getOntClass(String className) {
 		OntClass toReturn = null;
 		for (Iterator<OntClass> i=getOntModel().listClasses(); i.hasNext();){
 			OntClass tempClass = i.next();
@@ -799,5 +799,65 @@ public class SmartAPIModel {
 			toReturn.add(getPatternOfCategory(r.getLocalName()));
 		}
 		return toReturn;
+	}
+	
+
+	/**
+	 * Associare il code pattern inserito ad una categoria.
+	 * @author Stefania Cardamone
+	 */
+	public void associateCatAndCodePattern(String category, String codePattern){
+		OntClass o = getOntModel().getOntClass(Common.NS+category);
+		Individual p1 = getOntModel().createIndividual(Common.NS+codePattern,o);
+		
+		storeOntModel();
+	}
+	
+	/**
+	 * 
+	 * @author Stefania Cardamone
+	 * Aggiunta di istanze alla proprietà useMethod (ex. useCalendar)
+	 *
+	 */
+	public void addInstanceUseMethod(String category, String pattern){
+		ArrayList<String> method_s = new ArrayList<String>();
+		for (int i=100; i<110; i++){
+			method_s.add("c" + i);
+		}
+		addToMethodClass(method_s);
+		
+		Resource c1 = getOntModel().getResource(Common.NS + pattern);
+
+		for (String m : method_s) {
+			c1.addProperty(getOntModel().getProperty(Common.NS + "use" + category), getResourceFromBase(Common.NS + m));
+		}
+		
+		storeOntModel();
+	}
+	public boolean addUseMethod(String category_name){
+		if (getOntModel().getObjectProperty(Common.NS + "use"+category_name)!=null)
+			return false;
+		
+		OntClass methodClass= null;
+		OntClass category = getOntModel().getOntClass(Common.NS + category_name);
+		
+		if (category == null){
+			category = getOntModel().createClass(Common.NS + category_name);
+			OntClass codePattern =  getOntModel().getOntClass(Common.NS + "CodePattern");
+			codePattern.addSubClass(category);
+			OntClass method = getOntClass("Method");
+			methodClass = getOntModel().createClass(Common.NS + category_name + "Method");
+			method.addSubClass(methodClass);
+		}
+		else
+			methodClass = getOntModel().getOntClass(Common.NS + category_name + "Method");
+		
+		ObjectProperty useMethod = getOntModel().getObjectProperty(Common.NS + "useMethod");
+		ObjectProperty useCategory = getOntModel().createObjectProperty(Common.NS + "use"+category_name);	
+		useMethod.addSubProperty(useCategory);
+		useCategory.setDomain(category);
+		useCategory.setRange(methodClass);
+		storeOntModel();
+		return true;
 	}
 }
