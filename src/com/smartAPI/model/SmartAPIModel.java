@@ -800,4 +800,37 @@ public class SmartAPIModel {
 		}
 		return toReturn;
 	}
+	
+	/**
+	 * Associare il code pattern inserito ad una categoria.
+	 * @author Stefania Cardamone
+	 */
+	public void associateCatAndCodePattern(String category, String codePattern){
+		OntClass o = getOntModel().getOntClass(Common.NS+category);
+		Individual p1 = getOntModel().createIndividual(Common.NS+codePattern,o);
+		
+		storeOntModel();
+	}
+	
+	/**
+	 * 
+	 * @author Stefania Cardamone
+	 * Aggiunta di istanze alla proprietà useMethod (ex. useCalendar)
+	 *
+	 */
+	public void addInstanceUseMethod(String category, String pattern){
+		ArrayList<String> method_s = new ArrayList<String>();
+		for (int i=100; i<110; i++){
+			method_s.add("c" + i);
+		}
+		addToMethodClass(method_s);
+		
+		Resource c1 = getOntModel().getResource(Common.NS + pattern);
+
+		for (String m : method_s) {
+			c1.addProperty(getOntModel().getProperty(Common.NS + "use" + category), getResourceFromBase(Common.NS + m));
+		}
+		
+		storeOntModel();
+	}
 }
