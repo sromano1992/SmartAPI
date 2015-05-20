@@ -186,7 +186,7 @@ public class SmartAPIModel {
 		}
 	}
 
-	private OntClass getOntClass(String className) {
+	public OntClass getOntClass(String className) {
 		OntClass toReturn = null;
 		for (Iterator<OntClass> i=getOntModel().listClasses(); i.hasNext();){
 			OntClass tempClass = i.next();
@@ -799,5 +799,32 @@ public class SmartAPIModel {
 			toReturn.add(getPatternOfCategory(r.getLocalName()));
 		}
 		return toReturn;
+	}
+	
+	public boolean addUseMethod(String category_name){
+		if (getOntModel().getObjectProperty(Common.NS + "use"+category_name)!=null)
+			return false;
+		
+		OntClass methodClass= null;
+		OntClass category = getOntModel().getOntClass(Common.NS + category_name);
+		
+		if (category == null){
+			category = getOntModel().createClass(Common.NS + category_name);
+			OntClass codePattern =  getOntModel().getOntClass(Common.NS + "CodePattern");
+			codePattern.addSubClass(category);
+			OntClass method = getOntClass("Method");
+			methodClass = getOntModel().createClass(Common.NS + category_name + "Method");
+			method.addSubClass(methodClass);
+		}
+		else
+			methodClass = getOntModel().getOntClass(Common.NS + category_name + "Method");
+		
+		ObjectProperty useMethod = getOntModel().getObjectProperty(Common.NS + "useMethod");
+		ObjectProperty useCategory = getOntModel().createObjectProperty(Common.NS + "use"+category_name);	
+		useMethod.addSubProperty(useCategory);
+		useCategory.setDomain(category);
+		useCategory.setRange(methodClass);
+		storeOntModel();
+		return true;
 	}
 }

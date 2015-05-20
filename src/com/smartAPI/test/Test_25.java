@@ -13,8 +13,8 @@ public class Test_25 {
 	public static void main(String[] args) {
 		SmartAPIModel s = new SmartAPIModel();
 		
-		String risorsa = "c1";
-		String keyword = "calendario";		
+		String risorsa = "c2";
+		String keyword = "calendar";		
 		
 		if(s.addKeyword(risorsa, keyword)) 
 			s.storeOntModel();

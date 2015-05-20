@@ -8,7 +8,7 @@ import com.smartAPI.model.SmartAPIModel;
  * Aggiunta di un utente ad un codePattern
  * @author iolrin
  */
-public class Test_UtenteCP {
+public class Test_35 {
 
 	public static void main(String[] args) {
 		SmartAPIModel model = new SmartAPIModel();
