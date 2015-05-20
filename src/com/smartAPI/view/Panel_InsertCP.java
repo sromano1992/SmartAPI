@@ -57,22 +57,22 @@ public class Panel_InsertCP extends JPanel {
 		setLayout(null);
 		
 		nomeCP = new JTextField();
-		nomeCP.setBounds(98, 39, 149, 25);
+		nomeCP.setBounds(248, 171, 149, 25);
 		add(nomeCP);
 		nomeCP.setColumns(20);
 		
 		
 		
 		txtCodePattern = new JTextArea();
+		txtCodePattern.setBounds(252, 343, 378, 220);
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
 		txtCodePattern.setBorder(border);
-		txtCodePattern.setBounds(102, 211, 378, 220);
 		add(txtCodePattern);
 		
 		
 		keyword = new JTextField();
+		keyword.setBounds(248, 234, 149, 25);
 		keyword.setColumns(20);
-		keyword.setBounds(98, 102, 149, 25);
 		add(keyword);
 
 		
@@ -83,7 +83,7 @@ public class Panel_InsertCP extends JPanel {
 		    v.add("Other...");
 		    DefaultComboBoxModel model = new DefaultComboBoxModel(v);
 		  final JComboBox jcb = new JComboBox(model);
-		    jcb.setBounds(408, 66, 149, 36);
+		  jcb.setBounds(558, 198, 149, 36);
 		    add(jcb);
 		    jcb.addActionListener(new ActionListener() {
 				
@@ -99,30 +99,31 @@ public class Panel_InsertCP extends JPanel {
 		    
 		    
 		    newCategoria = new JTextField();
-		    newCategoria.setBounds(564, 71, 149, 25);
+		    newCategoria.setBounds(714, 203, 149, 25);
 		    add(newCategoria);
 		    newCategoria.setColumns(10);
 		    newCategoria.setVisible(false);		
 		
-		    setSize(753, 480);
+		    setSize(1005, 731);
 		    
 		    MyJLabel cpLabel = new MyJLabel("Code Pattern");
-		    cpLabel.setBounds(6, 211, 94, 25);
+		    cpLabel.setBounds(156, 343, 94, 25);
 		    add(cpLabel);
 		    
 		    MyJLabel nomeLabel = new MyJLabel("Name");
-		    nomeLabel.setBounds(6, 39, 94, 25);
+		    nomeLabel.setBounds(156, 171, 94, 25);
 		    add(nomeLabel);
 		    
 		    MyJLabel keywordLabel = new MyJLabel("Keyword");
-		    keywordLabel.setBounds(6, 102, 94, 25);
+		    keywordLabel.setBounds(156, 234, 94, 25);
 		    add(keywordLabel);
 		    
 		    MyJLabel categoriaLabel = new MyJLabel("Category");
-		    categoriaLabel.setBounds(316, 71, 94, 25);
+		    categoriaLabel.setBounds(466, 203, 94, 25);
 		    add(categoriaLabel);
 		    
 		    JButton addCP = new JButton("Insert");
+		    addCP.setBounds(385, 577, 120, 35);
 		    addCP.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		    		String val_nome = nomeCP.getText();
@@ -132,7 +133,6 @@ public class Panel_InsertCP extends JPanel {
 		    		System.out.println("Nome: "+val_nome+" Key: "+val_keyword+" Cp: "+val_CP);
 		    	}
 		    });
-		    addCP.setBounds(235, 445, 120, 35);
 		    add(addCP);
 		    setVisible(true);
 	}

@@ -45,10 +45,11 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 	 */
 	public Panel_ShowCodePattern() {
 		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		setLayout(new BorderLayout(0, 0));
+		setLayout(null);
 		
 		JPanel panel = new JPanel();
-		add(panel, BorderLayout.CENTER);
+		panel.setBounds(2, 26, 446, 188);
+		add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{450, 0};
 		gbl_panel.rowHeights = new int[] {200, 86, 0, 0, 0};
@@ -83,15 +84,17 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		scrollPane_1.setViewportView(txtpaneKeyWord);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(2, 2, 446, 24);
 		panel_1.setBorder(new LineBorder(SystemColor.activeCaption, 1, true));
-		add(panel_1, BorderLayout.NORTH);
+		add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 5, 0, 0));
 		
 		labelUserName = new MyJLabel("Username");
 		panel_1.add(labelUserName);
 		
 		JPanel panel_2 = new JPanel();
-		add(panel_2, BorderLayout.SOUTH);
+		panel_2.setBounds(2, 214, 446, 84);
+		add(panel_2);
 		panel_2.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		Panel_CodePatternScore panel_CodePatternScore = new Panel_CodePatternScore();
