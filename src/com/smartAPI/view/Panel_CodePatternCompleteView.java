@@ -62,6 +62,5 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 			SwingUtilities.updateComponentTreeUI(this);
 			c = c.getParent();
 		}
-		SwingUtilities.updateComponentTreeUI(this.getParent());
 	}
 }

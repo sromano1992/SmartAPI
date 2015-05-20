@@ -18,9 +18,11 @@ public class Test_29 {
 		
 		String category = "Calendar";
 		String pattern = "c1";		
-		ArrayList<String> method_s = new ArrayList<String>();
+		
+		s.addInstanceUseMethod(category, pattern);
+		/*ArrayList<String> method_s = new ArrayList<String>();
 		for (int i=100; i<110; i++){
-			method_s.add("m" + i);
+			method_s.add("ste" + i);
 		}
 		s.addToMethodClass(method_s);
 		
@@ -30,6 +32,6 @@ public class Test_29 {
 			c1.addProperty(s.getOntModel().getProperty(Common.NS + "use" + category), s.getResourceFromBase(Common.NS + m));
 		}
 		
-		s.storeOntModel();
+		s.storeOntModel();*/
 	}
 }

@@ -20,21 +20,24 @@ import javax.swing.tree.TreeSelectionModel;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.JScrollPane;
+import java.awt.BorderLayout;
+import javax.swing.JTextPane;
 
 public class Test_Simone extends JPanel {
+	private JTextField txtDefaulttreemodelModel;
 
 	/**
 	 * Create the panel.
 	 */
 	public Test_Simone() {
-		Panel_CodePatternSetScore panel_CodePatternSetScore = new Panel_CodePatternSetScore();
-		panel_CodePatternSetScore.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-			}
-		});
-		add(panel_CodePatternSetScore);
-
+		setLayout(new BorderLayout(0, 0));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		add(scrollPane);
+		
+		JTextPane textPane = new JTextPane();
+		scrollPane.setViewportView(textPane);
 	}
 
 }
