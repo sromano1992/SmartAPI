@@ -32,13 +32,15 @@ public class JTreeEvents extends JPanel {
 	private DefaultTreeModel treeModel;  
 	private JTreeEvents panel;
 	private boolean basic = false;
+	private SmartAPIModel model;
 	
 	  public JTreeEvents(SmartAPIModel model, boolean basic, JTreeEvents panel) {
 	    setLayout(new BorderLayout());
+	    this.model = model;
+	    this.basic = basic;
 	    if(basic) {
 		    top = new DefaultMutableTreeNode("Basic");
 		    this.panel = panel;
-		    this.basic = basic;
 	   		ArrayList<Resource> categorie = model.getPatternCategory();
 	   		for (Resource r : categorie) {
 	   			DefaultMutableTreeNode n = new DefaultMutableTreeNode(r.getLocalName());
@@ -54,22 +56,6 @@ public class JTreeEvents extends JPanel {
    			top = new DefaultMutableTreeNode("Inferred");
    		}
    		
-   		
-	    /*
-	    DefaultMutableTreeNode a = new DefaultMutableTreeNode("A");
-	    top.add(a);
-	    
-	    a.add(new DefaultMutableTreeNode("A1"));
-	    a.add(new DefaultMutableTreeNode("A2"));
-
-	    DefaultMutableTreeNode b = new DefaultMutableTreeNode("B");
-	    top.add(b);
-	    
-	    b.add(new DefaultMutableTreeNode("B1"));
-	    b.add(new DefaultMutableTreeNode("B2"));
-	    b.add(new DefaultMutableTreeNode("B3"));
-	    */
-
 	    tree = new JTree(top);
 
 	    int v = ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
@@ -96,21 +82,52 @@ public class JTreeEvents extends JPanel {
 	    else
 	      jtf.setText("");
 	    
-	    System.out.println(tp.getLastPathComponent().toString());	 
-	    if(basic)
-	    	aggiungiNodi(tp.getLastPathComponent().toString(), panel);
+	    if(basic) {
+	    	if(tp.getLastPathComponent().toString().equals("Basic")) {
+	    		return;
+	    	}
+	    	else
+	    		aggiungiNodi(tp.getLastPathComponent().toString(), panel);
+	    }
 	}
 	  
-	  public void aggiungiNodi(String r, JTreeEvents tree) {
-		  DefaultMutableTreeNode n = new DefaultMutableTreeNode(r);
- 		  tree.getRoot().add(n);
- 		  System.out.println("qui");
- 		  tree.repaint();
+	  public void aggiungiNodi(String nomeNodo, JTreeEvents otherTree) {
+		  DefaultMutableTreeNode n = null;
+ 		  
+		  ArrayList<Resource> categorie = model.getPatternCategory();		  
+		  for (Resource r : categorie) {
+			  if(r.getLocalName().equals(nomeNodo)) {
+	   			n = new DefaultMutableTreeNode(r.getLocalName());
+	   			CodePattern_Category cc = model.getPatternOfCategory(r.getLocalName());			
+				for(CodePattern c1 : cc.getInferredCodePattern()) 
+					n.add(new DefaultMutableTreeNode(c1.getResource().getLocalName()));
+	   		}
+		  }
+		  if(n != null) {
+			  System.out.println(otherTree.getRoot().getChildCount());
+			  otherTree.getRoot().removeAllChildren();
+			  otherTree.remove(0);
+			  otherTree.setTree(new JTree(new DefaultMutableTreeNode(nomeNodo)));
+			  System.out.println("new tree");
+			  otherTree.repaint();
+			  otherTree.getRoot().add(n);
+		  }
+		  otherTree.repaint();
 	  }
 	  
 	  public DefaultMutableTreeNode getRoot() {
 		  return top;
 	  }
+	  
+	  public void removeNodes() {
+		  
+	  }
+	  
+	  
+	  public void setTree(JTree tree) {
+		  this.tree = tree;
+	  }
+	  
 	  
 	  
 }

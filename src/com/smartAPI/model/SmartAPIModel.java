@@ -439,8 +439,8 @@ public class SmartAPIModel {
 			System.out.println("qui");
 			Utente user = new Utente(nome, cognome, email, username, password, false);
 			getOntModel();
-			String userId = calculateID(userClass.getLocalName());
-			String newUserId = String.valueOf(Integer.parseInt(userId) + 1);
+			//String userId = calculateID(userClass.getLocalName());
+			//String newUserId = String.valueOf(Integer.parseInt(userId) + 1);
 			
 			//modificare!
 			Individual individualUser1 = getOntModel().createIndividual(Common.NS + username, userClass);
@@ -509,8 +509,8 @@ public class SmartAPIModel {
 			}
 		}
 		else 
-			throw new UserException("Username non esistente");
-		throw new UserException("Password errata");
+			throw new UserException("User not found");
+		throw new UserException("Wrong password");
 	}
 	
 	/**

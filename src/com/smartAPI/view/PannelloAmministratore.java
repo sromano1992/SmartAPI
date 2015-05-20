@@ -32,6 +32,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
 import java.awt.Color;
+import javax.swing.JTree;
 
 /** 
  * 
@@ -128,23 +129,17 @@ public class PannelloAmministratore extends JFrame {
 		
 		JPanel panel_2 = new JPanel();
 		
-		JTreeEvents treeEvents_1 = new JTreeEvents(model, false, null);
-		JTreeEvents treeEvents = new JTreeEvents(model, true, treeEvents_1);
-		
 		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
-						.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(treeEvents_1, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE))
-						.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel_2, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+						.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -155,31 +150,35 @@ public class PannelloAmministratore extends JFrame {
 					.addGap(11)
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(18))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(treeEvents_1, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
 					.addGap(28))
 		);
 		
-		JPanel panel_4 = new JPanel();
+		JTree tree = new JTree();
+		JTree tree_1 = new JTree();
+		
+		
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
-					.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(379, Short.MAX_VALUE))
+					.addContainerGap()
+					.addComponent(tree, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+					.addComponent(tree_1, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+						.addComponent(tree, GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+						.addComponent(tree_1, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
 		);
-		panel_4.setLayout(new BorderLayout(0, 0));
-		panel_4.add(treeEvents);
 		panel_2.setLayout(gl_panel_2);
 		
 		table = new JTable();
