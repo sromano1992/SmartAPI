@@ -8,7 +8,9 @@ import javax.swing.JPanel;
 public class Test_Ste {
 
 	public static void main(String[] args) {
-				ShowUsers_Ste panel = new ShowUsers_Ste("s.carda","123","Stefania","Cardamone","s.cardamone@gmail.com");
+				//ShowUsers_Ste panel = new ShowUsers_Ste("s.carda","123","Stefania","Cardamone","s.cardamone@gmail.com");
+				RemoveUser panel = new RemoveUser("s.carda","123","Stefania","Cardamone","s.cardamone@gmail.com");
+				
 				//CREATE NEW ACCOUNT
 				//CreateNewAccountJPanel panel = new CreateNewAccountJPanel();
 				JFrame frame= new JFrame();

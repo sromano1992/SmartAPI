@@ -1,3 +1,4 @@
+
 package com.smartAPI.view;
 
 import java.awt.Color;
@@ -17,7 +18,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class ShowUsers_Ste extends JPanel{
+public class RemoveUser extends JPanel{
 
 	JLabel lblImage;
 	private static int SCORE = 10;
@@ -30,7 +31,7 @@ public class ShowUsers_Ste extends JPanel{
 	
 			
 			
-	public ShowUsers_Ste(String user,String password,String name,String surname,String email) {
+	public RemoveUser(String user,String password,String name,String surname,String email) {
 				setLayout(null);
 				setBackground(new Color(2, 94, 137));
 				lblImage = new JLabel("");
@@ -152,6 +153,14 @@ public class ShowUsers_Ste extends JPanel{
 				emailField.setBackground(new Color(230, 230, 230));
 				emailField.setBounds(110, 314, 204, 37);
 				add(emailField);
+				
+				JButton btnNewButton = new JButton("Remove user");
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+					}
+				});
+				btnNewButton.setBounds(110, 381, 132, 31);
+				add(btnNewButton);
 				path="res/pencil.png";
 				pathIcon = getClass().getResource(path).getFile();
 				imgicon = new MyImageIcon(pathIcon,20,20);
@@ -180,6 +189,5 @@ public class ShowUsers_Ste extends JPanel{
 			    }
 				
 			}
-
 	}
 
