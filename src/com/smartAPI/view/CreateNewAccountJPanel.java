@@ -20,9 +20,9 @@ public class CreateNewAccountJPanel extends JPanel {
 	private JTextField userField;
 	private JPasswordField passwordField;
 	private JTextField nameField;
-	private JPasswordField surnameField;
-	private JPasswordField passwordField_2;
-	private JPasswordField passwordField_3;
+	private JTextField surnameField;
+	private JPasswordField confirmPasswField;
+	private JTextField emailField;
 	private JLabel lblIcon;
 	private JLabel lblCreateNewAccount;
 	private JLabel lblUser;
@@ -84,7 +84,7 @@ public class CreateNewAccountJPanel extends JPanel {
 			lblSurname.setBounds(47, 316, 95, 31);
 			add(lblSurname);
 			
-			surnameField = new JPasswordField();
+			surnameField = new JTextField();
 			surnameField.setBounds(139, 312, 204, 37);
 			add(surnameField);
 			
@@ -100,13 +100,13 @@ public class CreateNewAccountJPanel extends JPanel {
 			lblRepatPassw.setBounds(47, 257, 95, 31);
 			add(lblRepatPassw);
 			
-			passwordField_2 = new JPasswordField();
-			passwordField_2.setBounds(139, 252, 204, 37);
-			add(passwordField_2);
+			confirmPasswField = new JPasswordField();
+			confirmPasswField.setBounds(139, 252, 204, 37);
+			add(confirmPasswField);
 			
-			passwordField_3 = new JPasswordField();
-			passwordField_3.setBounds(139, 342, 204, 37);
-			add(passwordField_3);
+			emailField = new JTextField();
+			emailField.setBounds(139, 342, 204, 37);
+			add(emailField);
 			
 			JLabel lblEmail = new JLabel("Email");
 			lblEmail.setOpaque(true);
