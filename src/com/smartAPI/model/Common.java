@@ -22,7 +22,7 @@ public class Common {
 	public static final String IS_ADMINISTRATOR = "isAdministrator";
 	public static final String HAS_OWNER = "hasOwner";
 	public static final String NO_OWNER_MESS = "No owner found!";
-	public static final CharSequence HAS_CODE = "hasCode";	
+	public static final String HAS_CODE = "hasCode";	
 	public static final String NO_CODE_MESS = "No code found!";
-
+	public static final String HAS_KEYWORD = "hasKeyword";
 }

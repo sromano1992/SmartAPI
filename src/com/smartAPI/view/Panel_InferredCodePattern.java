@@ -27,7 +27,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 public class Panel_InferredCodePattern extends JPanel {
-
+	private Panel_ShowCodePattern panel_ShowCodePattern, panel_ShowCodePattern_1;
 	/**
 	 * Create the panel.
 	 */
@@ -38,11 +38,14 @@ public class Panel_InferredCodePattern extends JPanel {
 		add(panel_3, BorderLayout.NORTH);
 		panel_3.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JLabel lblNewLabel = new JLabel("Inferred");
+		MyJLabel lblNewLabel = new MyJLabel("Inferred");
+		lblNewLabel.setText("Basic");
+		
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_3.add(lblNewLabel);
 		
-		JLabel lblBasic = new JLabel("Basic");
+		MyJLabel lblBasic = new MyJLabel("Basic");
+		lblBasic.setText("Inferred");
 		lblBasic.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_3.add(lblBasic);
 		
@@ -50,11 +53,24 @@ public class Panel_InferredCodePattern extends JPanel {
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		Panel_ShowCodePattern panel_ShowCodePattern = new Panel_ShowCodePattern();
+		panel_ShowCodePattern = new Panel_ShowCodePattern();
 		panel.add(panel_ShowCodePattern);
 		
-		Panel_ShowCodePattern panel_ShowCodePattern_1 = new Panel_ShowCodePattern();
+		panel_ShowCodePattern_1 = new Panel_ShowCodePattern();
 		panel.add(panel_ShowCodePattern_1);
 
 	}
+	public Panel_ShowCodePattern getPanel_ShowCodePattern() {
+		return panel_ShowCodePattern;
+	}
+	public void setPanel_ShowCodePattern(Panel_ShowCodePattern panel_ShowCodePattern) {
+		this.panel_ShowCodePattern = panel_ShowCodePattern;
+	}
+	public Panel_ShowCodePattern getPanel_ShowCodePattern_1() {
+		return panel_ShowCodePattern_1;
+	}
+	public void setPanel_ShowCodePattern_1(
+			Panel_ShowCodePattern panel_ShowCodePattern_1) {
+		this.panel_ShowCodePattern_1 = panel_ShowCodePattern_1;
+	}	
 }
