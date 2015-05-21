@@ -1,7 +1,9 @@
 package com.smartAPI.view;
 
 import java.util.Vector;
+
 import javax.swing.table.AbstractTableModel;
+
 import com.smartAPI.model.Utente;
 
 /**

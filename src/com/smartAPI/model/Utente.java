@@ -197,6 +197,8 @@ public class Utente implements Serializable {
 	public String toString() {
 		return "Username:" + nickname + "\tNome:" + nome + "\tCognome:" + cognome + "\tEmail:" + email;
 	}
+	
+	
 
 	private String nome;
 	private String cognome;

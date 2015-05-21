@@ -34,8 +34,8 @@ public class CreateNewAccountJPanel extends JPanel {
 	private JLabel lblError;
 	private SmartAPIModel model;
 	
-	public CreateNewAccountJPanel(final SmartAPIModel model) {
-		this.model = model;
+	public CreateNewAccountJPanel() {
+		this.model = new SmartAPIModel();
 		setLayout(null);
 		setBackground(new Color(2, 94, 137));
 		

@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.util.ArrayList;
 import java.util.Vector;
 import java.awt.BorderLayout;
@@ -32,6 +33,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
 import java.awt.Color;
+
 import javax.swing.JTree;
 
 /** 
