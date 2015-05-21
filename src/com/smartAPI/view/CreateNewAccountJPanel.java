@@ -17,6 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import com.smartAPI.control.RegistrazioneControl;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.UserException;
 
@@ -34,8 +35,8 @@ public class CreateNewAccountJPanel extends JPanel {
 	private JLabel lblError;
 	private SmartAPIModel model;
 	
-	public CreateNewAccountJPanel(final SmartAPIModel model) {
-		this.model = model;
+	public CreateNewAccountJPanel() {
+		this.model = new SmartAPIModel();
 		setLayout(null);
 		setBackground(new Color(2, 94, 137));
 		
@@ -99,44 +100,7 @@ public class CreateNewAccountJPanel extends JPanel {
 		JButton btnCreate = new JButton("Create Account");
 		btnCreate.setBounds(58, 437, 274, 37);
 		add(btnCreate);
-		btnCreate.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent arg0) {
-        		try {
-        			String nome = nameField.getText();
-        			String cognome = surnameField.getText();
-        			String username = userField.getText();
-        			char[] password = passwordField.getPassword();
-        			char[] confermaPassword = confirmPasswField.getPassword();
-        			String email = emailField.getText();
-        			//System.out.println(nome + " " + cognome + " " + username + " " + Arrays.toString(password)  + " " + Arrays.toString(confermaPassword) + " " + email);
-        			if (nome.trim().equals("") || cognome.trim().equals("") || username.trim().equals("") || 
-        					Arrays.toString(password).trim().equals("") || 
-        					Arrays.toString(confermaPassword).trim().equals("") ||
-        					email.trim().equals("")) {
-        				throw new UserException("Campi mancanti");
-        			}
-        			if(Arrays.toString(confermaPassword).equals(Arrays.toString(password))) {
-        				StringBuilder realPassword = new StringBuilder();
-        				for(char s : password) {
-        				    realPassword.append(s);
-        				}
-        				if(model.addUser(nome, cognome, email, username, realPassword.toString(), false)) {
-        					JOptionPane.showMessageDialog(null, "Registrazione effettuata con successo");
-        					setVisible(false);
-        				}
-        				else
-        					throw new UserException("Username gia' in uso");
-            			
-        			}	
-        			else {
-            			throw new UserException("Le password non coincidono!");
-            		}	
-        		}
-        		catch (UserException u) {
-        			lblError.setText(u.getMessage());
-        		}
-        	}
-        });
+		
 		
 		JLabel lblRepatPassw = new JLabel("Confirm Passw");
 		lblRepatPassw.setOpaque(true);
@@ -201,6 +165,30 @@ public class CreateNewAccountJPanel extends JPanel {
 		lblError.setBounds(47, 391, 140, 16);
 		add(lblError);
 
+		btnCreate.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		try {
+        			String nome = nameField.getText();
+        			String cognome = surnameField.getText();
+        			String username = userField.getText();
+        			char[] password = passwordField.getPassword();
+        			char[] confermaPassword = confirmPasswField.getPassword();
+        			String email = emailField.getText();
+        			String s=(String)comboBox.getSelectedItem();
+    				String[] parts = s.split(" - ");
+    				String pathAvatar="res/"+parts[1]+".png";
+    				
+        			RegistrazioneControl registrazioneControl = new RegistrazioneControl(model);
+        			
+        			if(registrazioneControl.registra(nome, cognome, username, password, confermaPassword, email, pathAvatar)) {
+        				//torno a login
+        			}
+        		}
+        		catch (UserException u) {
+        			lblError.setText(u.getMessage());
+        		}
+        	}
+        });
 	}
 
 }
