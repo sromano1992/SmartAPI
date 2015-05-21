@@ -16,7 +16,7 @@ public class TestCiro {
 		Desktop_1 panel = new Desktop_1();
 		JFrame frame= new JFrame();
 		frame.setVisible(true);
-		frame.setSize(1300, 1000);
+		frame.setSize(1400, 1000);
 		frame.add(panel);
 	}
 

@@ -19,7 +19,7 @@ public class Desktop_1 extends JPanel {
 	
 	public Desktop_1() {
 		setLayout(new GridLayout(1, 0, 0, 0));
-		setSize(1300,1000);
+		setSize(1416,1200);
 		setBackground(new Color(228, 230, 235));
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setBackground(new Color(228, 230, 235));
@@ -46,15 +46,13 @@ public class Desktop_1 extends JPanel {
 		panel.setBackground(new Color(228, 230, 235));
 		
 		Panel_UserOptionsColors panel_UserOptionsColors = new Panel_UserOptionsColors();
-		panel_UserOptionsColors.setBounds(0, 6, 875, 131);
+		panel_UserOptionsColors.setBounds(0, 6, 875, 139);
 		panel.add(panel_UserOptionsColors);
 		panel_UserOptionsColors.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(0, 202, 864, 458);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+		Panel_InsertCP panel_InsertCP = new Panel_InsertCP();
+		panel_InsertCP.setBounds(6, 201, 947, 619);
+		panel.add(panel_InsertCP);
 		
 		
 	
