@@ -27,7 +27,7 @@ public class Test_JPanelContainerColors extends JPanel {
 		splitPane.setDividerSize(0);
 		add(splitPane);
 		
-		UserInfoJPanel userInfoJPanel = new UserInfoJPanel((String) null, (String) null, (String) null, (String) null, (String) null);
+		UserInfoJPanel userInfoJPanel = new UserInfoJPanel("c.amati", "123", "Ciro", "Amati", "ciro.amati@gmail.com");
 		splitPane.setLeftComponent(userInfoJPanel);
 		GroupLayout gl_userInfoJPanel = new GroupLayout(userInfoJPanel);
 		gl_userInfoJPanel.setHorizontalGroup(
@@ -50,11 +50,9 @@ public class Test_JPanelContainerColors extends JPanel {
 		panel.add(panel_UserOptionsColors);
 		panel_UserOptionsColors.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(0, 202, 864, 458);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+		Panel_CodePatternCompleteView panel_CodePatternCompleteView = new Panel_CodePatternCompleteView();
+		panel_CodePatternCompleteView.setBounds(0, 201, 875, 618);
+		panel.add(panel_CodePatternCompleteView);
 		
 		
 	

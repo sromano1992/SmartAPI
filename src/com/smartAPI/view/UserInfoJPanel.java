@@ -91,7 +91,7 @@ public class UserInfoJPanel extends JPanel {
 		add(lblYourInfo);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(32, 201, 333, 460);
+		panel.setBounds(32, 201, 333, 619);
 		panel.setBackground(new Color(2, 94, 137));
 
 		add(panel);
