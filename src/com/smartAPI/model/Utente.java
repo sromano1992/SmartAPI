@@ -1,6 +1,5 @@
 package com.smartAPI.model;
 
-import java.util.GregorianCalendar;
 import java.io.Serializable;
 
 public class Utente implements Serializable {
@@ -11,15 +10,15 @@ public class Utente implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public Utente(String nome, String cognome, String email, String nickname, String password, boolean admin) {
+	public Utente(String nome, String cognome, String email, String nickname, String password, boolean admin, String avatar) {
 		this.idUtente = ++Utente.lastIdUtente;
-		this.setDataRegistrazione(new GregorianCalendar());
 		this.setCognome(cognome);
 		this.setNickname(nickname);
 		this.setEmail(email);
 		this.setNome(nome);
 		this.setPassword(password);
 		this.setAdmin(admin);
+		this.setAvatar(avatar);
 	}
 	
 	public String getNome() {
@@ -123,24 +122,6 @@ public class Utente implements Serializable {
         
 		this.password = password;
 	}
-		
-	/**
-		Ispeziona la data di registrazione dell'utente.
-		@return la data di registrazione dell'utente.
-	*/	
-
-	public GregorianCalendar getDataRegistrazione() {
-		return dataRegistrazione;
-	}
-
-	/**
-		Modifica la data di registrazione dell'utente.
-		@param dataRegistrazione la nuova data di registrazione.
-	*/
-
-	public void setDataRegistrazione(GregorianCalendar dataRegistrazione) {
-		this.dataRegistrazione = dataRegistrazione;
-	}
 
 	/**
 		Ispeziona l'id dell'utente.
@@ -169,22 +150,7 @@ public class Utente implements Serializable {
         return notifiche;
     }
     */
-    /**
-        Modifica lo stato di attività delle notifiche.
-        @param stato il nuovo stato di attività delle notifiche.
-     */
-    public void setStato(boolean stato) {
-        this.statoNotifiche = stato;
-    }
-    
-    /**
-        Vedo lo stato di attività delle notifiche.
-        @return Valore booleano che rappresenta lo stato di attività delle notifiche.
-     */
-    
-    public boolean getStato() {
-        return this.statoNotifiche;
-    }
+ 
         
 	public boolean isAdmin() {
 		return admin;
@@ -200,16 +166,22 @@ public class Utente implements Serializable {
 	
 	
 
+	
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
 	private String nome;
 	private String cognome;
 	private String email;
 	private String nickname;
 	private String password;
 	private boolean admin;
-	//private double credito;
-	private GregorianCalendar dataRegistrazione;
+	private String avatar;
 	private int idUtente;
 	public static int lastIdUtente;
-	//private Notifiche notifiche;
-    private boolean statoNotifiche;
 }
