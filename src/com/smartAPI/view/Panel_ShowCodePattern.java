@@ -47,32 +47,22 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setLayout(null);
 		
-		JPanel panel = new JPanel();
-
-		panel.setBounds(2, 26, 446, 188);
-		add(panel);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{450, 0};
-		gbl_panel.rowHeights = new int[] {200, 86, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
-		add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(0, 1, 0, 0));
-		
 		JScrollPane scrollPane = new JScrollPane();
-		panel.add(scrollPane);
+		scrollPane.setBounds(2, 26, 446, 273);
+		add(scrollPane);
 		
 		txtpnCode = new JTextPane();
 		txtpnCode.setEditable(false);
 		scrollPane.setViewportView(txtpnCode);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		panel.add(scrollPane_1);
+		scrollPane_1.setBounds(2, 299, 446, 84);
+		add(scrollPane_1);
 		
 		txtpaneKeyWord = new JTextPane();
 		txtpaneKeyWord.setEditable(false);
 		scrollPane_1.setViewportView(txtpaneKeyWord);
+		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(2, 2, 446, 24);
@@ -83,17 +73,9 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		labelUserName = new MyJLabel("Username");
 		panel_1.add(labelUserName);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(2, 214, 446, 84);
-		add(panel_2);
-		panel_2.setLayout(new GridLayout(2, 1, 0, 0));
-		
-		Panel_CodePatternScore panel_CodePatternScore = new Panel_CodePatternScore();
-		panel_2.add(panel_CodePatternScore);
-		panel_CodePatternScore.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(153, 180, 209), SystemColor.inactiveCaption, null, null));
-		
 		JPanel panel_3 = new JPanel();
-		panel_2.add(panel_3);
+		panel_3.setBounds(2, 426, 446, 42);
+		add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
 		MyJLabel mjlblVota = new MyJLabel("Username");
@@ -104,6 +86,11 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		
 		Panel_CodePatternSetScore panel_CodePatternSetScore = new Panel_CodePatternSetScore();
 		panel_3.add(panel_CodePatternSetScore);
+		
+		Panel_CodePatternScore panel_CodePatternScore = new Panel_CodePatternScore();
+		panel_CodePatternScore.setBounds(0, 382, 446, 42);
+		add(panel_CodePatternScore);
+		panel_CodePatternScore.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(153, 180, 209), SystemColor.inactiveCaption, null, null));
 
 	}
 	
