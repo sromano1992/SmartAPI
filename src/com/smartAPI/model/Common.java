@@ -25,4 +25,6 @@ public class Common {
 	public static final String HAS_CODE = "hasCode";	
 	public static final String NO_CODE_MESS = "No code found!";
 	public static final String HAS_KEYWORD = "hasKeyword";
+	public static final String HAS_AVATAR = "hasAvatar";
+	public static final Utente UTENTE = null;
 }

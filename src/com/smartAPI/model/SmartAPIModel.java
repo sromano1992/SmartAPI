@@ -432,29 +432,27 @@ public class SmartAPIModel {
 	 * 
 	 */
 	
-	public boolean addUser(String nome, String cognome, String email, String username, String password, boolean isAdmin) {
+	public boolean addUser(String nome, String cognome, String email, String username, String password, boolean isAdmin, String avatar) {
 		OntClass userClass = getOntModel().getOntClass(Common.NS + Common.USER);
 		if(!userAlreadyExists(userClass.getLocalName(), username)) {
-			Utente user = new Utente(nome, cognome, email, username, password, false);
+			Utente user = new Utente(nome, cognome, email, username, password, false, avatar);
 			getOntModel();
-			String userId = calculateID(userClass.getLocalName());
-			String newUserId = String.valueOf(Integer.parseInt(userId) + 1);
 			
-			//modificare!
 			Individual individualUser1 = getOntModel().createIndividual(Common.NS + username, userClass);
-			//Individual individualUser1 = getOntModel().createIndividual(Common.NS + "u" + newUserId , userClass);
 			DatatypeProperty hasUsername = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_USERNAME);
 			DatatypeProperty hasPassword = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_PASSWORD);
 			DatatypeProperty hasName = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_NAME);
 			DatatypeProperty hasSurname = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_SURNAME);
 			DatatypeProperty hasEmail = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_EMAIL);
 			DatatypeProperty isAdministrator = getOntModel().getDatatypeProperty(Common.NS + Common.IS_ADMINISTRATOR);
-	
+			DatatypeProperty hasAvatar = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_AVATAR);
+
 			individualUser1.addProperty(hasUsername, username);
 			individualUser1.addProperty(hasPassword, password);
 			individualUser1.addProperty(hasEmail, email);
 			individualUser1.addProperty(hasName, nome);
 			individualUser1.addProperty(hasSurname, cognome);
+			individualUser1.addProperty(hasAvatar, avatar);
 			if(isAdmin) {
 				individualUser1.addProperty(isAdministrator, "si");
 			}
@@ -569,7 +567,7 @@ public class SmartAPIModel {
 		for(int i = 0; i < list.size(); i++) {
 			Resource resource = list.get(i);
 			StmtIterator iterResource = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
-			String nome = "", cognome = "", username = "", password = "", email = "";
+			String nome = "", cognome = "", username = "", password = "", email = "", avatar = "";
 			boolean amministratore = false;
 			while (iterResource.hasNext()) {
 				Statement stmtResource = iterResource.nextStatement();
@@ -604,10 +602,13 @@ public class SmartAPIModel {
 							else
 								amministratore = false;
 						}
+						if(predicate.getLocalName().equals(Common.HAS_AVATAR)) {
+							avatar = object.toString();
+						}
 					}
 				}
 			}
-			utenti.add(new Utente(nome,cognome,email,username,password,amministratore));
+			utenti.add(new Utente(nome,cognome,email,username,password,amministratore, avatar));
 
 		}
 		return utenti;
@@ -863,12 +864,13 @@ public class SmartAPIModel {
 	 * Modifica le informazioni dell'utente.
 	 * @author Amedeo Leo
 	 */
-	public boolean modificaUtente(String username, String password, String nome, String cognome, String email) {
+	public boolean modificaUtente(String username, String password, String nome, String cognome, String email, String avatar) {
 		ArrayList<Resource> list = getIndividualOfClass("User");
 		boolean modificaPassword = false;
 		boolean modificaNome = false;
 		boolean modificaCognome = false;
 		boolean modificaEmail = false;
+		boolean modificaAvatar = false;
 		Resource subjectResource = null;
 		
 		for(int i = 0; i < list.size(); i++) {
@@ -882,22 +884,25 @@ public class SmartAPIModel {
 					Property predicateResource = stmtResource.getPredicate();
 					RDFNode object = stmtResource.getObject();
 					
-					if(predicateResource.getLocalName().equals(Common.HAS_NAME)) {
+					if(predicateResource.getLocalName().equals(Common.HAS_NAME)) {	
 						if(!object.toString().equals(nome))
 							modificaNome = true;
 					}
 					if(predicateResource.getLocalName().equals(Common.HAS_SURNAME)) {
-						if(!object.toString().equals(nome))
+						if(!object.toString().equals(cognome))
 							modificaCognome = true;
 					}
-					if(predicateResource.getLocalName().equals(Common.HAS_USERNAME)) {
-						username = object.toString();
-					}
 					if(predicateResource.getLocalName().equals(Common.HAS_PASSWORD)) {
-						password = object.toString();
+						if(!object.toString().equals(password))
+							modificaPassword = true;
 					}
 					if(predicateResource.getLocalName().equals(Common.HAS_EMAIL)) {
-						email = object.toString();
+						if(!object.toString().equals(email))
+							modificaEmail = true;
+					}
+					if(predicateResource.getLocalName().equals(Common.HAS_AVATAR)) {
+						if(!object.toString().equals(avatar))
+							modificaAvatar = true;
 					}
 				}
 			}
@@ -905,7 +910,19 @@ public class SmartAPIModel {
 		
 		if(subjectResource != null) {
 			if(modificaNome) {
-				subjectResource.addProperty(getProperty(Common.HAS_NAME), nome);
+				subjectResource.getProperty(getProperty(Common.NS + Common.HAS_NAME)).changeObject(nome);
+			}
+			if(modificaCognome) {
+				subjectResource.getProperty(getProperty(Common.NS + Common.HAS_SURNAME)).changeObject(cognome);
+			}
+			if(modificaPassword) {
+				subjectResource.getProperty(getProperty(Common.NS + Common.HAS_PASSWORD)).changeObject(password);
+			}
+			if(modificaEmail) {
+				subjectResource.getProperty(getProperty(Common.NS + Common.HAS_EMAIL)).changeObject(email);
+			}
+			if(modificaAvatar) {
+				subjectResource.getProperty(getProperty(Common.NS + Common.HAS_AVATAR)).changeObject(avatar);
 			}
 			
 			storeOntModel();

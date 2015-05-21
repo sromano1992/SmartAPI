@@ -18,8 +18,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import com.smartAPI.control.LoginControl;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.UserException;
+import com.smartAPI.model.Utente;
 
 
 public class LoginGrafica {
@@ -103,26 +105,15 @@ public class LoginGrafica {
 		btnLogin.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		try {
-        			String username = userField.getText();
-        			char[] confermaPassword = passwordField.getPassword();
-        			if(username.trim().equals("") || Arrays.toString(confermaPassword).trim().equals((""))) {
-        				lblError.setVisible(true);
-            			throw new UserException("User not found");
+        			LoginControl loginControl = new LoginControl(model);
+        			if(loginControl.controllaUtente(userField.getText(), passwordField.getPassword())) {
+        				Utente utente = loginControl.getUtente(userField.getText());
+        				//pannello Desktop 0?
         			}
-        			StringBuilder realPassword = new StringBuilder();
-        			for(char s : confermaPassword) {
-        			    realPassword.append(s);
-        			}
-        			if(model.exists(username, realPassword.toString())) {
-        				JOptionPane.showMessageDialog(null, "Login effettuato con successo");
-        	        	frame.setVisible(false);
-        	        	if(model.isAdministrator(username)) {
-        	        		new PannelloAmministratore(model);
-        	        	}
-        	        	//else pannello utente
-        			}
+        			//else inutile, lancio eccezione
         		}
         		catch(UserException u) {
+        			lblError.setVisible(true);
         			lblError.setText(u.getMessage());
         		}
         	}
