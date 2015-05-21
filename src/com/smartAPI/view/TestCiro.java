@@ -9,12 +9,14 @@ public class TestCiro {
 	public static void main(String[] args) {
 		
 		//USERINFO
-		UserInfoJPanel panel = new UserInfoJPanel("c.amati","123","Ciro","Amati","ciro.amati@gmail.com");
+		//UserInfoJPanel panel = new UserInfoJPanel("c.amati","123","Ciro","Amati","ciro.amati@gmail.com");
 		//CREATE NEW ACCOUNT
 		//CreateNewAccountJPanel panel = new CreateNewAccountJPanel();
+		
+		Test_JPanelContainerColors panel = new Test_JPanelContainerColors();
 		JFrame frame= new JFrame();
 		frame.setVisible(true);
-		frame.setBounds(100, 100, 370, 537);
+		frame.setSize(1300, 1000);
 		frame.add(panel);
 	}
 
