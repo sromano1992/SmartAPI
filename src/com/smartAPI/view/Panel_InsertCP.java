@@ -48,6 +48,8 @@ public class Panel_InsertCP extends JPanel {
 	private JTextArea txtCodePattern;
 	private JTextField keyword;
 	private JTextField newCategoria;
+	private JTextField langTextField;
+	private JTextField libTextField;
 
 	/**
 	 * Create the panel.
@@ -57,7 +59,7 @@ public class Panel_InsertCP extends JPanel {
 		setLayout(null);
 		
 		nomeCP = new JTextField();
-		nomeCP.setBounds(248, 171, 149, 25);
+		nomeCP.setBounds(248, 110, 149, 25);
 		add(nomeCP);
 		nomeCP.setColumns(20);
 		
@@ -71,7 +73,7 @@ public class Panel_InsertCP extends JPanel {
 		
 		
 		keyword = new JTextField();
-		keyword.setBounds(248, 234, 149, 25);
+		keyword.setBounds(248, 172, 149, 25);
 		keyword.setColumns(20);
 		add(keyword);
 
@@ -92,7 +94,7 @@ public class Panel_InsertCP extends JPanel {
 					if(categoria.equals("Other...")){
 						newCategoria.setVisible(true);
 					}
-					if(!categoria.equals(""))System.out.println("Categoria: "+categoria);
+					if(!categoria.equals("Other..."))System.out.println("Categoria: "+categoria);
 				}
 			});
 		    
@@ -111,11 +113,11 @@ public class Panel_InsertCP extends JPanel {
 		    add(cpLabel);
 		    
 		    MyJLabel nomeLabel = new MyJLabel("Name");
-		    nomeLabel.setBounds(156, 171, 94, 25);
+		    nomeLabel.setBounds(156, 110, 94, 25);
 		    add(nomeLabel);
 		    
 		    MyJLabel keywordLabel = new MyJLabel("Keyword");
-		    keywordLabel.setBounds(156, 234, 94, 25);
+		    keywordLabel.setBounds(156, 172, 94, 25);
 		    add(keywordLabel);
 		    
 		    MyJLabel categoriaLabel = new MyJLabel("Category");
@@ -129,11 +131,31 @@ public class Panel_InsertCP extends JPanel {
 		    		String val_nome = nomeCP.getText();
 		    		String val_CP = txtCodePattern.getText();
 		    		String val_keyword = keyword.getText();
-		    		if(!newCategoria.getText().equals("")) System.out.println("categoria: "+newCategoria.getText());
-		    		System.out.println("Nome: "+val_nome+" Key: "+val_keyword+" Cp: "+val_CP);
+		    		String val_language = langTextField.getText();
+		    		String val_lib = libTextField.getText();
+		    		if(!newCategoria.getText().equals("")) System.out.println("Category: "+newCategoria.getText());
+		    		System.out.println("Name: "+val_nome+" Key: "+val_keyword+" Cp: "+val_CP+" Language: "+val_language+" Library: "+val_lib);
 		    	}
 		    });
 		    add(addCP);
+		    
+		    MyJLabel language = new MyJLabel("Language");
+		    language.setBounds(156, 234, 94, 25);
+		    add(language);
+		    
+		    langTextField = new JTextField();
+		    langTextField.setBounds(248, 234, 149, 25);
+		    add(langTextField);
+		    langTextField.setColumns(10);
+		    
+		    MyJLabel library = new MyJLabel("Library");
+		    library.setBounds(466, 141, 94, 25);
+		    add(library);
+		    
+		    libTextField = new JTextField();
+		    libTextField.setBounds(558, 141, 149, 25);
+		    add(libTextField);
+		    libTextField.setColumns(10);
 		    setVisible(true);
 	}
 }
