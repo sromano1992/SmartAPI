@@ -163,6 +163,8 @@ public class Utente implements Serializable {
 	public String toString() {
 		return "Username:" + nickname + "\tNome:" + nome + "\tCognome:" + cognome + "\tEmail:" + email;
 	}
+	
+	
 
 	
 	public String getAvatar() {

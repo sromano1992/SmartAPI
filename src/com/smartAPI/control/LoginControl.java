@@ -76,16 +76,20 @@ public class LoginControl {
 		for(char s : password) {
 		    realPassword.append(s);
 		}
-		if(model.exists(username, realPassword.toString())) {
+		if(exists(username, realPassword.toString())) {
+			System.out.println("qui");
         	return true;
 		}
 		else return false;
 	}
 	
 	public Utente getUtente(String username) {
-		for(Utente u: model.getUsers())
-			if(u.getNickname().equals(username))
+		for(Utente u: model.getUsers()) {
+			System.out.println(u.getNickname());
+			if(u.getNickname().equals(username)) {
 				return u;
+			}
+		}
 		return null;
 	}
 }

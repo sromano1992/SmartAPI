@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
@@ -14,19 +15,20 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.smartAPI.control.LoginControl;
+import com.smartAPI.control.CreateNewUserListener;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.UserException;
 import com.smartAPI.model.Utente;
 
 
-public class LoginGrafica {
-
-	private JFrame frame;
+public class LoginGrafica extends JPanel{
+	private Logger log = Logger.getLogger("global");
 	private JTextField userField;
 	private JPasswordField passwordField;
 	private JLabel lblUser;
@@ -35,6 +37,7 @@ public class LoginGrafica {
 	private static final Logger Log = Logger.getLogger( "InfoLogging" );
 	private JLabel lblError;
 	private SmartAPIModel model;
+	private ArrayList<CreateNewUserListener> newUserListener_s;
 
 
 	/*
@@ -52,35 +55,27 @@ public class LoginGrafica {
 		});
 	}
 	 */
-	/**
-	 * Create the application.
-	 */
-	public LoginGrafica(SmartAPIModel model) {
-		this.model = model;
-		initialize();
-	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(new Color(2, 94, 137));
-		frame.setBounds(100, 100, 468, 369);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	public LoginGrafica() {
+		newUserListener_s = new ArrayList<CreateNewUserListener>();
+		model = new SmartAPIModel();
+		this.setBackground(new Color(2, 94, 137));
+		this.setBounds(100, 100, 468, 369);
+		this.setLayout(null);
 		
 		//USER FIELD
 		userField = new JTextField();
 		userField.setBounds(166, 86, 204, 52);
-		frame.getContentPane().add(userField);
+		this.add(userField);
 		userField.setColumns(10);
 		
 		//PASSWORD FIELD
 		passwordField = new JPasswordField();
 		passwordField.setBounds(166, 131, 204, 52);
-		frame.getContentPane().add(passwordField);
+		this.add(passwordField);
 		
 		//LABEL USER
 		lblUser = new JLabel("User");
@@ -89,7 +84,7 @@ public class LoginGrafica {
 		lblUser.setBackground(new Color(2, 66, 96));
 		lblUser.setOpaque(true);
 		lblUser.setBounds(91, 89, 79, 45);
-		frame.getContentPane().add(lblUser);
+		this.add(lblUser);
 		
 		//LABEL PASSWORD
 		lblPassword = new JLabel("Password");
@@ -98,7 +93,7 @@ public class LoginGrafica {
 		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setBackground(new Color(2, 66, 96));
 		lblPassword.setBounds(91, 134, 79, 45);
-		frame.getContentPane().add(lblPassword);
+		this.add(lblPassword);
 		
 		//BUTTON LOGIN
 		JButton btnLogin = new JButton("Login");
@@ -110,7 +105,6 @@ public class LoginGrafica {
         				Utente utente = loginControl.getUtente(userField.getText());
         				//pannello Desktop 0?
         			}
-        			//else inutile, lancio eccezione
         		}
         		catch(UserException u) {
         			lblError.setVisible(true);
@@ -119,7 +113,7 @@ public class LoginGrafica {
         	}
         });
 		btnLogin.setBounds(91, 251, 274, 37);
-		frame.getContentPane().add(btnLogin);
+		this.add(btnLogin);
 		
 		//LABEL LOGIN
 		JLabel lblLogin = new JLabel("Login");
@@ -127,16 +121,16 @@ public class LoginGrafica {
 		lblLogin.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		lblLogin.setForeground(Color.WHITE);
 		lblLogin.setBounds(6, 26, 456, 37);
-		frame.getContentPane().add(lblLogin);
+		this.add(lblLogin);
 		
 		//LABEL NEWACCOUNT
 		lblNewAccount = new JLabel("Create an account");
 		lblNewAccount.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				CreateNewAccountJPanel frameRegistrazione = new CreateNewAccountJPanel(model);
-				JFrame frame = new JFrame();
-				frame.add(frameRegistrazione);
-				frame.setVisible(true);
+				for (CreateNewUserListener c:newUserListener_s){
+					c.newAccountClicked();
+				}
+				log.info("raised evento to " + newUserListener_s.size() + " listeners...");
 			}
 			public void mouseEntered(MouseEvent e) {
 				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -146,7 +140,7 @@ public class LoginGrafica {
 		lblNewAccount.setForeground(new Color(7, 201, 155));
 		lblNewAccount.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewAccount.setBounds(190, 184, 177, 16);
-		frame.getContentPane().add(lblNewAccount);
+		this.add(lblNewAccount);
 		
 		//LABEL ERROR
 		lblError = new JLabel("");
@@ -154,8 +148,12 @@ public class LoginGrafica {
 		lblError.setHorizontalAlignment(SwingConstants.LEFT);
 		lblError.setForeground(Color.RED);
 		lblError.setBounds(91, 185, 120, 16);
-		frame.getContentPane().add(lblError);
-		frame.setVisible(true);
+		this.add(lblError);
+		this.setVisible(true);
 	}
 
+	public void addNewAccountListener(CreateNewUserListener c){
+		newUserListener_s.add(c);
+		log.info("Added listener...");
+	}
 }
