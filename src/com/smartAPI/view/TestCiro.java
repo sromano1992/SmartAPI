@@ -13,7 +13,7 @@ public class TestCiro {
 		//CREATE NEW ACCOUNT
 		//CreateNewAccountJPanel panel = new CreateNewAccountJPanel();
 		
-		Test_JPanelContainerColors panel = new Test_JPanelContainerColors();
+		Desktop_1 panel = new Desktop_1();
 		JFrame frame= new JFrame();
 		frame.setVisible(true);
 		frame.setSize(1300, 1000);

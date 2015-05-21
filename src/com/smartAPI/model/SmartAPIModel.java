@@ -434,9 +434,7 @@ public class SmartAPIModel {
 	
 	public boolean addUser(String nome, String cognome, String email, String username, String password, boolean isAdmin) {
 		OntClass userClass = getOntModel().getOntClass(Common.NS + Common.USER);
-		System.out.println("qui");
 		if(!userAlreadyExists(userClass.getLocalName(), username)) {
-			System.out.println("qui");
 			Utente user = new Utente(nome, cognome, email, username, password, false);
 			getOntModel();
 			String userId = calculateID(userClass.getLocalName());
@@ -859,5 +857,61 @@ public class SmartAPIModel {
 		useCategory.setRange(methodClass);
 		storeOntModel();
 		return true;
+	}
+	
+	/**
+	 * Modifica le informazioni dell'utente.
+	 * @author Amedeo Leo
+	 */
+	public boolean modificaUtente(String username, String password, String nome, String cognome, String email) {
+		ArrayList<Resource> list = getIndividualOfClass("User");
+		boolean modificaPassword = false;
+		boolean modificaNome = false;
+		boolean modificaCognome = false;
+		boolean modificaEmail = false;
+		Resource subjectResource = null;
+		
+		for(int i = 0; i < list.size(); i++) {
+			Resource resource = list.get(i);
+			if(resource.getLocalName().equals(username)) {
+				StmtIterator iterResource = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
+
+				while (iterResource.hasNext()) {
+					Statement stmtResource = iterResource.nextStatement();
+					subjectResource = stmtResource.getSubject();
+					Property predicateResource = stmtResource.getPredicate();
+					RDFNode object = stmtResource.getObject();
+					
+					if(predicateResource.getLocalName().equals(Common.HAS_NAME)) {
+						if(!object.toString().equals(nome))
+							modificaNome = true;
+					}
+					if(predicateResource.getLocalName().equals(Common.HAS_SURNAME)) {
+						if(!object.toString().equals(nome))
+							modificaCognome = true;
+					}
+					if(predicateResource.getLocalName().equals(Common.HAS_USERNAME)) {
+						username = object.toString();
+					}
+					if(predicateResource.getLocalName().equals(Common.HAS_PASSWORD)) {
+						password = object.toString();
+					}
+					if(predicateResource.getLocalName().equals(Common.HAS_EMAIL)) {
+						email = object.toString();
+					}
+				}
+			}
+		}
+		
+		if(subjectResource != null) {
+			if(modificaNome) {
+				subjectResource.addProperty(getProperty(Common.HAS_NAME), nome);
+			}
+			
+			storeOntModel();
+			return true;
+		}
+		else
+			throw new UserException("Utente non esistente");
 	}
 }
