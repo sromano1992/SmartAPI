@@ -48,6 +48,8 @@ public class Panel_InsertCP extends JPanel {
 	private JTextArea txtCodePattern;
 	private JTextField keyword;
 	private JTextField newCategoria;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Create the panel.
@@ -57,7 +59,7 @@ public class Panel_InsertCP extends JPanel {
 		setLayout(null);
 		
 		nomeCP = new JTextField();
-		nomeCP.setBounds(248, 171, 149, 25);
+		nomeCP.setBounds(248, 110, 149, 25);
 		add(nomeCP);
 		nomeCP.setColumns(20);
 		
@@ -71,7 +73,7 @@ public class Panel_InsertCP extends JPanel {
 		
 		
 		keyword = new JTextField();
-		keyword.setBounds(248, 234, 149, 25);
+		keyword.setBounds(248, 172, 149, 25);
 		keyword.setColumns(20);
 		add(keyword);
 
@@ -111,11 +113,11 @@ public class Panel_InsertCP extends JPanel {
 		    add(cpLabel);
 		    
 		    MyJLabel nomeLabel = new MyJLabel("Name");
-		    nomeLabel.setBounds(156, 171, 94, 25);
+		    nomeLabel.setBounds(156, 110, 94, 25);
 		    add(nomeLabel);
 		    
 		    MyJLabel keywordLabel = new MyJLabel("Keyword");
-		    keywordLabel.setBounds(156, 234, 94, 25);
+		    keywordLabel.setBounds(156, 172, 94, 25);
 		    add(keywordLabel);
 		    
 		    MyJLabel categoriaLabel = new MyJLabel("Category");
@@ -134,6 +136,24 @@ public class Panel_InsertCP extends JPanel {
 		    	}
 		    });
 		    add(addCP);
+		    
+		    MyJLabel language = new MyJLabel("Language");
+		    language.setBounds(156, 234, 94, 25);
+		    add(language);
+		    
+		    textField = new JTextField();
+		    textField.setBounds(248, 234, 149, 25);
+		    add(textField);
+		    textField.setColumns(10);
+		    
+		    MyJLabel library = new MyJLabel("Library");
+		    library.setBounds(466, 141, 94, 25);
+		    add(library);
+		    
+		    textField_1 = new JTextField();
+		    textField_1.setBounds(558, 141, 149, 25);
+		    add(textField_1);
+		    textField_1.setColumns(10);
 		    setVisible(true);
 	}
 }
