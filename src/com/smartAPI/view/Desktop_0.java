@@ -7,6 +7,7 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.util.logging.Logger;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 
@@ -14,20 +15,23 @@ import javax.swing.JLabel;
 
 import javax.swing.SwingUtilities;
 
-import com.smartAPI.control.CreateNewUserListener;
+import com.smartAPI.control.ILogInPanelListner;
 
 /**
  * Login page.
  *
  */
-public class Desktop_0 extends JPanel implements CreateNewUserListener{
+public class Desktop_0 extends JPanel implements ILogInPanelListner{
 	private LoginGrafica loginGrafica;
+	private Desktop_1 d1;
 	private CreateNewAccountJPanel newAccountPanel;
 	private Logger log = Logger.getLogger("global");
+	private JFrame mainContainer;
 	/**
 	 * Create the panel.
 	 */
-	public Desktop_0() {
+	public Desktop_0(JFrame f) {
+		mainContainer = f;
 		setLayout(new GridLayout(1, 3, 0, 0));
 		
 		JLabel label = new JLabel("");
@@ -42,7 +46,7 @@ public class Desktop_0 extends JPanel implements CreateNewUserListener{
 		add(lblNewLabel);
 		lblNewLabel.setOpaque(true);
 		lblNewLabel.setBackground(new Color(2, 94, 137));
-		loginGrafica.addNewAccountListener(this);
+		loginGrafica.addLoginPanelListner(this);
 	}
 
 	@Override
@@ -68,5 +72,16 @@ public class Desktop_0 extends JPanel implements CreateNewUserListener{
 			SwingUtilities.updateComponentTreeUI(this);
 			c = c.getParent();
 		}
+	}
+
+	@Override
+	public void loginClicked() {
+		log.info("Log in event intercepted");
+		if (d1 == null)
+			d1 = new Desktop_1();
+		mainContainer.remove(this);
+		mainContainer.add(d1);
+		SwingUtilities.updateComponentTreeUI(mainContainer);
+		SwingUtilities.updateComponentTreeUI(this);
 	}
 }

@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.smartAPI.control.LoginControl;
-import com.smartAPI.control.CreateNewUserListener;
+import com.smartAPI.control.ILogInPanelListner;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.UserException;
 import com.smartAPI.model.Utente;
@@ -37,7 +37,7 @@ public class LoginGrafica extends JPanel{
 	private static final Logger Log = Logger.getLogger( "InfoLogging" );
 	private JLabel lblError;
 	private SmartAPIModel model;
-	private ArrayList<CreateNewUserListener> newUserListener_s;
+	private ArrayList<ILogInPanelListner> logInListener_s;
 
 
 	/*
@@ -60,7 +60,7 @@ public class LoginGrafica extends JPanel{
 	 * Initialize the contents of the frame.
 	 */
 	public LoginGrafica() {
-		newUserListener_s = new ArrayList<CreateNewUserListener>();
+		logInListener_s = new ArrayList<ILogInPanelListner>();
 		model = new SmartAPIModel();
 		this.setBackground(new Color(2, 94, 137));
 		this.setBounds(100, 100, 468, 369);
@@ -103,7 +103,11 @@ public class LoginGrafica extends JPanel{
         			LoginControl loginControl = new LoginControl(model);
         			if(loginControl.controllaUtente(userField.getText(), passwordField.getPassword())) {
         				Utente utente = loginControl.getUtente(userField.getText());
-        				//pannello Desktop 0?
+        				//pannello Desktop 1
+        				for (ILogInPanelListner c:logInListener_s){
+        					c.loginClicked();
+        				}
+        				log.info("raised evento to " + logInListener_s.size() + " listeners...");
         			}
         		}
         		catch(UserException u) {
@@ -127,10 +131,10 @@ public class LoginGrafica extends JPanel{
 		lblNewAccount = new JLabel("Create an account");
 		lblNewAccount.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				for (CreateNewUserListener c:newUserListener_s){
+				for (ILogInPanelListner c:logInListener_s){
 					c.newAccountClicked();
 				}
-				log.info("raised evento to " + newUserListener_s.size() + " listeners...");
+				log.info("raised evento to " + logInListener_s.size() + " listeners...");
 			}
 			public void mouseEntered(MouseEvent e) {
 				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -152,8 +156,8 @@ public class LoginGrafica extends JPanel{
 		this.setVisible(true);
 	}
 
-	public void addNewAccountListener(CreateNewUserListener c){
-		newUserListener_s.add(c);
+	public void addLoginPanelListner(ILogInPanelListner c){
+		logInListener_s.add(c);
 		log.info("Added listener...");
 	}
 }
