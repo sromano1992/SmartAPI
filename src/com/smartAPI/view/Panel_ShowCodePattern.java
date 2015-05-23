@@ -88,7 +88,7 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		panel_3.add(panel_CodePatternSetScore);
 		
 		Panel_CodePatternScore panel_CodePatternScore = new Panel_CodePatternScore();
-		panel_CodePatternScore.setBounds(0, 382, 446, 42);
+		panel_CodePatternScore.setBounds(0, 382, 448, 42);
 		add(panel_CodePatternScore);
 		panel_CodePatternScore.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(153, 180, 209), SystemColor.inactiveCaption, null, null));
 

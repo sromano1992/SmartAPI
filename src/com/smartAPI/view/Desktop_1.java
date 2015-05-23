@@ -53,9 +53,5 @@ public class Desktop_1 extends JPanel {
 		Panel_InsertCP panel_InsertCP = new Panel_InsertCP();
 		panel_InsertCP.setBounds(6, 201, 947, 619);
 		panel.add(panel_InsertCP);
-		
-		
-	
-
 	}
 }
