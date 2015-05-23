@@ -18,7 +18,7 @@ public class TestCiro {
 		//CREATE NEW ACCOUNT
 		//CreateNewAccountJPanel panel = new CreateNewAccountJPanel();
 		
-		ModifyDesktop_1 panel = new ModifyDesktop_1();
+		Desktop_1 panel = new Desktop_1();
 		JFrame frame= new JFrame();
 		
 		frame.setVisible(true);
