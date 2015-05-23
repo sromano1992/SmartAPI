@@ -51,7 +51,7 @@ public class Desktop_1 extends JPanel {
 		panel_UserOptionsColors.setLayout(null);
 		
 		Panel_InsertCP panel_InsertCP = new Panel_InsertCP();
-		panel_InsertCP.setBounds(6, 201, 817, 519);
+		panel_InsertCP.setBounds(0, 181, 920, 564);
 		panel.add(panel_InsertCP);
 	}
 }
