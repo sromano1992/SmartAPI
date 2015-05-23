@@ -45,7 +45,7 @@ public class UserInfoJPanel extends JPanel {
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblImage.setIcon(imgicon.getImageResponsive());
 		
-		lblImage.setBounds(73, 122, 80, 71);
+		lblImage.setBounds(42, 97, 80, 71);
 		add(lblImage);
 		
 		JButton btnModify = new JButton("");
@@ -64,7 +64,7 @@ public class UserInfoJPanel extends JPanel {
 
 			}
 		});
-		btnModify.setBounds(306, 63, 26, 29);
+		btnModify.setBounds(242, 45, 26, 29);
 		path="res/pencil.png";
 		pathIcon = getClass().getResource(path).getFile();
 		imgicon = new MyImageIcon(pathIcon,20,20);
@@ -87,21 +87,21 @@ public class UserInfoJPanel extends JPanel {
 		lblYourInfo.setForeground(Color.YELLOW);
 		lblYourInfo.setBackground(new Color(27, 147, 225));
 		lblYourInfo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblYourInfo.setBounds(32, 35, 333, 86);
+		lblYourInfo.setBounds(32, 35, 254, 50);
 		add(lblYourInfo);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(32, 201, 333, 619);
+		panel.setBounds(32, 180, 254, 499);
 		panel.setBackground(new Color(2, 94, 137));
 
 		add(panel);
 		panel.setLayout(null);
 		comboBox = new JComboBox(model);
-		comboBox.setBounds(27, 6, 117, 31);
+		comboBox.setBounds(6, 6, 97, 31);
 		panel.add(comboBox);
 		
 		JLabel lblUser = new JLabel("User");
-		lblUser.setBounds(27, 64, 95, 31);
+		lblUser.setBounds(27, 64, 75, 31);
 		panel.add(lblUser);
 		lblUser.setOpaque(true);
 		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
@@ -109,14 +109,14 @@ public class UserInfoJPanel extends JPanel {
 		lblUser.setBackground(new Color(2, 66, 96));
 		
 		userField = new JTextField(user);
-		userField.setBounds(119, 61, 204, 37);
+		userField.setBounds(98, 61, 124, 37);
 		panel.add(userField);
 		userField.setEditable(false);
 		userField.setColumns(10);
 		userField.setBackground(new Color(230, 230, 230));
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(27, 95, 95, 31);
+		lblPassword.setBounds(27, 95, 75, 31);
 		panel.add(lblPassword);
 		lblPassword.setOpaque(true);
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
@@ -124,13 +124,13 @@ public class UserInfoJPanel extends JPanel {
 		lblPassword.setBackground(new Color(2, 66, 96));
 		
 		passwordField = new JPasswordField(password);
-		passwordField.setBounds(119, 91, 204, 37);
+		passwordField.setBounds(98, 92, 124, 37);
 		panel.add(passwordField);
 		passwordField.setEditable(false);
 		passwordField.setBackground(new Color(230, 230, 230));
 		
 		JLabel lblPersonalData = new JLabel("Personal Data");
-		lblPersonalData.setBounds(0, 175, 333, 50);
+		lblPersonalData.setBounds(0, 175, 254, 37);
 		panel.add(lblPersonalData);
 		lblPersonalData.setOpaque(true);
 		lblPersonalData.setHorizontalAlignment(SwingConstants.CENTER);
@@ -139,7 +139,7 @@ public class UserInfoJPanel extends JPanel {
 		lblPersonalData.setBackground(new Color(27, 147, 225));
 		
 		JLabel lblName = new JLabel("Name");
-		lblName.setBounds(24, 287, 95, 31);
+		lblName.setBounds(24, 287, 75, 31);
 		panel.add(lblName);
 		lblName.setOpaque(true);
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
@@ -147,14 +147,14 @@ public class UserInfoJPanel extends JPanel {
 		lblName.setBackground(new Color(2, 66, 96));
 		
 		nameField = new JTextField(name);
-		nameField.setBounds(116, 283, 204, 37);
+		nameField.setBounds(96, 283, 124, 37);
 		panel.add(nameField);
 		nameField.setEditable(false);
 		nameField.setBackground(new Color(230, 230, 230));
 		nameField.setColumns(10);
 		
 		JLabel lblSurname = new JLabel("Surname");
-		lblSurname.setBounds(24, 317, 95, 31);
+		lblSurname.setBounds(24, 317, 75, 31);
 		panel.add(lblSurname);
 		lblSurname.setOpaque(true);
 		lblSurname.setHorizontalAlignment(SwingConstants.CENTER);
@@ -162,7 +162,7 @@ public class UserInfoJPanel extends JPanel {
 		lblSurname.setBackground(new Color(2, 66, 96));
 		
 		surnameField = new JTextField(surname);
-		surnameField.setBounds(116, 313, 204, 37);
+		surnameField.setBounds(96, 313, 124, 37);
 		panel.add(surnameField);
 		surnameField.addFocusListener(new FocusListener() {
 			
@@ -179,7 +179,7 @@ public class UserInfoJPanel extends JPanel {
 		surnameField.setBackground(new Color(230, 230, 230));
 		
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(24, 347, 95, 31);
+		lblEmail.setBounds(24, 347, 75, 31);
 		panel.add(lblEmail);
 		lblEmail.setOpaque(true);
 		lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
@@ -187,7 +187,7 @@ public class UserInfoJPanel extends JPanel {
 		lblEmail.setBackground(new Color(2, 66, 96));
 		
 		emailField = new JTextField(email);
-		emailField.setBounds(116, 343, 204, 37);
+		emailField.setBounds(96, 343, 124, 37);
 		panel.add(emailField);
 		emailField.addFocusListener(new FocusListener() {
 			
@@ -204,7 +204,7 @@ public class UserInfoJPanel extends JPanel {
 		emailField.setBackground(new Color(230, 230, 230));
 		
 		btnSave = new JButton("Save");
-		btnSave.setBounds(85, 406, 181, 29);
+		btnSave.setBounds(30, 427, 181, 29);
 		panel.add(btnSave);
 		btnSave.setVisible(false);
 		btnSave.addActionListener(new ActionListener() {
@@ -254,7 +254,7 @@ public class UserInfoJPanel extends JPanel {
 		});
 		
 		JPanel panelStar = new JPanel();
-		panelStar.setBounds(205, 133, 127, 50);
+		panelStar.setBounds(141, 107, 127, 50);
 		add(panelStar);
 		panelStar.setBackground(new Color(228, 230, 235));
 		path="res/pencil.png";

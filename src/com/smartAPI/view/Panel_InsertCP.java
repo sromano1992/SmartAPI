@@ -63,7 +63,7 @@ public class Panel_InsertCP extends JPanel {
 		setLayout(null);
 
 		nomeCP = new JTextField();
-		nomeCP.setBounds(404, 18, 204, 37);
+		nomeCP.setBounds(360, 18, 124, 37);
 		add(nomeCP);
 		nomeCP.setColumns(20);
 
@@ -81,7 +81,7 @@ public class Panel_InsertCP extends JPanel {
 
 
 		keyword = new JTextField();
-		keyword.setBounds(148, 93, 204, 37);
+		keyword.setBounds(100, 67, 124, 37);
 		keyword.setColumns(20);
 		add(keyword);
 
@@ -93,7 +93,7 @@ public class Panel_InsertCP extends JPanel {
 		v.add("Other...");
 		DefaultComboBoxModel model = new DefaultComboBoxModel(v);
 		final JComboBox jcb = new JComboBox(model);
-		jcb.setBounds(676, 170, 204, 37);
+		jcb.setBounds(617, 144, 124, 37);
 		add(jcb);
 		jcb.addActionListener(new ActionListener() {
 
@@ -109,40 +109,40 @@ public class Panel_InsertCP extends JPanel {
 
 
 		newCategoria = new JTextField();
-		newCategoria.setBounds(676, 208, 204, 37);
+		newCategoria.setBounds(617, 182, 124, 37);
 		add(newCategoria);
 		newCategoria.setColumns(10);
 		newCategoria.setVisible(false);		
 
-		setSize(935, 594);
+		setSize(826, 594);
 
 		JLabel cpLabel = new JLabel("Code Pattern");
 		cpLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 		cpLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		cpLabel.setBackground(new Color(231, 76, 60));
 		cpLabel.setForeground(Color.WHITE);
-		cpLabel.setBounds(56, 281, 37, 212);
+		cpLabel.setBounds(38, 236, 30, 210);
 		cpLabel.setOpaque(true);
 		cpLabel.setUI(new VerticalLabelUI(true));
 		add(cpLabel);
 
 		MyJLabel nomeLabel = new MyJLabel("Name");
 		nomeLabel.setBackground(new Color(231, 76, 60));
-		nomeLabel.setBounds(312, 20, 94, 32);
+		nomeLabel.setBounds(287, 20, 75, 32);
 		add(nomeLabel);
 
 		MyJLabel keywordLabel = new MyJLabel("Keyword");
 		keywordLabel.setBackground(new Color(231, 76, 60));
-		keywordLabel.setBounds(56, 95, 94, 32);
+		keywordLabel.setBounds(27, 69, 75, 32);
 		add(keywordLabel);
 
 		MyJLabel categoriaLabel = new MyJLabel("Category");
 		categoriaLabel.setBackground(new Color(231, 76, 60));
-		categoriaLabel.setBounds(584, 171, 94, 32);
+		categoriaLabel.setBounds(543, 145, 75, 32);
 		add(categoriaLabel);
 
 		JButton addCP = new JButton("Insert");
-		addCP.setBounds(387, 521, 120, 35);
+		addCP.setBounds(300, 463, 184, 35);
 		addCP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String val_nome = nomeCP.getText();
@@ -158,21 +158,21 @@ public class Panel_InsertCP extends JPanel {
 
 		MyJLabel language = new MyJLabel("Language");
 		language.setBackground(new Color(231, 76, 60));
-		language.setBounds(56, 171, 94, 32);
+		language.setBounds(27, 145, 75, 32);
 		add(language);
 
 		langTextField = new JTextField();
-		langTextField.setBounds(148, 168, 204, 37);
+		langTextField.setBounds(100, 142, 124, 37);
 		add(langTextField);
 		langTextField.setColumns(10);
 
 		MyJLabel library = new MyJLabel("Library");
 		library.setBackground(new Color(231, 76, 60));
-		library.setBounds(584, 95, 94, 32);
+		library.setBounds(543, 69, 75, 32);
 		add(library);
 
 		libTextField = new JTextField();
-		libTextField.setBounds(676, 93, 204, 37);
+		libTextField.setBounds(617, 67, 124, 37);
 		add(libTextField);
 		libTextField.setColumns(10);
 		
@@ -193,10 +193,11 @@ public class Panel_InsertCP extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(228, 230, 235));
 		add(panel);
-		panel.setBounds(93, 278, 788, 220);
-		JTextArea ta = new JTextArea(txt+txt+txt, 13, 65);
+		panel.setBounds(69, 231, 671, 220);
+		JTextArea ta = new JTextArea(txt+txt+txt, 13, 55);
+		panel.add(ta);
 	    ta.setLineWrap(true);
-	    panel.add(new JScrollPane(ta));
+	    panel.add(new JScrollPane());
 		
 		
 		

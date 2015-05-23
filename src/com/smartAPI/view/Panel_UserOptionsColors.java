@@ -54,7 +54,7 @@ public class Panel_UserOptionsColors extends JPanel {
 		lblSearch.setOpaque(true);
 		lblSearch.setForeground(Color.WHITE);
 		lblSearch.setBackground(new Color(230, 126, 34));
-		lblSearch.setBounds(0, 28, 210, 86);
+		lblSearch.setBounds(19, 28, 170, 50);
 		
 		String path="res/search.png";
 		String pathIcon = getClass().getResource(path).getFile();
@@ -86,7 +86,7 @@ public class Panel_UserOptionsColors extends JPanel {
 		lblInsert.setForeground(Color.WHITE);
 		lblInsert.setBackground(new Color(231, 76, 60));
 		lblInsert.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInsert.setBounds(212, 28, 210, 86);
+		lblInsert.setBounds(190, 28, 170, 50);
 		path="res/insert.png";
 		pathIcon = getClass().getResource(path).getFile();
 		imgicon = new MyImageIcon(pathIcon,35,35);
@@ -116,7 +116,7 @@ public class Panel_UserOptionsColors extends JPanel {
 		lblShowUsers.setForeground(Color.WHITE);
 		lblShowUsers.setBackground(new Color(106, 183, 127));
 		lblShowUsers.setHorizontalAlignment(SwingConstants.CENTER);		
-		lblShowUsers.setBounds(425, 28, 210, 86);
+		lblShowUsers.setBounds(361, 28, 170, 50);
 		path="res/show.png";
 		pathIcon = getClass().getResource(path).getFile();
 		imgicon = new MyImageIcon(pathIcon,43,43);
@@ -129,7 +129,7 @@ public class Panel_UserOptionsColors extends JPanel {
 		lblAbout.setForeground(Color.WHITE);
 		lblAbout.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
 		lblAbout.setBackground(new Color(138, 246, 113));
-		lblAbout.setBounds(637, 28, 210, 86);
+		lblAbout.setBounds(532, 28, 170, 50);
 		path="res/friends.png";
 		pathIcon = getClass().getResource(path).getFile();
 		imgicon = new MyImageIcon(pathIcon,40,40);
