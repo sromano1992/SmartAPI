@@ -22,8 +22,8 @@ public class Desktop_1 extends JPanel {
 		setSize(1416,1200);
 		setBackground(new Color(228, 230, 235));
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setBackground(new Color(228, 230, 235));
 		splitPane.setEnabled(false);
+		splitPane.setBackground(new Color(228, 230, 235));
 		splitPane.setDividerSize(0);
 		add(splitPane);
 		
