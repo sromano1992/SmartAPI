@@ -14,12 +14,12 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 import java.awt.FlowLayout;
 
-public class Desktop_1 extends JPanel {
+public class Desktop_Show extends JPanel {
 
 	
-	public Desktop_1() {
+	public Desktop_Show() {
 		setLayout(new GridLayout(1, 0, 0, 0));
-		setSize(1416,1200);
+		setSize(1416,858);
 		setBackground(new Color(228, 230, 235));
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setBackground(new Color(228, 230, 235));
@@ -45,13 +45,13 @@ public class Desktop_1 extends JPanel {
 		panel.setLayout(null);
 		panel.setBackground(new Color(228, 230, 235));
 		
-		Panel_UserOptionsColors panel_UserOptionsColors = new Panel_UserOptionsColors();
-		panel_UserOptionsColors.setBounds(0, 6, 875, 139);
+		UserOptionsJPanel panel_UserOptionsColors = new UserOptionsJPanel();
+		panel_UserOptionsColors.setBounds(0, 6, 875, 100);
 		panel.add(panel_UserOptionsColors);
 		panel_UserOptionsColors.setLayout(null);
 		
-		Panel_InsertCP panel_InsertCP = new Panel_InsertCP();
-		panel_InsertCP.setBounds(6, 201, 947, 619);
-		panel.add(panel_InsertCP);
+		Panel_CodePatternCompleteView panel_CodePatternCompleteView = new Panel_CodePatternCompleteView();
+		panel_CodePatternCompleteView.setBounds(20, 107, 811, 582);
+		panel.add(panel_CodePatternCompleteView);
 	}
 }

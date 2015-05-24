@@ -23,7 +23,7 @@ import com.smartAPI.control.ILogInPanelListner;
  */
 public class Desktop_0 extends JPanel implements ILogInPanelListner{
 	private LoginGrafica loginGrafica;
-	private Desktop_1 d1;
+	private Desktop_Insert d1;
 	private CreateNewAccountJPanel newAccountPanel;
 	private Logger log = Logger.getLogger("global");
 	private JFrame mainContainer;
@@ -78,7 +78,7 @@ public class Desktop_0 extends JPanel implements ILogInPanelListner{
 	public void loginClicked() {
 		log.info("Log in event intercepted");
 		if (d1 == null)
-			d1 = new Desktop_1();
+			d1 = new Desktop_Insert();
 		mainContainer.remove(this);
 		mainContainer.add(d1);
 		SwingUtilities.updateComponentTreeUI(mainContainer);

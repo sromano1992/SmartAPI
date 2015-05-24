@@ -23,7 +23,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class UserInfoJPanel extends JPanel {
+public class AdminInfoJPanel extends JPanel {
 
 	JLabel lblImage;
 	private static int SCORE = 10;
@@ -36,18 +36,18 @@ public class UserInfoJPanel extends JPanel {
 	private JButton btnSave;
 	private String avatar="";//iniz. con avatar user
 	
-	public UserInfoJPanel(String user,String password,String name,String surname,String email) {
+	public AdminInfoJPanel(String user,String password,String name,String surname,String email) {
 		setLayout(null);
 		setBackground(new Color(228, 230, 235));
 
 		lblImage = new JLabel("");
 		//path dipende dall'avatar dell'utente
-		String path="res/1.png";
+		String path="res/admin-1.png";
 		String pathIcon = getClass().getResource(path).getFile();
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblImage.setIcon(imgicon.getImageResponsive());
 		
-		lblImage.setBounds(76, 97, 80, 71);
+		lblImage.setBounds(155, 97, 80, 71);
 		add(lblImage);
 		
 		JButton btnModify = new JButton("");
@@ -74,32 +74,29 @@ public class UserInfoJPanel extends JPanel {
 		add(btnModify);
 		
 		Vector comboBoxItems=new Vector();
-	    comboBoxItems.add("avatar - 1");
-	    comboBoxItems.add("avatar - 2");
-	    comboBoxItems.add("avatar - 3");
-	    comboBoxItems.add("avatar - 4");
-	    comboBoxItems.add("avatar - 5");
-	    comboBoxItems.add("avatar - 6");
+		comboBoxItems.add("admin - 1");
+		comboBoxItems.add("admin - 2");
+	    
 	    final DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
 		
-		JLabel lblYourInfo = new JLabel("YOUR INFO");
-		lblYourInfo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblYourInfo.setOpaque(true);
-		lblYourInfo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblYourInfo.setForeground(Color.YELLOW);
-		lblYourInfo.setBackground(new Color(27, 147, 225));
-		lblYourInfo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblYourInfo.setBounds(32, 35, 335, 50);
-		add(lblYourInfo);
+		JLabel lblAdminInfo = new JLabel("ADMIN INFO");
+		lblAdminInfo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblAdminInfo.setOpaque(true);
+		lblAdminInfo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAdminInfo.setForeground(Color.YELLOW);
+		lblAdminInfo.setBackground(new Color(151, 121, 102));
+		lblAdminInfo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAdminInfo.setBounds(32, 35, 335, 50);
+		add(lblAdminInfo);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(32, 180, 335, 509);
-		panel.setBackground(new Color(2, 94, 137));
+		panel.setBackground(new Color(250, 172, 88));
 
 		add(panel);
 		panel.setLayout(null);
 		comboBox = new JComboBox(model);
-		comboBox.setBounds(25, 6, 118, 31);
+		comboBox.setBounds(107, 6, 118, 31);
 		panel.add(comboBox);
 		
 		JLabel lblUser = new JLabel("User");
@@ -108,7 +105,7 @@ public class UserInfoJPanel extends JPanel {
 		lblUser.setOpaque(true);
 		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUser.setForeground(Color.WHITE);
-		lblUser.setBackground(new Color(2, 66, 96));
+		lblUser.setBackground(new Color(180, 95, 4));
 		
 		userField = new JTextField(user);
 		userField.setBounds(97, 61, 208, 37);
@@ -123,7 +120,7 @@ public class UserInfoJPanel extends JPanel {
 		lblPassword.setOpaque(true);
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setForeground(Color.WHITE);
-		lblPassword.setBackground(new Color(2, 66, 96));
+		lblPassword.setBackground(new Color(180, 95, 4));
 		
 		passwordField = new JPasswordField(password);
 		passwordField.setBounds(97, 92, 208, 37);
@@ -138,7 +135,7 @@ public class UserInfoJPanel extends JPanel {
 		lblPersonalData.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPersonalData.setForeground(Color.YELLOW);
 		lblPersonalData.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblPersonalData.setBackground(new Color(27, 147, 225));
+		lblPersonalData.setBackground(new Color(151, 121, 102));
 		
 		JLabel lblName = new JLabel("Name");
 		lblName.setBounds(25, 286, 75, 31);
@@ -146,7 +143,7 @@ public class UserInfoJPanel extends JPanel {
 		lblName.setOpaque(true);
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblName.setForeground(Color.WHITE);
-		lblName.setBackground(new Color(2, 66, 96));
+		lblName.setBackground(new Color(180, 95, 4));
 		
 		nameField = new JTextField(name);
 		nameField.setBounds(97, 283, 208, 37);
@@ -161,7 +158,7 @@ public class UserInfoJPanel extends JPanel {
 		lblSurname.setOpaque(true);
 		lblSurname.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSurname.setForeground(Color.WHITE);
-		lblSurname.setBackground(new Color(2, 66, 96));
+		lblSurname.setBackground(new Color(180, 95, 4));
 		
 		surnameField = new JTextField(surname);
 		surnameField.setBounds(97, 313, 208, 37);
@@ -175,7 +172,7 @@ public class UserInfoJPanel extends JPanel {
 		lblEmail.setOpaque(true);
 		lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEmail.setForeground(Color.WHITE);
-		lblEmail.setBackground(new Color(2, 66, 96));
+		lblEmail.setBackground(new Color(180, 95, 4));
 		
 		emailField = new JTextField(email);
 		emailField.setBounds(97, 343, 208, 37);
@@ -184,7 +181,7 @@ public class UserInfoJPanel extends JPanel {
 		emailField.setBackground(new Color(230, 230, 230));
 		
 		btnSave = new JButton("Save");
-		btnSave.setBounds(85, 428, 181, 29);
+		btnSave.setBounds(75, 428, 181, 29);
 		panel.add(btnSave);
 		btnSave.setVisible(false);
 		btnSave.addActionListener(new ActionListener() {
@@ -215,7 +212,7 @@ public class UserInfoJPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String s=(String)comboBox.getSelectedItem();
 				String[]parts = s.split(" - ");
-				String path="res/"+parts[1]+".png";
+				String path="res/admin-"+parts[1]+".png";
 				avatar=parts[1];
 				String pathIcon = getClass().getResource(path).getFile();				
 				MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
@@ -223,10 +220,10 @@ public class UserInfoJPanel extends JPanel {
 			}
 		});
 		
-		JPanel panelStar = new JPanel();
-		panelStar.setBounds(212, 107, 127, 50);
-		add(panelStar);
-		panelStar.setBackground(new Color(228, 230, 235));
+//		JPanel panelStar = new JPanel();
+//		panelStar.setBounds(212, 107, 127, 50);
+//		add(panelStar);
+//		panelStar.setBackground(new Color(228, 230, 235));
 		path="res/pencil.png";
 		pathIcon = getClass().getResource(path).getFile();
 		imgicon = new MyImageIcon(pathIcon,20,20);
@@ -238,9 +235,9 @@ public class UserInfoJPanel extends JPanel {
 		pathIcon = getClass().getResource(path).getFile();
 		imgicon = new MyImageIcon(pathIcon,20,20);
 		star=imgicon.getImageResponsive();
-		for (int i=0; i<SCORE; i++){
-			panelStar.add(new JLabel(star));
-	    }
+//		for (int i=0; i<SCORE; i++){
+//			panelStar.add(new JLabel(star));
+//	    }
 		
 	}
 }
