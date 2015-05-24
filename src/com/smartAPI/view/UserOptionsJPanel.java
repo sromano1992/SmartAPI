@@ -21,13 +21,13 @@ import java.awt.event.MouseEvent;
  * @author iolrin
  *
  */
-public class Panel_UserOptionsColors extends JPanel {
+public class UserOptionsJPanel extends JPanel {
 
 	JLabel lblSearch;
 	JLabel lblInsert;
 	JLabel lblShowUsers;
 	private JLabel lblNewLabel;
-	public Panel_UserOptionsColors() {
+	public UserOptionsJPanel() {
 		setBackground(new Color(228, 230, 235));
 		setLayout(null);
 		

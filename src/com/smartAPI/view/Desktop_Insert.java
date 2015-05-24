@@ -45,7 +45,7 @@ public class Desktop_Insert extends JPanel {
 		panel.setLayout(null);
 		panel.setBackground(new Color(228, 230, 235));
 		
-		Panel_UserOptionsColors panel_UserOptionsColors = new Panel_UserOptionsColors();
+		UserOptionsJPanel panel_UserOptionsColors = new UserOptionsJPanel();
 		panel_UserOptionsColors.setBounds(0, 6, 875, 100);
 		panel.add(panel_UserOptionsColors);
 		panel_UserOptionsColors.setLayout(null);
