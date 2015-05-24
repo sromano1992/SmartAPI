@@ -15,14 +15,20 @@ public class TestCiro {
 		
 		//USERINFO
 		//UserInfoJPanel panel = new UserInfoJPanel("c.amati","123","Ciro","Amati","ciro.amati@gmail.com");
+		
 		//CREATE NEW ACCOUNT
 		//CreateNewAccountJPanel panel = new CreateNewAccountJPanel();
 		
-		Desktop_1 panel = new Desktop_1();
+		//Desktop_Insert panel = new Desktop_Insert();
+		Desktop_Show panel = new Desktop_Show();
+		
+		//CREATE ADMIN
+		//CreateAdminJPanel panel = new CreateAdminJPanel();
+
 		JFrame frame= new JFrame();
 		
 		frame.setVisible(true);
-		frame.setSize(500, 500);
+		frame.setSize(800, 600);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.add(panel);
 

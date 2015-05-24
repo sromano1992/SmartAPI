@@ -31,8 +31,8 @@ public class Panel_UserOptionsColors extends JPanel {
 		setBackground(new Color(228, 230, 235));
 		setLayout(null);
 		
-		 lblSearch = new JLabel(" Search");
-		 lblSearch.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSearch = new JLabel(" Search");
+		lblSearch.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSearch.addMouseListener(new MouseAdapter() {
 			
 			@Override
@@ -50,15 +50,15 @@ public class Panel_UserOptionsColors extends JPanel {
 				lblSearch.setBackground(new Color(230, 126, 34));
 			}
 		});
-		lblSearch.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
+		lblSearch.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblSearch.setOpaque(true);
 		lblSearch.setForeground(Color.WHITE);
 		lblSearch.setBackground(new Color(230, 126, 34));
-		lblSearch.setBounds(19, 28, 170, 50);
+		lblSearch.setBounds(19, 28, 200, 50);
 		
 		String path="res/search.png";
 		String pathIcon = getClass().getResource(path).getFile();
-		MyImageIcon imgicon = new MyImageIcon(pathIcon,45,30);
+		MyImageIcon imgicon = new MyImageIcon(pathIcon,40,25);
 		lblSearch.setIcon(imgicon.getImageResponsive());
 		
 		add(lblSearch);
@@ -81,15 +81,15 @@ public class Panel_UserOptionsColors extends JPanel {
 		});
 		
 		
-		lblInsert.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
+		lblInsert.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblInsert.setOpaque(true);
 		lblInsert.setForeground(Color.WHITE);
 		lblInsert.setBackground(new Color(231, 76, 60));
 		lblInsert.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInsert.setBounds(190, 28, 170, 50);
+		lblInsert.setBounds(222, 28, 200, 50);
 		path="res/insert.png";
 		pathIcon = getClass().getResource(path).getFile();
-		imgicon = new MyImageIcon(pathIcon,35,35);
+		imgicon = new MyImageIcon(pathIcon,25,25);
 		lblInsert.setIcon(imgicon.getImageResponsive());
 		add(lblInsert);
 		
@@ -111,15 +111,15 @@ public class Panel_UserOptionsColors extends JPanel {
 				lblShowUsers.setBackground(new Color(106, 183, 127));
 			}
 		});
-		lblShowUsers.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
+		lblShowUsers.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblShowUsers.setOpaque(true);
 		lblShowUsers.setForeground(Color.WHITE);
 		lblShowUsers.setBackground(new Color(106, 183, 127));
 		lblShowUsers.setHorizontalAlignment(SwingConstants.CENTER);		
-		lblShowUsers.setBounds(361, 28, 170, 50);
+		lblShowUsers.setBounds(426, 28, 200, 50);
 		path="res/show.png";
 		pathIcon = getClass().getResource(path).getFile();
-		imgicon = new MyImageIcon(pathIcon,43,43);
+		imgicon = new MyImageIcon(pathIcon,33,33);
 		lblShowUsers.setIcon(imgicon.getImageResponsive());
 		add(lblShowUsers);
 		
@@ -127,12 +127,12 @@ public class Panel_UserOptionsColors extends JPanel {
 		lblAbout.setOpaque(true);
 		lblAbout.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAbout.setForeground(Color.WHITE);
-		lblAbout.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
+		lblAbout.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblAbout.setBackground(new Color(138, 246, 113));
-		lblAbout.setBounds(532, 28, 170, 50);
+		lblAbout.setBounds(630, 28, 200, 50);
 		path="res/friends.png";
 		pathIcon = getClass().getResource(path).getFile();
-		imgicon = new MyImageIcon(pathIcon,40,40);
+		imgicon = new MyImageIcon(pathIcon,30,30);
 		lblAbout.setIcon(imgicon.getImageResponsive());
 		add(lblAbout);
 		

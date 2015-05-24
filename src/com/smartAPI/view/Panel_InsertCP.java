@@ -40,6 +40,7 @@ import javax.swing.DropMode;
 import javax.swing.border.Border;
 
 import java.awt.ScrollPane;
+import javax.swing.ImageIcon;
 
 /**
  * Pannello che permette all'utente di inserire un code pattern
@@ -63,7 +64,7 @@ public class Panel_InsertCP extends JPanel {
 		setLayout(null);
 
 		nomeCP = new JTextField();
-		nomeCP.setBounds(360, 18, 124, 37);
+		nomeCP.setBounds(360, 18, 190, 37);
 		add(nomeCP);
 		nomeCP.setColumns(20);
 
@@ -81,7 +82,7 @@ public class Panel_InsertCP extends JPanel {
 
 
 		keyword = new JTextField();
-		keyword.setBounds(100, 67, 124, 37);
+		keyword.setBounds(100, 67, 190, 37);
 		keyword.setColumns(20);
 		add(keyword);
 
@@ -93,7 +94,7 @@ public class Panel_InsertCP extends JPanel {
 		v.add("Other...");
 		DefaultComboBoxModel model = new DefaultComboBoxModel(v);
 		final JComboBox jcb = new JComboBox(model);
-		jcb.setBounds(617, 144, 124, 37);
+		jcb.setBounds(619, 144, 190, 37);
 		add(jcb);
 		jcb.addActionListener(new ActionListener() {
 
@@ -109,7 +110,7 @@ public class Panel_InsertCP extends JPanel {
 
 
 		newCategoria = new JTextField();
-		newCategoria.setBounds(617, 182, 124, 37);
+		newCategoria.setBounds(619, 182, 190, 37);
 		add(newCategoria);
 		newCategoria.setColumns(10);
 		newCategoria.setVisible(false);		
@@ -121,7 +122,7 @@ public class Panel_InsertCP extends JPanel {
 		cpLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		cpLabel.setBackground(new Color(231, 76, 60));
 		cpLabel.setForeground(Color.WHITE);
-		cpLabel.setBounds(38, 236, 30, 210);
+		cpLabel.setBounds(39, 233, 30, 210);
 		cpLabel.setOpaque(true);
 		cpLabel.setUI(new VerticalLabelUI(true));
 		add(cpLabel);
@@ -138,11 +139,14 @@ public class Panel_InsertCP extends JPanel {
 
 		MyJLabel categoriaLabel = new MyJLabel("Category");
 		categoriaLabel.setBackground(new Color(231, 76, 60));
-		categoriaLabel.setBounds(543, 145, 75, 32);
+		categoriaLabel.setBounds(546, 145, 75, 32);
 		add(categoriaLabel);
 
 		JButton addCP = new JButton("Insert");
-		addCP.setBounds(300, 463, 184, 35);
+		addCP.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		addCP.setForeground(Color.BLACK);
+		addCP.setIcon(null);
+		addCP.setBounds(340, 463, 184, 35);
 		addCP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String val_nome = nomeCP.getText();
@@ -162,17 +166,17 @@ public class Panel_InsertCP extends JPanel {
 		add(language);
 
 		langTextField = new JTextField();
-		langTextField.setBounds(100, 142, 124, 37);
+		langTextField.setBounds(100, 142, 190, 37);
 		add(langTextField);
 		langTextField.setColumns(10);
 
 		MyJLabel library = new MyJLabel("Library");
 		library.setBackground(new Color(231, 76, 60));
-		library.setBounds(543, 69, 75, 32);
+		library.setBounds(546, 69, 75, 32);
 		add(library);
 
 		libTextField = new JTextField();
-		libTextField.setBounds(617, 67, 124, 37);
+		libTextField.setBounds(619, 67, 190, 37);
 		add(libTextField);
 		libTextField.setColumns(10);
 		
@@ -193,8 +197,8 @@ public class Panel_InsertCP extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(228, 230, 235));
 		add(panel);
-		panel.setBounds(69, 231, 671, 220);
-		JTextArea ta = new JTextArea(txt+txt+txt, 13, 55);
+		panel.setBounds(69, 231, 738, 220);
+		JTextArea ta = new JTextArea(txt+txt+txt, 13, 60);
 		panel.add(ta);
 	    ta.setLineWrap(true);
 	    panel.add(new JScrollPane());

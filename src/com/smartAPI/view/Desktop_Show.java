@@ -14,10 +14,10 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 import java.awt.FlowLayout;
 
-public class Desktop_1 extends JPanel {
+public class Desktop_Show extends JPanel {
 
 	
-	public Desktop_1() {
+	public Desktop_Show() {
 		setLayout(new GridLayout(1, 0, 0, 0));
 		setSize(1416,858);
 		setBackground(new Color(228, 230, 235));
@@ -32,7 +32,7 @@ public class Desktop_1 extends JPanel {
 		GroupLayout gl_userInfoJPanel = new GroupLayout(userInfoJPanel);
 		gl_userInfoJPanel.setHorizontalGroup(
 			gl_userInfoJPanel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 300, Short.MAX_VALUE)
+				.addGap(0, 400, Short.MAX_VALUE)
 		);
 		gl_userInfoJPanel.setVerticalGroup(
 			gl_userInfoJPanel.createParallelGroup(Alignment.LEADING)
@@ -50,8 +50,8 @@ public class Desktop_1 extends JPanel {
 		panel.add(panel_UserOptionsColors);
 		panel_UserOptionsColors.setLayout(null);
 		
-		Panel_InsertCP panel_InsertCP = new Panel_InsertCP();
-		panel_InsertCP.setBounds(0, 181, 920, 564);
-		panel.add(panel_InsertCP);
+		Panel_CodePatternCompleteView panel_CodePatternCompleteView = new Panel_CodePatternCompleteView();
+		panel_CodePatternCompleteView.setBounds(20, 107, 811, 582);
+		panel.add(panel_CodePatternCompleteView);
 	}
 }
