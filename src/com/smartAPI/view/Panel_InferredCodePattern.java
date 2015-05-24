@@ -16,6 +16,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ScrollPaneConstants;
 
+import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -25,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class Panel_InferredCodePattern extends JPanel {
 	private Panel_ShowCodePattern panel_ShowCodePattern, panel_ShowCodePattern_1;
@@ -39,13 +41,17 @@ public class Panel_InferredCodePattern extends JPanel {
 		panel_3.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		MyJLabel lblNewLabel = new MyJLabel("Inferred");
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lblNewLabel.setBackground(new Color(230, 126, 34));
 		lblNewLabel.setText("Basic");
 		
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_3.add(lblNewLabel);
 		
 		MyJLabel lblBasic = new MyJLabel("Basic");
+		lblBasic.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		lblBasic.setText("Inferred");
+		lblBasic.setBackground(new Color(230, 126, 34));
 		lblBasic.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_3.add(lblBasic);
 		

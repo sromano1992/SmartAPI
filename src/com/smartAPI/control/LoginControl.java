@@ -84,9 +84,7 @@ public class LoginControl {
 	}
 	
 	public Utente getUtente(String username) {
-		for(Utente u: model.getUsers()) {
-			System.out.println(u.getNickname());
-			if(u.getNickname().equals(username)) {
+		for(Utente u: model.getUsers()) {			if(u.getNickname().equals(username)) {
 				return u;
 			}
 		}
