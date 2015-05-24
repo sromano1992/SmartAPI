@@ -2,6 +2,12 @@ package com.smartAPI.test;
 
 import com.smartAPI.model.SmartAPIModel;
 
+/**
+ * 
+ * @author Amedeo Leo
+ *
+ */
+
 public class TestModificheUtente {
 
 	public static void main(String[] args) {

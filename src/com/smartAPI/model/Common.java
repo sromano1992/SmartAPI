@@ -2,7 +2,7 @@ package com.smartAPI.model;
 
 /**
  * This class contains model elements.
- * @author Simone Romamo - http://www.sromano.altervista.org/music
+ * @author Simone Romamo - http://www.sromano.altervista.org
  *
  */
 public class Common {
@@ -27,4 +27,7 @@ public class Common {
 	public static final String HAS_KEYWORD = "hasKeyword";
 	public static final String HAS_AVATAR = "hasAvatar";
 	public static final Utente UTENTE = null;
+	public static final String HAS_VOTED = "hasVoted";
+	public static final String NUMBER_OF_VOTERS = "hasVoters";
+	public static final String HAS_SCORE = "hasScore";
 }

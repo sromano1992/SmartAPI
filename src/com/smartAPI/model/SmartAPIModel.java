@@ -253,7 +253,7 @@ public class SmartAPIModel {
 	 */
 	public boolean addKeyword(String risorsa, String keyword) {
 		Individual ind = getOntModel().getIndividual(Common.NS + risorsa);
-		DatatypeProperty hasKeyword = getOntModel().getDatatypeProperty(Common.NS + "hasKeyword");
+		DatatypeProperty hasKeyword = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_KEYWORD);
 		ind.addProperty(hasKeyword, keyword);
 		log.info("Added property " + keyword);
 	    return true;
@@ -286,22 +286,6 @@ public class SmartAPIModel {
 		return p;
 	}
 		
-	/**
-	 * Controlla se una risorsa ha una proprieta'.
-	 * @author Amedeo Leo
-	 */
-	private boolean hasProperty(Selector selector, String property) {
-		StmtIterator iter = listStatements(selector);
-        while (iter.hasNext()) {
-            Statement stmt      = iter.nextStatement();
-            Property  predicate = stmt.getPredicate();   // get the predicate
-            log.info(predicate.toString().substring(predicate.toString().indexOf("#")));
-            log.info("Property: " + property);
-            if(predicate.toString().substring(predicate.toString().indexOf("#")).equals("#" + property))
-            	return true;
-        }
-		return false;
-	}
 	
 	/**
 	 * Restituisce la lista di Statement, passando in input l'oggetto Selector
@@ -435,7 +419,7 @@ public class SmartAPIModel {
 	public boolean addUser(String nome, String cognome, String email, String username, String password, boolean isAdmin, String avatar) {
 		OntClass userClass = getOntModel().getOntClass(Common.NS + Common.USER);
 		if(!userAlreadyExists(userClass.getLocalName(), username)) {
-			Utente user = new Utente(nome, cognome, email, username, password, false, avatar);
+			Utente user = new Utente(nome, cognome, email, username, password, false, avatar, "0");
 			getOntModel();
 			
 			Individual individualUser1 = getOntModel().createIndividual(Common.NS + username, userClass);
@@ -446,6 +430,7 @@ public class SmartAPIModel {
 			DatatypeProperty hasEmail = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_EMAIL);
 			DatatypeProperty isAdministrator = getOntModel().getDatatypeProperty(Common.NS + Common.IS_ADMINISTRATOR);
 			DatatypeProperty hasAvatar = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_AVATAR);
+			DatatypeProperty hasVoted = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_VOTED);
 
 			individualUser1.addProperty(hasUsername, username);
 			individualUser1.addProperty(hasPassword, password);
@@ -453,6 +438,8 @@ public class SmartAPIModel {
 			individualUser1.addProperty(hasName, nome);
 			individualUser1.addProperty(hasSurname, cognome);
 			individualUser1.addProperty(hasAvatar, avatar);
+			individualUser1.addProperty(hasVoted, "0");
+			
 			if(isAdmin) {
 				individualUser1.addProperty(isAdministrator, "si");
 			}
@@ -567,7 +554,7 @@ public class SmartAPIModel {
 		for(int i = 0; i < list.size(); i++) {
 			Resource resource = list.get(i);
 			StmtIterator iterResource = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
-			String nome = "", cognome = "", username = "", password = "", email = "", avatar = "";
+			String nome = "", cognome = "", username = "", password = "", email = "", avatar = "", voti = "";
 			boolean amministratore = false;
 			while (iterResource.hasNext()) {
 				Statement stmtResource = iterResource.nextStatement();
@@ -606,11 +593,14 @@ public class SmartAPIModel {
 						if(predicate.getLocalName().equals(Common.HAS_AVATAR)) {
 							avatar = object.toString();
 						}
+						if(predicate.getLocalName().equals(Common.HAS_VOTED)) {
+							voti = object.toString();
+						}
 					}
 				}
 			}
 			//String nome, String cognome, String email, String nickname, String password, boolean admin, String avatar
-			utenti.add(new Utente(nome,cognome,email,username,password,amministratore, avatar));
+			utenti.add(new Utente(nome,cognome,email,username,password,amministratore, avatar, voti));
 
 		}
 		return utenti;
@@ -926,11 +916,211 @@ public class SmartAPIModel {
 			if(modificaAvatar) {
 				subjectResource.getProperty(getProperty(Common.NS + Common.HAS_AVATAR)).changeObject(avatar);
 			}
-			
 			storeOntModel();
 			return true;
 		}
 		else
 			throw new UserException("Utente non esistente");
+	}
+	
+	/**
+	 * Aggiunge una votazione all'utente
+	 * @author Amedeo Leo
+	 */
+	public boolean aggiungiVotoUtente(String username, String codePattern) {
+		ArrayList<Resource> list = getIndividualOfClass("User");
+		for(int i = 0; i < list.size(); i++) {
+			Resource resource = list.get(i);
+			if(resource.getLocalName().equals(username)) {
+				StmtIterator iterResource = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
+
+				while (iterResource.hasNext()) {
+					Statement stmtResource = iterResource.nextStatement();
+					Resource subjectResource = stmtResource.getSubject();
+					Property predicateResource = stmtResource.getPredicate();
+					RDFNode object = stmtResource.getObject();
+					
+					if(predicateResource.getLocalName().equals(Common.HAS_VOTED)) {
+						if(object.toString().equals("0")) {
+							subjectResource.getProperty(getProperty(Common.NS + Common.HAS_VOTED)).changeObject(codePattern + ",");
+							storeOntModel();
+							return true;
+						}
+						else {
+							//controllo già fatto
+							//if(hasAlreadyVoted(username, codePattern))
+							//throw new UserException("Hai già votato questo code pattern");							
+							stmtResource.changeObject(object.toString() + codePattern + ",");
+							storeOntModel();
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	/** 
+	 * Aggiunge una votazione al code pattern
+	 * @author Amedeo Leo
+	 */
+	public boolean aggiungiVotoCodePattern(String username, String codePattern, String votazione) {
+		int voto = 0;
+		try {
+			voto = Integer.parseInt(votazione);
+			if(voto > 0 && voto < 11) {
+				Resource resource = getOntModel().getResource(Common.NS + codePattern);
+				if(isOwner(username, codePattern))
+					throw new UserException("Non puoi votare un tuo code pattern");
+				if(hasAlreadyVoted(username, codePattern))
+					throw new UserException("Hai già votato questo code pattern");
+				String vecchiVotanti = resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).getObject().toString();
+				int nuoviVotanti = Integer.parseInt(vecchiVotanti) + 1;
+				resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).changeObject(String.valueOf(nuoviVotanti));
+				int score =  Integer.parseInt(resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).getObject().toString());
+				String nuovoPunteggio = (voto + score) + "";
+				resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).changeObject(String.valueOf(nuovoPunteggio));
+				
+				if(aggiungiVotoUtente(username, codePattern)) {				
+					storeOntModel();
+					return true;
+				}
+			}
+			else 
+				throw new UserException("Inserire numero tra 0 e 10");
+		}
+		catch(NumberFormatException e) {
+			throw new UserException("Inserire numero tra 0 e 10");
+		}
+		return false;
+	}
+	
+	/**
+	 * Restituisce la media delle votazioni di un code pattern
+	 * @author Amedeo Leo
+	 */
+	public float getMediaVotazioni(String codePattern) {
+		Resource resource = getOntModel().getResource(Common.NS + codePattern);
+		float n_votanti = getNumeroVotanti(codePattern);
+		float score =  Integer.parseInt(resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).getObject().toString());
+		if(n_votanti == 0.0)
+			return 0;
+		return (score / n_votanti);
+	}
+	
+	/**
+	 * Restituisce il numero di votanti di un code pattern
+	 * @author Amedeo Leo
+	 */
+	
+	public float getNumeroVotanti(String codePattern) {
+		Resource resource = getOntModel().getResource(Common.NS + codePattern);
+		String votanti = resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).getObject().toString();
+		return Float.parseFloat(votanti);
+	}
+	
+	/** 
+	 * Controlla se l'utente è il proprietario del code pattern (in modo da non poterlo votare)
+	 * @author Amedeo Leo
+	 */
+	public boolean isOwner(String username, String codePattern) {
+		Resource cp = getOntModel().getResource(Common.NS + codePattern);
+		String o = cp.getProperty(getProperty(Common.NS + Common.HAS_OWNER)).getObject().toString();
+		String owner = o.substring(o.indexOf("#") + 1);
+		if(owner.equals(username)) 
+			return true;
+		return false;
+	}
+	
+	/**
+	 * Controlla se l'utente ha già votato il code pattern
+	 * @author Amedeo Leo
+	 */
+	public boolean hasAlreadyVoted(String username, String codePattern) {
+		Resource resource = getOntModel().getResource(Common.NS + username);
+		String hasVoted = resource.getProperty(getProperty(Common.NS + Common.HAS_VOTED)).getObject().toString();
+		String[] array = hasVoted.split(",");
+		for(int j = 0; j < array.length; j++) {
+			if(array[j].equals(codePattern)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Modifica i permessi all'utente.
+	 * @author Amedeo Leo
+	 */
+	public boolean modificaPermessiUtente(String username, boolean isAdministrator) {
+		Resource resource = getOntModel().getResource(Common.NS + username);
+		if(isAdministrator(username) && isAdministrator) 
+			return true;
+		if(!isAdministrator(username) && !isAdministrator)
+			return true;
+		if(isAdministrator)
+			resource.getProperty(getProperty(Common.NS + Common.IS_ADMINISTRATOR)).changeObject("si");
+		else
+			resource.getProperty(getProperty(Common.NS + Common.IS_ADMINISTRATOR)).changeObject("no");
+		storeOntModel();
+		return true;
+	}
+	
+	/**
+	 * Restituisce la classifica degli utenti
+	 * @author Amedeo Leo
+	 */
+	public ArrayList<String> classificaUtenti() {
+		ArrayList<String> utenteCodePattern = new ArrayList<String>();
+		boolean trovato = false;
+		
+		ExtendedIterator<OntClass> ext = getOntModel().getOntClass(Common.NS + Common.CODE_PATTERN).listSubClasses();
+		while(ext.hasNext()) {
+			OntClass o = ext.next();
+			Resource r = getOntModel().getResource(Common.NS + o.getLocalName());
+			ArrayList<Resource> list = getIndividualOfClass(r.getLocalName());
+			for(int i = 0; i < list.size(); i++) {
+				Resource resource = list.get(i);
+				StmtIterator iterResource = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
+				while (iterResource.hasNext()) {
+					Statement stmtResource = iterResource.nextStatement();
+					Resource subjectResource = stmtResource.getSubject();
+					Property predicateResource = stmtResource.getPredicate();
+					RDFNode object = stmtResource.getObject();
+					
+					String subject = subjectResource.getLocalName();
+					if(predicateResource.getLocalName().equals(Common.HAS_OWNER)) {
+						String string_object = object.toString().substring(object.toString().indexOf("#") + 1);
+						for(String s : utenteCodePattern) {
+							String[] array = s.split(",");
+							float votoCorrente = Float.parseFloat(array[1]);
+							float numeroVotantiCodePattern = Float.parseFloat(array[2]);
+							int numeroVotantiUtente  = Integer.parseInt(array[3]);
+							
+							if(array[0].equals(string_object)) {
+								votoCorrente += getMediaVotazioni(subject);
+								numeroVotantiCodePattern += getNumeroVotanti(subject);
+								numeroVotantiUtente += 1;
+								utenteCodePattern.remove(s);
+								
+								utenteCodePattern.add(string_object + "," + votoCorrente + "," + numeroVotantiCodePattern + "," + numeroVotantiUtente);
+								trovato = true;
+								break;
+							}
+						}
+						if(!trovato) {
+							float mediaVotazioni = getMediaVotazioni(subject);
+							if(!(mediaVotazioni == 0.0)) {
+								utenteCodePattern.add(string_object + "," + getMediaVotazioni(subject) + "," + getNumeroVotanti(subject) + "," + 1);	
+							}
+						}
+						trovato = false;
+					}
+				}
+			}
+		}
+		//utenteCodePattern.add("cancellare,8.0,2.0,2");
+		return utenteCodePattern;
 	}
 }

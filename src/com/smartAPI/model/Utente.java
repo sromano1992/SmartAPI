@@ -10,7 +10,7 @@ public class Utente implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public Utente(String nome, String cognome, String email, String nickname, String password, boolean admin, String avatar) {
+	public Utente(String nome, String cognome, String email, String nickname, String password, boolean admin, String avatar, String voti) {
 		this.idUtente = ++Utente.lastIdUtente;
 		this.setCognome(cognome);
 		this.setNickname(nickname);
@@ -19,6 +19,7 @@ public class Utente implements Serializable {
 		this.setPassword(password);
 		this.setAdmin(admin);
 		this.setAvatar(avatar);
+		this.setVoti(voti);
 	}
 	
 	public String getNome() {
@@ -164,9 +165,6 @@ public class Utente implements Serializable {
 		return "Username:" + nickname + "\tNome:" + nome + "\tCognome:" + cognome + "\tEmail:" + email;
 	}
 	
-	
-
-	
 	public String getAvatar() {
 		return avatar;
 	}
@@ -174,6 +172,15 @@ public class Utente implements Serializable {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
+	
+	public String getVoti() {
+		return voti;
+	}
+	
+	public void setVoti(String voti) {
+		this.voti = voti;
+	}
+	
 
 	private String nome;
 	private String cognome;
@@ -182,6 +189,7 @@ public class Utente implements Serializable {
 	private String password;
 	private boolean admin;
 	private String avatar;
+	private String voti;
 	private int idUtente;
 	public static int lastIdUtente;
 }
