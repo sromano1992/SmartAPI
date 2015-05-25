@@ -13,7 +13,7 @@ public class Test_User {
 	 */
 	public static void main(String[] args) {
 		SmartAPIModel s = new SmartAPIModel();
-		if(s.addUser("ciro", "amati", "amati@gmail.com", "ciroamati", "ciroamati", false, ""))
+		if(s.addUser("simone", "romano", "sromano@gmail.com", "simrom", "password", true, "res/3.png"))
 			System.out.println("tutto ok");
 	}
 }
