@@ -1,6 +1,7 @@
 package com.smartAPI.view;
 import java.awt.Color;
 
+import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -15,4 +16,7 @@ public class MyJLabel  extends JTextField{
 		this.setEditable(false);
 	}
 	
+	public void setIcon(ImageIcon ii){
+		
+	}
 }

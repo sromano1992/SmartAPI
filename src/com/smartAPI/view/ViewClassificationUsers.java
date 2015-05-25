@@ -13,6 +13,8 @@ public class ViewClassificationUsers extends JPanel {
 		SortByUser sbu= new SortByUser(listUsers);
 		listUsersOrdered = sbu.getListUserOrdered(); //list ordered by (decrescent) score 
 		
+		for (UserClassification u: listUsersOrdered)
+			System.out.println(u);
 	
 	}
 

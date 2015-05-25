@@ -27,7 +27,7 @@ public class Desktop_Show extends JPanel {
 		splitPane.setDividerSize(0);
 		add(splitPane);
 		
-		UserInfoJPanel userInfoJPanel = new UserInfoJPanel((String) null, (String) null, (String) null, (String) null, (String) null);
+		UserInfoJPanel userInfoJPanel = new UserInfoJPanel();
 		splitPane.setLeftComponent(userInfoJPanel);
 		GroupLayout gl_userInfoJPanel = new GroupLayout(userInfoJPanel);
 		gl_userInfoJPanel.setHorizontalGroup(

@@ -2,6 +2,6 @@
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <uri id="Imports Wizard Entry" name="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI" uri="SmartAPI_1.2.owl"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1432486289088" name="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI" uri="SmartAPI_1.2.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1432540315967" name="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI" uri="SmartAPI_1.2.owl"/>
     </group>
 </catalog>

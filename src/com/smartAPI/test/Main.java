@@ -15,5 +15,6 @@ public class Main {
 		f.setSize(900, 900);
 		f.add(new Desktop_0(f));
 		f.setVisible(true);
+		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
 	}
 }

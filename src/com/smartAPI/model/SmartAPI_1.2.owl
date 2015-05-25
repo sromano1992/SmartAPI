@@ -765,6 +765,7 @@
 
     <owl:NamedIndividual rdf:about="&SmartAPI;u1">
         <rdf:type rdf:resource="&SmartAPI;User"/>
+        <hasAvatar>res/3.png</hasAvatar>
         <hasEmail>amedeo.leo92@gmail.com</hasEmail>
         <hasSurname>leo</hasSurname>
         <isAdministrator>si</isAdministrator>
