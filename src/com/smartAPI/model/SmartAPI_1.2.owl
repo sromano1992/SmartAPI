@@ -1,0 +1,449 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:SmartAPI="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#" > 
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasVoters">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m11">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useMethod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#c2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Calendar"/>
+    <SmartAPI:hasKeyword>calendar</SmartAPI:hasKeyword>
+    <SmartAPI:hasVoters>2</SmartAPI:hasVoters>
+    <SmartAPI:hasScore>13</SmartAPI:hasScore>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m1"/>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m105"/>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#u1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CalendarMethod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasSurname">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ciro">
+    <SmartAPI:hasAvatar>res/3.png</SmartAPI:hasAvatar>
+    <SmartAPI:hasPassword>cirociro</SmartAPI:hasPassword>
+    <SmartAPI:hasSurname>amati</SmartAPI:hasSurname>
+    <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <SmartAPI:hasEmail>ciro@amati.com</SmartAPI:hasEmail>
+    <SmartAPI:hasUsername>ciro</SmartAPI:hasUsername>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+    <SmartAPI:hasName>ciro</SmartAPI:hasName>
+    <SmartAPI:hasVoted>c2,c1,</SmartAPI:hasVoted>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#s2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
+    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
+    <SmartAPI:hasScore>0</SmartAPI:hasScore>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ciro"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m105"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m106"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m105">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m101">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m1">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Jena">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Library"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#u3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
+    <SmartAPI:hasPassword>asdasd</SmartAPI:hasPassword>
+    <SmartAPI:hasName>asdasd</SmartAPI:hasName>
+    <SmartAPI:hasUsername>asdasd</SmartAPI:hasUsername>
+    <SmartAPI:hasSurname>asdasd</SmartAPI:hasSurname>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasUsername">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasLanguage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Language"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Library"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m109">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasAvatar">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m15">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m12">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#c1">
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m105"/>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m1"/>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#u1"/>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m108"/>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m104"/>
+    <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#JDBC"/>
+    <SmartAPI:hasScore>16</SmartAPI:hasScore>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m103"/>
+    <SmartAPI:hasCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">try {
+ 
+    ResultSet rs;
+    PreparedStatement ps = conn.prepareStatement( 
+             "SELECT i.*, j.* FROM Omega i, Zappa j WHERE i = ? AND j = ?" );
+    // Nel prepared statement ps, i punti di domanda denotano le variabili in input,
+    // che possono essere passate attraverso una lista di parametri, per esempio.
+ 
+    // Il codice seguente sostituisce i punti di domanda con stringhe o interi.
+    // Il primo parametro indica la posizione in cui il valore va inserito, 
+    // il secondo parametro è il valore da inserire.
+    ps.setString(1, "Poor Yorick");
+    ps.setInt(2, 8008);
+ 
+    // Il ResultSet rs riceve la risposta del database.
+    rs = ps.executeQuery();
+    while ( rs.next() ) {
+       int numeroColonne = rs.getMetaData().getColumnCount();
+        for ( int i = 1 ; i &lt;= numeroColonne ; i++ ) {
+           System.out.println( "COLONNA " + i + " = " + rs.getObject(i) );
+     }
+ 
+    rs.close();
+    ps.close();
+ 
+ } catch (SQLException e) {
+    // gestione delle eccezioni
+ }</SmartAPI:hasCode>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m107"/>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m3"/>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m100"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Calendar"/>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m2"/>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m109"/>
+    <SmartAPI:hasKeyword>calendario</SmartAPI:hasKeyword>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m5"/>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m102"/>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m4"/>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m101"/>
+    <SmartAPI:useCalendar rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m106"/>
+    <SmartAPI:hasVoters>2</SmartAPI:hasVoters>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m104">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m2">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m100">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#stefy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
+    <SmartAPI:hasPassword>stefania1</SmartAPI:hasPassword>
+    <SmartAPI:hasName>stefania</SmartAPI:hasName>
+    <SmartAPI:hasSurname>cardamone1</SmartAPI:hasSurname>
+    <SmartAPI:hasEmail>stefania2@gmail.com</SmartAPI:hasEmail>
+    <SmartAPI:hasUsername>stefy</SmartAPI:hasUsername>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m108">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useCalendar">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Calendar"/>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CalendarMethod"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useMethod"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#u2">
+    <SmartAPI:hasAvatar>res/4.png</SmartAPI:hasAvatar>
+    <SmartAPI:hasPassword>utente2</SmartAPI:hasPassword>
+    <SmartAPI:hasVoted>p1,</SmartAPI:hasVoted>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+    <SmartAPI:hasSurname>utente</SmartAPI:hasSurname>
+    <SmartAPI:hasUsername>utente2</SmartAPI:hasUsername>
+    <SmartAPI:hasName>utente</SmartAPI:hasName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <SmartAPI:hasEmail>utente2@gmail.com</SmartAPI:hasEmail>
+    <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Language">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ParserMethod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#JFreeChart">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Library"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#StorageMethod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#isAdministrator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#abcd">
+    <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
+    <SmartAPI:hasVoted>0</SmartAPI:hasVoted>
+    <SmartAPI:hasAvatar>res/4.png</SmartAPI:hasAvatar>
+    <SmartAPI:hasSurname>abcd</SmartAPI:hasSurname>
+    <SmartAPI:hasName>abcd</SmartAPI:hasName>
+    <SmartAPI:hasEmail>abcd@aabcd.com</SmartAPI:hasEmail>
+    <SmartAPI:hasPassword>abcdef</SmartAPI:hasPassword>
+    <SmartAPI:hasUsername>abcd</SmartAPI:hasUsername>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GUIMethod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasCode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasScore">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m7">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m103">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Parser">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m107">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasPassword">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m3">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m13">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Library">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#u1">
+    <SmartAPI:hasAvatar>res/4.png</SmartAPI:hasAvatar>
+    <SmartAPI:isAdministrator>si</SmartAPI:isAdministrator>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+    <SmartAPI:hasSurname>leo</SmartAPI:hasSurname>
+    <SmartAPI:hasPassword>amedeo</SmartAPI:hasPassword>
+    <SmartAPI:hasName>amedeo</SmartAPI:hasName>
+    <SmartAPI:hasVoted>p1,</SmartAPI:hasVoted>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <SmartAPI:hasEmail>amedeo.leo92@gmail.com</SmartAPI:hasEmail>
+    <SmartAPI:hasUsername>amedeo</SmartAPI:hasUsername>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useParser">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Parser"/>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ParserMethod"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useMethod"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasKeyword">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Java">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Language"/>
+    <SmartAPI:hasLanguage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#JDBC"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Calendar">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasVoted">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m10">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#prova">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+    <SmartAPI:hasSurname>prova</SmartAPI:hasSurname>
+    <SmartAPI:hasUsername>prova</SmartAPI:hasUsername>
+    <SmartAPI:hasPassword>provap</SmartAPI:hasPassword>
+    <SmartAPI:isAdministrator>si</SmartAPI:isAdministrator>
+    <SmartAPI:hasName>prova</SmartAPI:hasName>
+    <SmartAPI:hasVoted>c1,c2,</SmartAPI:hasVoted>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <SmartAPI:hasEmail>prova@prova.com</SmartAPI:hasEmail>
+    <SmartAPI:hasAvatar>res/4.png</SmartAPI:hasAvatar>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m102">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m9">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#s1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
+    <SmartAPI:hasScore>0</SmartAPI:hasScore>
+    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m1"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m2"/>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#u2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m106">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m14">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasOwner">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#JDBC">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Library"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useGUI">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GUIMethod"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useMethod"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#p1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Parser"/>
+    <SmartAPI:hasScore>10</SmartAPI:hasScore>
+    <SmartAPI:hasVoters>2</SmartAPI:hasVoters>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ciro"/>
+    <SmartAPI:useParser rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m2"/>
+    <SmartAPI:useParser rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m3"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#simone">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <SmartAPI:hasSurname>romano1</SmartAPI:hasSurname>
+    <SmartAPI:hasEmail>simoneromano@gmail.com</SmartAPI:hasEmail>
+    <SmartAPI:hasAvatar>1</SmartAPI:hasAvatar>
+    <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
+    <SmartAPI:hasPassword>simone1</SmartAPI:hasPassword>
+    <SmartAPI:hasName>simone</SmartAPI:hasName>
+    <SmartAPI:hasUsername>simone</SmartAPI:hasUsername>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasLibrary">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Library"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useStorage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#StorageMethod"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useMethod"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasEmail">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Description>
+</rdf:RDF>
