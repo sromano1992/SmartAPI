@@ -1123,4 +1123,13 @@ public class SmartAPIModel {
 		//utenteCodePattern.add("cancellare,8.0,2.0,2");
 		return utenteCodePattern;
 	}
+	
+	public Utente getUtente(String username) {
+		for(Utente u: getUsers()) {			
+			if(u.getNickname().equals(username)) {
+				return u;
+			}
+		}
+		return null;
+	}
 }
