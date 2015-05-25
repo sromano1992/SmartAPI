@@ -1092,6 +1092,7 @@ public class SmartAPIModel {
 					String subject = subjectResource.getLocalName();
 					if(predicateResource.getLocalName().equals(Common.HAS_OWNER)) {
 						String string_object = object.toString().substring(object.toString().indexOf("#") + 1);
+						System.out.println(string_object);
 						for(String s : utenteCodePattern) {
 							String[] array = s.split(",");
 							float votoCorrente = Float.parseFloat(array[1]);
@@ -1104,7 +1105,7 @@ public class SmartAPIModel {
 								numeroVotantiUtente += 1;
 								utenteCodePattern.remove(s);
 								
-								utenteCodePattern.add(string_object + "," + votoCorrente + "," + numeroVotantiCodePattern + "," + numeroVotantiUtente);
+								utenteCodePattern.add(string_object + "," + votoCorrente + "," + numeroVotantiCodePattern + "," + numeroVotantiUtente + "," + getAvatar(string_object));
 								trovato = true;
 								break;
 							}
@@ -1112,7 +1113,7 @@ public class SmartAPIModel {
 						if(!trovato) {
 							float mediaVotazioni = getMediaVotazioni(subject);
 							if(!(mediaVotazioni == 0.0)) {
-								utenteCodePattern.add(string_object + "," + getMediaVotazioni(subject) + "," + getNumeroVotanti(subject) + "," + 1);	
+								utenteCodePattern.add(string_object + ","  + getMediaVotazioni(subject) + "," + getNumeroVotanti(subject) + "," + 1  +  "," + getAvatar(string_object));	
 							}
 						}
 						trovato = false;
@@ -1122,5 +1123,12 @@ public class SmartAPIModel {
 		}
 		//utenteCodePattern.add("cancellare,8.0,2.0,2");
 		return utenteCodePattern;
+	}
+	
+	
+	public String getAvatar(String username) {
+		Resource resource = getOntModel().getResource(Common.NS + username);
+		String avatar = resource.getProperty(getProperty(Common.NS + Common.HAS_AVATAR)).getObject().toString();
+		return avatar;
 	}
 }
