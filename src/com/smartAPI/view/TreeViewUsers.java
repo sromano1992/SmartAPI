@@ -97,10 +97,11 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 					Utente toRemove = s.getUtente(toRemoveNode.getPathComponent(1).toString());
 					s.deleteUser(toRemove.getNickname());
 					tree.removeSelectionPath(toRemoveNode);
-					tree.updateUI();
+					tree.update(getGraphics());
 				}
 			});
 		}
+		
 	}
 	
 	public void addTreePathListener(TreePathListener o){
