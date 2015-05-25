@@ -77,7 +77,6 @@ public class LoginControl {
 		    realPassword.append(s);
 		}
 		if(exists(username, realPassword.toString())) {
-			System.out.println("qui");
         	return true;
 		}
 		else return false;
