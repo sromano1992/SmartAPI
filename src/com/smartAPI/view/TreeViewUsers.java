@@ -1,6 +1,8 @@
 package com.smartAPI.view;
 
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -10,18 +12,25 @@ import javax.swing.tree.TreePath;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.smartAPI.control.TreePathListener;
 import com.smartAPI.model.CodePattern_Category;
+import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.Utente;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class TreeViewUsers extends JPanel implements TreePathListener{
 	private JTree tree;
 	private ArrayList<TreePathListener> treePathListener;
 	private JScrollPane scrollPane;
+	private JPopupMenu p_menu;
+	private JMenuItem remItem;
+	private TreePath toRemoveNode;
 	
 	/**
 	 * Create the panel.
@@ -29,6 +38,9 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 	public TreeViewUsers() {
 		setLayout(new BorderLayout(0, 0));
 		this.treePathListener = new ArrayList<TreePathListener>();		
+		p_menu = new JPopupMenu("test");
+		remItem = new JMenuItem("Remove");
+		p_menu.add(remItem);
 	}
 
 	public void setUser_s(ArrayList<Utente> user_s, String rootName){
@@ -52,6 +64,43 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 		    	    }
 		      }
 	    });
+		if (Common.UTENTE.isAdmin()){
+			tree.addMouseListener(new MouseAdapter() {			
+				@Override
+				public void mouseReleased(MouseEvent arg0) {
+					if (arg0.getButton() == 3){
+						if(arg0.isPopupTrigger()){
+							TreePath tp = tree.getPathForLocation(arg0.getX(), arg0.getY());
+							toRemoveNode = tp;
+							tree.setSelectionPath(tp);
+							if (tp.getPathCount() > 0)
+								p_menu.show(arg0.getComponent(), arg0.getX(), arg0.getY());
+						}
+					}
+				}			
+				@Override
+				public void mousePressed(MouseEvent arg0) {
+					if (arg0.getButton() == 3){
+						TreePath tp = tree.getPathForLocation(arg0.getX(), arg0.getY());
+						toRemoveNode = tp;
+						tree.setSelectionPath(tp);
+						if (tp.getPathCount() > 0)
+							p_menu.show(arg0.getComponent(), arg0.getX(), arg0.getY());
+					}
+				}
+			});
+			
+			remItem.addActionListener(new ActionListener() {				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					SmartAPIModel s = new SmartAPIModel();
+					Utente toRemove = s.getUtente(toRemoveNode.getPathComponent(1).toString());
+					s.deleteUser(toRemove.getNickname());
+					tree.removeSelectionPath(toRemoveNode);
+					tree.updateUI();
+				}
+			});
+		}
 	}
 	
 	public void addTreePathListener(TreePathListener o){

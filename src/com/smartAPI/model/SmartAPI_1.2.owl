@@ -473,6 +473,7 @@
         <hasName>ciro</hasName>
         <hasVoted>c2,</hasVoted>
         <hasEmail>ciro@amati.com</hasEmail>
+        <hasAvatar>res/2.png</hasAvatar>
         <hasUsername>ciro</hasUsername>
         <hasSurname>amati</hasSurname>
     </owl:NamedIndividual>
@@ -692,22 +693,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#prova -->
-
-    <owl:NamedIndividual rdf:about="&SmartAPI;prova">
-        <rdf:type rdf:resource="&SmartAPI;User"/>
-        <hasPassword>provap</hasPassword>
-        <hasVoted>c1,c2,</hasVoted>
-        <hasAvatar>res/4.png</hasAvatar>
-        <hasUsername>prova</hasUsername>
-        <isAdministrator>si</isAdministrator>
-        <hasName>prova</hasName>
-        <hasSurname>prova</hasSurname>
-        <hasEmail>prova@prova.com</hasEmail>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#s1 -->
 
     <owl:NamedIndividual rdf:about="&SmartAPI;s1">
@@ -769,10 +754,11 @@
         <hasEmail>amedeo.leo92@gmail.com</hasEmail>
         <hasSurname>leo</hasSurname>
         <isAdministrator>si</isAdministrator>
+        <hasPassword>amedeo</hasPassword>
+        <hasUsername>sr01</hasUsername>
         <hasVoted>p1,</hasVoted>
         <hasName>amedeo</hasName>
         <hasUsername>amedeo</hasUsername>
-        <hasPassword>amedeo</hasPassword>
     </owl:NamedIndividual>
     
 
@@ -783,10 +769,12 @@
         <rdf:type rdf:resource="&SmartAPI;User"/>
         <hasPassword>utente2</hasPassword>
         <hasUsername>utente2</hasUsername>
+        <hasSurname>utente</hasSurname>
         <hasVoted>p1,</hasVoted>
         <hasName>utente</hasName>
-        <hasSurname>utente</hasSurname>
+        <hasAvatar>res/5.png</hasAvatar>
         <hasEmail>utente2@gmail.com</hasEmail>
+        <hasUsername>pippo</hasUsername>
         <isAdministrator>no</isAdministrator>
     </owl:NamedIndividual>
     
