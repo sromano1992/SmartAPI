@@ -49,9 +49,9 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
 		
-		TreeView treeView = new TreeView();
+		TreeViewCP treeView = new TreeViewCP();
 		treeView.setBounds(0, 0, 398, 115);
-		TreeView treeView_1 = new TreeView();
+		TreeViewCP treeView_1 = new TreeViewCP();
 		treeView_1.setBounds(398, 0, 398, 115);
 		treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
 		

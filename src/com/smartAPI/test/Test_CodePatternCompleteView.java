@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import com.smartAPI.model.CodePattern_Category;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.view.Panel_CodePatternCompleteView;
-import com.smartAPI.view.TreeView;
+import com.smartAPI.view.TreeViewCP;
 
 /**
  * 
@@ -19,7 +19,7 @@ public class Test_CodePatternCompleteView {
 	public static void main(String[] args) {
 		JFrame f = new JFrame();
 		f.setSize(new Dimension(400,400));
-		TreeView myTree = new TreeView();
+		TreeViewCP myTree = new TreeViewCP();
 		Panel_CodePatternCompleteView p = new Panel_CodePatternCompleteView();
 		//myTree.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
 		
