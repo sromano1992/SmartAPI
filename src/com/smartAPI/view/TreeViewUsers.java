@@ -46,7 +46,7 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 	public void setUser_s(ArrayList<Utente> user_s, String rootName){
 		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(rootName);
 		for (Utente tmp:user_s){
-			DefaultMutableTreeNode us_node = new DefaultMutableTreeNode(tmp.getNome());
+			DefaultMutableTreeNode us_node = new DefaultMutableTreeNode(tmp.getNickname());
 			rootNode.add(us_node);	
 		}
 		if (tree != null){
