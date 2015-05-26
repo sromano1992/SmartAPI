@@ -26,8 +26,12 @@ public class Common {
 	public static final String NO_CODE_MESS = "No code found!";
 	public static final String HAS_KEYWORD = "hasKeyword";
 	public static final String HAS_AVATAR = "hasAvatar";
-	public static final Utente UTENTE = null;
 	public static final String HAS_VOTED = "hasVoted";
 	public static final String NUMBER_OF_VOTERS = "hasVoters";
 	public static final String HAS_SCORE = "hasScore";
+	public static Utente UTENTE = null;
+	
+	public static void setUser(Utente u){
+		UTENTE = u;
+	}
 }

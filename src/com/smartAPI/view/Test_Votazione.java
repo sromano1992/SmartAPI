@@ -27,7 +27,7 @@ public class Test_Votazione {
 		
 		//code pattern non ancora votato
 		//c1 avrà voters 2, score 16; cirò avrà hasVoted c2,c1
-		//s.aggiungiVotoCodePattern("ciro", "c1", "9");
+		s.aggiungiVotoCodePattern("ciro", "c1", "9");
 		
 		//System.out.println(s.getMediaVotazioni("c2"));
 		//System.out.println(s.hasAlreadyVoted("prova", "c2"));
@@ -36,7 +36,7 @@ public class Test_Votazione {
 		
 		
 		System.out.println("***");
-		System.out.println("Username, Somma della media dei voti dei suoi code pattern, #votanti dei suoi code pattern, #utenti che lo hanno votato, avatar");
+		System.out.println("Username, Somma della media dei voti dei suoi code pattern, #votanti dei suoi code pattern, #utenti che lo hanno votato");
 		
 		ArrayList<String> classifica = s.classificaUtenti();
 		
@@ -52,8 +52,8 @@ public class Test_Votazione {
 		}
 		
 		
-		//System.out.println(s.isOwner("u1", "c1"));
-		//System.out.println(s.isOwner("u2", "c2"));
+		System.out.println(s.isOwner("u1", "c1"));
+		System.out.println(s.isOwner("u2", "c2"));
 	}
 
 }

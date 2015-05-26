@@ -13,8 +13,14 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+
+
+import com.smartAPI.control.IUserOptionListener;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * Pannello che mostra all'utente le operazioni che può effettuare
@@ -22,7 +28,8 @@ import java.awt.event.MouseEvent;
  *
  */
 public class UserOptionsJPanel extends JPanel {
-
+	private ArrayList<IUserOptionListener> listener_s;
+	private static Logger log = Logger.getLogger("global");
 	JLabel lblSearch;
 	JLabel lblInsert;
 	JLabel lblShowUsers;
@@ -32,7 +39,7 @@ public class UserOptionsJPanel extends JPanel {
 		setLayout(null);
 		
 		lblSearch = new JLabel(" Search");
-		lblSearch.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSearch.setHorizontalAlignment(SwingConstants.CENTER);		
 		lblSearch.addMouseListener(new MouseAdapter() {
 			
 			@Override
@@ -49,6 +56,14 @@ public class UserOptionsJPanel extends JPanel {
 				lblSearch.setForeground(Color.WHITE);
 				lblSearch.setBackground(new Color(230, 126, 34));
 			}
+			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				for (IUserOptionListener i:listener_s){
+					i.searchClicked();
+				}
+				log.info("search event raised");
+			}
 		});
 		lblSearch.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblSearch.setOpaque(true);
@@ -59,7 +74,7 @@ public class UserOptionsJPanel extends JPanel {
 		String path="res/search.png";
 		String pathIcon = getClass().getResource(path).getFile();
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,40,25);
-		lblSearch.setIcon(imgicon.getImageResponsive());
+		//lblSearch.setIcon(imgicon.getImageResponsive());
 		
 		add(lblSearch);
 		
@@ -78,6 +93,13 @@ public class UserOptionsJPanel extends JPanel {
 				lblInsert.setForeground(Color.WHITE);
 				lblInsert.setBackground(new Color(231, 76, 60));
 			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				for (IUserOptionListener i:listener_s){
+					i.insertClicked();
+				}
+				log.info("insert event raised");
+			}
 		});
 		
 		
@@ -90,7 +112,7 @@ public class UserOptionsJPanel extends JPanel {
 		path="res/insert.png";
 		pathIcon = getClass().getResource(path).getFile();
 		imgicon = new MyImageIcon(pathIcon,25,25);
-		lblInsert.setIcon(imgicon.getImageResponsive());
+		//lblInsert.setIcon(imgicon.getImageResponsive());
 		add(lblInsert);
 		
 		lblShowUsers = new JLabel(" Show users");
@@ -110,6 +132,13 @@ public class UserOptionsJPanel extends JPanel {
 				lblShowUsers.setForeground(Color.WHITE);
 				lblShowUsers.setBackground(new Color(106, 183, 127));
 			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				for (IUserOptionListener i:listener_s){
+					i.showUserClicked();
+				}
+				log.info("show user raised");
+			}
 		});
 		lblShowUsers.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblShowUsers.setOpaque(true);
@@ -120,10 +149,19 @@ public class UserOptionsJPanel extends JPanel {
 		path="res/show.png";
 		pathIcon = getClass().getResource(path).getFile();
 		imgicon = new MyImageIcon(pathIcon,33,33);
-		lblShowUsers.setIcon(imgicon.getImageResponsive());
+		//lblShowUsers.setIcon(imgicon.getImageResponsive());
 		add(lblShowUsers);
 		
 		JLabel lblAbout = new JLabel(" About");
+		lblAbout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				for (IUserOptionListener i:listener_s){
+					i.aboutClicked();;
+				}
+				log.info("about event raised");
+			}
+		});
 		lblAbout.setOpaque(true);
 		lblAbout.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAbout.setForeground(Color.WHITE);
@@ -133,10 +171,14 @@ public class UserOptionsJPanel extends JPanel {
 		path="res/friends.png";
 		pathIcon = getClass().getResource(path).getFile();
 		imgicon = new MyImageIcon(pathIcon,30,30);
-		lblAbout.setIcon(imgicon.getImageResponsive());
+		//lblAbout.setIcon(imgicon.getImageResponsive());
 		add(lblAbout);
-		
-		
-
+	}
+	
+	public void addListener(IUserOptionListener i){
+		if (listener_s == null){
+			listener_s = new ArrayList<IUserOptionListener>();
+		}
+		listener_s.add(i);
 	}
 }

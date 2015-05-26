@@ -1121,10 +1121,12 @@ public class SmartAPIModel {
 				}
 			}
 		}
-		//utenteCodePattern.add("cancellare,8.0,2.0,2");
 		return utenteCodePattern;
 	}
 	
+	/**
+	 * Restituisce l'avatar dell'utente
+	 */
 	
 	public String getAvatar(String username) {
 		Resource resource = getOntModel().getResource(Common.NS + username);

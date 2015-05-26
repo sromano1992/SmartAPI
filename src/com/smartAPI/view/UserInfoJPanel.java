@@ -19,6 +19,9 @@ import java.util.Vector;
 
 import javax.swing.JComboBox;
 import javax.swing.ComboBoxModel;
+
+import com.smartAPI.model.Common;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -36,13 +39,13 @@ public class UserInfoJPanel extends JPanel {
 	private JButton btnSave;
 	private String avatar="";//iniz. con avatar user
 	
-	public UserInfoJPanel(String user,String password,String name,String surname,String email) {
+	public UserInfoJPanel() {
 		setLayout(null);
 		setBackground(new Color(228, 230, 235));
 
 		lblImage = new JLabel("");
 		//path dipende dall'avatar dell'utente
-		String path="res/1.png";
+		String path=Common.UTENTE.getAvatar();
 		String pathIcon = getClass().getResource(path).getFile();
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblImage.setIcon(imgicon.getImageResponsive());
@@ -110,7 +113,7 @@ public class UserInfoJPanel extends JPanel {
 		lblUser.setForeground(Color.WHITE);
 		lblUser.setBackground(new Color(2, 66, 96));
 		
-		userField = new JTextField(user);
+		userField = new JTextField(Common.UTENTE.getNickname());
 		userField.setBounds(97, 61, 208, 37);
 		panel.add(userField);
 		userField.setEditable(false);
@@ -125,7 +128,7 @@ public class UserInfoJPanel extends JPanel {
 		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setBackground(new Color(2, 66, 96));
 		
-		passwordField = new JPasswordField(password);
+		passwordField = new JPasswordField(Common.UTENTE.getPassword());
 		passwordField.setBounds(97, 92, 208, 37);
 		panel.add(passwordField);
 		passwordField.setEditable(false);
@@ -148,7 +151,7 @@ public class UserInfoJPanel extends JPanel {
 		lblName.setForeground(Color.WHITE);
 		lblName.setBackground(new Color(2, 66, 96));
 		
-		nameField = new JTextField(name);
+		nameField = new JTextField(Common.UTENTE.getNome());
 		nameField.setBounds(97, 283, 208, 37);
 		panel.add(nameField);
 		nameField.setEditable(false);
@@ -163,7 +166,7 @@ public class UserInfoJPanel extends JPanel {
 		lblSurname.setForeground(Color.WHITE);
 		lblSurname.setBackground(new Color(2, 66, 96));
 		
-		surnameField = new JTextField(surname);
+		surnameField = new JTextField(Common.UTENTE.getCognome());
 		surnameField.setBounds(97, 313, 208, 37);
 		panel.add(surnameField);
 		surnameField.setEditable(false);
@@ -177,7 +180,7 @@ public class UserInfoJPanel extends JPanel {
 		lblEmail.setForeground(Color.WHITE);
 		lblEmail.setBackground(new Color(2, 66, 96));
 		
-		emailField = new JTextField(email);
+		emailField = new JTextField(Common.UTENTE.getEmail());
 		emailField.setBounds(97, 343, 208, 37);
 		panel.add(emailField);
 		emailField.setEditable(false);

@@ -12,6 +12,11 @@ import com.smartAPI.model.SmartAPIModel;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import java.awt.Dimension;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 /**
  * 
@@ -27,30 +32,37 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 	public Panel_CodePatternCompleteView() {
 		setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel = new JPanel();
-		add(panel, BorderLayout.NORTH);
-		panel.setLayout(new GridLayout(0, 2, 0, 0));
-		
-		TreeView treeView = new TreeView();
-		panel.add(treeView);
-		
-		TreeView treeView_1 = new TreeView();
-		panel.add(treeView_1);
-		
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setSize(new Dimension(0, 250));
+		splitPane.setPreferredSize(new Dimension(193, 250));
+		splitPane.setMinimumSize(new Dimension(193, 250));
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		add(splitPane, BorderLayout.CENTER);
+
 		JPanel panel_CodePattern_s = new JPanel();
-		add(panel_CodePattern_s, BorderLayout.CENTER);
+		splitPane.setRightComponent(panel_CodePattern_s);
 		panel_CodePattern_s.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		Panel_InferredCodePattern panel_InferredCodePattern = new Panel_InferredCodePattern();
 		panel_CodePattern_s.add(panel_InferredCodePattern);
-
-		treeView.addTreePathListener(panel_InferredCodePattern.getPanel_ShowCodePattern());
-		treeView.addTreePathListener(treeView_1);
 		
-		treeView_1.addTreePathListener(panel_InferredCodePattern.getPanel_ShowCodePattern_1());
+		JPanel panel = new JPanel();
+		splitPane.setLeftComponent(panel);
+		
+		TreeView treeView = new TreeView();
+		treeView.setBounds(0, 0, 398, 115);
+		TreeView treeView_1 = new TreeView();
+		treeView_1.setBounds(398, 0, 398, 115);
 		treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
 		
 		treeView.addTreePathListener(this);
+		treeView.addTreePathListener(treeView_1);
+		panel.setLayout(null);
+		panel.add(treeView);
+		panel.add(treeView_1);
+		treeView.addTreePathListener(panel_InferredCodePattern.getPanel_ShowCodePattern());
+		
+		treeView_1.addTreePathListener(panel_InferredCodePattern.getPanel_ShowCodePattern_1());
 	}
 
 	@Override

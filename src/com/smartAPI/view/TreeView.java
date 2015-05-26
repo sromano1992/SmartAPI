@@ -54,7 +54,7 @@ public class TreeView extends JPanel implements TreePathListener{
 			this.remove(tree);
 		}
 		tree = new JTree(rootNode);
-		add(tree);
+		add(new JScrollPane(tree));
 		tree.addMouseListener(new MouseAdapter() {
 		      public void mouseClicked(MouseEvent me) {
 		    	  TreePath tp = tree.getPathForLocation(me.getX(), me.getY());

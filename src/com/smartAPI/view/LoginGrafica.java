@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 
 import com.smartAPI.control.LoginControl;
 import com.smartAPI.control.ILogInPanelListner;
+import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.UserException;
 import com.smartAPI.model.Utente;
@@ -103,6 +104,7 @@ public class LoginGrafica extends JPanel{
         			LoginControl loginControl = new LoginControl(model);
         			if(loginControl.controllaUtente(userField.getText(), passwordField.getPassword())) {
         				Utente utente = loginControl.getUtente(userField.getText());
+        				Common.setUser(utente);
         				//pannello Desktop 1
         				for (ILogInPanelListner c:logInListener_s){
         					c.loginClicked();

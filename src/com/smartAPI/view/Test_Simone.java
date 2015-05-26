@@ -17,27 +17,26 @@ import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreeSelectionModel;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JTextPane;
 
 public class Test_Simone extends JPanel {
-	private JTextField txtDefaulttreemodelModel;
 
 	/**
 	 * Create the panel.
 	 */
-	public Test_Simone() {
-		setLayout(new BorderLayout(0, 0));
-		
-		JScrollPane scrollPane = new JScrollPane();
-		add(scrollPane);
-		
-		JTextPane textPane = new JTextPane();
-		scrollPane.setViewportView(textPane);
+	public static void main(String[] args) {
+		JFrame f = new JFrame();
+		f.setSize(900, 900);
+		f.add(new Panel_CodePatternCompleteView());
+		f.setVisible(true);
 	}
 
 }
