@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import com.smartAPI.model.ComparatorClassifica;
 import com.smartAPI.model.SmartAPIModel;
+import com.smartAPI.model.UserClassification;
 
 /**
  * 
@@ -22,12 +23,12 @@ public class Test_Votazione {
 		//code pattern proprio
 		//s.aggiungiVotoCodePattern("u1", "c2", "8");
 		
-		//code pattern già votato
+		//code pattern giï¿½ votato
 		//s.aggiungiVotoCodePattern("u1", "p1", "8");
 		
 		//code pattern non ancora votato
-		//c1 avrà voters 2, score 16; cirò avrà hasVoted c2,c1
-		s.aggiungiVotoCodePattern("ciro", "c1", "9");
+		//c1 avrï¿½ voters 2, score 16; cirï¿½ avrï¿½ hasVoted c2,c1
+		//s.aggiungiVotoCodePattern("ciro", "c1", "9");
 		
 		//System.out.println(s.getMediaVotazioni("c2"));
 		//System.out.println(s.hasAlreadyVoted("prova", "c2"));
@@ -38,22 +39,24 @@ public class Test_Votazione {
 		System.out.println("***");
 		System.out.println("Username, Somma della media dei voti dei suoi code pattern, #votanti dei suoi code pattern, #utenti che lo hanno votato");
 		
-		ArrayList<String> classifica = s.classificaUtenti();
-		
-		for(String x : classifica) {
-			System.out.println(x);
-		}
+	ArrayList<String> c = s.classificaUtenti();
+	ArrayList<UserClassification> classifica = s.getInfoUserClassification(c);
+	
+//		
+//		for(String x : classifica) {
+//			System.out.println(x);
+//		}
 		
 		Collections.sort(classifica, new ComparatorClassifica());
 		
 		System.out.println("Ordino");
-		for(String x : classifica) {
+		for(UserClassification x : classifica) {
 			System.out.println(x);
 		}
 		
 		
-		System.out.println(s.isOwner("u1", "c1"));
-		System.out.println(s.isOwner("u2", "c2"));
+		//System.out.println(s.isOwner("u1", "c1"));
+		//System.out.println(s.isOwner("u2", "c2"));
 	}
 
 }
