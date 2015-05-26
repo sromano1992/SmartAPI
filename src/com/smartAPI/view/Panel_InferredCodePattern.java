@@ -36,6 +36,9 @@ public class Panel_InferredCodePattern extends JPanel {
 	public Panel_InferredCodePattern() {
 		setLayout(new BorderLayout(0, 0));
 		
+		JScrollPane scrollPane = new JScrollPane();
+		add(scrollPane, BorderLayout.CENTER);
+		
 		JPanel panel_3 = new JPanel();
 		add(panel_3, BorderLayout.NORTH);
 		panel_3.setLayout(new GridLayout(0, 2, 0, 0));
@@ -56,7 +59,8 @@ public class Panel_InferredCodePattern extends JPanel {
 		panel_3.add(lblBasic);
 		
 		JPanel panel = new JPanel();
-		add(panel, BorderLayout.CENTER);
+		scrollPane.setViewportView(panel);
+		//add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		panel_ShowCodePattern = new Panel_ShowCodePattern();
