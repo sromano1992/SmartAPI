@@ -110,23 +110,23 @@ public class LoginGrafica extends JPanel{
 			
         	public void actionPerformed(ActionEvent arg0) {
         		
-        		progressBar.setVisible(true);
+        		//progressBar.setVisible(true);
         			
-        			new Thread(new Runnable() {
+        			//new Thread(new Runnable() {
 						
-						@Override
-						public void run() {
+						//@Override
+						//public void run() {
 							try {
 							LoginControl loginControl = new LoginControl(model);
 							
 		        			if(loginControl.controllaUtente(userField.getText(), passwordField.getPassword())) {
 		        				Utente utente = loginControl.getUtente(userField.getText());
 		        				progressBar.setValue(20);
-		        				Thread.sleep(200);
+		        				//Thread.sleep(200); //test
 		        				progressBar.setValue(50);
 		        				Common.setUser(utente);
 		        				progressBar.setValue(60);
-		        				Thread.sleep(200);
+		        				//Thread.sleep(200);//test
 		        				progressBar.setValue(70);
 		        				//pannello Desktop 1
 		        				for (ILogInPanelListner c:logInListener_s){
@@ -142,12 +142,9 @@ public class LoginGrafica extends JPanel{
 
 		        			lblError.setVisible(true);
 		        			lblError.setText(u.getMessage());
-		        		} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						}
-					}).start();
+		        		} 						
+						//}
+					//}).start();
         			
         		
         	}
@@ -200,12 +197,12 @@ public class LoginGrafica extends JPanel{
 		lblLogo.setIcon(imgicon.getImageResponsive());
 		add(lblLogo);
 		
-		progressBar = new JProgressBar();
-		progressBar.setVisible(false);
-		progressBar.setBounds(169, 584, 146, 20);
-		add(progressBar);
+//		progressBar = new JProgressBar();
+//		progressBar.setVisible(false);
+//		progressBar.setBounds(169, 584, 146, 20);
+//		add(progressBar);
 		
-				this.setVisible(true);
+	   this.setVisible(true);
 		
 
 	}
