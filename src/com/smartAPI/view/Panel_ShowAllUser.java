@@ -33,7 +33,7 @@ public class Panel_ShowAllUser extends JPanel implements TreePathListener{
 	@Override
 	public void treePathChanged(TreePath t) {
 		SmartAPIModel s = new SmartAPIModel();
-		if(t.getPathCount() >= 1){
+		if(t.getPathCount() > 1){
 			Utente us = s.getUtente(t.getPathComponent(1).toString());
 			showUserPanel.setUser(us);
 		}		
