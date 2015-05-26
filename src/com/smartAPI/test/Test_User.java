@@ -21,5 +21,7 @@ public class Test_User {
 		for(Utente x : u) {
 			System.out.println(x.getCognome());
 		}
+		if(s.addUser("simone", "romano", "sromano@gmail.com", "simrom", "password", true, "res/3.png"))
+			System.out.println("tutto ok");
 	}
 }
