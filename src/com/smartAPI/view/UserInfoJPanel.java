@@ -21,6 +21,7 @@ import javax.swing.JComboBox;
 import javax.swing.ComboBoxModel;
 
 import com.smartAPI.model.Common;
+import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.Utente;
 
 import java.awt.Font;
@@ -198,7 +199,10 @@ public class UserInfoJPanel extends JPanel {
 				System.out.println("Surname: "+surnameField.getText());
 				System.out.println("Email: "+emailField.getText());
 				System.out.println("Avatar: "+avatar);
-
+				
+				String nick = Common.UTENTE.getNickname();
+				SmartAPIModel m = new SmartAPIModel();
+				m.modificaUtente(nick, passwordField.getText(), nameField.getText(), surnameField.getText(), emailField.getText(), avatar);				
 				comboBox.setVisible(false);
 				passwordField.setBackground(new Color(230, 230, 230));
 				passwordField.setEditable(false);

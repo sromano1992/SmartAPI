@@ -3,13 +3,18 @@ package com.smartAPI.model;
 public class UserClassification {
 	
 	private String username;
-	private double score;
+	private String somma_media;
+	private String votanti_codepattern;
+	private String utenti_votanti;
 	private String avatar;
 	
-	public UserClassification(String username, double score, String avatar){
-		this.username=username;
-		this.score=score;
-		this.avatar=avatar;
+	public UserClassification(String username, String somma_media,
+			String votanti_codepattern, String utenti_votanti, String avatar) {
+		this.username = username;
+		this.somma_media = somma_media;
+		this.votanti_codepattern = votanti_codepattern;
+		this.utenti_votanti = utenti_votanti;
+		this.avatar = avatar;
 	}
 
 	public String getUsername() {
@@ -20,12 +25,28 @@ public class UserClassification {
 		this.username = username;
 	}
 
-	public double getScore() {
-		return score;
+	public String getSomma_media() {
+		return somma_media;
 	}
 
-	public void setScore(double score) {
-		this.score = score;
+	public void setSomma_media(String somma_media) {
+		this.somma_media = somma_media;
+	}
+
+	public String getVotanti_codepattern() {
+		return votanti_codepattern;
+	}
+
+	public void setVotanti_codepattern(String votanti_codepattern) {
+		this.votanti_codepattern = votanti_codepattern;
+	}
+
+	public String getUtenti_votanti() {
+		return utenti_votanti;
+	}
+
+	public void setUtenti_votanti(String utenti_votanti) {
+		this.utenti_votanti = utenti_votanti;
 	}
 
 	public String getAvatar() {
@@ -37,8 +58,11 @@ public class UserClassification {
 	}
 	
 	public String toString(){
-		String str="username: "+username+"\t score: "+score+"\n";
+		String str="username: "+username+"\tsomma_media: "+somma_media+
+				"\t votanti_codepattern: "+votanti_codepattern+"\t utenti_votanti: "+utenti_votanti+
+				"\tavatar: "+avatar;
 		return str;
 	}
+	
 
 }
