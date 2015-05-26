@@ -194,12 +194,6 @@ public class UserInfoJPanel extends JPanel {
 		btnSave.setVisible(false);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Passw: "+passwordField.getText());
-				System.out.println("Name: "+nameField.getText());
-				System.out.println("Surname: "+surnameField.getText());
-				System.out.println("Email: "+emailField.getText());
-				System.out.println("Avatar: "+avatar);
-				
 				String nick = Common.UTENTE.getNickname();
 				SmartAPIModel m = new SmartAPIModel();
 				m.modificaUtente(nick, passwordField.getText(), nameField.getText(), surnameField.getText(), emailField.getText(), avatar);				
