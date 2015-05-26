@@ -49,22 +49,6 @@ public class LoginGrafica extends JPanel{
 	JLabel lblLogin;
 	private JProgressBar progressBar;
 
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					model = new SmartAPIModel();
-					LoginGrafica window = new LoginGrafica();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	 */
-
 	/**
 	 * Initialize the contents of the frame.
 	 */

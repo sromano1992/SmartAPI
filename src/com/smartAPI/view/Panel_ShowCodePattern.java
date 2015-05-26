@@ -104,9 +104,6 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		panel_1.add(panel);
 		panel.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JLabel label_3 = new JLabel("");
-		panel.add(label_3);
-		
 		infoButton = new JButton("");
 		infoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

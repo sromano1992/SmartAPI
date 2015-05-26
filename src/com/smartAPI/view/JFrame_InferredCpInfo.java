@@ -39,7 +39,7 @@ public class JFrame_InferredCpInfo extends JFrame {
 	public JFrame_InferredCpInfo() {
 		setTitle("Inference informations");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 167);
+		setBounds(100, 100, 450, 189);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

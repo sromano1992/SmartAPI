@@ -413,8 +413,8 @@
 
     <owl:NamedIndividual rdf:about="&SmartAPI;amedeo">
         <rdf:type rdf:resource="&SmartAPI;User"/>
-        <hasSurname>leo</hasSurname>
         <hasAvatar>res/5.png</hasAvatar>
+        <hasSurname>leo</hasSurname>
         <isAdministrator>si</isAdministrator>
         <hasVoted>p1,</hasVoted>
         <hasUsername>amedeo</hasUsername>
@@ -744,8 +744,8 @@
 
     <owl:NamedIndividual rdf:about="&SmartAPI;s1">
         <rdf:type rdf:resource="&SmartAPI;Storage"/>
-        <hasScore>0</hasScore>
-        <hasVoters>0</hasVoters>
+        <hasScore rdf:datatype="&xsd;int">0</hasScore>
+        <hasVoters rdf:datatype="&xsd;int">0</hasVoters>
         <useStorage rdf:resource="&SmartAPI;m1"/>
         <useStorage rdf:resource="&SmartAPI;m2"/>
         <hasOwner rdf:resource="&SmartAPI;u2"/>
@@ -770,13 +770,13 @@
 
     <owl:NamedIndividual rdf:about="&SmartAPI;simone">
         <rdf:type rdf:resource="&SmartAPI;User"/>
+        <hasAvatar>res/2.png</hasAvatar>
         <hasEmail>simoneromano@gmail.com</hasEmail>
         <hasSurname>romano</hasSurname>
         <isAdministrator>no</isAdministrator>
         <hasVoted>0</hasVoted>
-        <hasUsername>simone</hasUsername>
-        <hasAvatar>res/2.png</hasAvatar>
         <hasName>simone</hasName>
+        <hasUsername>simone</hasUsername>
         <hasPassword>simone</hasPassword>
     </owl:NamedIndividual>
     
