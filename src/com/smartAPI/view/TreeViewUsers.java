@@ -7,8 +7,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 
+import com.fasterxml.jackson.core.TreeNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.smartAPI.control.TreePathListener;
 import com.smartAPI.model.CodePattern_Category;
@@ -31,6 +33,8 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 	private JPopupMenu p_menu;
 	private JMenuItem remItem;
 	private TreePath toRemoveNode;
+	private DefaultTreeModel model = null; //(DefaultTreeModel)tree.getModel();
+	private DefaultMutableTreeNode rootNode = null; //(DefaultMutableTreeNode)model.getRoot();
 	
 	/**
 	 * Create the panel.
@@ -44,15 +48,17 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 	}
 
 	public void setUser_s(ArrayList<Utente> user_s, String rootName){
-		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(rootName);
+		rootNode = new DefaultMutableTreeNode(rootName);
 		for (Utente tmp:user_s){
 			DefaultMutableTreeNode us_node = new DefaultMutableTreeNode(tmp.getNickname());
 			rootNode.add(us_node);	
 		}
+		
 		if (tree != null){
 			this.remove(tree);
 		}
 		tree = new JTree(rootNode);
+		model = (DefaultTreeModel)tree.getModel();
 		add(new JScrollPane(tree));
 		tree.addMouseListener(new MouseAdapter() {
 		      public void mouseClicked(MouseEvent me) {
@@ -96,8 +102,12 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 					SmartAPIModel s = new SmartAPIModel();
 					Utente toRemove = s.getUtente(toRemoveNode.getPathComponent(1).toString());
 					s.deleteUser(toRemove.getNickname());
-					tree.removeSelectionPath(toRemoveNode);
-					tree.update(getGraphics());
+					DefaultMutableTreeNode node = (DefaultMutableTreeNode)toRemoveNode.getLastPathComponent();
+					//int index = model.getIndexOfChild(rootNode, node);
+					rootNode.remove(node);
+					//tree.removeSelectionPath(toRemoveNode);
+					model.reload();
+					//tree.update(getGraphics());
 				}
 			});
 		}
