@@ -1104,7 +1104,6 @@ public class SmartAPIModel {
 								numeroVotantiCodePattern += getNumeroVotanti(subject);
 								numeroVotantiUtente += 1;
 								utenteCodePattern.remove(s);
-
 								utenteCodePattern.add(string_object + "," + votoCorrente + "," + numeroVotantiCodePattern + "," + numeroVotantiUtente + "," + getAvatar(string_object));
 								trovato = true;
 								break;
@@ -1113,7 +1112,7 @@ public class SmartAPIModel {
 						if(!trovato) {
 							float mediaVotazioni = getMediaVotazioni(subject);
 							if(!(mediaVotazioni == 0.0)) {
-								utenteCodePattern.add(string_object + ","  + getMediaVotazioni(subject) + "," + getNumeroVotanti(subject) + "," + 1  +  "," + getAvatar(string_object));       
+								utenteCodePattern.add(string_object + ","  + getMediaVotazioni(subject) + "," + getNumeroVotanti(subject) + "," + 1  +  "," + getAvatar(string_object));
 							}
 						}
 						trovato = false;
@@ -1124,17 +1123,15 @@ public class SmartAPIModel {
 		return utenteCodePattern;
 	}
 
-
 	/**
 	 * Restituisce l'avatar dell'utente
 	 */
-
+	
 	public String getAvatar(String username) {
 		Resource resource = getOntModel().getResource(Common.NS + username);
 		String avatar = resource.getProperty(getProperty(Common.NS + Common.HAS_AVATAR)).getObject().toString();
 		return avatar;
 	}
-
 
 	/**
 	 * get info from classificaUtenti() end create UserClassification Objects
