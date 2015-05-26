@@ -35,50 +35,15 @@ public class UserOptionsJPanel extends JPanel {
 	JLabel lblInsert;
 	JLabel lblShowUsers;
 	private JLabel lblNewLabel;
+	private JButton btnSearch;
+	String path="";
+	String pathIcon = "";
+	MyImageIcon imgicon = null;
+	
 	public UserOptionsJPanel() {
 		setBackground(new Color(228, 230, 235));
 		setLayout(null);
-		
-		lblSearch = new JLabel(" Search");
-		lblSearch.setHorizontalAlignment(SwingConstants.CENTER);		
-		lblSearch.addMouseListener(new MouseAdapter() {
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
- 				lblSearch.setOpaque(true);
- 				lblSearch.setForeground(Color.YELLOW);
- 				lblSearch.setBackground(new Color(27, 147, 225));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblSearch.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
-				lblSearch.setOpaque(true);
-				lblSearch.setForeground(Color.WHITE);
-				lblSearch.setBackground(new Color(230, 126, 34));
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				for (IUserOptionListener i:listener_s){
-					i.searchClicked();
-				}
-				log.info("search event raised");
-			}
-		});
-		lblSearch.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblSearch.setOpaque(true);
-		lblSearch.setForeground(Color.WHITE);
-		lblSearch.setBackground(new Color(230, 126, 34));
-		lblSearch.setBounds(19, 28, 200, 50);
-		
-		String path="res/search.png";
-		String pathIcon = getClass().getResource(path).getFile();
-		MyImageIcon imgicon = new MyImageIcon(pathIcon,40,25);
-		//lblSearch.setIcon(imgicon.getImageResponsive());
-		
-		add(lblSearch);
-		
+				
 		lblInsert = new JLabel(" Insert");
 		lblInsert.addMouseListener(new MouseAdapter() {
 			@Override
@@ -174,6 +139,28 @@ public class UserOptionsJPanel extends JPanel {
 		imgicon = new MyImageIcon(pathIcon,30,30);
 		//lblAbout.setIcon(imgicon.getImageResponsive());
 		add(lblAbout);
+		
+		btnSearch = new JButton("");
+		btnSearch.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+			}
+			public void mouseClicked(MouseEvent e) {
+				
+				for (IUserOptionListener i:listener_s){
+					i.searchClicked();
+				}
+				log.info("search event raised");
+			}
+
+		});
+		path="res/search.png";
+		pathIcon = getClass().getResource(path).getFile();
+		btnSearch.setIcon(new ImageIcon(pathIcon));
+		btnSearch.setBounds(11, 28, 200, 51);
+		
+		add(btnSearch);
 	}
 	
 	public void addListener(IUserOptionListener i){
