@@ -21,6 +21,7 @@ import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.ontology.OntResource;
+import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
@@ -977,12 +978,14 @@ public class SmartAPIModel {
 					throw new UserException("Non puoi votare un tuo code pattern");
 				if(hasAlreadyVoted(username, codePattern))
 					throw new UserException("Hai gi� votato questo code pattern");
-				String vecchiVotanti = resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).getObject().toString();
-				int nuoviVotanti = Integer.parseInt(vecchiVotanti) + 1;
-				resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).changeObject(String.valueOf(nuoviVotanti));
-				int score =  Integer.parseInt(resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).getObject().toString());
+				int vecchiVotanti = resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).getObject().asLiteral().getInt();
+				int nuoviVotanti = vecchiVotanti + 1;
+				Literal nVotanti = getOntModel().createTypedLiteral(new Integer(nuoviVotanti));
+				resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).changeObject(nVotanti);
+				int score =  resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).getObject().asLiteral().getInt();
 				String nuovoPunteggio = (voto + score) + "";
-				resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).changeObject(String.valueOf(nuovoPunteggio));
+				Literal l = getOntModel().createTypedLiteral(new Integer(nuovoPunteggio));
+				resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).changeObject(l);
 
 				if(aggiungiVotoUtente(username, codePattern)) {				
 					storeOntModel();
@@ -1005,7 +1008,7 @@ public class SmartAPIModel {
 	public float getMediaVotazioni(String codePattern) {
 		Resource resource = getOntModel().getResource(Common.NS + codePattern);
 		float n_votanti = getNumeroVotanti(codePattern);
-		float score =  Integer.parseInt(resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).getObject().toString());
+		float score =  resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).getObject().asLiteral().getInt();
 		if(n_votanti == 0.0)
 			return 0;
 		return (score / n_votanti);
@@ -1018,8 +1021,8 @@ public class SmartAPIModel {
 
 	public float getNumeroVotanti(String codePattern) {
 		Resource resource = getOntModel().getResource(Common.NS + codePattern);
-		String votanti = resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).getObject().toString();
-		return Float.parseFloat(votanti);
+		Float votanti = resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).getObject().asLiteral().getFloat();
+		return votanti;
 	}
 
 	/** 
