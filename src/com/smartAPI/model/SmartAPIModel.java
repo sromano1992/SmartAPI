@@ -65,7 +65,7 @@ public class SmartAPIModel {
 		}
 		return base;	
 	}
-	
+
 	public OntModel getInfModel(){
 		if (inf != null){
 			log.info("returning inf model...");
@@ -75,7 +75,7 @@ public class SmartAPIModel {
 		log.info("Inf Model created...");
 		return inf;
 	}
-	
+
 	public ArrayList<Resource> getInferredIndividualOfClass(String className){			
 		ArrayList<Resource> toReturn = new ArrayList<Resource>();
 		StmtIterator iter = getInfModel().listStatements();
@@ -92,7 +92,7 @@ public class SmartAPIModel {
 		}
 		return toReturn;
 	}
-	
+
 	public ArrayList<Resource> getIndividualOfClass(String className){			
 		ArrayList<Resource> toReturn = new ArrayList<Resource>();
 		StmtIterator iter = getOntModel().listStatements();
@@ -109,19 +109,19 @@ public class SmartAPIModel {
 		}
 		return toReturn;
 	}
-	
+
 	public Property getProperty(String propName){
 		return getOntModel().getProperty(propName);
 	}
-	
+
 	public Resource getResourceFromBase(String resName){
 		return getOntModel().getResource(resName);
 	}
-	
+
 	public Resource getResourceFromInf(String resName){
 		return getInfModel().getResource(resName);
 	}
-	
+
 	/**
 	 * This method will return a list of category for
 	 * the method with methodName
@@ -142,7 +142,7 @@ public class SmartAPIModel {
 		}		
 		return toReturn;
 	}
-	
+
 	public ArrayList<Resource> getPatternCategory(){
 		ArrayList<Resource> toReturn = new ArrayList<Resource>();
 		for (Iterator<OntClass> i=getOntModel().listClasses(); i.hasNext();){
@@ -153,7 +153,7 @@ public class SmartAPIModel {
 		}
 		return toReturn;
 	}
-	
+
 	public ArrayList<Resource> getMethodCategory(){
 		ArrayList<Resource> toReturn = new ArrayList<Resource>();
 		for (Iterator<OntClass> i=getOntModel().listClasses(); i.hasNext();){
@@ -164,7 +164,7 @@ public class SmartAPIModel {
 		}
 		return toReturn;
 	}
-	
+
 	/**
 	 * This method will add element of method_s list
 	 * to Method ontology's class if it hasn't them.
@@ -195,7 +195,7 @@ public class SmartAPIModel {
 		}
 		return toReturn;
 	}
-	
+
 	private boolean containsMethod(ArrayList<Resource> method_s, String m){
 		for (Resource r:method_s){
 			if (r.getLocalName().equals(m.toString())){
@@ -204,7 +204,7 @@ public class SmartAPIModel {
 		}
 		return false;
 	}
-	
+
 	public void storeOntModel(){
 		String modelPath = this.getClass().getResource(OWL_FILE_PATH).getFile();
 		File file;
@@ -227,11 +227,11 @@ public class SmartAPIModel {
 			e.printStackTrace();
 		}		
 	}
-	
+
 	public void printOntModel(){
 		getOntModel().write(System.out, "RDF/XML-ABBREV");
 	}
-	
+
 	/**
 	 * This method will add new Pattern category.
 	 */
@@ -246,9 +246,9 @@ public class SmartAPIModel {
 		getOntModel().createClass(Common.NS + categoryName).addSuperClass(getOntClass(Common.CODE_PATTERN));
 		log.info("Added category '" + categoryName + "'");
 	}
-	
+
 	/**
-	 * Aggiunge la proprietà hasKeyword ad una risorsa
+	 * Aggiunge la proprietï¿½ hasKeyword ad una risorsa
 	 * @author Amedeo Leo
 	 */
 	public boolean addKeyword(String risorsa, String keyword) {
@@ -256,18 +256,18 @@ public class SmartAPIModel {
 		DatatypeProperty hasKeyword = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_KEYWORD);
 		ind.addProperty(hasKeyword, keyword);
 		log.info("Added property " + keyword);
-	    return true;
+		return true;
 	}
-	
+
 	/**
 	 * Crea una ObjectProperty
 	 * @author Amedeo Leo
 	 */
-	
+
 	public ObjectProperty createObjectProperty(String property) {
 		return getOntModel().createObjectProperty(property);
 	}
-	
+
 	/**
 	 * Crea una ObjectProperty, passando in input dominio,range e label.
 	 * @author Amedeo Leo
@@ -279,14 +279,14 @@ public class SmartAPIModel {
 		OntClass ontRange = o.getOntClass(Common.NS.concat(range));
 		if (ontDomain == null || ontRange == null)
 			return null;
-		
+
 		p.addDomain(ontDomain);
 		p.addRange(ontRange);
 		p.addLabel(label, "it");
 		return p;
 	}
-		
-	
+
+
 	/**
 	 * Restituisce la lista di Statement, passando in input l'oggetto Selector
 	 * @author Amedeo Leo
@@ -299,14 +299,14 @@ public class SmartAPIModel {
 		boolean addToInfferred = false, addToBasic = false;
 		String property = "use" + category;
 		String methodClass = category + "Method";
-				
+
 		//Search for inferred storageMethod
 		ArrayList<Resource> methodOfCategory = getInferredIndividualOfClass(methodClass);
-		
+
 		//search for codePattern with useMethod->founded method
 		ArrayList<CodePattern> inferredCodePattern = new ArrayList<CodePattern>();
 		ArrayList<CodePattern> basicCodePattern = new ArrayList<CodePattern>();
-		
+
 		ArrayList<Resource> individualOfCategory = getInferredIndividualOfClass(Common.CODE_PATTERN);
 		CodePattern tmpBaseCp = null, tmpInferredCP = null;
 		for (Resource codePattern:individualOfCategory){
@@ -316,7 +316,7 @@ public class SmartAPIModel {
 				Resource subject = temp.getSubject(); // get the subject
 				Property predicate = temp.getPredicate(); // get the predicate
 				RDFNode object = temp.getObject(); // get the object
-				
+
 				if(predicate.getLocalName().equals(Common.USE_METHOD)){
 					if (object.isResource()){
 						Resource usedMethod = object.asResource();
@@ -361,7 +361,7 @@ public class SmartAPIModel {
 		for (CodePattern c:toRemove){
 			inferredCodePattern.remove(c);
 		}
-		
+
 		//probability calculation
 		for (CodePattern inferred:inferredCodePattern){
 			for (CodePattern basic:basicCodePattern){
@@ -389,39 +389,39 @@ public class SmartAPIModel {
 		ObjectProperty useLibrary = getOntModel().getObjectProperty(Common.NS + Common.HAS_LIBRARY);
 		Resource lib = getResourceFromBase(Common.NS + libToAdd);
 		Resource cp = getResourceFromBase(Common.NS + codePatternName);
-		
+
 		cp.addProperty(useLibrary, lib);
 	}
-	
+
 	public void addUseLanguage(String library, String language) {
 		ObjectProperty useLibrary = getOntModel().getObjectProperty(Common.NS + Common.HAS_LANGUAGE);
 		Resource languageRis = getResourceFromBase(Common.NS + language);
 		Resource lib = getResourceFromBase(Common.NS + library);
-		
+
 		lib.addProperty(useLibrary, languageRis);
 	}
-	
+
 	public void addObjectPropertyInstance(String propName, String subject, String object){
 		ObjectProperty p = getOntModel().getObjectProperty(Common.NS + propName);
 		Resource s = getResourceFromBase(Common.NS + subject);
 		Resource o = getResourceFromBase(Common.NS + object);
-		
+
 		s.addProperty(p, o);
 		log.info("Add property '" + propName + "' to subject '" + subject + "' with value '" + object + "'");
 	}
-	
+
 	/**
 	 * Aggiunge un utente alla base ontologica
 	 * @author Amedeo Leo, Ciro Amati
 	 * 
 	 */
-	
+
 	public boolean addUser(String nome, String cognome, String email, String username, String password, boolean isAdmin, String avatar) {
 		OntClass userClass = getOntModel().getOntClass(Common.NS + Common.USER);
 		if(!userAlreadyExists(userClass.getLocalName(), username)) {
 			Utente user = new Utente(nome, cognome, email, username, password, false, avatar, "0");
 			getOntModel();
-			
+
 			Individual individualUser1 = getOntModel().createIndividual(Common.NS + username, userClass);
 			DatatypeProperty hasUsername = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_USERNAME);
 			DatatypeProperty hasPassword = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_PASSWORD);
@@ -439,7 +439,7 @@ public class SmartAPIModel {
 			individualUser1.addProperty(hasSurname, cognome);
 			individualUser1.addProperty(hasAvatar, avatar);
 			individualUser1.addProperty(hasVoted, "0");
-			
+
 			if(isAdmin) {
 				individualUser1.addProperty(isAdministrator, "si");
 			}
@@ -452,15 +452,15 @@ public class SmartAPIModel {
 		else
 			return false;
 	}
-	
+
 	/**
-	 * Controlla se il login effettuato è corretto.
+	 * Controlla se il login effettuato ï¿½ corretto.
 	 * @author Amedeo Leo
 	 */
 	public boolean exists(String username, String password) {
 		ArrayList<Resource> list = getIndividualOfClass("User");
 		Resource subject = null;
-		
+
 		for(int i = 0; i < list.size(); i++) {
 			Resource resource = list.get(i);
 			StmtIterator iter = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
@@ -477,7 +477,7 @@ public class SmartAPIModel {
 				}
 			}
 		}
-		
+
 		if(subject != null) {
 			StmtIterator iter = getOntModel().listStatements(new SimpleSelector(subject,null,(RDFNode)null));
 			while (iter.hasNext()) {
@@ -495,7 +495,7 @@ public class SmartAPIModel {
 			throw new UserException("Username non esistente");
 		throw new UserException("Password errata");
 	}
-	
+
 	/**
 	 * Controlla se un utente esiste gia'.
 	 * @author Amedeo Leo, Ciro Amati
@@ -518,7 +518,7 @@ public class SmartAPIModel {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Calcola l'id dell'ultimo utente inserito
 	 * @author Amedeo Leo, Ciro Amati
@@ -533,7 +533,7 @@ public class SmartAPIModel {
 				Statement stmt = iter.nextStatement();
 				Resource subject = stmt.getSubject();
 				Property predicate = stmt.getPredicate();
-				
+
 				if(predicate.getLocalName().equals("type")) {
 					String newId = subject.getLocalName().substring(1);
 					if(Integer.parseInt(newId) > Integer.parseInt(id)) 
@@ -543,7 +543,7 @@ public class SmartAPIModel {
 		}
 		return id;
 	}
-	
+
 	/**
 	 * Restituisce tutti gli utenti.
 	 * @author Amedeo Leo
@@ -566,7 +566,7 @@ public class SmartAPIModel {
 						Statement stmt = iterSubject.nextStatement();
 						Property predicate = stmt.getPredicate();
 						RDFNode object = stmt.getObject();
-											
+
 						if(predicate.getLocalName().equals(Common.HAS_NAME)) {
 							nome = object.toString();
 						}
@@ -605,9 +605,9 @@ public class SmartAPIModel {
 		}
 		return utenti;
 	}
-	
+
 	/**
-	 * Controlla se un utente è un amministratore.
+	 * Controlla se un utente ï¿½ un amministratore.
 	 * @author Amedeo Leo
 	 */
 	public boolean isAdministrator(String username) {
@@ -639,12 +639,12 @@ public class SmartAPIModel {
 						}
 					}
 				}
-				
+
 			}
 		}
 		return false;
 	}
-	
+
 	/** 
 	 * Elimina un utente.
 	 * @author Amedeo Leo
@@ -680,7 +680,7 @@ public class SmartAPIModel {
 		}
 		return false;
 	}
-	
+
 	/** 
 	 * Elimina un codePattern.
 	 * @author Amedeo Leo
@@ -712,7 +712,7 @@ public class SmartAPIModel {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * This method will return owner for input codePattern.
 	 * @param cp
@@ -722,20 +722,20 @@ public class SmartAPIModel {
 		Individual ind = getOntModel().getIndividual(Common.NS + cp);
 		StmtIterator iter = ind.listProperties();
 		while (iter.hasNext()) {
-            Statement stmt      = iter.nextStatement();
-            Property  predicate = stmt.getPredicate();   // get the predicate
-            Object obj = stmt.getObject();
-            Resource subject = stmt.getSubject();
-            
-            if(predicate.getLocalName().contains(Common.HAS_OWNER)){
-            	log.info("Found owner: " + ((Resource)obj).getLocalName());
-            	return ((Resource)obj).getLocalName();
-            }
-        }
+			Statement stmt      = iter.nextStatement();
+			Property  predicate = stmt.getPredicate();   // get the predicate
+			Object obj = stmt.getObject();
+			Resource subject = stmt.getSubject();
+
+			if(predicate.getLocalName().contains(Common.HAS_OWNER)){
+				log.info("Found owner: " + ((Resource)obj).getLocalName());
+				return ((Resource)obj).getLocalName();
+			}
+		}
 		log.warning(Common.NO_OWNER_MESS);
 		return Common.NO_OWNER_MESS;
 	}
-	
+
 	/**
 	 * This method will return source code for 
 	 * the input codePattern.
@@ -746,38 +746,38 @@ public class SmartAPIModel {
 		Individual ind = getOntModel().getIndividual(Common.NS + cp);
 		StmtIterator iter = ind.listProperties();
 		while (iter.hasNext()) {
-            Statement stmt      = iter.nextStatement();
-            Property  predicate = stmt.getPredicate();   // get the predicate
-            Object obj = stmt.getObject();
-            Resource subject = stmt.getSubject();
-            
-            if(predicate.getLocalName().contains(Common.HAS_CODE)){
-            	log.info("Found code");
-            	return (obj.toString());
-            }
-        }
+			Statement stmt      = iter.nextStatement();
+			Property  predicate = stmt.getPredicate();   // get the predicate
+			Object obj = stmt.getObject();
+			Resource subject = stmt.getSubject();
+
+			if(predicate.getLocalName().contains(Common.HAS_CODE)){
+				log.info("Found code");
+				return (obj.toString());
+			}
+		}
 		log.warning(Common.NO_CODE_MESS);
 		return Common.NO_CODE_MESS;
 	}
-	
+
 	public String getCpKeyword(String cp){
 		Individual ind = getOntModel().getIndividual(Common.NS + cp);
 		StmtIterator iter = ind.listProperties();
 		while (iter.hasNext()) {
-            Statement stmt      = iter.nextStatement();
-            Property  predicate = stmt.getPredicate();   // get the predicate
-            Object obj = stmt.getObject();
-            Resource subject = stmt.getSubject();
-            
-            if(predicate.getLocalName().contains(Common.HAS_KEYWORD)){
-            	log.info("Found keyword " + obj.toString());
-            	return (obj.toString());
-            }
-        }
+			Statement stmt      = iter.nextStatement();
+			Property  predicate = stmt.getPredicate();   // get the predicate
+			Object obj = stmt.getObject();
+			Resource subject = stmt.getSubject();
+
+			if(predicate.getLocalName().contains(Common.HAS_KEYWORD)){
+				log.info("Found keyword " + obj.toString());
+				return (obj.toString());
+			}
+		}
 		log.warning(Common.NO_CODE_MESS);
 		return Common.NO_CODE_MESS;
 	}
-	
+
 	/**
 	 * This method will return one 'CodePattern_Category' for
 	 * each category of codePattern.
@@ -791,7 +791,7 @@ public class SmartAPIModel {
 		}
 		return toReturn;
 	}
-	
+
 
 	/**
 	 * Associare il code pattern inserito ad una categoria.
@@ -800,14 +800,14 @@ public class SmartAPIModel {
 	public void associateCatAndCodePattern(String category, String codePattern){
 		OntClass o = getOntModel().getOntClass(Common.NS+category);
 		Individual p1 = getOntModel().createIndividual(Common.NS+codePattern,o);
-		
+
 		storeOntModel();
 	}
-	
+
 	/**
 	 * 
 	 * @author Stefania Cardamone
-	 * Aggiunta di istanze alla proprietà useMethod (ex. useCalendar)
+	 * Aggiunta di istanze alla proprietï¿½ useMethod (ex. useCalendar)
 	 *
 	 */
 	public void addInstanceUseMethod(String category, String pattern){
@@ -816,22 +816,22 @@ public class SmartAPIModel {
 			method_s.add("c" + i);
 		}
 		addToMethodClass(method_s);
-		
+
 		Resource c1 = getOntModel().getResource(Common.NS + pattern);
 
 		for (String m : method_s) {
 			c1.addProperty(getOntModel().getProperty(Common.NS + "use" + category), getResourceFromBase(Common.NS + m));
 		}
-		
+
 		storeOntModel();
 	}
 	public boolean addUseMethod(String category_name){
 		if (getOntModel().getObjectProperty(Common.NS + "use"+category_name)!=null)
 			return false;
-		
+
 		OntClass methodClass= null;
 		OntClass category = getOntModel().getOntClass(Common.NS + category_name);
-		
+
 		if (category == null){
 			category = getOntModel().createClass(Common.NS + category_name);
 			OntClass codePattern =  getOntModel().getOntClass(Common.NS + "CodePattern");
@@ -842,7 +842,7 @@ public class SmartAPIModel {
 		}
 		else
 			methodClass = getOntModel().getOntClass(Common.NS + category_name + "Method");
-		
+
 		ObjectProperty useMethod = getOntModel().getObjectProperty(Common.NS + "useMethod");
 		ObjectProperty useCategory = getOntModel().createObjectProperty(Common.NS + "use"+category_name);	
 		useMethod.addSubProperty(useCategory);
@@ -851,7 +851,7 @@ public class SmartAPIModel {
 		storeOntModel();
 		return true;
 	}
-	
+
 	/**
 	 * Modifica le informazioni dell'utente.
 	 * @author Amedeo Leo
@@ -864,7 +864,7 @@ public class SmartAPIModel {
 		boolean modificaEmail = false;
 		boolean modificaAvatar = false;
 		Resource subjectResource = null;
-		
+
 		for(int i = 0; i < list.size(); i++) {
 			Resource resource = list.get(i);
 			if(resource.getLocalName().equals(username)) {
@@ -875,7 +875,7 @@ public class SmartAPIModel {
 					subjectResource = stmtResource.getSubject();
 					Property predicateResource = stmtResource.getPredicate();
 					RDFNode object = stmtResource.getObject();
-					
+
 					if(predicateResource.getLocalName().equals(Common.HAS_NAME)) {	
 						if(!object.toString().equals(nome))
 							modificaNome = true;
@@ -899,7 +899,7 @@ public class SmartAPIModel {
 				}
 			}
 		}
-		
+
 		if(subjectResource != null) {
 			if(modificaNome) {
 				subjectResource.getProperty(getProperty(Common.NS + Common.HAS_NAME)).changeObject(nome);
@@ -922,7 +922,7 @@ public class SmartAPIModel {
 		else
 			throw new UserException("Utente non esistente");
 	}
-	
+
 	/**
 	 * Aggiunge una votazione all'utente
 	 * @author Amedeo Leo
@@ -939,7 +939,7 @@ public class SmartAPIModel {
 					Resource subjectResource = stmtResource.getSubject();
 					Property predicateResource = stmtResource.getPredicate();
 					RDFNode object = stmtResource.getObject();
-					
+
 					if(predicateResource.getLocalName().equals(Common.HAS_VOTED)) {
 						if(object.toString().equals("0")) {
 							subjectResource.getProperty(getProperty(Common.NS + Common.HAS_VOTED)).changeObject(codePattern + ",");
@@ -947,9 +947,9 @@ public class SmartAPIModel {
 							return true;
 						}
 						else {
-							//controllo già fatto
+							//controllo giï¿½ fatto
 							//if(hasAlreadyVoted(username, codePattern))
-							//throw new UserException("Hai già votato questo code pattern");							
+							//throw new UserException("Hai giï¿½ votato questo code pattern");							
 							stmtResource.changeObject(object.toString() + codePattern + ",");
 							storeOntModel();
 							return true;
@@ -960,7 +960,7 @@ public class SmartAPIModel {
 		}
 		return false;
 	}
-	
+
 	/** 
 	 * Aggiunge una votazione al code pattern
 	 * @author Amedeo Leo
@@ -974,14 +974,14 @@ public class SmartAPIModel {
 				if(isOwner(username, codePattern))
 					throw new UserException("Non puoi votare un tuo code pattern");
 				if(hasAlreadyVoted(username, codePattern))
-					throw new UserException("Hai già votato questo code pattern");
+					throw new UserException("Hai giï¿½ votato questo code pattern");
 				String vecchiVotanti = resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).getObject().toString();
 				int nuoviVotanti = Integer.parseInt(vecchiVotanti) + 1;
 				resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).changeObject(String.valueOf(nuoviVotanti));
 				int score =  Integer.parseInt(resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).getObject().toString());
 				String nuovoPunteggio = (voto + score) + "";
 				resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).changeObject(String.valueOf(nuovoPunteggio));
-				
+
 				if(aggiungiVotoUtente(username, codePattern)) {				
 					storeOntModel();
 					return true;
@@ -995,7 +995,7 @@ public class SmartAPIModel {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Restituisce la media delle votazioni di un code pattern
 	 * @author Amedeo Leo
@@ -1008,20 +1008,20 @@ public class SmartAPIModel {
 			return 0;
 		return (score / n_votanti);
 	}
-	
+
 	/**
 	 * Restituisce il numero di votanti di un code pattern
 	 * @author Amedeo Leo
 	 */
-	
+
 	public float getNumeroVotanti(String codePattern) {
 		Resource resource = getOntModel().getResource(Common.NS + codePattern);
 		String votanti = resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).getObject().toString();
 		return Float.parseFloat(votanti);
 	}
-	
+
 	/** 
-	 * Controlla se l'utente è il proprietario del code pattern (in modo da non poterlo votare)
+	 * Controlla se l'utente ï¿½ il proprietario del code pattern (in modo da non poterlo votare)
 	 * @author Amedeo Leo
 	 */
 	public boolean isOwner(String username, String codePattern) {
@@ -1032,9 +1032,9 @@ public class SmartAPIModel {
 			return true;
 		return false;
 	}
-	
+
 	/**
-	 * Controlla se l'utente ha già votato il code pattern
+	 * Controlla se l'utente ha giï¿½ votato il code pattern
 	 * @author Amedeo Leo
 	 */
 	public boolean hasAlreadyVoted(String username, String codePattern) {
@@ -1048,7 +1048,7 @@ public class SmartAPIModel {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Modifica i permessi all'utente.
 	 * @author Amedeo Leo
@@ -1066,7 +1066,7 @@ public class SmartAPIModel {
 		storeOntModel();
 		return true;
 	}
-	
+
 	/**
 	 * Restituisce la classifica degli utenti
 	 * @author Amedeo Leo
@@ -1074,7 +1074,7 @@ public class SmartAPIModel {
 	public ArrayList<String> classificaUtenti() {
 		ArrayList<String> utenteCodePattern = new ArrayList<String>();
 		boolean trovato = false;
-		
+
 		ExtendedIterator<OntClass> ext = getOntModel().getOntClass(Common.NS + Common.CODE_PATTERN).listSubClasses();
 		while(ext.hasNext()) {
 			OntClass o = ext.next();
@@ -1088,23 +1088,24 @@ public class SmartAPIModel {
 					Resource subjectResource = stmtResource.getSubject();
 					Property predicateResource = stmtResource.getPredicate();
 					RDFNode object = stmtResource.getObject();
-					
+
 					String subject = subjectResource.getLocalName();
 					if(predicateResource.getLocalName().equals(Common.HAS_OWNER)) {
 						String string_object = object.toString().substring(object.toString().indexOf("#") + 1);
+						System.out.println(string_object);
 						for(String s : utenteCodePattern) {
 							String[] array = s.split(",");
 							float votoCorrente = Float.parseFloat(array[1]);
 							float numeroVotantiCodePattern = Float.parseFloat(array[2]);
 							int numeroVotantiUtente  = Integer.parseInt(array[3]);
-							
+
 							if(array[0].equals(string_object)) {
 								votoCorrente += getMediaVotazioni(subject);
 								numeroVotantiCodePattern += getNumeroVotanti(subject);
 								numeroVotantiUtente += 1;
 								utenteCodePattern.remove(s);
-								
-								utenteCodePattern.add(string_object + "," + votoCorrente + "," + numeroVotantiCodePattern + "," + numeroVotantiUtente);
+
+								utenteCodePattern.add(string_object + "," + votoCorrente + "," + numeroVotantiCodePattern + "," + numeroVotantiUtente + "," + getAvatar(string_object));
 								trovato = true;
 								break;
 							}
@@ -1112,7 +1113,7 @@ public class SmartAPIModel {
 						if(!trovato) {
 							float mediaVotazioni = getMediaVotazioni(subject);
 							if(!(mediaVotazioni == 0.0)) {
-								utenteCodePattern.add(string_object + "," + getMediaVotazioni(subject) + "," + getNumeroVotanti(subject) + "," + 1);	
+								utenteCodePattern.add(string_object + ","  + getMediaVotazioni(subject) + "," + getNumeroVotanti(subject) + "," + 1  +  "," + getAvatar(string_object));       
 							}
 						}
 						trovato = false;
@@ -1120,7 +1121,39 @@ public class SmartAPIModel {
 				}
 			}
 		}
-		//utenteCodePattern.add("cancellare,8.0,2.0,2");
 		return utenteCodePattern;
 	}
+
+	/**
+	 * Restituisce l'avatar dell'utente
+	 */
+
+	public String getAvatar(String username) {
+		Resource resource = getOntModel().getResource(Common.NS + username);
+		String avatar = resource.getProperty(getProperty(Common.NS + Common.HAS_AVATAR)).getObject().toString();
+		return avatar;
+	}
+
+
+	/**
+	 * get info from classificaUtenti() end create UserClassification Objects
+	 * @author Amati Ciro
+	 */
+
+
+	public ArrayList<UserClassification> getInfoUserClassification (ArrayList<String> listUsers){
+		ArrayList<UserClassification> listUserClassification = new ArrayList<UserClassification>();
+
+		for (String u: listUsers){
+			String[] tmp = u.split(",");
+			UserClassification uc = new UserClassification(tmp[0],tmp[1] , tmp[2], tmp[3], tmp[4]);
+			listUserClassification.add(uc);
+
+		}
+		
+	return listUserClassification;
+
+	}
+
+
 }
