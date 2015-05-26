@@ -572,7 +572,7 @@ public class SmartAPIModel {
 						}
 						if(predicate.getLocalName().equals(Common.HAS_SURNAME)) {
 							cognome = object.toString();
-							System.out.println(cognome);
+							//System.out.println(cognome);
 						}
 						if(predicate.getLocalName().equals(Common.HAS_USERNAME)) {
 							username = object.toString();
