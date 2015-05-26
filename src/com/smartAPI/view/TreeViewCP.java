@@ -22,6 +22,7 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 	private ArrayList<TreePathListener> treePathListener;
 	private JScrollPane scrollPane;
 	private JScrollPane scroll;
+	private ArrayList<CodePattern_Category> cp_s;
 	
 	/**
 	 * Create the panel.
@@ -32,6 +33,7 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 	}
 
 	public void setCodePattern_s(ArrayList<CodePattern_Category> cp_s, String rootName, boolean inferred){
+		this.cp_s = cp_s;
 		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(rootName);
 		for (CodePattern_Category tmp:cp_s){
 			if(inferred){
@@ -95,4 +97,8 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 			setCodePattern_s(tmp, "Inferred", true);
 		}		
 	}
+
+	public ArrayList<CodePattern_Category> getCp_s() {
+		return cp_s;
+	}	
 }

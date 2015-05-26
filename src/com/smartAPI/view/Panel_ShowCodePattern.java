@@ -32,6 +32,7 @@ import javax.swing.tree.TreePath;
 
 import com.smartAPI.control.TreePathListener;
 import com.smartAPI.model.CodePattern;
+import com.smartAPI.model.CodePattern_Category;
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 
@@ -46,12 +47,16 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 	private MyJLabel labelUserName;
 	private JTextPane txtpaneKeyWord;
 	private JTextPane txtpnCode;
-	private MyJLabel mjlblVota;
 	private JButton infoButton;
+	private CodePattern actualCP;
+	private String actualCP_category;
 	
 	/**
 	 * Create the panel.
@@ -103,8 +108,16 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		panel.add(label_3);
 		
 		infoButton = new JButton("");
+		infoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame_InferredCpInfo f = new JFrame_InferredCpInfo();
+				f.setInferredCP(actualCP, actualCP_category);
+				f.setVisible(true);
+			}
+		});
 		infoButton.setIcon(new ImageIcon(Panel_ShowCodePattern.class.getResource("/com/smartAPI/view/res/questionMark.gif")));
 		infoButton.setEnabled(false);
+		infoButton.setVisible(false);
 		panel.add(infoButton);
 		
 		JPanel panel_3 = new JPanel();
@@ -132,9 +145,9 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		labelUserName.setText(cp.getOwner());
 		txtpnCode.setText(cp.getCode());
 		txtpaneKeyWord.setText(cp.getKeyWord());
-		JOptionPane.showMessageDialog(null, cp.getRelativeBasicCodePattern() != null);
 		infoButton.setVisible(cp.getRelativeBasicCodePattern() != null);
 		infoButton.setEnabled(cp.getRelativeBasicCodePattern() != null);
+		this.actualCP = cp;
 	}
 
 	@Override
@@ -142,8 +155,20 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		if (t.getPathCount() == 3){	//selected a codePattern
 			String cp = t.getPathComponent(2).toString();
 			SmartAPIModel s = new SmartAPIModel();
-			CodePattern c = new CodePattern(s.getResourceFromBase(Common.NS + cp));
-			setCodePattern(c);
+			CodePattern cpToSearch = new CodePattern(s.getResourceFromBase(Common.NS + cp));
+			/**
+			 * getResFromBase will return only codePatter without information about
+			 * inferred and relative basic method; with getPatternOfCategory
+			 * I get infomation all information about cp of some category;
+			 */
+			actualCP_category = t.getPathComponent(1).toString();
+			CodePattern_Category patternOfSameCat = s.getPatternOfCategory(t.getPathComponent(1).toString());
+			for (CodePattern c : patternOfSameCat.getInferredCodePattern()){
+				if (c.getResource().getLocalName().equals(cpToSearch.getResource().getLocalName())){
+					cpToSearch = c;
+				}
+			}
+			setCodePattern(cpToSearch);
 		}
 	}
 }
