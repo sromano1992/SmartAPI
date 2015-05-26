@@ -17,7 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class TreeView extends JPanel implements TreePathListener{
+public class TreeViewCP extends JPanel implements TreePathListener{
 	private JTree tree;
 	private ArrayList<TreePathListener> treePathListener;
 	private JScrollPane scrollPane;
@@ -25,7 +25,7 @@ public class TreeView extends JPanel implements TreePathListener{
 	/**
 	 * Create the panel.
 	 */
-	public TreeView() {
+	public TreeViewCP() {
 		setLayout(new BorderLayout(0, 0));
 		this.treePathListener = new ArrayList<TreePathListener>();		
 	}
@@ -81,7 +81,6 @@ public class TreeView extends JPanel implements TreePathListener{
 		SmartAPIModel s = new SmartAPIModel();
 		if(t.getPathCount() >= 2){
 			CodePattern_Category cp_s = s.getPatternOfCategory(t.getPathComponent(1).toString());
-			System.out.println(t.getPathComponent(1));
 			ArrayList<CodePattern_Category> tmp = new ArrayList<CodePattern_Category>();
 			tmp.add(cp_s);
 			setCodePattern_s(tmp, "Inferred", true);

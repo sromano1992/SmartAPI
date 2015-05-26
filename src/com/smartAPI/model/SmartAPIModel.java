@@ -1124,6 +1124,7 @@ public class SmartAPIModel {
 		return utenteCodePattern;
 	}
 
+
 	/**
 	 * Restituisce l'avatar dell'utente
 	 */
@@ -1156,4 +1157,13 @@ public class SmartAPIModel {
 	}
 
 
+	
+	public Utente getUtente(String username) {
+		for(Utente u: getUsers()) {			
+			if(u.getNickname().equals(username)) {
+				return u;
+			}
+		}
+		return null;
+	}
 }
