@@ -43,12 +43,14 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		splitPane.setPreferredSize(new Dimension(193, 250));
 		splitPane.setMinimumSize(new Dimension(193, 250));
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);		
-				
+		
 		Panel_InferredCodePattern panel_InferredCodePattern = new Panel_InferredCodePattern();
 		splitPane.setRightComponent(panel_InferredCodePattern);
 
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
+		
+		splitPane.setDividerLocation(75);
 		
 		TreeViewCP treeView = new TreeViewCP();
 		TreeViewCP treeView_1 = new TreeViewCP();
