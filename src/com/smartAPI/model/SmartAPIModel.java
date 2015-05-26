@@ -572,7 +572,7 @@ public class SmartAPIModel {
 						}
 						if(predicate.getLocalName().equals(Common.HAS_SURNAME)) {
 							cognome = object.toString();
-							System.out.println(cognome);
+							//System.out.println(cognome);
 						}
 						if(predicate.getLocalName().equals(Common.HAS_USERNAME)) {
 							username = object.toString();
@@ -858,6 +858,8 @@ public class SmartAPIModel {
 	 */
 	public boolean modificaUtente(String username, String password, String nome, String cognome, String email, String avatar) {
 		ArrayList<Resource> list = getIndividualOfClass("User");
+		Utente u = new Utente(username,password,nome,cognome,email,false, avatar, "voti");
+		
 		boolean modificaPassword = false;
 		boolean modificaNome = false;
 		boolean modificaCognome = false;

@@ -12,11 +12,16 @@ import com.smartAPI.model.SmartAPIModel;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
+
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+
 import java.awt.Dimension;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JFrame;
+import javax.swing.ScrollPaneConstants;
 
 /**
  * 
@@ -33,37 +38,48 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		setLayout(new BorderLayout(0, 0));
 		
 		JSplitPane splitPane = new JSplitPane();
+		add(splitPane, BorderLayout.CENTER);
 		splitPane.setSize(new Dimension(0, 250));
 		splitPane.setPreferredSize(new Dimension(193, 250));
 		splitPane.setMinimumSize(new Dimension(193, 250));
-		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		add(splitPane, BorderLayout.CENTER);
-
-		JPanel panel_CodePattern_s = new JPanel();
-		splitPane.setRightComponent(panel_CodePattern_s);
-		panel_CodePattern_s.setLayout(new GridLayout(0, 1, 0, 0));
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);		
 		
 		Panel_InferredCodePattern panel_InferredCodePattern = new Panel_InferredCodePattern();
-		panel_CodePattern_s.add(panel_InferredCodePattern);
-		
+		splitPane.setRightComponent(panel_InferredCodePattern);
+
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
 		
+		splitPane.setDividerLocation(75);
+		
 		TreeViewCP treeView = new TreeViewCP();
-		treeView.setBounds(0, 0, 398, 115);
 		TreeViewCP treeView_1 = new TreeViewCP();
-		treeView_1.setBounds(398, 0, 398, 115);
 		treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
 		
 		treeView.addTreePathListener(this);
 		treeView.addTreePathListener(treeView_1);
-		panel.setLayout(null);
+		panel.setLayout(new GridLayout(0, 2, 0, 0));
 		panel.add(treeView);
 		panel.add(treeView_1);
 		treeView.addTreePathListener(panel_InferredCodePattern.getPanel_ShowCodePattern());
 		
 		treeView_1.addTreePathListener(panel_InferredCodePattern.getPanel_ShowCodePattern_1());
 	}
+
+	/*public static JPanel getScrollablePane(){
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(1, 1));
+        panel.add(new Panel_CodePatternCompleteView());
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(50, 30, 300, 200);
+        JPanel contentPane = new JPanel(null);
+        contentPane.setLayout(new GridLayout(1, 1));
+        contentPane.setPreferredSize(new Dimension(500, 400));
+        contentPane.add(scrollPane);
+        return contentPane;
+	}*/
 
 	@Override
 	public void treePathChanged(TreePath t) {

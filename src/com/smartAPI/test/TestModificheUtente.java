@@ -14,8 +14,8 @@ public class TestModificheUtente {
 		SmartAPIModel model = new SmartAPIModel();
 		
 		//String username, String password, String nome, String cognome, String email, String avatar
-		//model.addUser("simone", "romano", "simone@romano.com", "simone", "simone", false, "1");
-		model.modificaUtente("simone", "simone1", "simone", "romano1", "simoneromano@gmail.com", "2");
+		model.addUser("prova", "prova", "prova@romano.com", "prova", "prova", false, "1");
+		model.modificaUtente("prova", "prova1", "simone", "prova", "simoneromano@gmail.com", "2");
 	}
 
 }

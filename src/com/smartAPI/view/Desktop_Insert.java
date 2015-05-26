@@ -9,6 +9,7 @@ import java.awt.GridBagConstraints;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
@@ -26,7 +27,7 @@ import java.awt.FlowLayout;
 
 public class Desktop_Insert extends JPanel implements IUserOptionListener{
 	private Panel_InsertCP panel_InsertCP;
-	private Panel_CodePatternCompleteView panel_showCP;
+	private JPanel panel_showCP;
 	private Panel_ShowAllUser panel_ShowUser;
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3;
 	private int actualPanel = INSERT_CP;
@@ -48,6 +49,12 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 		//about
 	}
 
+	/**
+	 * Will create GUI and will return
+	 * left panel where already has been added
+	 * options bar (insert-search...)
+	 * @return
+	 */
 	private JPanel addControl_s() {
 		setLayout(new GridLayout(1, 0, 0, 0));
 		setSize(1416,858);
