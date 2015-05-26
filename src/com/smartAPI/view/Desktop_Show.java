@@ -24,7 +24,7 @@ public class Desktop_Show extends JPanel {
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setBackground(new Color(228, 230, 235));
 		splitPane.setEnabled(false);
-		splitPane.setDividerSize(0);
+		splitPane.setDividerSize(2);
 		add(splitPane);
 		
 		UserInfoJPanel userInfoJPanel = new UserInfoJPanel();

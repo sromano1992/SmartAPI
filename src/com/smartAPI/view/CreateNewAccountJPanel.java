@@ -34,6 +34,7 @@ public class CreateNewAccountJPanel extends JPanel {
 	private JLabel lblUser;
 	private JLabel lblError;
 	private SmartAPIModel model;
+	private JButton btnBack;
 	
 	public CreateNewAccountJPanel() {
 		this.model = new SmartAPIModel();
@@ -44,7 +45,7 @@ public class CreateNewAccountJPanel extends JPanel {
 		lblCreateNewAccount.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCreateNewAccount.setForeground(Color.WHITE);
 		lblCreateNewAccount.setFont(new Font("Lucida Grande", Font.PLAIN, 26));
-		lblCreateNewAccount.setBounds(6, 21, 417, 37);
+		lblCreateNewAccount.setBounds(17, 99, 417, 37);
 		add(lblCreateNewAccount);
 		
 		lblUser = new JLabel("User");
@@ -52,12 +53,12 @@ public class CreateNewAccountJPanel extends JPanel {
 		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUser.setForeground(Color.WHITE);
 		lblUser.setBackground(new Color(2, 66, 96));
-		lblUser.setBounds(47, 195, 95, 31);
+		lblUser.setBounds(69, 343, 95, 31);
 		add(lblUser);
 		
 		userField = new JTextField();
 		userField.setColumns(10);
-		userField.setBounds(139, 192, 204, 37);
+		userField.setBounds(161, 340, 204, 37);
 		add(userField);
 		
 		JLabel lblPassword = new JLabel("Password");
@@ -65,16 +66,16 @@ public class CreateNewAccountJPanel extends JPanel {
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setBackground(new Color(2, 66, 96));
-		lblPassword.setBounds(47, 226, 95, 31);
+		lblPassword.setBounds(69, 374, 95, 31);
 		add(lblPassword);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(139, 222, 204, 37);
+		passwordField.setBounds(161, 370, 204, 37);
 		add(passwordField);
 		
 		nameField = new JTextField();
 		nameField.setColumns(10);
-		nameField.setBounds(139, 282, 204, 37);
+		nameField.setBounds(161, 430, 204, 37);
 		add(nameField);
 		
 		JLabel lblName = new JLabel("Name");
@@ -82,7 +83,7 @@ public class CreateNewAccountJPanel extends JPanel {
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblName.setForeground(Color.WHITE);
 		lblName.setBackground(new Color(2, 66, 96));
-		lblName.setBounds(47, 286, 95, 31);
+		lblName.setBounds(69, 434, 95, 31);
 		add(lblName);
 		
 		JLabel lblSurname = new JLabel("Surname");
@@ -90,15 +91,15 @@ public class CreateNewAccountJPanel extends JPanel {
 		lblSurname.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSurname.setForeground(Color.WHITE);
 		lblSurname.setBackground(new Color(2, 66, 96));
-		lblSurname.setBounds(47, 316, 95, 31);
+		lblSurname.setBounds(69, 464, 95, 31);
 		add(lblSurname);
 		
 		surnameField = new JTextField();
-		surnameField.setBounds(139, 312, 204, 37);
+		surnameField.setBounds(161, 460, 204, 37);
 		add(surnameField);
 		
 		JButton btnCreate = new JButton("Create Account");
-		btnCreate.setBounds(58, 437, 274, 37);
+		btnCreate.setBounds(80, 585, 274, 37);
 		add(btnCreate);
 		
 		
@@ -107,15 +108,15 @@ public class CreateNewAccountJPanel extends JPanel {
 		lblRepatPassw.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRepatPassw.setForeground(Color.WHITE);
 		lblRepatPassw.setBackground(new Color(2, 66, 96));
-		lblRepatPassw.setBounds(47, 257, 95, 31);
+		lblRepatPassw.setBounds(69, 405, 95, 31);
 		add(lblRepatPassw);
 		
 		confirmPasswField = new JPasswordField();
-		confirmPasswField.setBounds(139, 252, 204, 37);
+		confirmPasswField.setBounds(161, 400, 204, 37);
 		add(confirmPasswField);
 		
 		emailField = new JTextField();
-		emailField.setBounds(139, 342, 204, 37);
+		emailField.setBounds(161, 490, 204, 37);
 		add(emailField);
 		
 		JLabel lblEmail = new JLabel("Email");
@@ -123,7 +124,7 @@ public class CreateNewAccountJPanel extends JPanel {
 		lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEmail.setForeground(Color.WHITE);
 		lblEmail.setBackground(new Color(2, 66, 96));
-		lblEmail.setBounds(47, 346, 95, 31);
+		lblEmail.setBounds(69, 494, 95, 31);
 		add(lblEmail);
 		
 		lblIcon = new JLabel("");
@@ -131,7 +132,7 @@ public class CreateNewAccountJPanel extends JPanel {
 		String pathIcon = getClass().getResource(path).getFile();
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblIcon.setIcon(imgicon.getImageResponsive());
-		lblIcon.setBounds(81, 80, 80, 71);
+		lblIcon.setBounds(103, 228, 80, 71);
 		add(lblIcon);
 		
 		Vector comboBoxItems=new Vector();
@@ -155,7 +156,7 @@ public class CreateNewAccountJPanel extends JPanel {
 			}
 		});
 		
-		comboBox.setBounds(214, 101, 118, 31);
+		comboBox.setBounds(236, 249, 118, 31);
 		add(comboBox);
 		
 		lblError = new JLabel("");
@@ -164,6 +165,14 @@ public class CreateNewAccountJPanel extends JPanel {
 		lblError.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		lblError.setBounds(47, 391, 140, 16);
 		add(lblError);
+		
+		btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBack.setBounds(80, 624, 274, 37);
+		add(btnBack);
 
 		btnCreate.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {

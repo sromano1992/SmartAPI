@@ -23,7 +23,6 @@ public class RemoveUser extends JPanel{
 	JLabel lblImage;
 	private static int SCORE = 10;
 	private JTextField userField;
-	private JPasswordField passwordField;
 	private JTextField nameField;
 	private JTextField surnameField;
 	private JTextField emailField;
@@ -64,20 +63,6 @@ public class RemoveUser extends JPanel{
 				userField.setBounds(110, 163, 204, 37);
 				add(userField);
 				
-				JLabel lblPassword = new JLabel("Password");
-				lblPassword.setOpaque(true);
-				lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-				lblPassword.setForeground(Color.WHITE);
-				lblPassword.setBackground(new Color(2, 66, 96));
-				lblPassword.setBounds(18, 197, 95, 31);
-				add(lblPassword);
-				
-				passwordField = new JPasswordField(password);
-				passwordField.setEditable(false);
-				passwordField.setBackground(new Color(230, 230, 230));
-				passwordField.setBounds(110, 193, 204, 37);
-				add(passwordField);
-				
 				JLabel lblName = new JLabel("Name");
 				lblName.setOpaque(true);
 				lblName.setHorizontalAlignment(SwingConstants.CENTER);
@@ -90,7 +75,7 @@ public class RemoveUser extends JPanel{
 				nameField.setEditable(false);
 				nameField.setBackground(new Color(230, 230, 230));
 				nameField.setColumns(10);
-				nameField.setBounds(110, 258, 204, 37);
+				nameField.setBounds(110, 255, 204, 37);
 				nameField.addFocusListener(new FocusListener() {
 					public void focusLost(FocusEvent e) {
 						nameField.setBackground(Color.WHITE);
@@ -134,7 +119,7 @@ public class RemoveUser extends JPanel{
 				lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
 				lblEmail.setForeground(Color.WHITE);
 				lblEmail.setBackground(new Color(2, 66, 96));
-				lblEmail.setBounds(18, 318, 95, 31);
+				lblEmail.setBounds(18, 316, 95, 31);
 				add(lblEmail);
 				
 				emailField = new JTextField(email);
@@ -153,14 +138,6 @@ public class RemoveUser extends JPanel{
 				emailField.setBackground(new Color(230, 230, 230));
 				emailField.setBounds(110, 314, 204, 37);
 				add(emailField);
-				
-				JButton btnNewButton = new JButton("Remove user");
-				btnNewButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-					}
-				});
-				btnNewButton.setBounds(110, 381, 132, 31);
-				add(btnNewButton);
 				path="res/pencil.png";
 				pathIcon = getClass().getResource(path).getFile();
 				imgicon = new MyImageIcon(pathIcon,20,20);

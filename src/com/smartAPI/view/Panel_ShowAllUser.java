@@ -8,6 +8,7 @@ import com.smartAPI.control.TreePathListener;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.Utente;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 public class Panel_ShowAllUser extends JPanel implements TreePathListener{
@@ -19,6 +20,10 @@ public class Panel_ShowAllUser extends JPanel implements TreePathListener{
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JSplitPane splitPane = new JSplitPane();
+		splitPane.setBackground(new Color(228, 230, 235));
+		//splitPane.setEnabled(false);
+		splitPane.setDividerSize(3);
+		splitPane.setDividerLocation(220);
 		add(splitPane);
 		
 		showUserPanel = new ShowUsersInfo();

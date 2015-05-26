@@ -56,6 +56,8 @@ public class UserOptionsJPanel extends JPanel {
 				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 			}
+			
+			
 			public void mouseClicked(MouseEvent e) {
 				
 				for (IUserOptionListener i:listener_s){
