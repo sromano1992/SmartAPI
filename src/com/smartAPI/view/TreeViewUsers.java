@@ -63,7 +63,7 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 		tree.addMouseListener(new MouseAdapter() {
 		      public void mouseClicked(MouseEvent me) {
 		    	  TreePath tp = tree.getPathForLocation(me.getX(), me.getY());
-		    	    if (tp != null && !tp.getPathComponent(0).toString().equals("user")){
+		    	    if (tp != null){
 		    	    	for(TreePathListener t:treePathListener){
 		    	    		t.treePathChanged(tp);
 		    	    	}		    	      
