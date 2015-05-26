@@ -39,106 +39,16 @@ public class UserOptionsJPanel extends JPanel {
 	String path="";
 	String pathIcon = "";
 	MyImageIcon imgicon = null;
+	private JButton btnInsert;
+	private JButton btnShow;
+	private JButton btnAbout;
 	
 	public UserOptionsJPanel() {
 		setBackground(new Color(228, 230, 235));
 		setLayout(null);
 				
-		lblInsert = new JLabel(" Insert");
-		lblInsert.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
- 				lblInsert.setOpaque(true);
- 				lblInsert.setForeground(Color.YELLOW);
- 				lblInsert.setBackground(new Color(27, 147, 225));
-			}
-			public void mouseExited(MouseEvent e) {
-				lblInsert.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
-				lblInsert.setOpaque(true);
-				lblInsert.setForeground(Color.WHITE);
-				lblInsert.setBackground(new Color(231, 76, 60));
-			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				for (IUserOptionListener i:listener_s){
-					i.insertClicked();
-				}
-				log.info("insert event raised");
-			}
-		});
+				
 		
-		
-		lblInsert.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblInsert.setOpaque(true);
-		lblInsert.setForeground(Color.WHITE);
-		lblInsert.setBackground(new Color(231, 76, 60));
-		lblInsert.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInsert.setBounds(222, 28, 200, 50);
-		path="res/insert.png";
-		pathIcon = getClass().getResource(path).getFile();
-		imgicon = new MyImageIcon(pathIcon,25,25);
-		//lblInsert.setIcon(imgicon.getImageResponsive());
-		add(lblInsert);
-		
-		lblShowUsers = new JLabel(" Show users");
-		lblShowUsers.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				lblShowUsers.setOpaque(true);
-				lblShowUsers.setForeground(Color.YELLOW);
-				lblShowUsers.setBackground(new Color(27, 147, 225));
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblShowUsers.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
-				lblShowUsers.setOpaque(true);
-				lblShowUsers.setForeground(Color.WHITE);
-				lblShowUsers.setBackground(new Color(106, 183, 127));
-			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				for (IUserOptionListener i:listener_s){
-					i.showUserClicked();
-				}
-				log.info("show user raised");
-			}
-		});
-		lblShowUsers.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblShowUsers.setOpaque(true);
-		lblShowUsers.setForeground(Color.WHITE);
-		lblShowUsers.setBackground(new Color(106, 183, 127));
-		lblShowUsers.setHorizontalAlignment(SwingConstants.CENTER);		
-		lblShowUsers.setBounds(426, 28, 200, 50);
-		path="res/show.png";
-		pathIcon = getClass().getResource(path).getFile();
-		imgicon = new MyImageIcon(pathIcon,33,33);
-		//lblShowUsers.setIcon(imgicon.getImageResponsive());
-		add(lblShowUsers);
-		
-		JLabel lblAbout = new JLabel(" About");
-		lblAbout.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				for (IUserOptionListener i:listener_s){
-					i.aboutClicked();;
-				}
-				log.info("about event raised");
-			}
-		});
-		lblAbout.setOpaque(true);
-		lblAbout.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAbout.setForeground(Color.WHITE);
-		lblAbout.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblAbout.setBackground(new Color(138, 246, 113));
-		lblAbout.setBounds(630, 28, 200, 50);
-		path="res/friends.png";
-		pathIcon = getClass().getResource(path).getFile();
-		imgicon = new MyImageIcon(pathIcon,30,30);
-		//lblAbout.setIcon(imgicon.getImageResponsive());
-		add(lblAbout);
 		
 		btnSearch = new JButton("");
 		btnSearch.addMouseListener(new MouseAdapter() {
@@ -152,15 +62,81 @@ public class UserOptionsJPanel extends JPanel {
 					i.searchClicked();
 				}
 				log.info("search event raised");
+					
 			}
 
 		});
 		path="res/search.png";
 		pathIcon = getClass().getResource(path).getFile();
 		btnSearch.setIcon(new ImageIcon(pathIcon));
-		btnSearch.setBounds(11, 28, 200, 51);
+		btnSearch.setBounds(11, 28, 200, 52);
 		
 		add(btnSearch);
+		
+		btnInsert = new JButton("");
+		btnInsert.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+			}
+			public void mouseClicked(MouseEvent e) {
+				
+				for (IUserOptionListener i:listener_s){
+					i.insertClicked();
+				}
+				log.info("insert event raised");
+			}
+
+		});
+		path="res/insert.png";
+		pathIcon = getClass().getResource(path).getFile();
+		btnInsert.setIcon(new ImageIcon(pathIcon));
+		btnInsert.setBounds(214, 28, 200, 51);
+		add(btnInsert);
+		
+		btnShow = new JButton("");
+		btnShow.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+			}
+			public void mouseClicked(MouseEvent e) {
+				
+				for (IUserOptionListener i:listener_s){
+					i.showUserClicked();
+				}
+				log.info("show user raised");
+			}
+
+		});
+		path="res/show.png";
+		pathIcon = getClass().getResource(path).getFile();
+		btnShow.setIcon(new ImageIcon(pathIcon));
+		btnShow.setBounds(417, 28, 200, 51);
+		add(btnShow);
+		
+		btnAbout = new JButton("");
+		btnAbout.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+			}
+			public void mouseClicked(MouseEvent e) {
+				
+				for (IUserOptionListener i:listener_s){
+					i.aboutClicked();
+				}
+				log.info("about event raised");
+			}
+
+		});
+		path="res/about.png";
+		pathIcon = getClass().getResource(path).getFile();
+		btnAbout.setIcon(new ImageIcon(pathIcon));
+		btnAbout.setBounds(621, 28, 200, 51);
+		add(btnAbout);
+		
+		
 	}
 	
 	public void addListener(IUserOptionListener i){
