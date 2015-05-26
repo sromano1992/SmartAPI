@@ -66,21 +66,6 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		treeView_1.addTreePathListener(panel_InferredCodePattern.getPanel_ShowCodePattern_1());
 	}
 
-	/*public static JPanel getScrollablePane(){
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(1, 1));
-        panel.add(new Panel_CodePatternCompleteView());
-        JScrollPane scrollPane = new JScrollPane(panel);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setBounds(50, 30, 300, 200);
-        JPanel contentPane = new JPanel(null);
-        contentPane.setLayout(new GridLayout(1, 1));
-        contentPane.setPreferredSize(new Dimension(500, 400));
-        contentPane.add(scrollPane);
-        return contentPane;
-	}*/
-
 	@Override
 	public void treePathChanged(TreePath t) {
 		log.info("updating gui...");

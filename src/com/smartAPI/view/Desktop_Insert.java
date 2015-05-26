@@ -43,7 +43,7 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 		panel.add(panel_InsertCP);
 		
 		panel_showCP = new Panel_CodePatternCompleteView();
-		panel_showCP.setBounds(20, 107, 811, 582);
+		panel_showCP.setBounds(20, 107, 900, 582);
 		panel_ShowUser = new Panel_ShowAllUser();
 		panel_ShowUser.setBounds(0, 181, 920, 564);
 		//about

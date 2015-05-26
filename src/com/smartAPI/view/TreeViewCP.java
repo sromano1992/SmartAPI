@@ -21,6 +21,7 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 	private JTree tree;
 	private ArrayList<TreePathListener> treePathListener;
 	private JScrollPane scrollPane;
+	private JScrollPane scroll;
 	
 	/**
 	 * Create the panel.
@@ -54,7 +55,15 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 			this.remove(tree);
 		}
 		tree = new JTree(rootNode);
-		add(new JScrollPane(tree));
+		if( scroll == null){
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
+		else{
+			this.remove(scroll);
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
 		tree.addMouseListener(new MouseAdapter() {
 		      public void mouseClicked(MouseEvent me) {
 		    	  TreePath tp = tree.getPathForLocation(me.getX(), me.getY());
