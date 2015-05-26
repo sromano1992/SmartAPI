@@ -79,7 +79,9 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 							TreePath tp = tree.getPathForLocation(arg0.getX(), arg0.getY());
 							toRemoveNode = tp;
 							tree.setSelectionPath(tp);
-							if (tp.getPathCount() > 0)
+							String me = toRemoveNode.getLastPathComponent().toString();
+							String user = tp.getPathComponent(0).toString();
+							if (tp.getPathCount() > 0 && !me.equals(Common.UTENTE.getNickname()) && !me.equals(user))
 								p_menu.show(arg0.getComponent(), arg0.getX(), arg0.getY());
 						}
 					}
@@ -90,7 +92,9 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 						TreePath tp = tree.getPathForLocation(arg0.getX(), arg0.getY());
 						toRemoveNode = tp;
 						tree.setSelectionPath(tp);
-						if (tp.getPathCount() > 0)
+						String me = toRemoveNode.getLastPathComponent().toString();
+						String user = tp.getPathComponent(0).toString();
+						if (tp.getPathCount() > 0 && !me.equals(Common.UTENTE.getNickname()) && !me.equals(user))
 							p_menu.show(arg0.getComponent(), arg0.getX(), arg0.getY());
 					}
 				}

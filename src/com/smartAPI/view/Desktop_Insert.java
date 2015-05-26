@@ -29,6 +29,7 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 	private Panel_InsertCP panel_InsertCP;
 	private JPanel panel_showCP;
 	private Panel_ShowAllUser panel_ShowUser;
+	private About panel_About;
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3;
 	private int actualPanel = INSERT_CP;
 	private JPanel panel;
@@ -43,10 +44,11 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 		panel.add(panel_InsertCP);
 		
 		panel_showCP = new Panel_CodePatternCompleteView();
-		panel_showCP.setBounds(20, 107, 900, 582);
+		panel_showCP.setBounds(20, 107, 811, 582);		
 		panel_ShowUser = new Panel_ShowAllUser();
-		panel_ShowUser.setBounds(0, 181, 920, 564);
-		//about
+		panel_ShowUser.setBounds(0, 181, 920, 564);		
+		panel_About = new About();
+		panel_About.setBounds(20, 107, 811, 582);
 	}
 
 	/**
@@ -100,6 +102,8 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
 			panel.remove(panel_InsertCP);
+		else if(actualPanel == SHOW_ABOUT)
+			panel.remove(panel_About);
 		actualPanel = SHOW_CODE_PATTERN;
 		
 		panel.add(panel_showCP);
@@ -115,6 +119,8 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
 			panel.remove(panel_InsertCP);
+		else if(actualPanel == SHOW_ABOUT)
+			panel.remove(panel_About);
 		actualPanel = INSERT_CP;
 
 		panel.add(panel_InsertCP);
@@ -130,6 +136,8 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
 			panel.remove(panel_InsertCP);
+		else if(actualPanel == SHOW_ABOUT)
+			panel.remove(panel_About);
 		actualPanel = SHOW_USER;
 
 		panel.add(panel_ShowUser);
@@ -145,8 +153,10 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
 			panel.remove(panel_InsertCP);
+		else if(actualPanel == SHOW_ABOUT)
+			panel.remove(panel_About);
 		actualPanel = SHOW_ABOUT;
-
+		panel.add(panel_About);
 		updateGUI();
 	}
 

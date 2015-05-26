@@ -12,7 +12,7 @@ import com.smartAPI.view.Desktop_0;
 public class Main {
 	public static void main(String[] args) {
 		JFrame f = new JFrame();
-		f.setSize(900, 900);
+		f.setSize(1300, 900);
 		f.add(new Desktop_0(f));
 		f.setVisible(true);
 		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);

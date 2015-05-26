@@ -75,9 +75,9 @@ public class UserClassificationJPanel extends JPanel {
 			System.out.println("*******");
 			System.out.println(u1);
 			System.out.println("*******");
-			
-			 first = true;
-			
+
+			first = true;
+
 		}
 
 		if (classifica.size() == 2){
@@ -93,10 +93,10 @@ public class UserClassificationJPanel extends JPanel {
 			System.out.println("*******");
 			System.out.println(u2);
 			System.out.println("*******");
-			
-			 first = true;
-			 second = true;
-			
+
+			first = true;
+			second = true;
+
 		}
 
 		if (classifica.size() >= 3){
@@ -119,10 +119,10 @@ public class UserClassificationJPanel extends JPanel {
 			System.out.println("*******");
 			System.out.println(u3);
 			System.out.println("*******");
-			
-			 first = true;
-			 second = true;
-			 third = true;
+
+			first = true;
+			second = true;
+			third = true;
 		}
 
 		int positionUser = getPositionUser(classifica, username);
@@ -164,7 +164,7 @@ public class UserClassificationJPanel extends JPanel {
 		lblIconOne.setBounds(71, 6, 64, 66);
 
 		if (first){
-			path="res/1.png";
+			path=u1.getAvatar();
 			pathIcon = getClass().getResource(path).getFile();
 			imgicon = new MyImageIcon(pathIcon,50,40);
 			lblIconOne.setIcon(imgicon.getImageResponsive());
@@ -179,7 +179,7 @@ public class UserClassificationJPanel extends JPanel {
 		lblFirstUsername.setBounds(150, 6, 130, 66);
 		panelFirst.add(lblFirstUsername);
 
-		
+
 		lblFirstScore = new JLabel("-");
 		if (first) lblFirstScore = new JLabel(u1.getSomma_media());
 		lblFirstScore.setHorizontalAlignment(SwingConstants.CENTER);
@@ -231,12 +231,12 @@ public class UserClassificationJPanel extends JPanel {
 		panelSecond.add(lblIconTwo);
 
 		if (second){
-		path="res/2.png";
-		pathIcon = getClass().getResource(path).getFile();
-		imgicon = new MyImageIcon(pathIcon,50,40);
-		lblIconTwo.setIcon(imgicon.getImageResponsive());
+			path=u2.getAvatar();
+			pathIcon = getClass().getResource(path).getFile();
+			imgicon = new MyImageIcon(pathIcon,50,40);
+			lblIconTwo.setIcon(imgicon.getImageResponsive());
 		}
-		
+
 		lblSecondUsername = new JLabel("-");
 		if (second) lblSecondUsername = new JLabel(u2.getUsername());
 		lblSecondUsername.setHorizontalAlignment(SwingConstants.CENTER);
@@ -297,12 +297,12 @@ public class UserClassificationJPanel extends JPanel {
 		panelThird.add(lblIconThree);
 
 		if (third){
-		path="res/3.png";
-		pathIcon = getClass().getResource(path).getFile();
-		imgicon = new MyImageIcon(pathIcon,50,40);
-		lblIconThree.setIcon(imgicon.getImageResponsive());
+			path=u3.getAvatar();
+			pathIcon = getClass().getResource(path).getFile();
+			imgicon = new MyImageIcon(pathIcon,50,40);
+			lblIconThree.setIcon(imgicon.getImageResponsive());
 		}
-		
+
 		lblThirdUsername = new JLabel("-");
 		if (third) lblThirdUsername = new JLabel(u3.getUsername());
 		lblThirdUsername.setHorizontalAlignment(SwingConstants.CENTER);

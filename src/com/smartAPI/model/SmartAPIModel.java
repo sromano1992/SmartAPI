@@ -572,7 +572,7 @@ public class SmartAPIModel {
 						}
 						if(predicate.getLocalName().equals(Common.HAS_SURNAME)) {
 							cognome = object.toString();
-							System.out.println(cognome);
+							//System.out.println(cognome);
 						}
 						if(predicate.getLocalName().equals(Common.HAS_USERNAME)) {
 							username = object.toString();
@@ -1114,7 +1114,7 @@ public class SmartAPIModel {
 						if(!trovato) {
 							float mediaVotazioni = getMediaVotazioni(subject);
 							if(!(mediaVotazioni == 0.0)) {
-								utenteCodePattern.add(string_object + ","  + getMediaVotazioni(subject) + "," + getNumeroVotanti(subject) + "," + 1  +  "," + getAvatar(string_object));
+								 utenteCodePattern.add(string_object + ","  + getMediaVotazioni(subject) + "," + getNumeroVotanti(subject) + "," + 1  +  "," + getAvatar(string_object));
 							}
 						}
 						trovato = false;
@@ -1131,7 +1131,12 @@ public class SmartAPIModel {
 	
 	public String getAvatar(String username) {
 		Resource resource = getOntModel().getResource(Common.NS + username);
-		String avatar = resource.getProperty(getProperty(Common.NS + Common.HAS_AVATAR)).getObject().toString();
+		String avatar="";
+		Object r = resource.getProperty(getProperty(Common.NS + Common.HAS_AVATAR));
+		if ( r == null)
+			 avatar = "res/nouser.png";
+		else
+			 avatar = resource.getProperty(getProperty(Common.NS + Common.HAS_AVATAR)).getObject().toString();
 		return avatar;
 	}
 

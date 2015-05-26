@@ -189,7 +189,7 @@ public class UserInfoJPanel extends JPanel {
 		emailField.setBackground(new Color(230, 230, 230));
 		
 		btnSave = new JButton("Save");
-		btnSave.setBounds(85, 428, 181, 29);
+		btnSave.setBounds(71, 412, 181, 29);
 		panel.add(btnSave);
 		
 		JLabel lblError = new JLabel("");
@@ -198,6 +198,10 @@ public class UserInfoJPanel extends JPanel {
 		lblError.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		lblError.setBounds(25, 384, 120, 16);
 		panel.add(lblError);
+		
+		JButton btnOut = new JButton("Log out");
+		btnOut.setBounds(71, 440, 181, 29);
+		panel.add(btnOut);
 		btnSave.setVisible(false);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
