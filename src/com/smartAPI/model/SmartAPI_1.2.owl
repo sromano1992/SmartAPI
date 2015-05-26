@@ -301,7 +301,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:hasVoted>p1,</SmartAPI:hasVoted>
     <SmartAPI:hasEmail>amedeo.leo@gmail.com</SmartAPI:hasEmail>
-    <SmartAPI:hasAvatar></SmartAPI:hasAvatar>
+    <SmartAPI:hasAvatar>res/4.png</SmartAPI:hasAvatar>
     <SmartAPI:hasUsername>amedeo</SmartAPI:hasUsername>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Calendar">
@@ -393,13 +393,13 @@
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#simone">
-    <SmartAPI:hasAvatar>2</SmartAPI:hasAvatar>
+    <SmartAPI:hasAvatar>res/2.png</SmartAPI:hasAvatar>
     <SmartAPI:hasVoted>0</SmartAPI:hasVoted>
     <SmartAPI:hasEmail>simoneromano@gmail.com</SmartAPI:hasEmail>
     <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
     <SmartAPI:hasName>simone</SmartAPI:hasName>
     <SmartAPI:hasPassword>simone1</SmartAPI:hasPassword>
-    <SmartAPI:hasSurname>romano1</SmartAPI:hasSurname>
+    <SmartAPI:hasSurname>romano</SmartAPI:hasSurname>
     <SmartAPI:hasUsername>simone</SmartAPI:hasUsername>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
   </rdf:Description>
