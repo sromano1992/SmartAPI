@@ -13,7 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 	import javax.swing.JTabbedPane;
 	import javax.swing.JToolBar;
-	import javax.swing.SwingUtilities;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 	import java.awt.BorderLayout;
 
@@ -28,6 +29,7 @@ import com.smartAPI.model.Common;
 
 import java.awt.Color;
 	import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Insets;
 
@@ -46,13 +48,10 @@ import java.awt.event.ActionEvent;
 
 	public class About extends JPanel implements IUserOptionListener{
 		private Panel_CodePatternCompleteView panel_showCP;
-		private ShowUsers_Ste panel_ShowUser;
+		//private ShowUsers_Ste panel_ShowUser;
 		private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3;
 		private int actualPanel = INSERT_CP;
 		private JPanel panel;
-		private JTextField textField;
-		private JTextField textField_1;
-		private JTextField textField_2;
 		
 		//private aboutPanel
 		
@@ -101,24 +100,9 @@ import java.awt.event.ActionEvent;
 			panel.add(panel_UserOptionsColors);
 			panel_UserOptionsColors.setLayout(null);
 			
-			textField = new JTextField();
-			textField.setBounds(212, 128, 555, 115);
-			panel.add(textField);
-			textField.setColumns(10);
-			
-			textField_1 = new JTextField();
-			textField_1.setColumns(10);
-			textField_1.setBounds(212, 268, 555, 115);
-			panel.add(textField_1);
-			
-			textField_2 = new JTextField();
-			textField_2.setColumns(10);
-			textField_2.setBounds(212, 411, 555, 115);
-			panel.add(textField_2);
-			
 			
 			JLabel lblNewLabel = new JLabel("");
-			lblNewLabel.setBounds(38, 128, 140, 115);
+			lblNewLabel.setBounds(175, 188, 140, 115);
 			String path="res/simo.png";
 			String pathIcon = getClass().getResource(path).getFile();
 			MyImageIcon imgicon = new MyImageIcon(pathIcon,140,115);
@@ -127,7 +111,7 @@ import java.awt.event.ActionEvent;
 			
 			
 			JLabel label = new JLabel("");
-			label.setBounds(38, 268, 140, 115);
+			label.setBounds(384, 188, 140, 115);
 			String path1="res/amedeo.png";
 			String pathIcon1 = getClass().getResource(path1).getFile();
 			MyImageIcon imgicon1 = new MyImageIcon(pathIcon1,140,115);
@@ -135,7 +119,7 @@ import java.awt.event.ActionEvent;
 			panel.add(label);
 			
 			JLabel label_1 = new JLabel("");
-			label_1.setBounds(38, 411, 140, 115);
+			label_1.setBounds(602, 188, 140, 115);
 			String path2="res/ciro.png";
 			String pathIcon2 = getClass().getResource(path2).getFile();
 			MyImageIcon imgicon2 = new MyImageIcon(pathIcon2,140,115);
@@ -143,7 +127,7 @@ import java.awt.event.ActionEvent;
 			panel.add(label_1);
 			
 			JLabel label_2 = new JLabel("");
-			label_2.setBounds(212, 555, 140, 134);
+			label_2.setBounds(291, 475, 140, 134);
 			String path3="res/iole.png";
 			String pathIcon3 = getClass().getResource(path3).getFile();
 			MyImageIcon imgicon3 = new MyImageIcon(pathIcon3,140,134);
@@ -151,12 +135,82 @@ import java.awt.event.ActionEvent;
 			panel.add(label_2);
 			
 			JLabel label_3 = new JLabel("");
-			label_3.setBounds(627, 555, 140, 134);
+			label_3.setBounds(533, 475, 140, 134);
 			String path4="res/ste.png";
 			String pathIcon4 = getClass().getResource(path4).getFile();
 			MyImageIcon imgicon4 = new MyImageIcon(pathIcon4,140,134);
 			label_3.setIcon(imgicon4.getImageResponsive());
 			panel.add(label_3);
+			
+			JLabel lblNewLabel_1 = new JLabel("Simone Romano");
+			lblNewLabel_1.setBounds(191, 314, 105, 82);
+			String path5="res/simoQr.jpg";
+			String pathIcon5 = getClass().getResource(path5).getFile();
+			MyImageIcon imgicon5 = new MyImageIcon(pathIcon5,105, 68);
+			lblNewLabel_1.setIcon(imgicon5.getImageResponsive());
+			panel.add(lblNewLabel_1);
+			
+			JLabel label_4 = new JLabel("Amedeo Leo");
+			label_4.setBounds(407, 321, 105, 68);
+			String path6="res/amedeoQr.jpg";
+			String pathIcon6 = getClass().getResource(path6).getFile();
+			MyImageIcon imgicon6 = new MyImageIcon(pathIcon6,105, 68);
+			label_4.setIcon(imgicon6.getImageResponsive());
+			panel.add(label_4);
+			
+			JLabel label_5 = new JLabel("Ciro Amati");
+			label_5.setBounds(620, 321, 105, 68);
+			String path7="res/ciroQr.jpg";
+			String pathIcon7 = getClass().getResource(path7).getFile();
+			MyImageIcon imgicon7 = new MyImageIcon(pathIcon7,105, 68);
+			label_5.setIcon(imgicon7.getImageResponsive());
+			panel.add(label_5);
+			
+			JLabel label_6 = new JLabel("Iolanda Rinaldi");
+			label_6.setBounds(311, 620, 105, 68);
+			String path8="res/ioleQr.jpg";
+			String pathIcon8 = getClass().getResource(path8).getFile();
+			MyImageIcon imgicon8 = new MyImageIcon(pathIcon8,105, 68);
+			label_6.setIcon(imgicon8.getImageResponsive());
+			panel.add(label_6);
+			
+			JLabel label_7 = new JLabel("Stefania Cardamone");
+			label_7.setBounds(552, 620, 105, 68);
+			String path9="res/steQr.jpg";
+			String pathIcon9 = getClass().getResource(path9).getFile();
+			MyImageIcon imgicon9 = new MyImageIcon(pathIcon9,105, 68);
+			label_7.setIcon(imgicon9.getImageResponsive());
+			panel.add(label_7);
+			
+			JLabel lblNewLabel_2 = new JLabel("Simone Romano");
+			lblNewLabel_2.setBounds(175, 149, 140, 28);
+			lblNewLabel_2.setFont(new Font("Lucida Grande", Font.BOLD+Font.ITALIC, 15));
+			lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+			panel.add(lblNewLabel_2);
+			
+			JLabel label_8 = new JLabel("Amedeo Leo");
+			label_8.setBounds(384, 149, 140, 28);
+			label_8.setFont(new Font("Lucida Grande", Font.BOLD+Font.ITALIC, 15));
+			label_8.setHorizontalAlignment(SwingConstants.CENTER);
+			panel.add(label_8);
+			
+			JLabel label_9 = new JLabel("Ciro Amati");
+			label_9.setBounds(602, 149, 140, 28);
+			label_9.setFont(new Font("Lucida Grande", Font.BOLD+Font.ITALIC, 15));
+			label_9.setHorizontalAlignment(SwingConstants.CENTER);
+			panel.add(label_9);
+			
+			JLabel label_10 = new JLabel("Iolanda Rinaldi");
+			label_10.setBounds(291, 436, 140, 28);
+			label_10.setFont(new Font("Lucida Grande", Font.BOLD+Font.ITALIC, 15));
+			label_10.setHorizontalAlignment(SwingConstants.CENTER);
+			panel.add(label_10);
+			
+			JLabel label_11 = new JLabel("Stefania Cardamone");
+			label_11.setBounds(533, 436, 153, 28);
+			label_11.setFont(new Font("Lucida Grande", Font.BOLD+Font.ITALIC, 15));
+			label_11.setHorizontalAlignment(SwingConstants.CENTER);
+			panel.add(label_11);
 			
 			
 			
@@ -168,70 +222,26 @@ import java.awt.event.ActionEvent;
 
 		@Override
 		public void searchClicked() {
-			// TODO Auto-generated method stub
-			if(actualPanel == SHOW_CODE_PATTERN)
-				panel.remove(panel_showCP);
-			else if(actualPanel == SHOW_USER)
-				panel.remove(panel_ShowUser);
-			else if(actualPanel == INSERT_CP)
-				//panel.remove(panel_InsertCP);
-			actualPanel = SHOW_CODE_PATTERN;
 			
-			panel.add(panel_showCP);
-			updateGUI();
 		}
 
 		@Override
 		public void insertClicked() {
-			// TODO Auto-generated method stub
-			if(actualPanel == SHOW_CODE_PATTERN)
-				panel.remove(panel_showCP);
-			else if(actualPanel == SHOW_USER)
-				panel.remove(panel_ShowUser);
-			else if(actualPanel == INSERT_CP)
-				//panel.remove(panel_InsertCP);
-			actualPanel = INSERT_CP;
-
-			//panel.add(panel_InsertCP);
-			updateGUI();
+			
 		}
 
 		@Override
 		public void showUserClicked() {
-			// TODO Auto-generated method stub
-			if(actualPanel == SHOW_CODE_PATTERN)
-				panel.remove(panel_showCP);
-			else if(actualPanel == SHOW_USER)
-				panel.remove(panel_ShowUser);
-			else if(actualPanel == INSERT_CP)
-				//panel.remove(panel_InsertCP);
-			actualPanel = SHOW_USER;
-
-			panel.add(panel_ShowUser);
-			updateGUI();
+			
 		}
 
 		@Override
 		public void aboutClicked() {
-			// TODO Auto-generated method stub
-			if(actualPanel == SHOW_CODE_PATTERN)
-				panel.remove(panel_showCP);
-			else if(actualPanel == SHOW_USER)
-				panel.remove(panel_ShowUser);
-			else if(actualPanel == INSERT_CP)
-				//panel.remove(panel_InsertCP);
-			actualPanel = SHOW_ABOUT;
-
-			updateGUI();
+			
 		}
 
 		private void updateGUI(){
-			SwingUtilities.updateComponentTreeUI(this);
-			Component c = getParent();
-			while (c!=null){
-				SwingUtilities.updateComponentTreeUI(this);
-				c = c.getParent();
-			}
+			
 		}
 		
 		public void setPanel_1Background(Color background) {
