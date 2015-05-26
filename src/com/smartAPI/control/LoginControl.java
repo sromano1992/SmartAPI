@@ -12,6 +12,7 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.UserException;
 import com.smartAPI.model.Utente;
+import com.smartAPI.view.LoginGrafica;
 
 /**
  * 

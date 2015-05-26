@@ -1,4 +1,5 @@
 package com.smartAPI.view;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
@@ -11,12 +12,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -28,6 +31,7 @@ import com.smartAPI.model.UserException;
 import com.smartAPI.model.Utente;
 
 import javax.swing.ImageIcon;
+import javax.swing.border.Border;
 
 
 public class LoginGrafica extends JPanel{
@@ -42,7 +46,8 @@ public class LoginGrafica extends JPanel{
 	private SmartAPIModel model;
 	private ArrayList<ILogInPanelListner> logInListener_s;
 	private JLabel lblLogo;
-
+	JLabel lblLogin;
+	private JProgressBar progressBar;
 
 	/*
 	public static void main(String[] args) {
@@ -102,30 +107,56 @@ public class LoginGrafica extends JPanel{
 		//BUTTON LOGIN
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
+			
         	public void actionPerformed(ActionEvent arg0) {
-        		try {
-        			LoginControl loginControl = new LoginControl(model);
-        			if(loginControl.controllaUtente(userField.getText(), passwordField.getPassword())) {
-        				Utente utente = loginControl.getUtente(userField.getText());
-        				Common.setUser(utente);
-        				//pannello Desktop 1
-        				for (ILogInPanelListner c:logInListener_s){
-        					c.loginClicked();
-        				}
-        				log.info("raised evento to " + logInListener_s.size() + " listeners...");
-        			}
-        		}
-        		catch(UserException u) {
-        			lblError.setVisible(true);
-        			lblError.setText(u.getMessage());
-        		}
+        		
+        		progressBar.setVisible(true);
+        			
+        			new Thread(new Runnable() {
+						
+						@Override
+						public void run() {
+							try {
+							LoginControl loginControl = new LoginControl(model);
+							
+		        			if(loginControl.controllaUtente(userField.getText(), passwordField.getPassword())) {
+		        				Utente utente = loginControl.getUtente(userField.getText());
+		        				progressBar.setValue(20);
+		        				Thread.sleep(200);
+		        				progressBar.setValue(50);
+		        				Common.setUser(utente);
+		        				progressBar.setValue(60);
+		        				Thread.sleep(200);
+		        				progressBar.setValue(70);
+		        				//pannello Desktop 1
+		        				for (ILogInPanelListner c:logInListener_s){
+		        					c.loginClicked();
+		        				}
+		        				progressBar.setValue(100);
+		        				log.info("raised evento to " + logInListener_s.size() + " listeners...");
+		        			}
+						}
+						
+		        		catch(UserException u) {
+		            		progressBar.setVisible(false);
+
+		        			lblError.setVisible(true);
+		        			lblError.setText(u.getMessage());
+		        		} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						}
+					}).start();
+        			
+        		
         	}
         });
-		btnLogin.setBounds(105, 604, 274, 37);
+		btnLogin.setBounds(105, 535, 274, 37);
 		this.add(btnLogin);
 		
 		//LABEL LOGIN
-		JLabel lblLogin = new JLabel("SmartApi");
+		lblLogin = new JLabel("SmartApi");
 		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogin.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		lblLogin.setForeground(Color.WHITE);
@@ -156,7 +187,7 @@ public class LoginGrafica extends JPanel{
 		lblError.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		lblError.setHorizontalAlignment(SwingConstants.LEFT);
 		lblError.setForeground(Color.RED);
-		lblError.setBounds(91, 185, 120, 16);
+		lblError.setBounds(100, 494, 120, 16);
 		this.add(lblError);
 		
 		lblLogo = new JLabel("");
@@ -168,7 +199,15 @@ public class LoginGrafica extends JPanel{
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,150,100);
 		lblLogo.setIcon(imgicon.getImageResponsive());
 		add(lblLogo);
-		this.setVisible(true);
+		
+		progressBar = new JProgressBar();
+		progressBar.setVisible(false);
+		progressBar.setBounds(169, 584, 146, 20);
+		add(progressBar);
+		
+				this.setVisible(true);
+		
+
 	}
 
 	public void addLoginPanelListner(ILogInPanelListner c){
