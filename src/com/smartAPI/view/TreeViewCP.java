@@ -21,6 +21,8 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 	private JTree tree;
 	private ArrayList<TreePathListener> treePathListener;
 	private JScrollPane scrollPane;
+	private JScrollPane scroll;
+	private ArrayList<CodePattern_Category> cp_s;
 	
 	/**
 	 * Create the panel.
@@ -31,6 +33,7 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 	}
 
 	public void setCodePattern_s(ArrayList<CodePattern_Category> cp_s, String rootName, boolean inferred){
+		this.cp_s = cp_s;
 		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(rootName);
 		for (CodePattern_Category tmp:cp_s){
 			if(inferred){
@@ -54,7 +57,15 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 			this.remove(tree);
 		}
 		tree = new JTree(rootNode);
-		add(new JScrollPane(tree));
+		if( scroll == null){
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
+		else{
+			this.remove(scroll);
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
 		tree.addMouseListener(new MouseAdapter() {
 		      public void mouseClicked(MouseEvent me) {
 		    	  TreePath tp = tree.getPathForLocation(me.getX(), me.getY());
@@ -86,4 +97,8 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 			setCodePattern_s(tmp, "Inferred", true);
 		}		
 	}
+
+	public ArrayList<CodePattern_Category> getCp_s() {
+		return cp_s;
+	}	
 }
