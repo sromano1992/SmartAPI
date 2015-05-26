@@ -48,7 +48,6 @@ import java.awt.event.ActionEvent;
 
 	public class About extends JPanel implements IUserOptionListener{
 		private Panel_CodePatternCompleteView panel_showCP;
-		//private ShowUsers_Ste panel_ShowUser;
 		private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3;
 		private int actualPanel = INSERT_CP;
 		private JPanel panel;
@@ -248,5 +247,3 @@ import java.awt.event.ActionEvent;
 			//panel_1.setBackground(background);
 		}
 	}
-
-
