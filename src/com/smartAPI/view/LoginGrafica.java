@@ -105,24 +105,24 @@ public class LoginGrafica extends JPanel{
 							
 		        			if(loginControl.controllaUtente(userField.getText(), passwordField.getPassword())) {
 		        				Utente utente = loginControl.getUtente(userField.getText());
-		        				progressBar.setValue(20);
+		        				//progressBar.setValue(20);
 		        				//Thread.sleep(200); //test
-		        				progressBar.setValue(50);
+		        				//progressBar.setValue(50);
 		        				Common.setUser(utente);
-		        				progressBar.setValue(60);
+		        				//progressBar.setValue(60);
 		        				//Thread.sleep(200);//test
-		        				progressBar.setValue(70);
+		        				//progressBar.setValue(70);
 		        				//pannello Desktop 1
 		        				for (ILogInPanelListner c:logInListener_s){
 		        					c.loginClicked();
 		        				}
-		        				progressBar.setValue(100);
+		        				//progressBar.setValue(100);
 		        				log.info("raised evento to " + logInListener_s.size() + " listeners...");
 		        			}
 						}
 						
 		        		catch(UserException u) {
-		            		progressBar.setVisible(false);
+		            		//progressBar.setVisible(false);
 
 		        			lblError.setVisible(true);
 		        			lblError.setText(u.getMessage());

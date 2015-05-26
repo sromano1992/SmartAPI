@@ -17,9 +17,11 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ScrollPaneConstants;
 
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -110,6 +112,10 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 				JFrame_InferredCpInfo f = new JFrame_InferredCpInfo();
 				f.setInferredCP(actualCP, actualCP_category);
 				f.setVisible(true);
+				Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+				f.setLocation(dim.width/2-f.getSize().width/2, dim.height/2-f.getSize().height/2);
+				f.setResizable(false);
+				f.setDefaultCloseOperation(f.DISPOSE_ON_CLOSE);
 			}
 		});
 		infoButton.setIcon(new ImageIcon(Panel_ShowCodePattern.class.getResource("/com/smartAPI/view/res/questionMark.gif")));
