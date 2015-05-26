@@ -414,7 +414,7 @@
     <owl:NamedIndividual rdf:about="&SmartAPI;amedeo">
         <rdf:type rdf:resource="&SmartAPI;User"/>
         <hasSurname>leo</hasSurname>
-        <hasAvatar></hasAvatar>
+        <hasAvatar>res/5.png</hasAvatar>
         <isAdministrator>si</isAdministrator>
         <hasVoted>p1,</hasVoted>
         <hasUsername>amedeo</hasUsername>
@@ -775,7 +775,7 @@
         <isAdministrator>no</isAdministrator>
         <hasVoted>0</hasVoted>
         <hasUsername>simone</hasUsername>
-        <hasAvatar>2</hasAvatar>
+        <hasAvatar>res/2.png</hasAvatar>
         <hasName>simone</hasName>
         <hasPassword>simone</hasPassword>
     </owl:NamedIndividual>
