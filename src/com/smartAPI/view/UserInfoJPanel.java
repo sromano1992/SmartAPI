@@ -191,6 +191,13 @@ public class UserInfoJPanel extends JPanel {
 		btnSave = new JButton("Save");
 		btnSave.setBounds(85, 428, 181, 29);
 		panel.add(btnSave);
+		
+		JLabel lblError = new JLabel("");
+		lblError.setHorizontalAlignment(SwingConstants.LEFT);
+		lblError.setForeground(Color.RED);
+		lblError.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lblError.setBounds(25, 384, 120, 16);
+		panel.add(lblError);
 		btnSave.setVisible(false);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
