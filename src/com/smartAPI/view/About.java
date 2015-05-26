@@ -206,7 +206,7 @@ import java.awt.event.ActionEvent;
 			panel.add(label_10);
 			
 			JLabel label_11 = new JLabel("Stefania Cardamone");
-			label_11.setBounds(533, 436, 153, 28);
+			label_11.setBounds(516, 436, 170, 28);
 			label_11.setFont(new Font("Lucida Grande", Font.BOLD+Font.ITALIC, 15));
 			label_11.setHorizontalAlignment(SwingConstants.CENTER);
 			panel.add(label_11);
