@@ -49,22 +49,6 @@ public class LoginGrafica extends JPanel{
 	JLabel lblLogin;
 	private JProgressBar progressBar;
 
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					model = new SmartAPIModel();
-					LoginGrafica window = new LoginGrafica();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	 */
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -116,19 +100,18 @@ public class LoginGrafica extends JPanel{
 							
 		        			if(loginControl.controllaUtente(userField.getText(), passwordField.getPassword())) {
 		        				Utente utente = loginControl.getUtente(userField.getText());
-		        				
 		        				Common.setUser(utente);
-		        				
-		        				//pannello Desktop 1
+
 		        				for (ILogInPanelListner c:logInListener_s){
 		        					c.loginClicked();
 		        				}
+
 		        				log.info("raised evento to " + logInListener_s.size() + " listeners...");
 		        			}
 						}
 						
 		        		catch(UserException u) {
-		      
+
 		        			lblError.setVisible(true);
 		        			lblError.setText(u.getMessage());
 		        		} 		
