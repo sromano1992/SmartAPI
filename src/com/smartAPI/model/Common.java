@@ -29,6 +29,7 @@ public class Common {
 	public static final String HAS_VOTED = "hasVoted";
 	public static final String NUMBER_OF_VOTERS = "hasVoters";
 	public static final String HAS_SCORE = "hasScore";
+	public static final String HAS_STARS = "hasStars";
 	public static Utente UTENTE = null;
 	
 	public static void setUser(Utente u){
