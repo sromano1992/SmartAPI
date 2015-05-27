@@ -43,7 +43,7 @@ public class LoginGrafica extends JPanel{
 	private JLabel lblNewAccount;
 	private static final Logger Log = Logger.getLogger( "InfoLogging" );
 	private JLabel lblError;
-	public static SmartAPIModel model;
+	private SmartAPIModel model;
 	private ArrayList<ILogInPanelListner> logInListener_s;
 	private JLabel lblLogo;
 	JLabel lblLogin;
@@ -155,7 +155,7 @@ public class LoginGrafica extends JPanel{
 		lblLogo = new JLabel("");
 		lblLogo.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblLogo.setIcon(null);
-		lblLogo.setBounds(100, 122, 238, 182);
+		lblLogo.setBounds(100, 131, 231, 173);
 		//String path="res/logo.gif";
 		//String pathIcon = getClass().getResource(path).getFile();
 		//MyImageIcon imgicon = new MyImageIcon(pathIcon,200,150);
@@ -174,9 +174,5 @@ public class LoginGrafica extends JPanel{
 	public void addLoginPanelListner(ILogInPanelListner c){
 		logInListener_s.add(c);
 		log.info("Added listener...");
-	}
-	
-	public static SmartAPIModel getModel() {
-		return model;
 	}
 }
