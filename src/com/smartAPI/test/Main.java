@@ -9,7 +9,7 @@ public class Main {
 		JFrame f = new JFrame();
 		f.setSize(1300, 900);
 		f.add(new Desktop_0(f));
-		//f.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		f.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		f.setVisible(true);
 		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
 	}

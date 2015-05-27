@@ -1233,4 +1233,5 @@ public class SmartAPIModel {
 		resource.getProperty(getProperty(Common.NS + Common.HAS_STARS)).changeLiteralObject(stelle);
 		return true;
 	}
+	
 }
