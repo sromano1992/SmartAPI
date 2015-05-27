@@ -1,7 +1,9 @@
 package com.smartAPI.view;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 import javax.swing.tree.TreePath;
 
 import org.apache.log4j.Logger;
@@ -10,7 +12,9 @@ import com.smartAPI.control.TreePathListener;
 import com.smartAPI.model.SmartAPIModel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.GridLayout;
 
 import javax.swing.JScrollPane;
@@ -22,6 +26,9 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;
 import javax.swing.ScrollPaneConstants;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * 
@@ -38,6 +45,8 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		setLayout(new BorderLayout(0, 0));
 		
 		JSplitPane splitPane = new JSplitPane();
+		splitPane.setContinuousLayout(true);
+	    splitPane.setOneTouchExpandable(true);
 		add(splitPane, BorderLayout.CENTER);
 		splitPane.setSize(new Dimension(0, 250));
 		splitPane.setPreferredSize(new Dimension(193, 250));

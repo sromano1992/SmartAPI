@@ -18,17 +18,32 @@ import java.util.ArrayList;
 
 public class UserClassificationJPanel extends JPanel {
 
-	public UserClassificationJPanel() {
+	public JPanel panelFirst;
+	public JPanel panelSecond;
+	public JPanel panelThird;
+	public JPanel panelGeneric;
+	
+	public UserClassificationJPanel(String username) {
+		panelFirst = new JPanel();
+		panelSecond = new JPanel();
+		panelThird = new JPanel();
+		panelGeneric = new JPanel();
+		start(username);
+		
+	}
+
+	public void start(String user) {
 		setLayout(null);
 		setBackground(new Color(228, 230, 235));
 		Border border;
 
-		String username="ciro";
+	    String username=user;
+
 		boolean flag=true; //if user is not one, not two, not three
 		boolean first = false;
 		boolean second = false;
 		boolean third = false;
-		JPanel panelGeneric = new JPanel();
+		
 		panelGeneric.setVisible(false);
 		UserClassification uN = null;
 		UserClassification u1 = null;
@@ -126,6 +141,7 @@ public class UserClassificationJPanel extends JPanel {
 		}
 
 		int positionUser = getPositionUser(classifica, username);
+		System.out.println("Position of "+username+" is: "+positionUser);
 
 		if (positionUser>3){
 			int position = positionUser-1;
@@ -139,8 +155,8 @@ public class UserClassificationJPanel extends JPanel {
 		else flag=false; //username is first or second or third
 
 		// ******  FIRST ******
-		JPanel panelFirst = new JPanel();
-		panelFirst.setBounds(91, 84, 645, 78);
+		
+		panelFirst.setBounds(128, 57, 645, 39);
 		if (positionUser == 1)
 			panelFirst.setBackground(new Color(159, 247, 129));
 		else
@@ -152,21 +168,22 @@ public class UserClassificationJPanel extends JPanel {
 
 		JLabel lblOne = new JLabel("1");
 		lblOne.setForeground(Color.WHITE);
-		lblOne.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		lblOne.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		lblOne.setHorizontalAlignment(SwingConstants.CENTER);
-		lblOne.setBounds(6, 6, 64, 66);
+		lblOne.setBounds(6, 6, 45, 27);
 		panelFirst.add(lblOne);
 
 		lblIconOne = new JLabel("");
 		lblIconOne.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIconOne.setForeground(Color.WHITE);
 		lblIconOne.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblIconOne.setBounds(71, 6, 64, 66);
+		lblIconOne.setBounds(73, 6, 45, 27);
+		panelFirst.add(lblIconOne);
 
 		if (first){
 			path=u1.getAvatar();
 			pathIcon = getClass().getResource(path).getFile();
-			imgicon = new MyImageIcon(pathIcon,50,40);
+			imgicon = new MyImageIcon(pathIcon,33,23);
 			lblIconOne.setIcon(imgicon.getImageResponsive());
 			panelFirst.add(lblIconOne);
 		}
@@ -175,8 +192,8 @@ public class UserClassificationJPanel extends JPanel {
 		if (first) lblFirstUsername = new JLabel(u1.getUsername());
 		lblFirstUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFirstUsername.setForeground(Color.WHITE);
-		lblFirstUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblFirstUsername.setBounds(150, 6, 130, 66);
+		lblFirstUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		lblFirstUsername.setBounds(163, 5, 101, 30);
 		panelFirst.add(lblFirstUsername);
 
 
@@ -184,28 +201,30 @@ public class UserClassificationJPanel extends JPanel {
 		if (first) lblFirstScore = new JLabel(u1.getSomma_media());
 		lblFirstScore.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFirstScore.setForeground(Color.WHITE);
-		lblFirstScore.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblFirstScore.setBounds(292, 6, 78, 66);
+		lblFirstScore.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		lblFirstScore.setBounds(292, 6, 68, 27);
 		panelFirst.add(lblFirstScore);
 
 		lblFirstVoteCP = new JLabel("-");
 		if (first) lblFirstVoteCP = new JLabel(u1.getVotanti_codepattern());
 		lblFirstVoteCP.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFirstVoteCP.setForeground(Color.WHITE);
-		lblFirstVoteCP.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblFirstVoteCP.setBounds(404, 6, 78, 66);
+		lblFirstVoteCP.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		lblFirstVoteCP.setBounds(404, 6, 68, 27);
 		panelFirst.add(lblFirstVoteCP);
 
 		lblFirstVoteUs = new JLabel("-");
 		if (first) lblFirstVoteUs = new JLabel(u1.getUtenti_votanti());
 		lblFirstVoteUs.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFirstVoteUs.setForeground(Color.WHITE);
-		lblFirstVoteUs.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblFirstVoteUs.setBounds(534, 6, 78, 66);
+		lblFirstVoteUs.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		lblFirstVoteUs.setBounds(534, 6, 68, 27);
 		panelFirst.add(lblFirstVoteUs);
+		
+		
 
 		// ******  SECOND ******
-		JPanel panelSecond = new JPanel();
+		
 		panelSecond.setLayout(null);
 		if (positionUser == 2)
 			panelSecond.setBackground(new Color(159, 247, 129));
@@ -213,27 +232,27 @@ public class UserClassificationJPanel extends JPanel {
 			panelSecond.setBackground(new Color(27, 147, 225));
 		border = BorderFactory.createLineBorder(new Color(2, 94, 137), 1);
 		panelSecond.setBorder(border);
-		panelSecond.setBounds(91, 161, 645, 78);
+		panelSecond.setBounds(128, 94, 645, 39);
 		add(panelSecond);
 
 		JLabel lblTwo = new JLabel("2");
 		lblTwo.setForeground(Color.WHITE);
-		lblTwo.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		lblTwo.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		lblTwo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTwo.setBounds(6, 6, 64, 66);
+		lblTwo.setBounds(6, 6, 45, 27);
 		panelSecond.add(lblTwo);
 
 		lblIconTwo = new JLabel(" ");
 		lblIconTwo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIconTwo.setForeground(Color.WHITE);
 		lblIconTwo.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblIconTwo.setBounds(76, 6, 64, 66);
+		lblIconTwo.setBounds(76, 6, 45, 27);
 		panelSecond.add(lblIconTwo);
 
 		if (second){
 			path=u2.getAvatar();
 			pathIcon = getClass().getResource(path).getFile();
-			imgicon = new MyImageIcon(pathIcon,50,40);
+			imgicon = new MyImageIcon(pathIcon,35,25);
 			lblIconTwo.setIcon(imgicon.getImageResponsive());
 		}
 
@@ -241,37 +260,37 @@ public class UserClassificationJPanel extends JPanel {
 		if (second) lblSecondUsername = new JLabel(u2.getUsername());
 		lblSecondUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSecondUsername.setForeground(Color.WHITE);
-		lblSecondUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblSecondUsername.setBounds(152, 6, 127, 66);
+		lblSecondUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		lblSecondUsername.setBounds(165, 6, 101, 27);
 		panelSecond.add(lblSecondUsername);
 
 		lblSecondScore = new JLabel("-");
 		if (second) lblSecondScore = new JLabel(u2.getSomma_media());
 		lblSecondScore.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSecondScore.setForeground(Color.WHITE);
-		lblSecondScore.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblSecondScore.setBounds(291, 6, 78, 66);
+		lblSecondScore.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		lblSecondScore.setBounds(291, 6, 68, 27);
 		panelSecond.add(lblSecondScore);
 
 		lblSecondVoteCP = new JLabel("-");
 		if (second) lblSecondVoteCP = new JLabel(u2.getVotanti_codepattern());
 		lblSecondVoteCP.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSecondVoteCP.setForeground(Color.WHITE);
-		lblSecondVoteCP.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblSecondVoteCP.setBounds(407, 6, 78, 66);
+		lblSecondVoteCP.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		lblSecondVoteCP.setBounds(407, 6, 68, 27);
 		panelSecond.add(lblSecondVoteCP);
 
 		lblSecondVoteUs = new JLabel("-");
 		if (second) lblSecondVoteUs = new JLabel(u2.getUtenti_votanti());
 		lblSecondVoteUs.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSecondVoteUs.setForeground(Color.WHITE);
-		lblSecondVoteUs.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblSecondVoteUs.setBounds(533, 6, 78, 66);
+		lblSecondVoteUs.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		lblSecondVoteUs.setBounds(533, 6, 68, 27);
 		panelSecond.add(lblSecondVoteUs);
 		//panelSecond.add(lblIconTwo);
 
 		// ******  THIRD ******
-		JPanel panelThird = new JPanel();
+		
 		panelThird.setLayout(null);
 		if (positionUser == 3)
 			panelThird.setBackground(new Color(159, 247, 129));
@@ -279,27 +298,27 @@ public class UserClassificationJPanel extends JPanel {
 			panelThird.setBackground(new Color(27, 147, 225));
 		border = BorderFactory.createLineBorder(new Color(2, 94, 137), 1);
 		panelThird.setBorder(border);
-		panelThird.setBounds(91, 238, 645, 78);
+		panelThird.setBounds(128, 132, 645, 39);
 		add(panelThird);
 
 		JLabel lblThree = new JLabel("3");
 		lblThree.setForeground(Color.WHITE);
-		lblThree.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		lblThree.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		lblThree.setHorizontalAlignment(SwingConstants.CENTER);
-		lblThree.setBounds(6, 6, 64, 66);
+		lblThree.setBounds(6, 6, 45, 27);
 		panelThird.add(lblThree);
 
-		lblIconThree = new JLabel(" ");
+		lblIconThree = new JLabel("");
 		lblIconThree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIconThree.setForeground(Color.WHITE);
 		lblIconThree.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblIconThree.setBounds(78, 6, 64, 66);
+		lblIconThree.setBounds(78, 6, 45, 27);
 		panelThird.add(lblIconThree);
 
 		if (third){
 			path=u3.getAvatar();
 			pathIcon = getClass().getResource(path).getFile();
-			imgicon = new MyImageIcon(pathIcon,50,40);
+			imgicon = new MyImageIcon(pathIcon,40,30);
 			lblIconThree.setIcon(imgicon.getImageResponsive());
 		}
 
@@ -307,32 +326,32 @@ public class UserClassificationJPanel extends JPanel {
 		if (third) lblThirdUsername = new JLabel(u3.getUsername());
 		lblThirdUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		lblThirdUsername.setForeground(Color.WHITE);
-		lblThirdUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblThirdUsername.setBounds(154, 6, 124, 66);
+		lblThirdUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		lblThirdUsername.setBounds(165, 2, 101, 35);
 		panelThird.add(lblThirdUsername);
 
 		lblThirdScore = new JLabel("-");
 		if (third) lblThirdScore = new JLabel(u3.getSomma_media());
 		lblThirdScore.setHorizontalAlignment(SwingConstants.CENTER);
 		lblThirdScore.setForeground(Color.WHITE);
-		lblThirdScore.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblThirdScore.setBounds(290, 6, 78, 66);
+		lblThirdScore.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		lblThirdScore.setBounds(290, 6, 68, 27);
 		panelThird.add(lblThirdScore);
 
 		lblThirdVoteCP = new JLabel("-");
 		if (third) lblThirdVoteCP = new JLabel(u3.getVotanti_codepattern());
 		lblThirdVoteCP.setHorizontalAlignment(SwingConstants.CENTER);
 		lblThirdVoteCP.setForeground(Color.WHITE);
-		lblThirdVoteCP.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblThirdVoteCP.setBounds(408, 6, 78, 66);
+		lblThirdVoteCP.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		lblThirdVoteCP.setBounds(408, 6, 68, 27);
 		panelThird.add(lblThirdVoteCP);
 
 		lblThirdVoteUs = new JLabel("-");
 		if (third) lblThirdVoteUs = new JLabel(u3.getUtenti_votanti());
 		lblThirdVoteUs.setHorizontalAlignment(SwingConstants.CENTER);
 		lblThirdVoteUs.setForeground(Color.WHITE);
-		lblThirdVoteUs.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblThirdVoteUs.setBounds(533, 6, 78, 66);
+		lblThirdVoteUs.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		lblThirdVoteUs.setBounds(533, 6, 68, 27);
 		panelThird.add(lblThirdVoteUs);
 		//panelThird.add(lblIconThree);
 
@@ -344,54 +363,54 @@ public class UserClassificationJPanel extends JPanel {
 			panelGeneric.setLayout(null);
 			border = BorderFactory.createLineBorder(new Color(2, 94, 137), 1);
 			panelGeneric.setBorder(border);
-			panelGeneric.setBounds(91, 406, 645, 78);
+			panelGeneric.setBounds(128, 202, 645, 39);
 			add(panelGeneric);
 
 			JLabel lblGeneric = new JLabel("16");
 			lblGeneric.setForeground(Color.WHITE);
 			lblGeneric.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGeneric.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-			lblGeneric.setBounds(6, 6, 64, 66);
+			lblGeneric.setBounds(6, 6, 45, 27);
 			panelGeneric.add(lblGeneric);
 
 			lblGenericIcon = new JLabel(" ");
 			lblGenericIcon.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGenericIcon.setForeground(Color.WHITE);
 			lblGenericIcon.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-			lblGenericIcon.setBounds(79, 6, 64, 66);
+			lblGenericIcon.setBounds(79, 6, 45, 27);
 			panelGeneric.add(lblGenericIcon);
 
 			path="res/4.png";
 			pathIcon = getClass().getResource(path).getFile();
-			imgicon = new MyImageIcon(pathIcon,50,40);
+			imgicon = new MyImageIcon(pathIcon,30,20);
 			lblGenericIcon.setIcon(imgicon.getImageResponsive());
 
 			lblGenericUsername = new JLabel(uN.getUsername());
 			lblGenericUsername.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGenericUsername.setForeground(Color.WHITE);
 			lblGenericUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-			lblGenericUsername.setBounds(155, 6, 124, 66);
+			lblGenericUsername.setBounds(155, 6, 124, 27);
 			panelGeneric.add(lblGenericUsername);
 
 			lblGenericScore = new JLabel(uN.getSomma_media());
 			lblGenericScore.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGenericScore.setForeground(Color.WHITE);
 			lblGenericScore.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-			lblGenericScore.setBounds(291, 6, 78, 66);
+			lblGenericScore.setBounds(291, 6, 78, 27);
 			panelGeneric.add(lblGenericScore);
 
 			lblGenericVoteCP = new JLabel(uN.getVotanti_codepattern());
 			lblGenericVoteCP.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGenericVoteCP.setForeground(Color.WHITE);
 			lblGenericVoteCP.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-			lblGenericVoteCP.setBounds(408, 6, 78, 66);
+			lblGenericVoteCP.setBounds(408, 6, 78, 27);
 			panelGeneric.add(lblGenericVoteCP);
 
 			lblGenericVoteUs = new JLabel(uN.getUtenti_votanti());
 			lblGenericVoteUs.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGenericVoteUs.setForeground(Color.WHITE);
 			lblGenericVoteUs.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-			lblGenericVoteUs.setBounds(532, 6, 78, 66);
+			lblGenericVoteUs.setBounds(532, 6, 78, 27);
 			panelGeneric.add(lblGenericVoteUs);
 
 		}
@@ -400,7 +419,7 @@ public class UserClassificationJPanel extends JPanel {
 		JPanel panelInfo = new JPanel();
 		panelInfo.setLayout(null);
 		panelInfo.setBackground(Color.LIGHT_GRAY);
-		panelInfo.setBounds(91, 20, 645, 39);
+		panelInfo.setBounds(128, 19, 645, 39);
 		add(panelInfo);
 
 		JLabel lblScore = new JLabel("Score");
@@ -410,12 +429,7 @@ public class UserClassificationJPanel extends JPanel {
 		lblScore.setBounds(296, 6, 64, 27);
 		panelInfo.add(lblScore);
 
-		JLabel label_1 = new JLabel("");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		label_1.setBounds(108, 6, 64, 66);
-		panelInfo.add(label_1);
+		
 
 		JLabel lblVoter = new JLabel("Voters CP");
 		lblVoter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -450,5 +464,10 @@ public class UserClassificationJPanel extends JPanel {
 		}
 		return 0; //never
 
+	}
+	
+	public void setUser (String user){
+		System.out.println("username: "+user);
+		start( user);
 	}
 }

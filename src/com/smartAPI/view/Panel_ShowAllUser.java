@@ -5,6 +5,7 @@ import javax.swing.JSplitPane;
 import javax.swing.tree.TreePath;
 
 import com.smartAPI.control.TreePathListener;
+import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.Utente;
 
@@ -13,6 +14,7 @@ import java.awt.GridLayout;
 
 public class Panel_ShowAllUser extends JPanel implements TreePathListener{
 	private ShowUsersInfo showUserPanel;
+	private UserClassificationJPanel userClassificationJPanel;
 	/**
 	 * Create the panel.
 	 */
@@ -33,6 +35,9 @@ public class Panel_ShowAllUser extends JPanel implements TreePathListener{
 		treeViewUsers.setUser_s(new SmartAPIModel().getUsers(), "user");
 		treeViewUsers.addTreePathListener(this);
 		splitPane.setLeftComponent(treeViewUsers);
+		
+		userClassificationJPanel = new UserClassificationJPanel(Common.UTENTE.getNickname());
+		add(userClassificationJPanel);
 	}
 
 	@Override
@@ -41,7 +46,7 @@ public class Panel_ShowAllUser extends JPanel implements TreePathListener{
 		if(t.getPathCount() > 1){
 			Utente us = s.getUtente(t.getPathComponent(1).toString());
 			showUserPanel.setUser(us);
+			userClassificationJPanel.setUser(us.getNickname());
 		}		
 	}
-
 }
