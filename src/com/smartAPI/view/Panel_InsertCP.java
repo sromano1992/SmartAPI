@@ -16,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.ScrollPaneConstants;
 
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -40,6 +41,7 @@ import javax.swing.DropMode;
 import javax.swing.border.Border;
 
 import java.awt.ScrollPane;
+
 import javax.swing.ImageIcon;
 
 /**
@@ -200,8 +202,16 @@ public class Panel_InsertCP extends JPanel {
 		add(panel);
 		panel.setBounds(69, 231, 738, 220);
 		JTextArea ta = new JTextArea(txt+txt+txt, 13, 60);
-		panel.add(ta);
+		//panel.add(ta);
+		ta.setVisible(true);
 	    ta.setLineWrap(true);
+	    
+	    JScrollPane scrollPane = new JScrollPane(ta);
+	    scrollPane.setVisible(true);
+	    scrollPane.setBounds(69,231,80,80);
+	    scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+	    panel.add(scrollPane);
+	    
 	    
 	    JLabel lblPattern = new JLabel("Pattern");
 	    lblPattern.setOpaque(true);
