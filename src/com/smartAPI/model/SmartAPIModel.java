@@ -410,7 +410,6 @@ public class SmartAPIModel {
 		s.addProperty(p, o);
 		log.info("Add property '" + propName + "' to subject '" + subject + "' with value '" + object + "'");
 	}
-
 	/**
 	 * Aggiunge un utente alla base ontologica
 	 * @author Amedeo Leo, Ciro Amati
@@ -977,10 +976,10 @@ public class SmartAPIModel {
 					throw new UserException("Non puoi votare un tuo code pattern");
 				if(hasAlreadyVoted(username, codePattern))
 					throw new UserException("Hai gi� votato questo code pattern");
-				int vecchiVotanti = resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).getObject().asLiteral().getInt();
+				int vecchiVotanti = resource.getProperty(getProperty(Common.NS + Common.HAS_VOTERS)).getObject().asLiteral().getInt();
 				int nuoviVotanti = vecchiVotanti + 1;
 				Literal nVotanti = getOntModel().createTypedLiteral(new Integer(nuoviVotanti));
-				resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).changeObject(nVotanti);
+				resource.getProperty(getProperty(Common.NS + Common.HAS_VOTERS)).changeObject(nVotanti);
 				int score =  resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).getObject().asLiteral().getInt();
 				String nuovoPunteggio = (voto + score) + "";
 				Literal l = getOntModel().createTypedLiteral(new Integer(nuovoPunteggio));
@@ -1021,7 +1020,7 @@ public class SmartAPIModel {
 
 	public float getNumeroVotanti(String codePattern) {
 		Resource resource = getOntModel().getResource(Common.NS + codePattern);
-		Float votanti = resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).getObject().asLiteral().getFloat();
+		Float votanti = resource.getProperty(getProperty(Common.NS + Common.HAS_VOTERS)).getObject().asLiteral().getFloat();
 		return votanti;
 	}
 
@@ -1238,7 +1237,19 @@ public class SmartAPIModel {
 		addObjectPropertyInstance(Common.HAS_LIBRARY, codePattern, library);
 	}
 	
-	public void setCPSourceCode(String cp, String name_cp){
-		addObjectPropertyInstance(Common.HAS_CODE, name_cp, cp);
+	public boolean setCPSourceCode(String code, String risorsa) {
+		Individual ind = getOntModel().getIndividual(Common.NS + risorsa);
+		DatatypeProperty hasCode = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_CODE);
+		ind.addProperty(hasCode, code);
+		log.info("Added property " + code);
+		return true;
+	}
+	
+	public void initScoreVoters(String risorsa){
+		Individual ind = getOntModel().getIndividual(Common.NS + risorsa);
+		DatatypeProperty hasVoters = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_VOTERS);
+		ind.addProperty(hasVoters, "0");
+		DatatypeProperty hasScore = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_SCORE);
+		ind.addProperty(hasScore, "0");
 	}
 }

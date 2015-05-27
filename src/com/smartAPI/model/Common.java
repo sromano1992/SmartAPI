@@ -27,7 +27,7 @@ public class Common {
 	public static final String HAS_KEYWORD = "hasKeyword";
 	public static final String HAS_AVATAR = "hasAvatar";
 	public static final String HAS_VOTED = "hasVoted";
-	public static final String NUMBER_OF_VOTERS = "hasVoters";
+	public static final String HAS_VOTERS = "hasVoters";
 	public static final String HAS_SCORE = "hasScore";
 	public static final String HAS_STARS = "hasStars";
 	public static Utente UTENTE = null;
