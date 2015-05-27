@@ -63,8 +63,8 @@ public class LoginControl {
 			}
 		}
 		else 
-			throw new UserException("Username non esistente");
-		throw new UserException("Password errata");
+			throw new UserException("User or password not found");
+		throw new UserException("User or password not found");
 	}
 	
 	

@@ -33,7 +33,7 @@ public class Utente implements Serializable {
 
 	public void setNome(String nome) {
 		if(!nome.matches("^[a-zA-Z ]{3,12}$"))
-            throw new UserException("Campo nome non valido");
+            throw new UserException("Name not valid");
         this.nome = nome;
 	}
 
@@ -54,7 +54,7 @@ public class Utente implements Serializable {
 	*/
 	public void setCognome(String cognome) {
 		if(!cognome.matches("^[a-zA-Z]{3,12}$"))
-            throw new UserException("Campo cognome non valido");
+            throw new UserException("Surname not valid");
 		this.cognome = cognome;
 	}
 
@@ -75,7 +75,7 @@ public class Utente implements Serializable {
 
 	public void setEmail(String email) {
 		if(!email.matches("^[a-zA-Z0-9\\.\\_\\-]{3,20}@[a-zA-Z0-9\\.\\_\\-]{3,15}\\.[a-z]{2,6}$"))
-            throw new UserException("Email non valida");
+            throw new UserException("Email not valid");
         	
 		this.email = email;
 	}
@@ -98,7 +98,7 @@ public class Utente implements Serializable {
 
 	public void setNickname(String nickname) {
 		if(!nickname.matches("^[a-zA-Z0-9\\.\\_\\-]{3,15}$"))
-			throw new UserException("Nickname non valido");
+			throw new UserException("Username not valid");
 		this.nickname = nickname;
 	}
 
@@ -119,7 +119,7 @@ public class Utente implements Serializable {
 
 	public void setPassword(String password) {
 		if((password.length() < 6) || (password.length() > 12))
-            throw new UserException("Password non valida");
+            throw new UserException("Password not valid");
         
 		this.password = password;
 	}
