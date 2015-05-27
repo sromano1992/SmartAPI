@@ -36,7 +36,7 @@ public class RegistrazioneControl {
 				Arrays.toString(password).trim().equals("") || 
 				Arrays.toString(confermaPassword).trim().equals("") ||
 				email.trim().equals("")) {
-			throw new UserException("Campi mancanti");
+			throw new UserException("Missing info");
 		}
 		
 		if(Arrays.toString(confermaPassword).equals(Arrays.toString(password))) {
@@ -48,10 +48,10 @@ public class RegistrazioneControl {
 				return true;
 			}
 			else
-				throw new UserException("Username gia' in uso");	
+				throw new UserException("Username already in use");	
 		}	
 		else {
-			throw new UserException("Le password non coincidono!");
+			throw new UserException("Password not valid");
 		}	
 	}
 	

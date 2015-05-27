@@ -24,7 +24,7 @@ public class Test_Votazione {
 		//s.aggiungiVotoCodePattern("u1", "c2", "8");
 		
 		//code pattern gi� votato
-		//s.aggiungiVotoCodePattern("u1", "p1", "8");
+		//s.aggiungiVotoCodePattern("simone", "c1", "8");
 		
 		//code pattern non ancora votato
 		//c1 avr� voters 2, score 16; cir� avr� hasVoted c2,c1

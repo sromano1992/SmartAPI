@@ -85,6 +85,9 @@ public class UserInfoJPanel extends JPanel {
 	    comboBoxItems.add("avatar - 4");
 	    comboBoxItems.add("avatar - 5");
 	    comboBoxItems.add("avatar - 6");
+	    comboBoxItems.add("avatar - 7");
+	    comboBoxItems.add("avatar - 8");
+
 	    final DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
 		
 		JLabel lblYourInfo = new JLabel("YOUR INFO");

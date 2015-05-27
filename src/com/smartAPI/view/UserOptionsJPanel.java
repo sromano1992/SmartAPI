@@ -71,11 +71,15 @@ public class UserOptionsJPanel extends JPanel {
 		path="res/search.png";
 		pathIcon = getClass().getResource(path).getFile();
 		btnSearch.setIcon(new ImageIcon(pathIcon));
-		btnSearch.setBounds(11, 28, 200, 52);
+		btnSearch.setBounds(214, 28, 200, 52);
 		
 		add(btnSearch);
 		
 		btnInsert = new JButton("");
+		btnInsert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnInsert.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -93,7 +97,7 @@ public class UserOptionsJPanel extends JPanel {
 		path="res/insert.png";
 		pathIcon = getClass().getResource(path).getFile();
 		btnInsert.setIcon(new ImageIcon(pathIcon));
-		btnInsert.setBounds(214, 28, 200, 51);
+		btnInsert.setBounds(11, 28, 200, 51);
 		add(btnInsert);
 		
 		btnShow = new JButton("");

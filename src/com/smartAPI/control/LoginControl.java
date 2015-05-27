@@ -63,15 +63,15 @@ public class LoginControl {
 			}
 		}
 		else 
-			throw new UserException("Username non esistente");
-		throw new UserException("Password errata");
+			throw new UserException("Error user or password");
+		throw new UserException("Error user or password");
 	}
 	
 	
 	
 	public boolean controllaUtente(String username, char[] password) {
 		if(username.trim().equals("") || Arrays.toString(password).trim().equals((""))) {
-			throw new UserException("User not found");
+			throw new UserException("Empty fields");
 		}
 		StringBuilder realPassword = new StringBuilder();
 		for(char s : password) {
