@@ -43,7 +43,7 @@ public class LoginGrafica extends JPanel{
 	private JLabel lblNewAccount;
 	private static final Logger Log = Logger.getLogger( "InfoLogging" );
 	private JLabel lblError;
-	public static SmartAPIModel model;
+	private SmartAPIModel model;
 	private ArrayList<ILogInPanelListner> logInListener_s;
 	private JLabel lblLogo;
 	JLabel lblLogin;
@@ -118,11 +118,11 @@ public class LoginGrafica extends JPanel{
 		this.add(btnLogin);
 
 		//LABEL LOGIN
-		lblLogin = new JLabel("SmartApi");
+		lblLogin = new JLabel("LOGIN");
 		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogin.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		lblLogin.setForeground(Color.WHITE);
-		lblLogin.setBounds(20, 219, 456, 37);
+		lblLogin.setBounds(17, 40, 456, 37);
 		this.add(lblLogin);
 
 		//LABEL NEWACCOUNT
@@ -155,11 +155,14 @@ public class LoginGrafica extends JPanel{
 		lblLogo = new JLabel("");
 		lblLogo.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblLogo.setIcon(null);
-		lblLogo.setBounds(152, 87, 177, 152);
-		String path="res/logo.png";
-		String pathIcon = getClass().getResource(path).getFile();
-		MyImageIcon imgicon = new MyImageIcon(pathIcon,150,100);
-		lblLogo.setIcon(imgicon.getImageResponsive());
+		lblLogo.setBounds(100, 131, 231, 173);
+		//String path="res/logo.gif";
+		//String pathIcon = getClass().getResource(path).getFile();
+		//MyImageIcon imgicon = new MyImageIcon(pathIcon,200,150);
+		//lblLogo.setIcon(imgicon.getImageResponsive());
+		ImageIcon ii = new ImageIcon(this.getClass().getResource(
+                "res/logo.gif"));
+		lblLogo.setIcon(ii);
 		add(lblLogo);
 
 
@@ -171,10 +174,6 @@ public class LoginGrafica extends JPanel{
 	public void addLoginPanelListner(ILogInPanelListner c){
 		logInListener_s.add(c);
 		log.info("Added listener...");
-	}
-	
-	public static SmartAPIModel getModel() {
-		return model;
 	}
 	
 	
