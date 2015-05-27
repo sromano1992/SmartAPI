@@ -863,7 +863,7 @@ public class SmartAPIModel {
 		ArrayList<Resource> list = getIndividualOfClass("User");
 		
 		//non gli setto voti, mi serve solo per controllare se i campi inseriti sono corretti
-		Utente u = new Utente(username,password,nome,cognome,email,false, avatar, "inutile", 0);
+		Utente u = new Utente(nome,cognome,email,username,password,false, avatar, "inutile", 0);
 
 		boolean modificaPassword = false;
 		boolean modificaNome = false;

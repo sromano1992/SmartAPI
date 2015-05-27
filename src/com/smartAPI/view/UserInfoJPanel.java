@@ -232,7 +232,7 @@ public class UserInfoJPanel extends JPanel {
 				String s=(String)comboBox.getSelectedItem();
 				String[]parts = s.split(" - ");
 				String path="res/"+parts[1]+".png";
-				avatar=parts[1];
+				avatar=path;
 				String pathIcon = getClass().getResource(path).getFile();				
 				MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 				lblImage.setIcon(imgicon.getImageResponsive());
