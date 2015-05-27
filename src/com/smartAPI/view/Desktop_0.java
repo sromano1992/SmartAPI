@@ -32,21 +32,14 @@ public class Desktop_0 extends JPanel implements ILogInPanelListner{
 	 */
 	public Desktop_0(JFrame f) {
 		mainContainer = f;
-		setLayout(new GridLayout(1, 3, 0, 0));
-		
-		JLabel label = new JLabel("");
-		label.setOpaque(true);
-		label.setBackground(new Color(2, 94, 137));
-		add(label);
+		setLayout(new GridLayout(1, 2, 0, 0));
 		
 		loginGrafica = new LoginGrafica();
 		add(loginGrafica);
-		
-		JLabel lblNewLabel = new JLabel("");
-		add(lblNewLabel);
-		lblNewLabel.setOpaque(true);
-		lblNewLabel.setBackground(new Color(2, 94, 137));
 		loginGrafica.addLoginPanelListner(this);
+		
+		CreateNewAccountJPanel createNewAccountJPanel = new CreateNewAccountJPanel();
+		add(createNewAccountJPanel);
 	}
 
 	@Override
@@ -80,7 +73,7 @@ public class Desktop_0 extends JPanel implements ILogInPanelListner{
 		if (d1 == null)
 			d1 = new Desktop_Insert();
 		mainContainer.remove(this);
-		mainContainer.add(d1);
+		mainContainer.getContentPane().add(d1);
 		SwingUtilities.updateComponentTreeUI(mainContainer);
 		SwingUtilities.updateComponentTreeUI(this);
 	}

@@ -369,14 +369,14 @@ public class UserClassificationJPanel extends JPanel {
 			JLabel lblGeneric = new JLabel("16");
 			lblGeneric.setForeground(Color.WHITE);
 			lblGeneric.setHorizontalAlignment(SwingConstants.CENTER);
-			lblGeneric.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+			lblGeneric.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 			lblGeneric.setBounds(6, 6, 45, 27);
 			panelGeneric.add(lblGeneric);
 
 			lblGenericIcon = new JLabel(" ");
 			lblGenericIcon.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGenericIcon.setForeground(Color.WHITE);
-			lblGenericIcon.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+			lblGenericIcon.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 			lblGenericIcon.setBounds(79, 6, 45, 27);
 			panelGeneric.add(lblGenericIcon);
 
@@ -388,28 +388,28 @@ public class UserClassificationJPanel extends JPanel {
 			lblGenericUsername = new JLabel(uN.getUsername());
 			lblGenericUsername.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGenericUsername.setForeground(Color.WHITE);
-			lblGenericUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+			lblGenericUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 			lblGenericUsername.setBounds(155, 6, 124, 27);
 			panelGeneric.add(lblGenericUsername);
 
 			lblGenericScore = new JLabel(uN.getSomma_media());
 			lblGenericScore.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGenericScore.setForeground(Color.WHITE);
-			lblGenericScore.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+			lblGenericScore.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 			lblGenericScore.setBounds(291, 6, 78, 27);
 			panelGeneric.add(lblGenericScore);
 
 			lblGenericVoteCP = new JLabel(uN.getVotanti_codepattern());
 			lblGenericVoteCP.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGenericVoteCP.setForeground(Color.WHITE);
-			lblGenericVoteCP.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+			lblGenericVoteCP.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 			lblGenericVoteCP.setBounds(408, 6, 78, 27);
 			panelGeneric.add(lblGenericVoteCP);
 
 			lblGenericVoteUs = new JLabel(uN.getUtenti_votanti());
 			lblGenericVoteUs.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGenericVoteUs.setForeground(Color.WHITE);
-			lblGenericVoteUs.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+			lblGenericVoteUs.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 			lblGenericVoteUs.setBounds(532, 6, 78, 27);
 			panelGeneric.add(lblGenericVoteUs);
 
