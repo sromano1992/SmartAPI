@@ -35,6 +35,7 @@ public class CreateNewAccountJPanel extends JPanel {
 	private JLabel lblError;
 	private SmartAPIModel model;
 	private JButton btnBack;
+	private JLabel lblMessage;
 	
 	public CreateNewAccountJPanel() {
 		this.model = new SmartAPIModel();
@@ -142,6 +143,8 @@ public class CreateNewAccountJPanel extends JPanel {
 	    comboBoxItems.add("avatar - 4");
 	    comboBoxItems.add("avatar - 5");
 	    comboBoxItems.add("avatar - 6");
+	    comboBoxItems.add("avatar - 7");
+	    comboBoxItems.add("avatar - 8");
 	    final DefaultComboBoxModel modelCombo = new DefaultComboBoxModel(comboBoxItems);
 	    final JComboBox comboBox = new JComboBox(modelCombo);
 	    comboBox.addActionListener(new ActionListener() {
@@ -173,6 +176,14 @@ public class CreateNewAccountJPanel extends JPanel {
 		});
 		btnBack.setBounds(80, 624, 274, 37);
 		add(btnBack);
+		
+		lblMessage = new JLabel("Account successfully created!");
+		lblMessage.setVisible(false);
+		lblMessage.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMessage.setForeground(new Color(7, 201, 155));
+		lblMessage.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lblMessage.setBounds(80, 546, 274, 16);
+		add(lblMessage);
 
 		btnCreate.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
@@ -190,7 +201,8 @@ public class CreateNewAccountJPanel extends JPanel {
         			RegistrazioneControl registrazioneControl = new RegistrazioneControl(model);
         			
         			if(registrazioneControl.registra(nome, cognome, username, password, confermaPassword, email, pathAvatar)) {
-        				//torno a login
+        				lblError.setVisible(false);
+        				lblMessage.setVisible(true);
         			}
         		}
         		catch (UserException u) {
@@ -199,5 +211,4 @@ public class CreateNewAccountJPanel extends JPanel {
         	}
         });
 	}
-
 }

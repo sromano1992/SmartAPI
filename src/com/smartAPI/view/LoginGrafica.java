@@ -113,7 +113,7 @@ public class LoginGrafica extends JPanel{
 				} 		
 			}
 		});
-		btnLogin.setBounds(102, 501, 274, 37);
+		btnLogin.setBounds(121, 500, 274, 37);
 		this.add(btnLogin);
 
 		//LABEL LOGIN
@@ -121,7 +121,7 @@ public class LoginGrafica extends JPanel{
 		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogin.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		lblLogin.setForeground(Color.WHITE);
-		lblLogin.setBounds(56, 219, 456, 37);
+		lblLogin.setBounds(20, 219, 456, 37);
 		this.add(lblLogin);
 
 		//LABEL NEWACCOUNT
@@ -154,7 +154,7 @@ public class LoginGrafica extends JPanel{
 		lblLogo = new JLabel("");
 		lblLogo.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblLogo.setIcon(null);
-		lblLogo.setBounds(188, 87, 177, 152);
+		lblLogo.setBounds(152, 87, 177, 152);
 		String path="res/logo.png";
 		String pathIcon = getClass().getResource(path).getFile();
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,150,100);
