@@ -61,13 +61,13 @@ public class LoginGrafica extends JPanel{
 
 		//USER FIELD
 		userField = new JTextField();
-		userField.setBounds(199, 352, 248, 52);
+		userField.setBounds(153, 351, 282, 52);
 		this.add(userField);
 		userField.setColumns(10);
 
 		//PASSWORD FIELD
 		passwordField = new JPasswordField();
-		passwordField.setBounds(199, 397, 248, 52);
+		passwordField.setBounds(153, 396, 282, 52);
 		this.add(passwordField);
 
 		//LABEL USER
@@ -76,7 +76,7 @@ public class LoginGrafica extends JPanel{
 		lblUser.setForeground(Color.WHITE);
 		lblUser.setBackground(new Color(2, 66, 96));
 		lblUser.setOpaque(true);
-		lblUser.setBounds(124, 355, 79, 45);
+		lblUser.setBounds(78, 354, 79, 45);
 		this.add(lblUser);
 
 		//LABEL PASSWORD
@@ -85,7 +85,7 @@ public class LoginGrafica extends JPanel{
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setBackground(new Color(2, 66, 96));
-		lblPassword.setBounds(124, 400, 79, 45);
+		lblPassword.setBounds(78, 399, 79, 45);
 		this.add(lblPassword);
 
 		//BUTTON LOGIN
@@ -113,7 +113,7 @@ public class LoginGrafica extends JPanel{
 				} 		
 			}
 		});
-		btnLogin.setBounds(148, 502, 274, 37);
+		btnLogin.setBounds(102, 501, 274, 37);
 		this.add(btnLogin);
 
 		//LABEL LOGIN
@@ -140,7 +140,7 @@ public class LoginGrafica extends JPanel{
 		lblNewAccount.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		lblNewAccount.setForeground(new Color(7, 201, 155));
 		lblNewAccount.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewAccount.setBounds(245, 451, 177, 16);
+		lblNewAccount.setBounds(230, 450, 177, 16);
 		this.add(lblNewAccount);
 
 		//LABEL ERROR
@@ -148,7 +148,7 @@ public class LoginGrafica extends JPanel{
 		lblError.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		lblError.setHorizontalAlignment(SwingConstants.LEFT);
 		lblError.setForeground(Color.RED);
-		lblError.setBounds(124, 451, 165, 16);
+		lblError.setBounds(78, 450, 197, 16);
 		this.add(lblError);
 
 		lblLogo = new JLabel("");
