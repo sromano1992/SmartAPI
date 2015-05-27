@@ -176,4 +176,6 @@ public class LoginGrafica extends JPanel{
 	public static SmartAPIModel getModel() {
 		return model;
 	}
+	
+	
 }
