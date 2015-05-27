@@ -39,7 +39,7 @@ public class ShowUsersInfo extends JPanel{
 		setBackground(new Color(2, 94, 137));
 		lblImage = new JLabel();
 		//path dipende dall'avatar dell'utente
-		String path= "res/3.png";
+		String path= "res/nouser.png";
 		String pathIcon = getClass().getResource(path).getFile();
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblImage.setIcon(imgicon.getImageResponsive());
