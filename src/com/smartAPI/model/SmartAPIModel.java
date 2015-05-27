@@ -410,7 +410,6 @@ public class SmartAPIModel {
 		s.addProperty(p, o);
 		log.info("Add property '" + propName + "' to subject '" + subject + "' with value '" + object + "'");
 	}
-
 	/**
 	 * Aggiunge un utente alla base ontologica
 	 * @author Amedeo Leo, Ciro Amati
@@ -1238,7 +1237,11 @@ public class SmartAPIModel {
 		addObjectPropertyInstance(Common.HAS_LIBRARY, codePattern, library);
 	}
 	
-	public void setCPSourceCode(String cp, String name_cp){
-		addObjectPropertyInstance(Common.HAS_CODE, name_cp, cp);
+	public boolean setCPSourceCode(String code, String risorsa) {
+		Individual ind = getOntModel().getIndividual(Common.NS + risorsa);
+		DatatypeProperty hasCode = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_CODE);
+		ind.addProperty(hasCode, code);
+		log.info("Added property " + code);
+		return true;
 	}
 }
