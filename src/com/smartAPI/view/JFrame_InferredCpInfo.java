@@ -58,7 +58,7 @@ public class JFrame_InferredCpInfo extends JFrame {
 	public JFrame_InferredCpInfo() {
 		setTitle("Inference informations");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 568, 416);
+		setBounds(100, 100, 568, 217);
 		contentPane = new JPanel();
 		contentPane.setBackground(UIManager.getColor("InternalFrame.activeTitleBackground"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -72,7 +72,7 @@ public class JFrame_InferredCpInfo extends JFrame {
 		lblInferredCategory = new JLabel("Inferred Category:");
 		lblInferredCategory.setOpaque(true);
 		lblInferredCategory.setBackground(UIManager.getColor("InternalFrame.activeTitleBackground"));
-		lblInferredCategory.setFont(new Font("Sylfaen", Font.BOLD, 11));
+		lblInferredCategory.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblInferredCategory.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(lblInferredCategory);
 		
@@ -81,7 +81,7 @@ public class JFrame_InferredCpInfo extends JFrame {
 		textPane_InferredCategory.setEditable(false);
 		panel.add(textPane_InferredCategory);
 		
-		lblReliability = new JLabel("Reliability:");
+		lblReliability = new JLabel("Reliability (common/basic):");
 		lblReliability.setOpaque(true);
 		lblReliability.setBackground(UIManager.getColor("InternalFrame.activeTitleBackground"));
 		lblReliability.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -153,35 +153,40 @@ public class JFrame_InferredCpInfo extends JFrame {
 	}
 	
 	public void setInferredCP(CodePattern cp, String cpCategory){
+		setTitle("Inference informations for " + cp.getResource().getLocalName());
 		textPane_InferredCategory.setText(cpCategory);
 		DecimalFormat df = new DecimalFormat("#.00");
 		textPane_Probability.setText(df.format(cp.getScore()) + "%");
+		if(cp.getScore()<30)
+			textPane_Probability.setBackground(Color.red);
+		if(cp.getScore()<60)
+			textPane_Probability.setBackground(Color.yellow);
+		if(cp.getScore()>=60)
+			textPane_Probability.setBackground(Color.green);
 		textPane_RelativeBasic.setText(cp.getRelativeBasicCodePattern().getResource().getLocalName());
 		textArea_CommonMethod.setText("");
 		int cycle = 0;
-		/*for (Resource method:cp.getCommonWithBasic()){
+		for (Resource method:cp.getCommonWithBasic()){
 			if(cycle > 0)
 				textArea_CommonMethod.setText(textArea_CommonMethod.getText() + " - ");
-			textArea_CommonMethod.setText(method.getLocalName());
-			cycle = 1;
-		}*/
-		textArea_CommonMethod.setText(cp.getCommonWithBasic().toString());
-		/*cycle = 0;
-		for (Resource method:cp.getUsedMethod_s()){
-			if(cycle > 0)
-				textArea_Inferred.setText(textArea_CommonMethod.getText() + " - ");
-			textArea_Inferred.setText(method.getLocalName());
+			textArea_CommonMethod.setText(textArea_CommonMethod.getText() + method.getLocalName());
 			cycle = 1;
 		}
-		cycle = 0;*/
-		textArea_Inferred.setText(cp.getUsedMethod_s().toString());
-		/*for (Resource method:cp.getRelativeBasicCodePattern().getUsedMethod_s()){
+		cycle = 0;
+		for (Resource method:cp.getUsedMethod_s()){
 			if(cycle > 0)
-				textArea_Basic.setText(textArea_CommonMethod.getText() + " - ");
-			textArea_Basic.setText(method.getLocalName());
+				textArea_Inferred.setText(textArea_Inferred.getText() + " - ");
+			textArea_Inferred.setText(textArea_Inferred.getText() + method.getLocalName());
 			cycle = 1;
-		}*/
-		textArea_Basic.setText(cp.getRelativeBasicCodePattern().toString());
+		}
+		cycle = 0;
+		
+		for (Resource method:cp.getRelativeBasicCodePattern().getUsedMethod_s()){
+			if(cycle > 0)
+				textArea_Basic.setText(textArea_Basic.getText() + " - ");
+			textArea_Basic.setText(textArea_Basic.getText() + method.getLocalName());
+			cycle = 1;
+		}
 	}
 
 }

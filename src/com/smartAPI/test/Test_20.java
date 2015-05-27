@@ -78,8 +78,9 @@ public class Test_20 {
 	    	    }
 	    	   }
 	       }
-	       
-	       System.out.println(toReturn);
+	       ArrayList<String> method_s = new ArrayList<String>();
+	       method_s.addAll(toReturn.keySet());
+	       System.out.println(method_s);
     }
 
 
