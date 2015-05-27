@@ -56,7 +56,7 @@ public class LoginGrafica extends JPanel{
 		logInListener_s = new ArrayList<ILogInPanelListner>();
 		model = new SmartAPIModel();
 		this.setBackground(new Color(2, 94, 137));
-		this.setBounds(100, 100, 576, 660);
+		this.setBounds(100, 100, 606, 660);
 		this.setLayout(null);
 
 		//USER FIELD
@@ -140,7 +140,7 @@ public class LoginGrafica extends JPanel{
 		lblNewAccount.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		lblNewAccount.setForeground(new Color(7, 201, 155));
 		lblNewAccount.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewAccount.setBounds(260, 450, 177, 16);
+		lblNewAccount.setBounds(245, 451, 177, 16);
 		this.add(lblNewAccount);
 
 		//LABEL ERROR
