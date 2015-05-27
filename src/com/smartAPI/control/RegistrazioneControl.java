@@ -59,7 +59,7 @@ public class RegistrazioneControl {
 		OntClass userClass = model.getOntModel().getOntClass(Common.NS + Common.USER);
 		
 		if(!userAlreadyExists(userClass.getLocalName(), username)) {
-			Utente user = new Utente(nome, cognome, email, username, password, false, avatar, "0");
+			Utente user = new Utente(nome, cognome, email, username, password, false, avatar, "0", 0);
 			
 			Individual individualUser1 = model.getOntModel().createIndividual(Common.NS + username, userClass);
 			DatatypeProperty hasUsername = model.getOntModel().getDatatypeProperty(Common.NS + Common.HAS_USERNAME);

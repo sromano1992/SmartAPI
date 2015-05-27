@@ -35,10 +35,10 @@ public class Test_Votazione {
 		//System.out.println(s.hasAlreadyVoted("prova", "s1"));
 		//System.out.println(s.modificaPermessiUtente("prova", true));
 		
-		
+		/*
 		System.out.println("***");
 		System.out.println("Username, Somma della media dei voti dei suoi code pattern, #votanti dei suoi code pattern, #utenti che lo hanno votato");
-		
+	*/	
 	ArrayList<String> c = s.classificaUtenti();
 	ArrayList<UserClassification> classifica = s.getInfoUserClassification(c);
 	
@@ -57,6 +57,8 @@ public class Test_Votazione {
 		
 		//System.out.println(s.isOwner("u1", "c1"));
 		//System.out.println(s.isOwner("u2", "c2"));
+		
+		System.out.println(s.getNumeroStelle("ciro"));
 	}
 
 }

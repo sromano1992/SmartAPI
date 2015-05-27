@@ -420,7 +420,7 @@ public class SmartAPIModel {
 	public boolean addUser(String nome, String cognome, String email, String username, String password, boolean isAdmin, String avatar) {
 		OntClass userClass = getOntModel().getOntClass(Common.NS + Common.USER);
 		if(!userAlreadyExists(userClass.getLocalName(), username)) {
-			Utente user = new Utente(nome, cognome, email, username, password, false, avatar, "0");
+			Utente user = new Utente(nome, cognome, email, username, password, false, avatar, "0", 0);
 			getOntModel();
 
 			Individual individualUser1 = getOntModel().createIndividual(Common.NS + username, userClass);
@@ -432,7 +432,8 @@ public class SmartAPIModel {
 			DatatypeProperty isAdministrator = getOntModel().getDatatypeProperty(Common.NS + Common.IS_ADMINISTRATOR);
 			DatatypeProperty hasAvatar = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_AVATAR);
 			DatatypeProperty hasVoted = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_VOTED);
-
+			DatatypeProperty hasStars = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_STARS);
+			
 			individualUser1.addProperty(hasUsername, username);
 			individualUser1.addProperty(hasPassword, password);
 			individualUser1.addProperty(hasEmail, email);
@@ -440,6 +441,7 @@ public class SmartAPIModel {
 			individualUser1.addProperty(hasSurname, cognome);
 			individualUser1.addProperty(hasAvatar, avatar);
 			individualUser1.addProperty(hasVoted, "0");
+			individualUser1.addProperty(hasStars, getOntModel().createTypedLiteral(new Integer(0)));
 
 			if(isAdmin) {
 				individualUser1.addProperty(isAdministrator, "si");
@@ -601,7 +603,7 @@ public class SmartAPIModel {
 				}
 			}
 			//String nome, String cognome, String email, String nickname, String password, boolean admin, String avatar
-			utenti.add(new Utente(nome,cognome,email,username,password,amministratore, avatar, voti));
+			utenti.add(new Utente(nome,cognome,email,username,password,amministratore, avatar, voti, getNumeroStelle(username)));
 
 		}
 		return utenti;
@@ -859,8 +861,10 @@ public class SmartAPIModel {
 	 */
 	public boolean modificaUtente(String username, String password, String nome, String cognome, String email, String avatar) {
 		ArrayList<Resource> list = getIndividualOfClass("User");
-		Utente u = new Utente(nome, cognome, email, username, password, false, avatar, "voti");
 		
+		//non gli setto voti, mi serve solo per controllare se i campi inseriti sono corretti
+		Utente u = new Utente(username,password,nome,cognome,email,false, avatar, "inutile", 0);
+
 		boolean modificaPassword = false;
 		boolean modificaNome = false;
 		boolean modificaCognome = false;
@@ -1011,6 +1015,7 @@ public class SmartAPIModel {
 		float score =  resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).getObject().asLiteral().getInt();
 		if(n_votanti == 0.0)
 			return 0;
+		System.out.println("Media votazione = " + score / n_votanti);
 		return (score / n_votanti);
 	}
 
@@ -1162,8 +1167,6 @@ public class SmartAPIModel {
 	return listUserClassification;
 
 	}
-
-
 	
 	public Utente getUtente(String username) {
 		for(Utente u: getUsers()) {			
@@ -1172,5 +1175,62 @@ public class SmartAPIModel {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * 
+	 * Restituisce il numero di stelle dell'utente.
+	 * @author Amedeo Leo
+	 * 
+	 */
+	
+	public int getNumeroStelle(String username) {
+		int numeroCodePattern = 0;
+		float score = 0;
+		ExtendedIterator<OntClass> ext = getOntModel().getOntClass(Common.NS + Common.CODE_PATTERN).listSubClasses();
+		String string_object = "";
+		while(ext.hasNext()) {
+			OntClass o = ext.next();
+			Resource r = getOntModel().getResource(Common.NS + o.getLocalName());
+			ArrayList<Resource> list = getIndividualOfClass(r.getLocalName());
+			for(int i = 0; i < list.size(); i++) {
+				Resource resource = list.get(i);
+				StmtIterator iterResource = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
+				while (iterResource.hasNext()) {
+					Statement stmtResource = iterResource.nextStatement();
+					Resource subjectResource = stmtResource.getSubject();
+					Property predicateResource = stmtResource.getPredicate();
+					RDFNode object = stmtResource.getObject();
+
+					String subject = subjectResource.getLocalName();
+					if(predicateResource.getLocalName().equals(Common.HAS_OWNER)) {
+						string_object = object.toString().substring(object.toString().indexOf("#") + 1);
+						if(string_object.equals(username)) {
+							score += getMediaVotazioni(subject);
+							numeroCodePattern++;
+						}
+					}
+				}
+			}
+		}
+		
+		if(numeroCodePattern == 0 || score == 0.0) {
+			return 0;
+		}
+		getOntModel().getResource(Common.NS + username).getProperty(getProperty(Common.NS + Common.HAS_STARS)).changeLiteralObject(Math.round(score / numeroCodePattern));
+		storeOntModel();
+		return Math.round(score / numeroCodePattern);
+	}
+	
+	
+	/**
+	 * Modifica il numero di stelle dell'utente
+	 * @author Amedeo Leo
+	 */
+	public boolean cambiaStelle(String username) {
+		Resource resource = getOntModel().getResource(Common.NS + username);
+		int stelle = getNumeroStelle(username);
+		resource.getProperty(getProperty(Common.NS + Common.HAS_STARS)).changeLiteralObject(stelle);
+		return true;
 	}
 }
