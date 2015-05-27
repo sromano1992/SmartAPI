@@ -864,7 +864,7 @@ public class SmartAPIModel {
 		
 		//non gli setto voti, mi serve solo per controllare se i campi inseriti sono corretti
 		Utente u = new Utente(username,password,nome,cognome,email,false, avatar, "inutile", 0);
-		
+
 		boolean modificaPassword = false;
 		boolean modificaNome = false;
 		boolean modificaCognome = false;

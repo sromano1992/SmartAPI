@@ -59,6 +59,7 @@ public class Panel_InsertCP extends JPanel {
 	 * Create the panel.
 	 */
 	public Panel_InsertCP() {
+
 		//setBackground(new Color(2, 94, 137));
 		setBackground(new Color(228, 230, 235));
 		setLayout(null);
@@ -117,14 +118,14 @@ public class Panel_InsertCP extends JPanel {
 
 		setSize(826, 594);
 
-		JLabel cpLabel = new JLabel("Code Pattern");
+		JLabel cpLabel = new JLabel("Code ");
 		cpLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 		cpLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		cpLabel.setBackground(new Color(231, 76, 60));
 		cpLabel.setForeground(Color.WHITE);
-		cpLabel.setBounds(39, 233, 30, 210);
+		cpLabel.setBounds(15, 237, 54, 32);
 		cpLabel.setOpaque(true);
-		cpLabel.setUI(new VerticalLabelUI(true));
+		//cpLabel.setUI(new VerticalLabelUI(true));
 		add(cpLabel);
 
 		MyJLabel nomeLabel = new MyJLabel("Name");
@@ -201,7 +202,16 @@ public class Panel_InsertCP extends JPanel {
 		JTextArea ta = new JTextArea(txt+txt+txt, 13, 60);
 		panel.add(ta);
 	    ta.setLineWrap(true);
-	    panel.add(new JScrollPane());
+	    
+	    JLabel lblPattern = new JLabel("Pattern");
+	    lblPattern.setOpaque(true);
+	    lblPattern.setHorizontalAlignment(SwingConstants.CENTER);
+	    lblPattern.setForeground(Color.WHITE);
+	    lblPattern.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+	    lblPattern.setBackground(new Color(231, 76, 60));
+	    lblPattern.setBounds(15, 269, 55, 32);
+	    add(lblPattern);
+	    //panel.add(new JScrollPane());
 		
 		
 		
