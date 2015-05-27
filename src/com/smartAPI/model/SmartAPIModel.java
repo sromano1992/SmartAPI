@@ -859,7 +859,7 @@ public class SmartAPIModel {
 	 */
 	public boolean modificaUtente(String username, String password, String nome, String cognome, String email, String avatar) {
 		ArrayList<Resource> list = getIndividualOfClass("User");
-		Utente u = new Utente(username,password,nome,cognome,email,false, avatar, "voti");
+		Utente u = new Utente(nome, cognome, email, username, password, false, avatar, "voti");
 		
 		boolean modificaPassword = false;
 		boolean modificaNome = false;
