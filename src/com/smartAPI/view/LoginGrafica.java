@@ -61,12 +61,13 @@ public class LoginGrafica extends JPanel{
 
 		//USER FIELD
 		userField = new JTextField();
+		userField.setText("amedeo");
 		userField.setBounds(153, 351, 282, 52);
 		this.add(userField);
 		userField.setColumns(10);
 
 		//PASSWORD FIELD
-		passwordField = new JPasswordField();
+		passwordField = new JPasswordField("amedeo");
 		passwordField.setBounds(153, 396, 282, 52);
 		this.add(passwordField);
 
