@@ -6,8 +6,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.tree.TreePath;
 
-import org.apache.log4j.Logger;
-
 import com.smartAPI.control.TreePathListener;
 import com.smartAPI.model.SmartAPIModel;
 
@@ -29,6 +27,7 @@ import javax.swing.ScrollPaneConstants;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.logging.Logger;
 
 /**
  * 
@@ -37,7 +36,8 @@ import java.awt.event.MouseEvent;
  */
 public class Panel_CodePatternCompleteView extends JPanel implements TreePathListener{
 	private static Logger log = Logger.getLogger("global");
-
+	private TreeViewCP treeView;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -61,7 +61,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		
 		splitPane.setDividerLocation(75);
 		
-		TreeViewCP treeView = new TreeViewCP();
+		treeView = new TreeViewCP();
 		TreeViewCP treeView_1 = new TreeViewCP();
 		treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
 		
@@ -84,5 +84,10 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 			SwingUtilities.updateComponentTreeUI(this);
 			c = c.getParent();
 		}
+	}
+	
+	public void refresh(){
+		treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
+		log.info("Updated codePattern view...");
 	}
 }
