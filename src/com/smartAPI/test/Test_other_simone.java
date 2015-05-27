@@ -10,8 +10,9 @@ public class Test_other_simone {
 		//System.out.println(s.getPatternOfCategory("Storage").getInferredCodePattern());
 
 		s.associateCatAndCodePattern("Storage", "s6");
-		//s.addKeyword("s6", "keyword");
+		s.addKeyword("s6", "keyword");
 		s.setCPSourceCode("println", "s6");
+		s.initScoreVoters("s6");
 		s.storeOntModel();
 	}
 
