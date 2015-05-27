@@ -43,7 +43,7 @@ public class LoginGrafica extends JPanel{
 	private JLabel lblNewAccount;
 	private static final Logger Log = Logger.getLogger( "InfoLogging" );
 	private JLabel lblError;
-	private SmartAPIModel model;
+	private static SmartAPIModel model;
 	private ArrayList<ILogInPanelListner> logInListener_s;
 	private JLabel lblLogo;
 	JLabel lblLogin;
@@ -176,5 +176,7 @@ public class LoginGrafica extends JPanel{
 		log.info("Added listener...");
 	}
 	
-	
+	public static SmartAPIModel getModel() {
+		return model;
+	}
 }
