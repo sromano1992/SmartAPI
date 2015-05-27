@@ -54,7 +54,7 @@ import com.smartAPI.control.AddCodePatternControl;
  */
 public class Panel_InsertCP extends JPanel {
 	private JTextField nomeCP;
-	private JTextArea txtCodePattern;
+	private JTextArea ta;
 	private JTextField keyword;
 	private JTextField newCategoria;
 	private JTextField langTextField;
@@ -76,14 +76,14 @@ public class Panel_InsertCP extends JPanel {
 		nomeCP.setColumns(20);
 
 
-		txtCodePattern = new JTextArea();
+		/*txtCodePattern = new JTextArea();
 		txtCodePattern.setBounds(94, 343, 787, 220);
 		//Border border = BorderFactory.createLineBorder(Color.BLACK);
 		//txtCodePattern.setBorder(border);
 		JScrollPane scrollableTextArea = new JScrollPane(txtCodePattern);
 		scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		add(scrollableTextArea);
+		add(scrollableTextArea);*/
 
 
 
@@ -158,7 +158,7 @@ public class Panel_InsertCP extends JPanel {
 		addCP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String val_nome = nomeCP.getText();
-				String val_CP = txtCodePattern.getText();
+				String val_CP = ta.getText();
 				String val_keyword = keyword.getText();
 				String val_language = langTextField.getText();
 				String val_lib = libTextField.getText();
@@ -199,7 +199,7 @@ public class Panel_InsertCP extends JPanel {
 		panel.setBackground(new Color(228, 230, 235));
 		add(panel);
 		panel.setBounds(69, 231, 738, 220);
-		JTextArea ta = new JTextArea(" ", 13, 60);
+		ta = new JTextArea(" ", 13, 60);
 		//panel.add(ta);
 		ta.setVisible(true);
 	    ta.setLineWrap(true);
