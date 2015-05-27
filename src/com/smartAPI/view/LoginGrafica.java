@@ -155,7 +155,7 @@ public class LoginGrafica extends JPanel{
 		lblLogo = new JLabel("");
 		lblLogo.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblLogo.setIcon(null);
-		lblLogo.setBounds(100, 131, 231, 173);
+		lblLogo.setBounds (100, 131, 231, 173);
 		//String path="res/logo.gif";
 		//String pathIcon = getClass().getResource(path).getFile();
 		//MyImageIcon imgicon = new MyImageIcon(pathIcon,200,150);
