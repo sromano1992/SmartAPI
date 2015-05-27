@@ -804,7 +804,7 @@ public class SmartAPIModel {
 		OntClass o = getOntModel().getOntClass(Common.NS+category);
 		Individual p1 = getOntModel().createIndividual(Common.NS+codePattern,o);
 
-		storeOntModel();
+		//storeOntModel();
 	}
 
 	/**
@@ -813,21 +813,16 @@ public class SmartAPIModel {
 	 * Aggiunta di istanze alla propriet� useMethod (ex. useCalendar)
 	 *
 	 */
-	public void addInstanceUseMethod(String category, String pattern){
-		ArrayList<String> method_s = new ArrayList<String>();
-		for (int i=100; i<110; i++){
-			method_s.add("c" + i);
-		}
-		addToMethodClass(method_s);
-
+	public void addInstanceUseMethod(String category, String pattern, ArrayList<String> method_s){
 		Resource c1 = getOntModel().getResource(Common.NS + pattern);
 
 		for (String m : method_s) {
 			c1.addProperty(getOntModel().getProperty(Common.NS + "use" + category), getResourceFromBase(Common.NS + m));
 		}
 
-		storeOntModel();
+		//storeOntModel();
 	}
+	
 	public boolean addUseMethod(String category_name){
 		if (getOntModel().getObjectProperty(Common.NS + "use"+category_name)!=null)
 			return false;
@@ -851,7 +846,7 @@ public class SmartAPIModel {
 		useMethod.addSubProperty(useCategory);
 		useCategory.setDomain(category);
 		useCategory.setRange(methodClass);
-		storeOntModel();
+		//storeOntModel();
 		return true;
 	}
 
@@ -1234,4 +1229,16 @@ public class SmartAPIModel {
 		return true;
 	}
 	
+	public void setOwner(String codePattern){
+		addObjectPropertyInstance(Common.HAS_OWNER, codePattern, Common.UTENTE.getNickname());
+		//storeOntModel();
+	}
+	
+	public void setLibrary(String codePattern, String library){
+		addObjectPropertyInstance(Common.HAS_LIBRARY, codePattern, library);
+	}
+	
+	public void setCPSourceCode(String cp, String name_cp){
+		addObjectPropertyInstance(Common.HAS_CODE, name_cp, cp);
+	}
 }
