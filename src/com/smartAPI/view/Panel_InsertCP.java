@@ -103,7 +103,7 @@ public class Panel_InsertCP extends JPanel {
 		final JComboBox jcb = new JComboBox(model);
 		jcb.setBounds(619, 144, 190, 37);
 		add(jcb);
-		
+		categoria = (String) v.get(0);
 		jcb.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
