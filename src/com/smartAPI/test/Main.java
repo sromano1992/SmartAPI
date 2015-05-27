@@ -4,11 +4,6 @@ import javax.swing.JFrame;
 
 import com.smartAPI.view.Desktop_0;
 
-/**
- * 
- * @author Simone Romamo - http://www.sromano.altervista.org
- *
- */
 public class Main {
 	public static void main(String[] args) {
 		JFrame f = new JFrame();

@@ -56,79 +56,74 @@ public class LoginGrafica extends JPanel{
 		logInListener_s = new ArrayList<ILogInPanelListner>();
 		model = new SmartAPIModel();
 		this.setBackground(new Color(2, 94, 137));
-		this.setBounds(100, 100, 468, 660);
+		this.setBounds(100, 100, 576, 660);
 		this.setLayout(null);
-		
+
 		//USER FIELD
 		userField = new JTextField();
-		userField.setBounds(175, 396, 204, 52);
+		userField.setBounds(199, 352, 248, 52);
 		this.add(userField);
 		userField.setColumns(10);
-		
+
 		//PASSWORD FIELD
 		passwordField = new JPasswordField();
-		passwordField.setBounds(175, 441, 204, 52);
+		passwordField.setBounds(199, 397, 248, 52);
 		this.add(passwordField);
-		
+
 		//LABEL USER
 		lblUser = new JLabel("User");
 		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUser.setForeground(Color.WHITE);
 		lblUser.setBackground(new Color(2, 66, 96));
 		lblUser.setOpaque(true);
-		lblUser.setBounds(100, 399, 79, 45);
+		lblUser.setBounds(124, 355, 79, 45);
 		this.add(lblUser);
-		
+
 		//LABEL PASSWORD
 		lblPassword = new JLabel("Password");
 		lblPassword.setOpaque(true);
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setBackground(new Color(2, 66, 96));
-		lblPassword.setBounds(100, 444, 79, 45);
+		lblPassword.setBounds(124, 400, 79, 45);
 		this.add(lblPassword);
-		
+
 		//BUTTON LOGIN
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
-			
-        	public void actionPerformed(ActionEvent arg0) {
-        		
-        	
-							try {
-							LoginControl loginControl = new LoginControl(model);
-							
-		        			if(loginControl.controllaUtente(userField.getText(), passwordField.getPassword())) {
-		        				Utente utente = loginControl.getUtente(userField.getText());
-		        				Common.setUser(utente);
 
-		        				for (ILogInPanelListner c:logInListener_s){
-		        					c.loginClicked();
-		        				}
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					LoginControl loginControl = new LoginControl(model);
 
-		        				log.info("raised evento to " + logInListener_s.size() + " listeners...");
-		        			}
+					if(loginControl.controllaUtente(userField.getText(), passwordField.getPassword())) {
+						Utente utente = loginControl.getUtente(userField.getText());
+						Common.setUser(utente);
+						for (ILogInPanelListner c:logInListener_s){
+							c.loginClicked();
 						}
-						
-		        		catch(UserException u) {
+						log.info("raised evento to " + logInListener_s.size() + " listeners...");
+					}
+				}
 
-		        			lblError.setVisible(true);
-		        			lblError.setText(u.getMessage());
-		        		} 		
-        		
-        	}
-        });
-		btnLogin.setBounds(105, 535, 274, 37);
+				catch(UserException u) {
+
+					lblError.setVisible(true);
+					lblError.setText(u.getMessage());
+				} 		
+			}
+		});
+		btnLogin.setBounds(148, 502, 274, 37);
 		this.add(btnLogin);
-		
+
 		//LABEL LOGIN
 		lblLogin = new JLabel("SmartApi");
 		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogin.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		lblLogin.setForeground(Color.WHITE);
-		lblLogin.setBounds(6, 312, 456, 37);
+		lblLogin.setBounds(56, 219, 456, 37);
 		this.add(lblLogin);
-		
+
 		//LABEL NEWACCOUNT
 		lblNewAccount = new JLabel("Create an account");
 		lblNewAccount.addMouseListener(new MouseAdapter() {
@@ -145,30 +140,30 @@ public class LoginGrafica extends JPanel{
 		lblNewAccount.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		lblNewAccount.setForeground(new Color(7, 201, 155));
 		lblNewAccount.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewAccount.setBounds(199, 494, 177, 16);
+		lblNewAccount.setBounds(260, 450, 177, 16);
 		this.add(lblNewAccount);
-		
+
 		//LABEL ERROR
 		lblError = new JLabel("");
 		lblError.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		lblError.setHorizontalAlignment(SwingConstants.LEFT);
 		lblError.setForeground(Color.RED);
-		lblError.setBounds(100, 494, 120, 16);
+		lblError.setBounds(124, 451, 165, 16);
 		this.add(lblError);
-		
+
 		lblLogo = new JLabel("");
 		lblLogo.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblLogo.setIcon(null);
-		lblLogo.setBounds(138, 180, 177, 152);
+		lblLogo.setBounds(188, 87, 177, 152);
 		String path="res/logo.png";
 		String pathIcon = getClass().getResource(path).getFile();
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,150,100);
 		lblLogo.setIcon(imgicon.getImageResponsive());
 		add(lblLogo);
-		
-		
-	   this.setVisible(true);
-		
+
+
+		this.setVisible(true);
+
 
 	}
 

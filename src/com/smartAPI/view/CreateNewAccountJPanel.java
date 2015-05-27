@@ -163,7 +163,7 @@ public class CreateNewAccountJPanel extends JPanel {
 		lblError.setHorizontalAlignment(SwingConstants.LEFT);
 		lblError.setForeground(Color.RED);
 		lblError.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-		lblError.setBounds(47, 391, 140, 16);
+		lblError.setBounds(69, 531, 140, 16);
 		add(lblError);
 		
 		btnBack = new JButton("Back");
