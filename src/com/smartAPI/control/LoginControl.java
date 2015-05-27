@@ -71,7 +71,7 @@ public class LoginControl {
 	
 	public boolean controllaUtente(String username, char[] password) {
 		if(username.trim().equals("") || Arrays.toString(password).trim().equals((""))) {
-			throw new UserException("User not found");
+			throw new UserException("Empty fields");
 		}
 		StringBuilder realPassword = new StringBuilder();
 		for(char s : password) {
