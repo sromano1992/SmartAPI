@@ -15,12 +15,14 @@ import javax.swing.SwingConstants;
 
 
 
+
 import com.smartAPI.control.IUserOptionListener;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.logging.Logger;
+
 import javax.swing.ImageIcon;
 
 /**
@@ -150,5 +152,6 @@ public class UserOptionsJPanel extends JPanel {
 			listener_s = new ArrayList<IUserOptionListener>();
 		}
 		listener_s.add(i);
+
 	}
 }

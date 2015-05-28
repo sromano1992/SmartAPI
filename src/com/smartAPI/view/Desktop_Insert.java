@@ -41,7 +41,7 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener, IUser
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3, LOGOUT = 4;
 	private int actualPanel = INSERT_CP;
 	private JPanel panel;
-
+	private JFrame frame;
 	//private aboutPanel
 
 	public Desktop_Insert(IUserPanelListener desktop_0) {
