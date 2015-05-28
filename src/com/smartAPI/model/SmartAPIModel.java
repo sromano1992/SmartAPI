@@ -855,8 +855,7 @@ public class SmartAPIModel {
 	 */
 	public boolean modificaUtente(String username, String password, String nome, String cognome, String email, String avatar) {
 		ArrayList<Resource> list = getIndividualOfClass("User");
-		
-		//non gli setto voti, mi serve solo per controllare se i campi inseriti sono corretti
+				//non gli setto voti, mi serve solo per controllare se i campi inseriti sono corretti
 		Utente u = new Utente(nome,cognome,email,username,password,false, avatar, "inutile", 0);
 
 		boolean modificaPassword = false;

@@ -21,6 +21,7 @@ import javax.swing.JComboBox;
 import javax.swing.ComboBoxModel;
 
 import com.smartAPI.model.Common;
+import com.smartAPI.model.SmartAPIModel;
 
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -46,6 +47,7 @@ public class AdminInfoJPanel extends JPanel {
 		lblImage = new JLabel("");
 		//path dipende dall'avatar dell'utente
 		String path=Common.UTENTE.getAvatar();
+		System.out.println(path);
 		String pathIcon = getClass().getResource(path).getFile();
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblImage.setIcon(imgicon.getImageResponsive());
@@ -185,6 +187,24 @@ public class AdminInfoJPanel extends JPanel {
 		
 		btnSave = new JButton("Save");
 		btnSave.setBounds(75, 428, 181, 29);
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nick = Common.UTENTE.getNickname();
+				SmartAPIModel m = new SmartAPIModel();
+				m.modificaUtente(nick, passwordField.getText(), nameField.getText(), surnameField.getText(), emailField.getText(), avatar);				
+				comboBox.setVisible(false);
+				passwordField.setBackground(new Color(230, 230, 230));
+				passwordField.setEditable(false);
+				nameField.setBackground(new Color(230, 230, 230));
+				nameField.setEditable(false);
+				surnameField.setBackground(new Color(230, 230, 230));
+				surnameField.setEditable(false);
+				emailField.setBackground(new Color(230, 230, 230));
+				emailField.setEditable(false);
+				btnSave.setVisible(false);
+				
+			}
+		});
 		panel.add(btnSave);
 		
 		JButton button = new JButton("Log out");
@@ -220,7 +240,7 @@ public class AdminInfoJPanel extends JPanel {
 				String s=(String)comboBox.getSelectedItem();
 				String[]parts = s.split(" - ");
 				String path="res/admin-"+parts[1]+".png";
-				avatar=parts[1];
+				avatar=path;
 				String pathIcon = getClass().getResource(path).getFile();				
 				MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 				lblImage.setIcon(imgicon.getImageResponsive());

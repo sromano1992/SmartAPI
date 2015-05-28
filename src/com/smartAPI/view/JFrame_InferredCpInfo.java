@@ -64,6 +64,7 @@ public class JFrame_InferredCpInfo extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setBackground(new Color(110,110,100));
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
@@ -160,7 +161,9 @@ public class JFrame_InferredCpInfo extends JFrame {
 		if(cp.getScore()<30)
 			textPane_Probability.setBackground(Color.red);
 		if(cp.getScore()<60)
+			//textPane_Probability.setBackground(Color.yellow);
 			textPane_Probability.setBackground(Color.yellow);
+
 		if(cp.getScore()>=60)
 			textPane_Probability.setBackground(Color.green);
 		textPane_RelativeBasic.setText(cp.getRelativeBasicCodePattern().getResource().getLocalName());
