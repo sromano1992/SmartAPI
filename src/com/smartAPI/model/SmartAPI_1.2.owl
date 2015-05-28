@@ -94,25 +94,6 @@
     <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#MainGraphic">
-    <SmartAPI:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</SmartAPI:hasScore>
-    <SmartAPI:hasVoters rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</SmartAPI:hasVoters>
-    <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Awt"/>
-    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
-    <SmartAPI:hasKeyword>graphic</SmartAPI:hasKeyword>
-    <SmartAPI:hasCode> 	public static JFrame f;
-	public static void main(String[] args) {
-		//JFrame f = new JFrame();
-		 f = new JFrame();
-
-		f.setSize(1300, 900);
-		f.add(new Desktop_0(f));
-		//f.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		f.setVisible(true);
-		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
-	}</SmartAPI:hasCode>
-    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Design"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasLanguage">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:range rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Language"/>
@@ -133,9 +114,6 @@
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m15">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Awt">
-    <SmartAPI:hasLanguage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Java"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -209,12 +187,12 @@
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m100">
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m2">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m2">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m100">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
   </rdf:Description>
@@ -302,6 +280,9 @@
     <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#awt">
+    <SmartAPI:hasLanguage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Java"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasScore">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
@@ -414,12 +395,12 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m102">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m9">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -492,6 +473,25 @@
     <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
     <SmartAPI:hasUsername>simone</SmartAPI:hasUsername>
     <SmartAPI:hasEmail>simoneromano@gmail.com</SmartAPI:hasEmail>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#test">
+    <SmartAPI:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</SmartAPI:hasScore>
+    <SmartAPI:hasVoters rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</SmartAPI:hasVoters>
+    <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#awt"/>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
+    <SmartAPI:hasKeyword>graphic</SmartAPI:hasKeyword>
+    <SmartAPI:hasCode> 	public static JFrame f;
+	public static void main(String[] args) {
+		//JFrame f = new JFrame();
+		 f = new JFrame();
+
+		f.setSize(1300, 900);
+		f.add(new Desktop_0(f));
+		//f.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		f.setVisible(true);
+		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+	}</SmartAPI:hasCode>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Design"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasLibrary">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>

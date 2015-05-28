@@ -21,6 +21,8 @@ import javax.swing.JComboBox;
 import javax.swing.ComboBoxModel;
 
 import com.smartAPI.model.Common;
+import com.smartAPI.model.SmartAPIModel;
+import com.smartAPI.model.UserException;
 
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -29,7 +31,8 @@ import java.awt.event.MouseEvent;
 public class AdminInfoJPanel extends JPanel {
 
 	JLabel lblImage;
-	private static int SCORE = 10;
+	JLabel lblError;
+	//private static int SCORE = 10;
 	private JTextField userField;
 	private JPasswordField passwordField;
 	private JTextField nameField;
@@ -37,8 +40,8 @@ public class AdminInfoJPanel extends JPanel {
 	private JTextField emailField;
 	private final JComboBox comboBox;
 	private JButton btnSave;
-	private String avatar="";//iniz. con avatar user
-	
+	private String avatar=Common.UTENTE.getAvatar();//iniz. con avatar user
+
 	public AdminInfoJPanel() {
 		setLayout(null);
 		setBackground(new Color(228, 230, 235));
@@ -46,13 +49,14 @@ public class AdminInfoJPanel extends JPanel {
 		lblImage = new JLabel("");
 		//path dipende dall'avatar dell'utente
 		String path=Common.UTENTE.getAvatar();
+		System.out.println(path);
 		String pathIcon = getClass().getResource(path).getFile();
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblImage.setIcon(imgicon.getImageResponsive());
-		
+
 		lblImage.setBounds(155, 97, 80, 71);
 		add(lblImage);
-		
+
 		JButton btnModify = new JButton("");
 		btnModify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -75,13 +79,13 @@ public class AdminInfoJPanel extends JPanel {
 		imgicon = new MyImageIcon(pathIcon,20,20);
 		btnModify.setIcon(imgicon.getImageResponsive());
 		add(btnModify);
-		
+
 		Vector comboBoxItems=new Vector();
 		comboBoxItems.add("admin - 1");
 		comboBoxItems.add("admin - 2");
-	    
-	    final DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
-		
+
+		final DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
+
 		JLabel lblAdminInfo = new JLabel("ADMIN INFO");
 		lblAdminInfo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblAdminInfo.setOpaque(true);
@@ -91,7 +95,7 @@ public class AdminInfoJPanel extends JPanel {
 		lblAdminInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAdminInfo.setBounds(32, 35, 335, 50);
 		add(lblAdminInfo);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBounds(32, 180, 335, 509);
 		panel.setBackground(new Color(250, 172, 88));
@@ -101,7 +105,7 @@ public class AdminInfoJPanel extends JPanel {
 		comboBox = new JComboBox(model);
 		comboBox.setBounds(107, 6, 118, 31);
 		panel.add(comboBox);
-		
+
 		JLabel lblUser = new JLabel("User");
 		lblUser.setBounds(25, 64, 75, 31);
 		panel.add(lblUser);
@@ -109,14 +113,14 @@ public class AdminInfoJPanel extends JPanel {
 		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUser.setForeground(Color.WHITE);
 		lblUser.setBackground(new Color(180, 95, 4));
-		
+
 		userField = new JTextField(Common.UTENTE.getNickname());
 		userField.setBounds(97, 61, 208, 37);
 		panel.add(userField);
 		userField.setEditable(false);
 		userField.setColumns(10);
 		userField.setBackground(new Color(230, 230, 230));
-		
+
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds(25, 95, 75, 31);
 		panel.add(lblPassword);
@@ -124,13 +128,13 @@ public class AdminInfoJPanel extends JPanel {
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setBackground(new Color(180, 95, 4));
-		
+
 		passwordField = new JPasswordField(Common.UTENTE.getPassword());
 		passwordField.setBounds(97, 92, 208, 37);
 		panel.add(passwordField);
 		passwordField.setEditable(false);
 		passwordField.setBackground(new Color(230, 230, 230));
-		
+
 		JLabel lblPersonalData = new JLabel("Personal Data");
 		lblPersonalData.setBounds(0, 188, 335, 37);
 		panel.add(lblPersonalData);
@@ -139,7 +143,7 @@ public class AdminInfoJPanel extends JPanel {
 		lblPersonalData.setForeground(Color.YELLOW);
 		lblPersonalData.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblPersonalData.setBackground(new Color(151, 121, 102));
-		
+
 		JLabel lblName = new JLabel("Name");
 		lblName.setBounds(25, 286, 75, 31);
 		panel.add(lblName);
@@ -147,14 +151,14 @@ public class AdminInfoJPanel extends JPanel {
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblName.setForeground(Color.WHITE);
 		lblName.setBackground(new Color(180, 95, 4));
-		
+
 		nameField = new JTextField(Common.UTENTE.getNome());
 		nameField.setBounds(97, 283, 208, 37);
 		panel.add(nameField);
 		nameField.setEditable(false);
 		nameField.setBackground(new Color(230, 230, 230));
 		nameField.setColumns(10);
-		
+
 		JLabel lblSurname = new JLabel("Surname");
 		lblSurname.setBounds(25, 316, 75, 31);
 		panel.add(lblSurname);
@@ -162,13 +166,13 @@ public class AdminInfoJPanel extends JPanel {
 		lblSurname.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSurname.setForeground(Color.WHITE);
 		lblSurname.setBackground(new Color(180, 95, 4));
-		
+
 		surnameField = new JTextField(Common.UTENTE.getCognome());
 		surnameField.setBounds(97, 313, 208, 37);
 		panel.add(surnameField);
 		surnameField.setEditable(false);
 		surnameField.setBackground(new Color(230, 230, 230));
-		
+
 		JLabel lblEmail = new JLabel("Email");
 		lblEmail.setBounds(25, 346, 75, 31);
 		panel.add(lblEmail);
@@ -176,61 +180,81 @@ public class AdminInfoJPanel extends JPanel {
 		lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEmail.setForeground(Color.WHITE);
 		lblEmail.setBackground(new Color(180, 95, 4));
-		
+
 		emailField = new JTextField(Common.UTENTE.getEmail());
 		emailField.setBounds(97, 343, 208, 37);
 		panel.add(emailField);
 		emailField.setEditable(false);
 		emailField.setBackground(new Color(230, 230, 230));
-		
+
 		btnSave = new JButton("Save");
-		btnSave.setBounds(75, 428, 181, 29);
-		panel.add(btnSave);
-		
-		JButton button = new JButton("Log out");
-		button.setBounds(75, 453, 181, 29);
-		panel.add(button);
 		btnSave.setVisible(false);
+		btnSave.setBounds(75, 428, 181, 29);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String nick = Common.UTENTE.getNickname();
+				SmartAPIModel m = new SmartAPIModel();
+
 				System.out.println("Passw: "+passwordField.getText());
 				System.out.println("Name: "+nameField.getText());
 				System.out.println("Surname: "+surnameField.getText());
 				System.out.println("Email: "+emailField.getText());
 				System.out.println("Avatar: "+avatar);
 
-				comboBox.setVisible(false);
-				passwordField.setBackground(new Color(230, 230, 230));
-				passwordField.setEditable(false);
-				nameField.setBackground(new Color(230, 230, 230));
-				nameField.setEditable(false);
-				surnameField.setBackground(new Color(230, 230, 230));
-				surnameField.setEditable(false);
-				emailField.setBackground(new Color(230, 230, 230));
-				emailField.setEditable(false);
-				btnSave.setVisible(false);
-				
+				try{
+					m.modificaUtente(nick, passwordField.getText(), nameField.getText(), surnameField.getText(), emailField.getText(), avatar);		
+					comboBox.setVisible(false);
+					passwordField.setBackground(new Color(230, 230, 230));
+					passwordField.setEditable(false);
+					nameField.setBackground(new Color(230, 230, 230));
+					nameField.setEditable(false);
+					surnameField.setBackground(new Color(230, 230, 230));
+					surnameField.setEditable(false);
+					emailField.setBackground(new Color(230, 230, 230));
+					emailField.setEditable(false);
+					btnSave.setVisible(false);
+					lblError.setVisible(false);
+
+				}catch (UserException e1){
+					lblError.setText(e1.getMessage());
+					lblError.setVisible(true);
+					btnSave.setVisible(true);
+				}
 			}
 		});
-		
+		panel.add(btnSave);
+
+		JButton button = new JButton("Log out");
+		button.setBounds(75, 453, 181, 29);
+		panel.add(button);
+
+		lblError = new JLabel("");
+		lblError.setVisible(false);
+		lblError.setHorizontalAlignment(SwingConstants.LEFT);
+		lblError.setForeground(Color.RED);
+		lblError.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lblError.setBounds(25, 389, 197, 16);
+		panel.add(lblError);
+
+
 		comboBox.setVisible(false);
 		comboBox.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				String s=(String)comboBox.getSelectedItem();
 				String[]parts = s.split(" - ");
 				String path="res/admin-"+parts[1]+".png";
-				avatar=parts[1];
+				avatar=path;
 				String pathIcon = getClass().getResource(path).getFile();				
 				MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 				lblImage.setIcon(imgicon.getImageResponsive());
 			}
 		});
-		
-//		JPanel panelStar = new JPanel();
-//		panelStar.setBounds(212, 107, 127, 50);
-//		add(panelStar);
-//		panelStar.setBackground(new Color(228, 230, 235));
+
+		//		JPanel panelStar = new JPanel();
+		//		panelStar.setBounds(212, 107, 127, 50);
+		//		add(panelStar);
+		//		panelStar.setBackground(new Color(228, 230, 235));
 		path="res/pencil.png";
 		pathIcon = getClass().getResource(path).getFile();
 		imgicon = new MyImageIcon(pathIcon,20,20);
@@ -242,9 +266,9 @@ public class AdminInfoJPanel extends JPanel {
 		pathIcon = getClass().getResource(path).getFile();
 		imgicon = new MyImageIcon(pathIcon,20,20);
 		star=imgicon.getImageResponsive();
-//		for (int i=0; i<SCORE; i++){
-//			panelStar.add(new JLabel(star));
-//	    }
-		
+		//		for (int i=0; i<SCORE; i++){
+		//			panelStar.add(new JLabel(star));
+		//	    }
+
 	}
 }
