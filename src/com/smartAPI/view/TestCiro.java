@@ -28,7 +28,7 @@ public class TestCiro {
 		//CreateAdminJPanel panel = new CreateAdminJPanel();
 		
 		//ADMININFO
-		AdminInfoJPanel panel = new AdminInfoJPanel("a.leo","000","Amedeo","Leo","amedeo.leo@gmail.com");
+		AdminInfoJPanel panel = new AdminInfoJPanel();
 
 		//USERCLASSIFICATION
 		//UserClassificationJPanel panel = new UserClassificationJPanel();
