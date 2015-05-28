@@ -46,6 +46,7 @@ import java.awt.ScrollPane;
 import javax.swing.ImageIcon;
 
 import com.smartAPI.control.AddCodePatternControl;
+import javax.swing.JEditorPane;
 
 /**
  * Pannello che permette all'utente di inserire un code pattern

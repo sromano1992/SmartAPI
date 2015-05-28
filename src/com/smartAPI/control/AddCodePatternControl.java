@@ -78,7 +78,7 @@ public class AddCodePatternControl {
 	public int addCodePattern(){
 		try {
 			ArrayList<String> method_s = new JavaMethodParser().parse(val_CP);
-			//System.out.println("Categoria*******:"+category);
+			System.out.println("metodi*******:"+method_s);
 			model.addToMethodClass(method_s);
 			//model.addPatternCategory(category);
 			model.addUseMethod(category);
