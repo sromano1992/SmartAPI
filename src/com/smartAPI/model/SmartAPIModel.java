@@ -795,6 +795,33 @@ public class SmartAPIModel {
 		}
 		return toReturn;
 	}
+	
+	/**
+	 * This method will return one 'CodePattern_Category' for
+	 * each category of codePattern which has specified 'kewyord'.
+	 * @return
+	 */
+	public ArrayList<CodePattern_Category> getAllCodePatternForCategory(String keyword){
+		ArrayList<CodePattern_Category> toReturn = new ArrayList<CodePattern_Category>();
+		ArrayList<Resource> patternCategory_s = getPatternCategory();
+		for (Resource r:patternCategory_s){
+			toReturn.add(getPatternOfCategory(r.getLocalName()));
+		}
+		
+		//keyword check
+		for (CodePattern_Category cp_c : toReturn){
+			ArrayList<CodePattern> toRemove = new ArrayList<CodePattern>();
+			for (CodePattern c: cp_c.getBasicCodePattern()){
+				if (!hasKeyword(c.getResource().getLocalName(), keyword)){
+					toRemove.add(c);
+				}
+			}
+			for(CodePattern c:toRemove){
+				cp_c.getBasicCodePattern().remove(c);
+			}
+		}
+		return toReturn;
+	}
 
 
 	/**
