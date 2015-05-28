@@ -126,23 +126,23 @@ public class LoginGrafica extends JPanel{
 		this.add(lblLogin);
 
 		//LABEL NEWACCOUNT
-		lblNewAccount = new JLabel("Create an account");
-		lblNewAccount.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				for (ILogInPanelListner c:logInListener_s){
-					c.newAccountClicked();
-				}
-				log.info("raised evento to " + logInListener_s.size() + " listeners...");
-			}
-			public void mouseEntered(MouseEvent e) {
-				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			}
-		});
-		lblNewAccount.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-		lblNewAccount.setForeground(new Color(7, 201, 155));
-		lblNewAccount.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewAccount.setBounds(215, 526, 177, 16);
-		this.add(lblNewAccount);
+//		lblNewAccount = new JLabel("Create an account");
+//		lblNewAccount.addMouseListener(new MouseAdapter() {
+//			public void mouseClicked(MouseEvent e) {
+//				for (ILogInPanelListner c:logInListener_s){
+//					c.newAccountClicked();
+//				}
+//				log.info("raised evento to " + logInListener_s.size() + " listeners...");
+//			}
+//			public void mouseEntered(MouseEvent e) {
+//				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//			}
+//		});
+//		lblNewAccount.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+//		lblNewAccount.setForeground(new Color(7, 201, 155));
+//		lblNewAccount.setHorizontalAlignment(SwingConstants.RIGHT);
+//		lblNewAccount.setBounds(215, 526, 177, 16);
+//		this.add(lblNewAccount);
 
 		//LABEL ERROR
 		lblError = new JLabel("");
