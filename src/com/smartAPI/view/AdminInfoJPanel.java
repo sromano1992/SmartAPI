@@ -24,17 +24,18 @@ import javax.swing.JComboBox;
 import javax.swing.ComboBoxModel;
 
 import com.smartAPI.control.IUserOptionListener;
+import com.smartAPI.control.IUserPanelListener;
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.UserException;
+import com.smartAPI.test.Main;
 
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class AdminInfoJPanel extends JPanel {
-
-	private ArrayList<IUserOptionListener> listener_s;
+	private ArrayList<IUserPanelListener> listener_s;
 	private static Logger log = Logger.getLogger("global");
 	JLabel lblImage;
 	JLabel lblError;
@@ -51,7 +52,7 @@ public class AdminInfoJPanel extends JPanel {
 	public AdminInfoJPanel() {
 		setLayout(null);
 		setBackground(new Color(228, 230, 235));
-
+		
 		lblImage = new JLabel("");
 		//path dipende dall'avatar dell'utente
 		String path=Common.UTENTE.getAvatar();
@@ -236,15 +237,15 @@ public class AdminInfoJPanel extends JPanel {
 				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 			}
-			public void mouseClicked(MouseEvent e) {
-				
-				for (IUserOptionListener i:listener_s){
-					i.logoutClicked();
+			public void mouseClicked(MouseEvent e) {				
+				for (IUserPanelListener i:listener_s){
+					i.logOutClicked();
 				}
 				log.info("LOGOUT");
 			}
 
 		});
+		
 		btnLogout.setBounds(75, 453, 181, 29);
 		panel.add(btnLogout);
 
@@ -290,5 +291,13 @@ public class AdminInfoJPanel extends JPanel {
 		//			panelStar.add(new JLabel(star));
 		//	    }
 
+	}
+	
+	public void addUserInfoJPanelListener(IUserPanelListener toAdd){
+		if (listener_s == null){
+			listener_s = new ArrayList<IUserPanelListener>();
+		}
+		listener_s.add(toAdd);
+		log.info("New IuserPanelListener added");
 	}
 }
