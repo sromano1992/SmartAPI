@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 import com.smartAPI.control.ILogInPanelListner;
+import java.awt.FlowLayout;
 
 /**
  * Login page.
@@ -32,11 +33,14 @@ public class Desktop_0 extends JPanel implements ILogInPanelListner{
 	 */
 	public Desktop_0(JFrame f) {
 		mainContainer = f;
-		setLayout(new GridLayout(1, 2, 0, 0));
+		setLayout(new GridLayout(1, 3, 0, 0));
 		
 		loginGrafica = new LoginGrafica();
 		add(loginGrafica);
 		loginGrafica.addLoginPanelListner(this);
+		
+		Panel_CenterLogin panel_CenterLogin = new Panel_CenterLogin();
+		add(panel_CenterLogin);
 		
 		CreateNewAccountJPanel createNewAccountJPanel = new CreateNewAccountJPanel();
 		add(createNewAccountJPanel);
