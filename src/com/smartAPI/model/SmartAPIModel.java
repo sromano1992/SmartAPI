@@ -820,7 +820,17 @@ public class SmartAPIModel {
 				cp_c.getBasicCodePattern().remove(c);
 			}
 		}
-		return toReturn;
+		boolean someCpFound = false;
+		for (CodePattern_Category cp_c : toReturn){
+			if (cp_c.getBasicCodePattern().size() != 0){
+				someCpFound = true;
+				break;
+			}
+		}
+		if (someCpFound)
+			return toReturn;
+		else
+			return null;
 	}
 
 

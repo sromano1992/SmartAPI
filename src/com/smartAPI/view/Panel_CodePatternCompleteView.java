@@ -7,6 +7,7 @@ import javax.swing.border.Border;
 import javax.swing.tree.TreePath;
 
 import com.smartAPI.control.TreePathListener;
+import com.smartAPI.model.CodePattern_Category;
 import com.smartAPI.model.SmartAPIModel;
 
 import java.awt.BorderLayout;
@@ -27,13 +28,16 @@ import javax.swing.ScrollPaneConstants;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.logging.Logger;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JToggleButton;
 import javax.swing.ImageIcon;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -46,6 +50,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 	private static Logger log = Logger.getLogger("global");
 	private TreeViewCP treeView;
 	private JTextField textField_keyword;
+	private JButton buttonDeleteKeyword;
 	
 	/**
 	 * Create the panel.
@@ -55,7 +60,19 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.NORTH);
-		panel_1.setLayout(new GridLayout(0, 10, 0, 0));
+		panel_1.setLayout(new GridLayout(0, 11, 0, 0));
+		
+		JLabel label_3 = new JLabel("");
+		panel_1.add(label_3);
+		
+		JLabel label_2 = new JLabel("");
+		panel_1.add(label_2);
+		
+		JLabel label_1 = new JLabel("");
+		panel_1.add(label_1);
+		
+		JLabel label = new JLabel("");
+		panel_1.add(label);
 		
 		JLabel lblKeyword = new JLabel("Keyword:");
 		lblKeyword.setHorizontalAlignment(SwingConstants.CENTER);
@@ -72,6 +89,19 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		JButton btnSearch = new JButton("");
 		btnSearch.setIcon(new ImageIcon(Panel_CodePatternCompleteView.class.getResource("/com/smartAPI/view/res/searchIcon.png")));
 		panel_2.add(btnSearch);
+		
+		buttonDeleteKeyword = new JButton("");
+		buttonDeleteKeyword.setEnabled(false);
+		buttonDeleteKeyword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
+				buttonDeleteKeyword.setEnabled(false);
+				textField_keyword.setText("");
+				textField_keyword.setBackground(Color.white);
+			}
+		});
+		buttonDeleteKeyword.setIcon(new ImageIcon(Panel_CodePatternCompleteView.class.getResource("/com/smartAPI/view/res/remove.png")));
+		panel_2.add(buttonDeleteKeyword);
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setContinuousLayout(true);
@@ -95,7 +125,15 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(textField_keyword.getText()), "Basic", false);
+				ArrayList<CodePattern_Category> patternWithKeyword = new SmartAPIModel().getAllCodePatternForCategory(textField_keyword.getText());
+				if (patternWithKeyword != null){
+					textField_keyword.setBackground(Color.white);
+					buttonDeleteKeyword.setEnabled(true);
+					treeView.setCodePattern_s(patternWithKeyword, "Basic", false);
+				}
+				else{
+					textField_keyword.setBackground(Color.red);
+				}
 			}
 		});
 		
@@ -122,6 +160,8 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 	
 	public void refresh(){
 		treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
+		textField_keyword.setText("");
+		textField_keyword.setBackground(Color.white);
 		log.info("Updated codePattern view...");
 	}
 }

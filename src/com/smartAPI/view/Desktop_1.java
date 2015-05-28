@@ -4,31 +4,18 @@ import javax.swing.JPanel;
 
 import java.awt.Component;
 import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
-
-import java.awt.BorderLayout;
 
 import javax.swing.JSplitPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-import com.smartAPI.control.ILogInPanelListner;
 import com.smartAPI.control.IUserOptionListener;
 import com.smartAPI.control.IUserPanelListener;
 import com.smartAPI.model.Common;
-import com.smartAPI.test.Main;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 
 public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanelListener{
 	private Panel_InsertCP panel_InsertCP;
@@ -41,9 +28,6 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3, LOGOUT = 4;
 	private int actualPanel = INSERT_CP;
 	private JPanel panel;
-	private JFrame frame;
-	//private aboutPanel
-
 	public Desktop_1(IUserPanelListener desktop_0) {
 		this.mainFrame = desktop_0;
 		panel = addControl_s();
