@@ -10,12 +10,14 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.ScrollPaneConstants;
 
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -40,7 +42,10 @@ import javax.swing.DropMode;
 import javax.swing.border.Border;
 
 import java.awt.ScrollPane;
+
 import javax.swing.ImageIcon;
+
+import com.smartAPI.control.AddCodePatternControl;
 
 /**
  * Pannello che permette all'utente di inserire un code pattern
@@ -49,11 +54,12 @@ import javax.swing.ImageIcon;
  */
 public class Panel_InsertCP extends JPanel {
 	private JTextField nomeCP;
-	private JTextArea txtCodePattern;
+	private JTextArea ta;
 	private JTextField keyword;
 	private JTextField newCategoria;
 	private JTextField langTextField;
 	private JTextField libTextField;
+	private String categoria;
 
 	/**
 	 * Create the panel.
@@ -70,14 +76,14 @@ public class Panel_InsertCP extends JPanel {
 		nomeCP.setColumns(20);
 
 
-		txtCodePattern = new JTextArea();
+		/*txtCodePattern = new JTextArea();
 		txtCodePattern.setBounds(94, 343, 787, 220);
 		//Border border = BorderFactory.createLineBorder(Color.BLACK);
 		//txtCodePattern.setBorder(border);
 		JScrollPane scrollableTextArea = new JScrollPane(txtCodePattern);
 		scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		add(scrollableTextArea);
+		add(scrollableTextArea);*/
 
 
 
@@ -97,10 +103,11 @@ public class Panel_InsertCP extends JPanel {
 		final JComboBox jcb = new JComboBox(model);
 		jcb.setBounds(619, 144, 190, 37);
 		add(jcb);
+		categoria = (String) v.get(0);
 		jcb.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				String categoria = (String) jcb.getSelectedItem();
+				 categoria = (String) jcb.getSelectedItem();
 				if(categoria.equals("Other...")){
 					newCategoria.setVisible(true);
 				}
@@ -151,12 +158,19 @@ public class Panel_InsertCP extends JPanel {
 		addCP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String val_nome = nomeCP.getText();
-				String val_CP = txtCodePattern.getText();
+				String val_CP = ta.getText();
 				String val_keyword = keyword.getText();
 				String val_language = langTextField.getText();
 				String val_lib = libTextField.getText();
-				if(!newCategoria.getText().equals("")) System.out.println("Category: "+newCategoria.getText());
-				System.out.println("Name: "+val_nome+" Key: "+val_keyword+" Cp: "+val_CP+" Language: "+val_language+" Library: "+val_lib);
+				if(!newCategoria.getText().equals("")) categoria = newCategoria.getText();
+				
+				if(new AddCodePatternControl(val_nome, val_CP, val_keyword, val_language, val_lib, categoria).addCodePattern() == 1){
+					JOptionPane.showMessageDialog(null, "Tutto ok");
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Non è ok");
+				}
+				//System.out.println("Name: "+val_nome+" Key: "+val_keyword+" Cp: "+val_CP+" Language: "+val_language+" Library: "+val_lib);
 			}
 		});
 		add(addCP);
@@ -181,27 +195,21 @@ public class Panel_InsertCP extends JPanel {
 		add(libTextField);
 		libTextField.setColumns(10);
 		
-		
-		String txt="Lorem Ipsum è un testo segnaposto utilizzato nel"+ ""
-				+ "settore della tipografia e della stampa. Lorem Ipsum è "
-				+ "considerato il testo segnaposto standard sin dal sedicesimo "
-				+ "secolo, quando un anonimo tipografo prese una cassetta di "
-				+ "caratteri e li assemblò per preparare un testo campione. "
-				+ "È sopravvissuto non solo a più di cinque secoli, ma anche"
-				+ " al passaggio alla videoimpaginazione, pervenendoci "
-				+ "sostanzialmente inalterato. Fu reso popolare, negli anni ’60,"
-				+ " con la diffusione dei fogli di caratteri trasferibili “Letraset”, "
-				+ "che contenevano passaggi del Lorem Ipsum, "
-				+ "e più recentemente da software di impaginazione come Aldus PageMaker,"
-				+ " che includeva versioni del Lorem Ipsum.";
-		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(228, 230, 235));
 		add(panel);
 		panel.setBounds(69, 231, 738, 220);
-		JTextArea ta = new JTextArea(txt+txt+txt, 13, 60);
-		panel.add(ta);
+		ta = new JTextArea(" ", 13, 60);
+		//panel.add(ta);
+		ta.setVisible(true);
 	    ta.setLineWrap(true);
+	    
+	    JScrollPane scrollPane = new JScrollPane(ta);
+	    scrollPane.setVisible(true);
+	    scrollPane.setBounds(69,231,80,80);
+	    scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+	    panel.add(scrollPane);
+	    
 	    
 	    JLabel lblPattern = new JLabel("Pattern");
 	    lblPattern.setOpaque(true);
