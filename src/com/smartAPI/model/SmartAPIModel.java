@@ -1247,9 +1247,10 @@ public class SmartAPIModel {
 	
 	public void initScoreVoters(String risorsa){
 		Individual ind = getOntModel().getIndividual(Common.NS + risorsa);
+		Literal l = getOntModel().createTypedLiteral(new Integer(0));
 		DatatypeProperty hasVoters = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_VOTERS);
-		ind.addProperty(hasVoters, "0");
+		ind.addProperty(hasVoters, l);
 		DatatypeProperty hasScore = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_SCORE);
-		ind.addProperty(hasScore, "0");
+		ind.addProperty(hasScore, l);
 	}
 }
