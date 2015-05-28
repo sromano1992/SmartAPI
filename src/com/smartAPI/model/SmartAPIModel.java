@@ -1214,7 +1214,6 @@ public class SmartAPIModel {
 			return 0;
 		}
 		getOntModel().getResource(Common.NS + username).getProperty(getProperty(Common.NS + Common.HAS_STARS)).changeLiteralObject(Math.round(score / numeroCodePattern));
-		storeOntModel();
 		return Math.round(score / numeroCodePattern);
 	}
 	
@@ -1223,11 +1222,16 @@ public class SmartAPIModel {
 	 * Modifica il numero di stelle dell'utente
 	 * @author Amedeo Leo
 	 */
-	public boolean cambiaStelle(String username) {
+	public int cambiaStelle(String username) {
 		Resource resource = getOntModel().getResource(Common.NS + username);
-		int stelle = getNumeroStelle(username);
-		resource.getProperty(getProperty(Common.NS + Common.HAS_STARS)).changeLiteralObject(stelle);
-		return true;
+		int vecchieStelle = resource.getProperty(getProperty(Common.NS + Common.HAS_STARS)).getInt();
+		System.out.println("vecchie stelle (3): "+vecchieStelle);
+		int nuoveStelle = getNumeroStelle(username);
+		if (vecchieStelle!= nuoveStelle){
+		resource.getProperty(getProperty(Common.NS + Common.HAS_STARS)).changeLiteralObject(nuoveStelle);
+		storeOntModel();
+		}
+		return nuoveStelle;
 	}
 	
 	public void setOwner(String codePattern){
@@ -1254,5 +1258,16 @@ public class SmartAPIModel {
 		ind.addProperty(hasVoters, l);
 		DatatypeProperty hasScore = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_SCORE);
 		ind.addProperty(hasScore, l);
+	}
+	
+	/**
+	 * If users == 0, create admin
+	 * @author Amedeo Leo & Ciro Amati
+	 */
+	
+	public boolean createAdmin(){
+		if (getUsers().size()==0)
+			return true;
+		return false;
 	}
 }

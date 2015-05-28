@@ -265,12 +265,11 @@ public class UserInfoJPanel extends JPanel {
 		pathIcon = getClass().getResource(path).getFile();
 		imgicon = new MyImageIcon(pathIcon,20,20);
 		star=imgicon.getImageResponsive();
-		for (int i=0; i<LoginGrafica.getModel().getNumeroStelle(userField.getText()); i++){
+		
+		int numStelle = LoginGrafica.getModel().cambiaStelle(userField.getText());
+		for (int i=0; i<numStelle; i++){
 			panelStar.add(new JLabel(star));
 	    }
-		panelStar.add(new JLabel(star));
-		panelStar.add(new JLabel(star));
-		panelStar.add(new JLabel(star));
 	}
 	
 	public void addListener(IUserOptionListener i){

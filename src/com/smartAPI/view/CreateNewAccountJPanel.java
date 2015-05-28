@@ -198,7 +198,7 @@ public class CreateNewAccountJPanel extends JPanel {
     				
         			RegistrazioneControl registrazioneControl = new RegistrazioneControl(model);
         			
-        			if(registrazioneControl.registra(nome, cognome, username, password, confermaPassword, email, pathAvatar)) {
+        			if(registrazioneControl.registra(nome, cognome, username, password, confermaPassword, email, false,pathAvatar)) {
         				lblError.setVisible(false);
         				lblMessage.setVisible(true);
         			}

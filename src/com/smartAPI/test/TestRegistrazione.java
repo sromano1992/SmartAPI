@@ -17,7 +17,7 @@ public class TestRegistrazione {
 		char password[] = new char[]{'a','b','c','d','e','f'};
 		char confermaPassword[] = new char[]{'a','b','c','d','e','f'};
 		
-		rc.registra("abcd", "abcd", "abcd", password, confermaPassword, "abcd@aabcd.com", "res/4.png");
+		rc.registra("abcd", "abcd", "abcd", password, confermaPassword, "abcd@aabcd.com", false, "res/4.png");
 	}
 
 }

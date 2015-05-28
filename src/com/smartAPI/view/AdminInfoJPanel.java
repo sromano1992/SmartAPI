@@ -27,6 +27,7 @@ import com.smartAPI.control.IUserOptionListener;
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.UserException;
+import com.smartAPI.test.Main;
 
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -51,7 +52,7 @@ public class AdminInfoJPanel extends JPanel {
 	public AdminInfoJPanel() {
 		setLayout(null);
 		setBackground(new Color(228, 230, 235));
-
+		
 		lblImage = new JLabel("");
 		//path dipende dall'avatar dell'utente
 		String path=Common.UTENTE.getAvatar();
@@ -231,20 +232,9 @@ public class AdminInfoJPanel extends JPanel {
 		panel.add(btnSave);
 
 		JButton btnLogout = new JButton("Logout");
-		btnLogout.addMouseListener(new MouseAdapter() {
-			public void mouseEntered(MouseEvent e) {
-				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-			}
-			public void mouseClicked(MouseEvent e) {
-				
-				for (IUserOptionListener i:listener_s){
-					i.logoutClicked();
-				}
-				log.info("LOGOUT");
-			}
-
-		});
+		
+		
+		
 		btnLogout.setBounds(75, 453, 181, 29);
 		panel.add(btnLogout);
 
@@ -291,4 +281,7 @@ public class AdminInfoJPanel extends JPanel {
 		//	    }
 
 	}
+	
+	
+
 }

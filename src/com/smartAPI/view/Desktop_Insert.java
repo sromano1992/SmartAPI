@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
 import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -36,10 +37,11 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3, LOGOUT = 4;
 	private int actualPanel = INSERT_CP;
 	private JPanel panel;
-
+	private JFrame frame;
 	//private aboutPanel
 
 	public Desktop_Insert() {
+		this.frame = frame;
 		panel = addControl_s();
 
 		panel_InsertCP = new Panel_InsertCP();
@@ -188,23 +190,9 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 		updateGUI();
 	}
 
-	@Override
-	public void logoutClicked() {
-		Desktop_0 panelLogin = new Desktop_0(Main.getMainContainer());
-		if(actualPanel == SHOW_CODE_PATTERN)
-			panel.remove(panel_showCP);
-		else if(actualPanel == SHOW_USER)
-			panel.remove(panel_ShowUser);
-		else if(actualPanel == INSERT_CP)
-			panel.remove(panel_InsertCP);
-		else if(actualPanel == SHOW_ABOUT)
-			panel.remove(panel_About);
+	
 
-		actualPanel = LOGOUT;
-		panel.add(panelLogin);
-		updateGUI();
 
-	}
 
 
 	private void updateGUI(){

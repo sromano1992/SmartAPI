@@ -24,7 +24,8 @@ import java.awt.FlowLayout;
  */
 public class Desktop_0 extends JPanel implements ILogInPanelListner{
 	private LoginGrafica loginGrafica;
-	private Desktop_Insert d1;
+	public  Desktop_Insert d1;
+	public  Desktop_0 d0;
 	private CreateNewAccountJPanel newAccountPanel;
 	private Logger log = Logger.getLogger("global");
 	private JFrame mainContainer;
