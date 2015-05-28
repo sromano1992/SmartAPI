@@ -19,6 +19,10 @@ import java.util.Vector;
 
 import javax.swing.JComboBox;
 import javax.swing.ComboBoxModel;
+
+import com.smartAPI.model.Common;
+import com.smartAPI.model.SmartAPIModel;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -36,13 +40,14 @@ public class AdminInfoJPanel extends JPanel {
 	private JButton btnSave;
 	private String avatar="";//iniz. con avatar user
 	
-	public AdminInfoJPanel(String user,String password,String name,String surname,String email) {
+	public AdminInfoJPanel() {
 		setLayout(null);
 		setBackground(new Color(228, 230, 235));
 
 		lblImage = new JLabel("");
 		//path dipende dall'avatar dell'utente
-		String path="res/admin-1.png";
+		String path=Common.UTENTE.getAvatar();
+		System.out.println(path);
 		String pathIcon = getClass().getResource(path).getFile();
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblImage.setIcon(imgicon.getImageResponsive());
@@ -107,7 +112,7 @@ public class AdminInfoJPanel extends JPanel {
 		lblUser.setForeground(Color.WHITE);
 		lblUser.setBackground(new Color(180, 95, 4));
 		
-		userField = new JTextField(user);
+		userField = new JTextField(Common.UTENTE.getNickname());
 		userField.setBounds(97, 61, 208, 37);
 		panel.add(userField);
 		userField.setEditable(false);
@@ -122,7 +127,7 @@ public class AdminInfoJPanel extends JPanel {
 		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setBackground(new Color(180, 95, 4));
 		
-		passwordField = new JPasswordField(password);
+		passwordField = new JPasswordField(Common.UTENTE.getPassword());
 		passwordField.setBounds(97, 92, 208, 37);
 		panel.add(passwordField);
 		passwordField.setEditable(false);
@@ -145,7 +150,7 @@ public class AdminInfoJPanel extends JPanel {
 		lblName.setForeground(Color.WHITE);
 		lblName.setBackground(new Color(180, 95, 4));
 		
-		nameField = new JTextField(name);
+		nameField = new JTextField(Common.UTENTE.getNome());
 		nameField.setBounds(97, 283, 208, 37);
 		panel.add(nameField);
 		nameField.setEditable(false);
@@ -160,7 +165,7 @@ public class AdminInfoJPanel extends JPanel {
 		lblSurname.setForeground(Color.WHITE);
 		lblSurname.setBackground(new Color(180, 95, 4));
 		
-		surnameField = new JTextField(surname);
+		surnameField = new JTextField(Common.UTENTE.getCognome());
 		surnameField.setBounds(97, 313, 208, 37);
 		panel.add(surnameField);
 		surnameField.setEditable(false);
@@ -174,7 +179,7 @@ public class AdminInfoJPanel extends JPanel {
 		lblEmail.setForeground(Color.WHITE);
 		lblEmail.setBackground(new Color(180, 95, 4));
 		
-		emailField = new JTextField(email);
+		emailField = new JTextField(Common.UTENTE.getEmail());
 		emailField.setBounds(97, 343, 208, 37);
 		panel.add(emailField);
 		emailField.setEditable(false);
@@ -182,7 +187,29 @@ public class AdminInfoJPanel extends JPanel {
 		
 		btnSave = new JButton("Save");
 		btnSave.setBounds(75, 428, 181, 29);
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nick = Common.UTENTE.getNickname();
+				SmartAPIModel m = new SmartAPIModel();
+				m.modificaUtente(nick, passwordField.getText(), nameField.getText(), surnameField.getText(), emailField.getText(), avatar);				
+				comboBox.setVisible(false);
+				passwordField.setBackground(new Color(230, 230, 230));
+				passwordField.setEditable(false);
+				nameField.setBackground(new Color(230, 230, 230));
+				nameField.setEditable(false);
+				surnameField.setBackground(new Color(230, 230, 230));
+				surnameField.setEditable(false);
+				emailField.setBackground(new Color(230, 230, 230));
+				emailField.setEditable(false);
+				btnSave.setVisible(false);
+				
+			}
+		});
 		panel.add(btnSave);
+		
+		JButton button = new JButton("Log out");
+		button.setBounds(75, 453, 181, 29);
+		panel.add(button);
 		btnSave.setVisible(false);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -213,7 +240,7 @@ public class AdminInfoJPanel extends JPanel {
 				String s=(String)comboBox.getSelectedItem();
 				String[]parts = s.split(" - ");
 				String path="res/admin-"+parts[1]+".png";
-				avatar=parts[1];
+				avatar=path;
 				String pathIcon = getClass().getResource(path).getFile();				
 				MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 				lblImage.setIcon(imgicon.getImageResponsive());

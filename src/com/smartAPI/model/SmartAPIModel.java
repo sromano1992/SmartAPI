@@ -858,8 +858,7 @@ public class SmartAPIModel {
 	 */
 	public boolean modificaUtente(String username, String password, String nome, String cognome, String email, String avatar) {
 		ArrayList<Resource> list = getIndividualOfClass("User");
-		
-		//non gli setto voti, mi serve solo per controllare se i campi inseriti sono corretti
+				//non gli setto voti, mi serve solo per controllare se i campi inseriti sono corretti
 		Utente u = new Utente(nome,cognome,email,username,password,false, avatar, "inutile", 0);
 
 		boolean modificaPassword = false;
@@ -1250,9 +1249,10 @@ public class SmartAPIModel {
 	
 	public void initScoreVoters(String risorsa){
 		Individual ind = getOntModel().getIndividual(Common.NS + risorsa);
+		Literal l = getOntModel().createTypedLiteral(new Integer(0));
 		DatatypeProperty hasVoters = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_VOTERS);
-		ind.addProperty(hasVoters, "0");
+		ind.addProperty(hasVoters, l);
 		DatatypeProperty hasScore = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_SCORE);
-		ind.addProperty(hasScore, "0");
+		ind.addProperty(hasScore, l);
 	}
 }
