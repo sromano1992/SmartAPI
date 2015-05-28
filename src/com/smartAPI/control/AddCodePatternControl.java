@@ -80,10 +80,10 @@ public class AddCodePatternControl {
 			ArrayList<String> method_s = new JavaMethodParser().parse(val_CP);
 			//System.out.println("Categoria*******:"+category);
 			model.addToMethodClass(method_s);
-			model.addPatternCategory(category);
+			//model.addPatternCategory(category);
+			model.addUseMethod(category);
 			model.associateCatAndCodePattern(category, val_name);
 			model.setCPSourceCode(val_CP, val_name);
-			model.addUseMethod(category);
 			model.addInstanceUseMethod(category, val_name, method_s);
 			if(!val_keyword.equals("")) model.addKeyword(val_name, val_keyword);
 			model.setOwner(val_name);
