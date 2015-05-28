@@ -1,6 +1,7 @@
 package com.smartAPI.view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -15,11 +16,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Logger;
 
 import javax.swing.JComboBox;
 import javax.swing.ComboBoxModel;
 
+import com.smartAPI.control.IUserOptionListener;
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.UserException;
@@ -30,6 +34,8 @@ import java.awt.event.MouseEvent;
 
 public class AdminInfoJPanel extends JPanel {
 
+	private ArrayList<IUserOptionListener> listener_s;
+	private static Logger log = Logger.getLogger("global");
 	JLabel lblImage;
 	JLabel lblError;
 	//private static int SCORE = 10;
@@ -224,9 +230,23 @@ public class AdminInfoJPanel extends JPanel {
 		});
 		panel.add(btnSave);
 
-		JButton button = new JButton("Log out");
-		button.setBounds(75, 453, 181, 29);
-		panel.add(button);
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+			}
+			public void mouseClicked(MouseEvent e) {
+				
+				for (IUserOptionListener i:listener_s){
+					i.logoutClicked();
+				}
+				log.info("LOGOUT");
+			}
+
+		});
+		btnLogout.setBounds(75, 453, 181, 29);
+		panel.add(btnLogout);
 
 		lblError = new JLabel("");
 		lblError.setVisible(false);
