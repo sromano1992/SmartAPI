@@ -21,18 +21,22 @@ import javax.swing.JSplitPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
+import com.smartAPI.control.ILogInPanelListner;
 import com.smartAPI.control.IUserOptionListener;
+import com.smartAPI.control.IUserPanelListener;
 import com.smartAPI.model.Common;
 import com.smartAPI.test.Main;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
 
-public class Desktop_Insert extends JPanel implements IUserOptionListener{
+public class Desktop_Insert extends JPanel implements IUserOptionListener, IUserPanelListener{
 	private Panel_InsertCP panel_InsertCP;
 	private Panel_CodePatternCompleteView panel_showCP;
 	private Panel_ShowAllUser panel_ShowUser;
+	private AdminInfoJPanel adminInfoJPanel;
 	private About panel_About;
+	private IUserPanelListener mainFrame;
 
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3, LOGOUT = 4;
 	private int actualPanel = INSERT_CP;
@@ -40,8 +44,8 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 	private JFrame frame;
 	//private aboutPanel
 
-	public Desktop_Insert() {
-		this.frame = frame;
+	public Desktop_Insert(IUserPanelListener desktop_0) {
+		this.mainFrame = desktop_0;
 		panel = addControl_s();
 
 		panel_InsertCP = new Panel_InsertCP();
@@ -54,8 +58,6 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 		panel_ShowUser.setBounds(0, 181, 920, 508);		
 		panel_About = new About();
 		panel_About.setBounds(20, 107, 811, 582);
-
-
 	}
 
 	/**
@@ -89,7 +91,8 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 			userInfoJPanel.setLayout(gl_userInfoJPanel);
 		}
 		else{
-			AdminInfoJPanel adminInfoJPanel  = new AdminInfoJPanel();
+			adminInfoJPanel  = new AdminInfoJPanel();
+			adminInfoJPanel.addUserInfoJPanelListener(this);
 			splitPane.setLeftComponent(adminInfoJPanel);
 			GroupLayout gl_AdminInfoJPanel = new GroupLayout(adminInfoJPanel);
 			gl_AdminInfoJPanel.setHorizontalGroup(
@@ -190,9 +193,10 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 		updateGUI();
 	}
 
-	
-
-
+	@Override
+	public void logOutClicked() {
+		mainFrame.logOutClicked();
+	}
 
 
 	private void updateGUI(){
@@ -203,6 +207,4 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 			c = c.getParent();
 		}
 	}
-
-
 }

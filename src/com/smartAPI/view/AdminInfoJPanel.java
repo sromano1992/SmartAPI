@@ -24,6 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.ComboBoxModel;
 
 import com.smartAPI.control.IUserOptionListener;
+import com.smartAPI.control.IUserPanelListener;
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.UserException;
@@ -34,8 +35,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class AdminInfoJPanel extends JPanel {
-
-	private ArrayList<IUserOptionListener> listener_s;
+	private ArrayList<IUserPanelListener> listener_s;
 	private static Logger log = Logger.getLogger("global");
 	JLabel lblImage;
 	JLabel lblError;
@@ -232,8 +232,19 @@ public class AdminInfoJPanel extends JPanel {
 		panel.add(btnSave);
 
 		JButton btnLogout = new JButton("Logout");
-		
-		
+		btnLogout.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+			}
+			public void mouseClicked(MouseEvent e) {				
+				for (IUserPanelListener i:listener_s){
+					i.logOutClicked();
+				}
+				log.info("LOGOUT");
+			}
+
+		});
 		
 		btnLogout.setBounds(75, 453, 181, 29);
 		panel.add(btnLogout);
@@ -282,6 +293,11 @@ public class AdminInfoJPanel extends JPanel {
 
 	}
 	
-	
-
+	public void addUserInfoJPanelListener(IUserPanelListener toAdd){
+		if (listener_s == null){
+			listener_s = new ArrayList<IUserPanelListener>();
+		}
+		listener_s.add(toAdd);
+		log.info("New IuserPanelListener added");
+	}
 }
