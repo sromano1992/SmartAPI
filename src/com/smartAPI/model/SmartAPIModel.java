@@ -1305,8 +1305,9 @@ public class SmartAPIModel {
 	 * @author Amedeo Leo
 	 */
 	public boolean hasKeyword(String codePattern, String keyword) {
-		if(getOntModel().getResource(Common.NS + codePattern).getProperty(getProperty(Common.NS + Common.HAS_KEYWORD)).getString().equals(keyword))
-			return true;
+		if(getOntModel().getResource(Common.NS + codePattern).hasProperty(getProperty(Common.NS + Common.HAS_KEYWORD)))
+			if(getOntModel().getResource(Common.NS + codePattern).getProperty(getProperty(Common.NS + Common.HAS_KEYWORD)).getString().equals(keyword))
+				return true;
 		return false;
 	}
 }

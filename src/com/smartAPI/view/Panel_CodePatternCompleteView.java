@@ -95,7 +95,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(textField_keyword.getText()), "Basic", false);
 			}
 		});
 		

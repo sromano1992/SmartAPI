@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -16,6 +17,7 @@ import com.smartAPI.model.CodePattern_Category;
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.Utente;
+import com.sun.java.swing.SwingUtilities3;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -140,6 +142,8 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 				}
 			});
 		}
+		model.reload();
+		SwingUtilities.updateComponentTreeUI(this);
 	}
 	
 	public void addTreePathListener(TreePathListener o){
