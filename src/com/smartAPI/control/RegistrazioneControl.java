@@ -31,7 +31,7 @@ public class RegistrazioneControl {
 		this.model = model;
 	}
 
-	public boolean registra(String nome, String cognome, String username, char[] password, char[] confermaPassword, String email, String pathAvatar) {
+	public boolean registra(String nome, String cognome, String username, char[] password, char[] confermaPassword, String email, boolean admin, String pathAvatar) {
 		if (nome.trim().equals("") || cognome.trim().equals("") || username.trim().equals("") || 
 				Arrays.toString(password).trim().equals("") || 
 				Arrays.toString(confermaPassword).trim().equals("") ||
@@ -44,7 +44,7 @@ public class RegistrazioneControl {
 			for(char s : password) {
 			    realPassword.append(s);
 			}
-			if(model.addUser(nome, cognome, email, username, realPassword.toString(), false, pathAvatar)) {
+			if(model.addUser(nome, cognome, email, username, realPassword.toString(), admin, pathAvatar)) {
 				return true;
 			}
 			else

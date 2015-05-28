@@ -5,5 +5,4 @@ public interface IUserOptionListener {
 	public void insertClicked();
 	public void showUserClicked();
 	public void aboutClicked();
-	
 }
