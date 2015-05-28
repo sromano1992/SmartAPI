@@ -28,7 +28,7 @@ import java.awt.FlowLayout;
  */
 public class Desktop_0 extends JPanel implements ILogInPanelListner, IUserPanelListener{
 	private LoginGrafica loginGrafica;
-	public  Desktop_Insert d1;
+	public  Desktop_1 d1;
 	public  Desktop_0 d0;
 	private CreateNewAccountJPanel newAccountPanel;
 	private Logger log = Logger.getLogger("global");
@@ -80,7 +80,7 @@ public class Desktop_0 extends JPanel implements ILogInPanelListner, IUserPanelL
 	public void loginClicked() {
 		log.info("Log in event intercepted");
 		if (d1 == null)
-			d1 = new Desktop_Insert(this);
+			d1 = new Desktop_1(this);
 		mainContainer.remove(this);
 		mainContainer.getContentPane().add(d1);
 		SwingUtilities.updateComponentTreeUI(mainContainer);
