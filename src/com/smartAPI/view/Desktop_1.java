@@ -30,7 +30,7 @@ import com.smartAPI.test.Main;
 import java.awt.Color;
 import java.awt.FlowLayout;
 
-public class Desktop_Insert extends JPanel implements IUserOptionListener, IUserPanelListener{
+public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanelListener{
 	private Panel_InsertCP panel_InsertCP;
 	private Panel_CodePatternCompleteView panel_showCP;
 	private Panel_ShowAllUser panel_ShowUser;
@@ -44,7 +44,7 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener, IUser
 	private JFrame frame;
 	//private aboutPanel
 
-	public Desktop_Insert(IUserPanelListener desktop_0) {
+	public Desktop_1(IUserPanelListener desktop_0) {
 		this.mainFrame = desktop_0;
 		panel = addControl_s();
 
@@ -196,6 +196,7 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener, IUser
 	@Override
 	public void logOutClicked() {
 		mainFrame.logOutClicked();
+		insertClicked();
 	}
 
 

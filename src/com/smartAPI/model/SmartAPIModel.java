@@ -795,6 +795,33 @@ public class SmartAPIModel {
 		}
 		return toReturn;
 	}
+	
+	/**
+	 * This method will return one 'CodePattern_Category' for
+	 * each category of codePattern which has specified 'kewyord'.
+	 * @return
+	 */
+	public ArrayList<CodePattern_Category> getAllCodePatternForCategory(String keyword){
+		ArrayList<CodePattern_Category> toReturn = new ArrayList<CodePattern_Category>();
+		ArrayList<Resource> patternCategory_s = getPatternCategory();
+		for (Resource r:patternCategory_s){
+			toReturn.add(getPatternOfCategory(r.getLocalName()));
+		}
+		
+		//keyword check
+		for (CodePattern_Category cp_c : toReturn){
+			ArrayList<CodePattern> toRemove = new ArrayList<CodePattern>();
+			for (CodePattern c: cp_c.getBasicCodePattern()){
+				if (!hasKeyword(c.getResource().getLocalName(), keyword)){
+					toRemove.add(c);
+				}
+			}
+			for(CodePattern c:toRemove){
+				cp_c.getBasicCodePattern().remove(c);
+			}
+		}
+		return toReturn;
+	}
 
 
 	/**
@@ -1268,6 +1295,17 @@ public class SmartAPIModel {
 	
 	public boolean createAdmin(){
 		if (getUsers().size()==0)
+			return true;
+		return false;
+	}
+
+	
+	/**
+	 * Controlla se un codePattern ha la keyword passata in input.
+	 * @author Amedeo Leo
+	 */
+	public boolean hasKeyword(String codePattern, String keyword) {
+		if(getOntModel().getResource(Common.NS + codePattern).getProperty(getProperty(Common.NS + Common.HAS_KEYWORD)).getString().equals(keyword))
 			return true;
 		return false;
 	}

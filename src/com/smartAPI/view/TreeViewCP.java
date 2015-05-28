@@ -34,7 +34,8 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 	private JMenuItem remItem;
 	private TreePath toRemoveNode;
 	private DefaultTreeModel model = null; //(DefaultTreeModel)tree.getModel();
-	private DefaultMutableTreeNode rootNode = null; //(DefaultMutableTreeNode)model.getRoot();
+	private DefaultMutableTreeNode rootNode = null; //(DefaultMutableTreeNode)model.getRoot();		
+	private String lastRemoved;
 
 	
 	/**
@@ -46,6 +47,7 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 		p_menu = new JPopupMenu("test");
 		remItem = new JMenuItem("Remove");
 		p_menu.add(remItem);
+		lastRemoved = "";
 	}
 
 	public void setCodePattern_s(ArrayList<CodePattern_Category> cp_s, String rootName, boolean inferred){
@@ -122,41 +124,19 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 				}
 			});
 			
-			remItem.addActionListener(new ActionListener() {				
+			remItem.addActionListener(new ActionListener() {		
+
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					SmartAPIModel s = new SmartAPIModel();
-					Utente toRemove = s.getUtente(toRemoveNode.getPathComponent(1).toString());
-					s.deleteUser(toRemove.getNickname());
-					DefaultMutableTreeNode node = (DefaultMutableTreeNode)toRemoveNode.getLastPathComponent();
-					//int index = model.getIndexOfChild(rootNode, node);
-					rootNode.remove(node);
-					//tree.removeSelectionPath(toRemoveNode);
-					model.reload();
-					ShowUsersInfo.userField.setText(" ");
-					ShowUsersInfo.emailField.setText(" ");
-					ShowUsersInfo.surnameField.setText(" ");
-					ShowUsersInfo.nameField.setText(" ");
-					
-					String path="res/nouser.png";
-					String pathIcon = getClass().getResource(path).getFile();
-					MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
-					ShowUsersInfo.lblImage.setIcon(imgicon.getImageResponsive());
-					
-					//tree.update(getGraphics());
-				}
-			});
-			remItem.addActionListener(new ActionListener() {				
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
+					if (lastRemoved.equals(toRemoveNode.getPathComponent(2).toString()))
+						return;
+					lastRemoved = toRemoveNode.getPathComponent(2).toString();
 					SmartAPIModel s = new SmartAPIModel();
 					s.deleteCodePattern(toRemoveNode.getPathComponent(2).toString());
 					DefaultMutableTreeNode node = (DefaultMutableTreeNode)toRemoveNode.getLastPathComponent();
-					//int index = model.getIndexOfChild(rootNode, node);
-					rootNode.remove(node);
-					//tree.removeSelectionPath(toRemoveNode);
+					DefaultMutableTreeNode nodeAsDef = (DefaultMutableTreeNode) node.getParent();
+					nodeAsDef.remove(node);
 					model.reload();
-					//tree.update(getGraphics());
 				}
 			});
 		}
