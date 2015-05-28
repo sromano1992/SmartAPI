@@ -33,6 +33,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 import javax.swing.border.MatteBorder;
+import java.awt.SystemColor;
 /**
  * 
  * @author Simone Romamo - http://www.sromano.altervista.org
@@ -51,6 +52,7 @@ public class JFrame_InferredCpInfo extends JFrame {
 	private JTextArea textArea_Basic;
 	private JTextArea textArea_Inferred;
 	private JLabel lblInferredCategory;
+	private JPanel panel_4;
 
 	/**
 	 * Create the frame.
@@ -89,10 +91,15 @@ public class JFrame_InferredCpInfo extends JFrame {
 		lblReliability.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(lblReliability);
 		
+		panel_4 = new JPanel();
+		panel_4.setBackground(UIManager.getColor("InternalFrame.activeTitleBackground"));
+		panel.add(panel_4);
+		panel_4.setLayout(new GridLayout(0, 5, 0, 0));
+		
 		textPane_Probability = new JTextPane();
+		panel_4.add(textPane_Probability);
 		textPane_Probability.setBackground(UIManager.getColor("InternalFrame.activeTitleBackground"));
 		textPane_Probability.setEditable(false);
-		panel.add(textPane_Probability);
 		
 		lblRelativeBasic = new JLabel("Relative Basic Code Pattern:");
 		lblRelativeBasic.setOpaque(true);
