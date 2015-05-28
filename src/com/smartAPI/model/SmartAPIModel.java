@@ -410,7 +410,6 @@ public class SmartAPIModel {
 		s.addProperty(p, o);
 		log.info("Add property '" + propName + "' to subject '" + subject + "' with value '" + object + "'");
 	}
-
 	/**
 	 * Aggiunge un utente alla base ontologica
 	 * @author Amedeo Leo, Ciro Amati
@@ -804,7 +803,7 @@ public class SmartAPIModel {
 		OntClass o = getOntModel().getOntClass(Common.NS+category);
 		Individual p1 = getOntModel().createIndividual(Common.NS+codePattern,o);
 
-		storeOntModel();
+		//storeOntModel();
 	}
 
 	/**
@@ -813,21 +812,16 @@ public class SmartAPIModel {
 	 * Aggiunta di istanze alla propriet� useMethod (ex. useCalendar)
 	 *
 	 */
-	public void addInstanceUseMethod(String category, String pattern){
-		ArrayList<String> method_s = new ArrayList<String>();
-		for (int i=100; i<110; i++){
-			method_s.add("c" + i);
-		}
-		addToMethodClass(method_s);
-
+	public void addInstanceUseMethod(String category, String pattern, ArrayList<String> method_s){
 		Resource c1 = getOntModel().getResource(Common.NS + pattern);
 
 		for (String m : method_s) {
 			c1.addProperty(getOntModel().getProperty(Common.NS + "use" + category), getResourceFromBase(Common.NS + m));
 		}
 
-		storeOntModel();
+		//storeOntModel();
 	}
+	
 	public boolean addUseMethod(String category_name){
 		if (getOntModel().getObjectProperty(Common.NS + "use"+category_name)!=null)
 			return false;
@@ -851,7 +845,7 @@ public class SmartAPIModel {
 		useMethod.addSubProperty(useCategory);
 		useCategory.setDomain(category);
 		useCategory.setRange(methodClass);
-		storeOntModel();
+		//storeOntModel();
 		return true;
 	}
 
@@ -863,7 +857,7 @@ public class SmartAPIModel {
 		ArrayList<Resource> list = getIndividualOfClass("User");
 		
 		//non gli setto voti, mi serve solo per controllare se i campi inseriti sono corretti
-		Utente u = new Utente(username,password,nome,cognome,email,false, avatar, "inutile", 0);
+		Utente u = new Utente(nome,cognome,email,username,password,false, avatar, "inutile", 0);
 
 		boolean modificaPassword = false;
 		boolean modificaNome = false;
@@ -982,10 +976,10 @@ public class SmartAPIModel {
 					throw new UserException("Non puoi votare un tuo code pattern");
 				if(hasAlreadyVoted(username, codePattern))
 					throw new UserException("Hai gi� votato questo code pattern");
-				int vecchiVotanti = resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).getObject().asLiteral().getInt();
+				int vecchiVotanti = resource.getProperty(getProperty(Common.NS + Common.HAS_VOTERS)).getObject().asLiteral().getInt();
 				int nuoviVotanti = vecchiVotanti + 1;
 				Literal nVotanti = getOntModel().createTypedLiteral(new Integer(nuoviVotanti));
-				resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).changeObject(nVotanti);
+				resource.getProperty(getProperty(Common.NS + Common.HAS_VOTERS)).changeObject(nVotanti);
 				int score =  resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).getObject().asLiteral().getInt();
 				String nuovoPunteggio = (voto + score) + "";
 				Literal l = getOntModel().createTypedLiteral(new Integer(nuovoPunteggio));
@@ -1026,7 +1020,7 @@ public class SmartAPIModel {
 
 	public float getNumeroVotanti(String codePattern) {
 		Resource resource = getOntModel().getResource(Common.NS + codePattern);
-		Float votanti = resource.getProperty(getProperty(Common.NS + Common.NUMBER_OF_VOTERS)).getObject().asLiteral().getFloat();
+		Float votanti = resource.getProperty(getProperty(Common.NS + Common.HAS_VOTERS)).getObject().asLiteral().getFloat();
 		return votanti;
 	}
 
@@ -1232,5 +1226,30 @@ public class SmartAPIModel {
 		int stelle = getNumeroStelle(username);
 		resource.getProperty(getProperty(Common.NS + Common.HAS_STARS)).changeLiteralObject(stelle);
 		return true;
+	}
+	
+	public void setOwner(String codePattern){
+		addObjectPropertyInstance(Common.HAS_OWNER, codePattern, Common.UTENTE.getNickname());
+		//storeOntModel();
+	}
+	
+	public void setLibrary(String codePattern, String library){
+		addObjectPropertyInstance(Common.HAS_LIBRARY, codePattern, library);
+	}
+	
+	public boolean setCPSourceCode(String code, String risorsa) {
+		Individual ind = getOntModel().getIndividual(Common.NS + risorsa);
+		DatatypeProperty hasCode = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_CODE);
+		ind.addProperty(hasCode, code);
+		log.info("Added property " + code);
+		return true;
+	}
+	
+	public void initScoreVoters(String risorsa){
+		Individual ind = getOntModel().getIndividual(Common.NS + risorsa);
+		DatatypeProperty hasVoters = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_VOTERS);
+		ind.addProperty(hasVoters, "0");
+		DatatypeProperty hasScore = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_SCORE);
+		ind.addProperty(hasScore, "0");
 	}
 }

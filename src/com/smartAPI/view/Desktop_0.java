@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 import com.smartAPI.control.ILogInPanelListner;
+import java.awt.FlowLayout;
 
 /**
  * Login page.
@@ -34,19 +35,15 @@ public class Desktop_0 extends JPanel implements ILogInPanelListner{
 		mainContainer = f;
 		setLayout(new GridLayout(1, 3, 0, 0));
 		
-		JLabel label = new JLabel("");
-		label.setOpaque(true);
-		label.setBackground(new Color(2, 94, 137));
-		add(label);
-		
 		loginGrafica = new LoginGrafica();
 		add(loginGrafica);
-		
-		JLabel lblNewLabel = new JLabel("");
-		add(lblNewLabel);
-		lblNewLabel.setOpaque(true);
-		lblNewLabel.setBackground(new Color(2, 94, 137));
 		loginGrafica.addLoginPanelListner(this);
+		
+		Panel_CenterLogin panel_CenterLogin = new Panel_CenterLogin();
+		add(panel_CenterLogin);
+		
+		CreateNewAccountJPanel createNewAccountJPanel = new CreateNewAccountJPanel();
+		add(createNewAccountJPanel);
 	}
 
 	@Override
@@ -80,7 +77,7 @@ public class Desktop_0 extends JPanel implements ILogInPanelListner{
 		if (d1 == null)
 			d1 = new Desktop_Insert();
 		mainContainer.remove(this);
-		mainContainer.add(d1);
+		mainContainer.getContentPane().add(d1);
 		SwingUtilities.updateComponentTreeUI(mainContainer);
 		SwingUtilities.updateComponentTreeUI(this);
 	}

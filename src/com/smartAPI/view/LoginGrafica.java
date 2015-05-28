@@ -62,13 +62,13 @@ public class LoginGrafica extends JPanel{
 		//USER FIELD
 		userField = new JTextField();
 		userField.setText("amedeo");
-		userField.setBounds(153, 351, 282, 52);
+		userField.setBounds(138, 427, 282, 52);
 		this.add(userField);
 		userField.setColumns(10);
 
 		//PASSWORD FIELD
 		passwordField = new JPasswordField("amedeo");
-		passwordField.setBounds(153, 396, 282, 52);
+		passwordField.setBounds(138, 472, 282, 52);
 		this.add(passwordField);
 
 		//LABEL USER
@@ -77,7 +77,7 @@ public class LoginGrafica extends JPanel{
 		lblUser.setForeground(Color.WHITE);
 		lblUser.setBackground(new Color(2, 66, 96));
 		lblUser.setOpaque(true);
-		lblUser.setBounds(78, 354, 79, 45);
+		lblUser.setBounds(63, 430, 79, 45);
 		this.add(lblUser);
 
 		//LABEL PASSWORD
@@ -86,7 +86,7 @@ public class LoginGrafica extends JPanel{
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setBackground(new Color(2, 66, 96));
-		lblPassword.setBounds(78, 399, 79, 45);
+		lblPassword.setBounds(63, 475, 79, 45);
 		this.add(lblPassword);
 
 		//BUTTON LOGIN
@@ -114,7 +114,7 @@ public class LoginGrafica extends JPanel{
 				} 		
 			}
 		});
-		btnLogin.setBounds(121, 500, 274, 37);
+		btnLogin.setBounds(106, 578, 274, 37);
 		this.add(btnLogin);
 
 		//LABEL LOGIN
@@ -122,48 +122,48 @@ public class LoginGrafica extends JPanel{
 		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogin.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		lblLogin.setForeground(Color.WHITE);
-		lblLogin.setBounds(17, 40, 456, 37);
+		lblLogin.setBounds(94, 340, 274, 37);
 		this.add(lblLogin);
 
 		//LABEL NEWACCOUNT
-		lblNewAccount = new JLabel("Create an account");
-		lblNewAccount.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				for (ILogInPanelListner c:logInListener_s){
-					c.newAccountClicked();
-				}
-				log.info("raised evento to " + logInListener_s.size() + " listeners...");
-			}
-			public void mouseEntered(MouseEvent e) {
-				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			}
-		});
-		lblNewAccount.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-		lblNewAccount.setForeground(new Color(7, 201, 155));
-		lblNewAccount.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewAccount.setBounds(230, 450, 177, 16);
-		this.add(lblNewAccount);
+//		lblNewAccount = new JLabel("Create an account");
+//		lblNewAccount.addMouseListener(new MouseAdapter() {
+//			public void mouseClicked(MouseEvent e) {
+//				for (ILogInPanelListner c:logInListener_s){
+//					c.newAccountClicked();
+//				}
+//				log.info("raised evento to " + logInListener_s.size() + " listeners...");
+//			}
+//			public void mouseEntered(MouseEvent e) {
+//				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//			}
+//		});
+//		lblNewAccount.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+//		lblNewAccount.setForeground(new Color(7, 201, 155));
+//		lblNewAccount.setHorizontalAlignment(SwingConstants.RIGHT);
+//		lblNewAccount.setBounds(215, 526, 177, 16);
+//		this.add(lblNewAccount);
 
 		//LABEL ERROR
 		lblError = new JLabel("");
 		lblError.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		lblError.setHorizontalAlignment(SwingConstants.LEFT);
 		lblError.setForeground(Color.RED);
-		lblError.setBounds(78, 450, 197, 16);
+		lblError.setBounds(63, 526, 197, 16);
 		this.add(lblError);
 
-		lblLogo = new JLabel("");
-		lblLogo.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblLogo.setIcon(null);
-		lblLogo.setBounds(100, 131, 231, 173);
+		//lblLogo = new JLabel("");
+		//lblLogo.setHorizontalAlignment(SwingConstants.TRAILING);
+		//lblLogo.setIcon(null);
+		//lblLogo.setBounds (113, 35, 231, 173);
 		//String path="res/logo.gif";
 		//String pathIcon = getClass().getResource(path).getFile();
 		//MyImageIcon imgicon = new MyImageIcon(pathIcon,200,150);
 		//lblLogo.setIcon(imgicon.getImageResponsive());
-		ImageIcon ii = new ImageIcon(this.getClass().getResource(
-                "res/logo.gif"));
-		lblLogo.setIcon(ii);
-		add(lblLogo);
+		//ImageIcon ii = new ImageIcon(this.getClass().getResource(
+        //        "res/logo.gif"));
+		//lblLogo.setIcon(ii);
+		//add(lblLogo);
 
 
 		this.setVisible(true);

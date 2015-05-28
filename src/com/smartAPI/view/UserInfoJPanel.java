@@ -1,6 +1,7 @@
 package com.smartAPI.view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -15,11 +16,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JComboBox;
 import javax.swing.ComboBoxModel;
 
+import com.smartAPI.control.IUserOptionListener;
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.Utente;
@@ -40,6 +43,7 @@ public class UserInfoJPanel extends JPanel {
 	private final JComboBox comboBox;
 	private JButton btnSave;
 	private String avatar="";//iniz. con avatar user
+	private ArrayList<IUserOptionListener> listener_s;
 	
 	public UserInfoJPanel() {
 		setLayout(null);
@@ -203,6 +207,12 @@ public class UserInfoJPanel extends JPanel {
 		panel.add(lblError);
 		
 		JButton btnOut = new JButton("Log out");
+		btnOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		btnOut.setBounds(71, 440, 181, 29);
 		panel.add(btnOut);
 		btnSave.setVisible(false);
@@ -232,7 +242,7 @@ public class UserInfoJPanel extends JPanel {
 				String s=(String)comboBox.getSelectedItem();
 				String[]parts = s.split(" - ");
 				String path="res/"+parts[1]+".png";
-				avatar=parts[1];
+				avatar=path;
 				String pathIcon = getClass().getResource(path).getFile();				
 				MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 				lblImage.setIcon(imgicon.getImageResponsive());
@@ -260,5 +270,12 @@ public class UserInfoJPanel extends JPanel {
 		panelStar.add(new JLabel(star));
 		panelStar.add(new JLabel(star));
 		panelStar.add(new JLabel(star));
+	}
+	
+	public void addListener(IUserOptionListener i){
+		if (listener_s == null){
+			listener_s = new ArrayList<IUserOptionListener>();
+		}
+		listener_s.add(i);
 	}
 }

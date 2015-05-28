@@ -1,16 +1,18 @@
 package com.smartAPI.view;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 import javax.swing.tree.TreePath;
-
-import org.apache.log4j.Logger;
 
 import com.smartAPI.control.TreePathListener;
 import com.smartAPI.model.SmartAPIModel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.GridLayout;
 
 import javax.swing.JScrollPane;
@@ -23,6 +25,10 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;
 import javax.swing.ScrollPaneConstants;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.logging.Logger;
+
 /**
  * 
  * @author Simone Romamo - http://www.sromano.altervista.org
@@ -30,7 +36,8 @@ import javax.swing.ScrollPaneConstants;
  */
 public class Panel_CodePatternCompleteView extends JPanel implements TreePathListener{
 	private static Logger log = Logger.getLogger("global");
-
+	private TreeViewCP treeView;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -38,6 +45,8 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		setLayout(new BorderLayout(0, 0));
 		
 		JSplitPane splitPane = new JSplitPane();
+		splitPane.setContinuousLayout(true);
+	    splitPane.setOneTouchExpandable(true);
 		add(splitPane, BorderLayout.CENTER);
 		splitPane.setSize(new Dimension(0, 250));
 		splitPane.setPreferredSize(new Dimension(193, 250));
@@ -52,7 +61,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		
 		splitPane.setDividerLocation(75);
 		
-		TreeViewCP treeView = new TreeViewCP();
+		treeView = new TreeViewCP();
 		TreeViewCP treeView_1 = new TreeViewCP();
 		treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
 		
@@ -75,5 +84,10 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 			SwingUtilities.updateComponentTreeUI(this);
 			c = c.getParent();
 		}
+	}
+	
+	public void refresh(){
+		treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
+		log.info("Updated codePattern view...");
 	}
 }

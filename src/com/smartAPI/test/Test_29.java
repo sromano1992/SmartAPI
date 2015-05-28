@@ -9,7 +9,7 @@ import com.smartAPI.model.SmartAPIModel;
 /**
  * 
  * @author Stefania Cardamone
- * Aggiunta di istanze alla proprietà useMethod (ex. useCalendar)
+ * Aggiunta di istanze alla proprietï¿½ useMethod (ex. useCalendar)
  *
  */
 public class Test_29 {
@@ -19,7 +19,7 @@ public class Test_29 {
 		String category = "Calendar";
 		String pattern = "c1";		
 		
-		s.addInstanceUseMethod(category, pattern);
+		//s.addInstanceUseMethod(category, pattern);
 		/*ArrayList<String> method_s = new ArrayList<String>();
 		for (int i=100; i<110; i++){
 			method_s.add("ste" + i);

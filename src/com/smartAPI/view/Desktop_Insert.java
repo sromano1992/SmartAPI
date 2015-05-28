@@ -21,15 +21,18 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import com.smartAPI.control.IUserOptionListener;
+import com.smartAPI.model.Common;
+import com.smartAPI.test.Main;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
 
 public class Desktop_Insert extends JPanel implements IUserOptionListener{
 	private Panel_InsertCP panel_InsertCP;
-	private JPanel panel_showCP;
+	private Panel_CodePatternCompleteView panel_showCP;
 	private Panel_ShowAllUser panel_ShowUser;
 	private About panel_About;
+
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3;
 	private int actualPanel = INSERT_CP;
 	private JPanel panel;
@@ -49,6 +52,8 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 		panel_ShowUser.setBounds(0, 181, 920, 508);		
 		panel_About = new About();
 		panel_About.setBounds(20, 107, 811, 582);
+		
+		
 	}
 
 	/**
@@ -67,6 +72,7 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 		splitPane.setDividerSize(0);
 		add(splitPane);
 		
+		if (!Common.UTENTE.isAdmin()){
 		UserInfoJPanel userInfoJPanel = new UserInfoJPanel();
 		splitPane.setLeftComponent(userInfoJPanel);
 		GroupLayout gl_userInfoJPanel = new GroupLayout(userInfoJPanel);
@@ -79,6 +85,23 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 				.addGap(0, 542, Short.MAX_VALUE)
 		);
 		userInfoJPanel.setLayout(gl_userInfoJPanel);
+		}
+		else{
+			AdminInfoJPanel adminInfoJPanel  = new AdminInfoJPanel();
+			splitPane.setLeftComponent(adminInfoJPanel);
+			GroupLayout gl_AdminInfoJPanel = new GroupLayout(adminInfoJPanel);
+			gl_AdminInfoJPanel.setHorizontalGroup(
+					gl_AdminInfoJPanel.createParallelGroup(Alignment.LEADING)
+					.addGap(0, 400, Short.MAX_VALUE)
+			);
+			gl_AdminInfoJPanel.setVerticalGroup(
+					gl_AdminInfoJPanel.createParallelGroup(Alignment.LEADING)
+					.addGap(0, 542, Short.MAX_VALUE)
+			);
+			adminInfoJPanel.setLayout(gl_AdminInfoJPanel);
+		}
+		
+		
 		
 		JPanel panel = new JPanel();
 		splitPane.setRightComponent(panel);
@@ -104,8 +127,10 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 			panel.remove(panel_InsertCP);
 		else if(actualPanel == SHOW_ABOUT)
 			panel.remove(panel_About);
+		
 		actualPanel = SHOW_CODE_PATTERN;
 		
+		panel_showCP.refresh();
 		panel.add(panel_showCP);
 		updateGUI();
 	}
@@ -121,6 +146,7 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 			panel.remove(panel_InsertCP);
 		else if(actualPanel == SHOW_ABOUT)
 			panel.remove(panel_About);
+		
 		actualPanel = INSERT_CP;
 
 		panel.add(panel_InsertCP);
@@ -138,6 +164,7 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 			panel.remove(panel_InsertCP);
 		else if(actualPanel == SHOW_ABOUT)
 			panel.remove(panel_About);
+		
 		actualPanel = SHOW_USER;
 
 		panel.add(panel_ShowUser);
@@ -155,10 +182,14 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 			panel.remove(panel_InsertCP);
 		else if(actualPanel == SHOW_ABOUT)
 			panel.remove(panel_About);
+		
 		actualPanel = SHOW_ABOUT;
 		panel.add(panel_About);
 		updateGUI();
 	}
+	
+	
+	
 
 	private void updateGUI(){
 		SwingUtilities.updateComponentTreeUI(this);
