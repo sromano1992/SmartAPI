@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
@@ -793,6 +795,33 @@ public class SmartAPIModel {
 		}
 		return toReturn;
 	}
+	
+	/**
+	 * This method will return one 'CodePattern_Category' for
+	 * each category of codePattern which has specified 'kewyord'.
+	 * @return
+	 */
+	public ArrayList<CodePattern_Category> getAllCodePatternForCategory(String keyword){
+		ArrayList<CodePattern_Category> toReturn = new ArrayList<CodePattern_Category>();
+		ArrayList<Resource> patternCategory_s = getPatternCategory();
+		for (Resource r:patternCategory_s){
+			toReturn.add(getPatternOfCategory(r.getLocalName()));
+		}
+		
+		//keyword check
+		for (CodePattern_Category cp_c : toReturn){
+			ArrayList<CodePattern> toRemove = new ArrayList<CodePattern>();
+			for (CodePattern c: cp_c.getBasicCodePattern()){
+				if (!hasKeyword(c.getResource().getLocalName(), keyword)){
+					toRemove.add(c);
+				}
+			}
+			for(CodePattern c:toRemove){
+				cp_c.getBasicCodePattern().remove(c);
+			}
+		}
+		return toReturn;
+	}
 
 
 	/**
@@ -1124,6 +1153,7 @@ public class SmartAPIModel {
 				}
 			}
 		}
+		
 		return utenteCodePattern;
 	}
 
@@ -1144,7 +1174,7 @@ public class SmartAPIModel {
 
 	/**
 	 * get info from classificaUtenti() end create UserClassification Objects
-	 * @author Amati Ciro
+	 * @author Amati Ciro 
 	 */
 
 
@@ -1157,6 +1187,7 @@ public class SmartAPIModel {
 			listUserClassification.add(uc);
 
 		}
+		Collections.sort(listUserClassification, new ComparatorClassifica());
 		
 	return listUserClassification;
 

@@ -13,18 +13,22 @@ import javax.swing.JLabel;
 
 
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import com.smartAPI.control.ILogInPanelListner;
+import com.smartAPI.control.IUserPanelListener;
+import com.smartAPI.model.Common;
+
 import java.awt.FlowLayout;
 
 /**
  * Login page.
  *
  */
-public class Desktop_0 extends JPanel implements ILogInPanelListner{
+public class Desktop_0 extends JPanel implements ILogInPanelListner, IUserPanelListener{
 	private LoginGrafica loginGrafica;
-	public  Desktop_Insert d1;
+	public  Desktop_1 d1;
 	public  Desktop_0 d0;
 	private CreateNewAccountJPanel newAccountPanel;
 	private Logger log = Logger.getLogger("global");
@@ -76,12 +80,21 @@ public class Desktop_0 extends JPanel implements ILogInPanelListner{
 	public void loginClicked() {
 		log.info("Log in event intercepted");
 		if (d1 == null)
-			d1 = new Desktop_Insert();
+			d1 = new Desktop_1(this);
 		mainContainer.remove(this);
 		mainContainer.getContentPane().add(d1);
 		SwingUtilities.updateComponentTreeUI(mainContainer);
 		SwingUtilities.updateComponentTreeUI(this);
 	}
-	
+
+	@Override
+	public void logOutClicked() {
+		log.info("Log out event intercepted");
+		mainContainer.remove(d1);
+		mainContainer.getContentPane().add(this);
+		Common.UTENTE = null;
+		SwingUtilities.updateComponentTreeUI(mainContainer);
+		SwingUtilities.updateComponentTreeUI(this);
+	}
 	
 }

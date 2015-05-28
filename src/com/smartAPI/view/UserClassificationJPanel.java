@@ -15,6 +15,7 @@ import com.smartAPI.model.UserClassification;
 
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class UserClassificationJPanel extends JPanel {
 
@@ -22,6 +23,8 @@ public class UserClassificationJPanel extends JPanel {
 	public JPanel panelSecond;
 	public JPanel panelThird;
 	public JPanel panelGeneric;
+	private static Logger log = Logger.getLogger("global");
+	
 	
 	public UserClassificationJPanel(String username) {
 		panelFirst = new JPanel();
@@ -33,6 +36,7 @@ public class UserClassificationJPanel extends JPanel {
 	}
 
 	public void start(String user) {
+		
 		setLayout(null);
 		setBackground(new Color(228, 230, 235));
 		Border border;
@@ -81,15 +85,16 @@ public class UserClassificationJPanel extends JPanel {
 		SmartAPIModel s = new SmartAPIModel();
 		ArrayList<String> c = s.classificaUtenti();
 		ArrayList<UserClassification> classifica = s.getInfoUserClassification(c);
-
+		
+		log.info("classifica.size() = "+classifica.size());
 		//System.out.println("classifica.size() = "+classifica.size());
 		if (classifica.size() == 1){
 			u1 = new UserClassification(classifica.get(0).getUsername(), classifica.get(0).getSomma_media(), 
 					classifica.get(0).getVotanti_codepattern(), classifica.get(0).getUtenti_votanti(), classifica.get(0).getAvatar());
 
-			//System.out.println("*******");
-			//System.out.println(u1);
-			//System.out.println("*******");
+			log.info("*******");
+			log.info(u1.toString());
+			log.info("*******");
 
 			first = true;
 
@@ -99,15 +104,15 @@ public class UserClassificationJPanel extends JPanel {
 			u1 = new UserClassification(classifica.get(0).getUsername(), classifica.get(0).getSomma_media(), 
 					classifica.get(0).getVotanti_codepattern(), classifica.get(0).getUtenti_votanti(), classifica.get(0).getAvatar());
 
-			//System.out.println("*******");
-			//System.out.println(u1);
-			//System.out.println("*******");
+			log.info("*******");
+			log.info(u1.toString());
+			log.info("*******");
 			u2 = new UserClassification(classifica.get(1).getUsername(), classifica.get(1).getSomma_media(), 
 					classifica.get(1).getVotanti_codepattern(), classifica.get(1).getUtenti_votanti(), classifica.get(1).getAvatar());
 
-			//System.out.println("*******");
-			//System.out.println(u2);
-			//System.out.println("*******");
+			log.info("*******");
+			log.info(u2.toString());
+			log.info("*******");
 
 			first = true;
 			second = true;
@@ -118,22 +123,22 @@ public class UserClassificationJPanel extends JPanel {
 			u1 = new UserClassification(classifica.get(0).getUsername(), classifica.get(0).getSomma_media(), 
 					classifica.get(0).getVotanti_codepattern(), classifica.get(0).getUtenti_votanti(), classifica.get(0).getAvatar());
 
-			//System.out.println("*******");
-			//System.out.println(u1);
-			//System.out.println("*******");
+			log.info("*******");
+			log.info(u1.toString());
+			log.info("*******");
 			u2 = new UserClassification(classifica.get(1).getUsername(), classifica.get(1).getSomma_media(), 
 					classifica.get(1).getVotanti_codepattern(), classifica.get(1).getUtenti_votanti(), classifica.get(1).getAvatar());
 
-			//System.out.println("*******");
-			//System.out.println(u2);
-			//System.out.println("*******");	
+			log.info("*******");
+			log.info(u2.toString());
+			log.info("*******");
 
 			u3 = new UserClassification(classifica.get(2).getUsername(), classifica.get(2).getSomma_media(), 
 					classifica.get(2).getVotanti_codepattern(), classifica.get(2).getUtenti_votanti(), classifica.get(2).getAvatar());
 
-			//System.out.println("*******");
-			//System.out.println(u3);
-			//System.out.println("*******");
+			log.info("*******");
+			log.info(u3.toString());
+			log.info("*******");
 
 			first = true;
 			second = true;
@@ -141,16 +146,17 @@ public class UserClassificationJPanel extends JPanel {
 		}
 
 		int positionUser = getPositionUser(classifica, username);
-		//System.out.println("Position of "+username+" is: "+positionUser);
+		log.info("Position of "+username+" is: "+positionUser);
 
 		if (positionUser>3){
 			int position = positionUser-1;
 			uN = new UserClassification(classifica.get(position).getUsername(), classifica.get(position).getSomma_media(), 
 					classifica.get(position).getVotanti_codepattern(), classifica.get(position).getUtenti_votanti(), classifica.get(position).getAvatar());
 
-			//System.out.println("*******");
-			//System.out.println(uN);
-			//System.out.println("*******");
+			log.info("*******");
+			log.info(uN.toString());
+			log.info("*******");
+
 		}
 		else flag=false; //username is first or second or third
 

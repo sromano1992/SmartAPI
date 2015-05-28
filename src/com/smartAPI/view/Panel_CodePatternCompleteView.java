@@ -28,6 +28,14 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.JToggleButton;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * 
@@ -37,12 +45,33 @@ import java.util.logging.Logger;
 public class Panel_CodePatternCompleteView extends JPanel implements TreePathListener{
 	private static Logger log = Logger.getLogger("global");
 	private TreeViewCP treeView;
+	private JTextField textField_keyword;
 	
 	/**
 	 * Create the panel.
 	 */
 	public Panel_CodePatternCompleteView() {
 		setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_1 = new JPanel();
+		add(panel_1, BorderLayout.NORTH);
+		panel_1.setLayout(new GridLayout(0, 10, 0, 0));
+		
+		JLabel lblKeyword = new JLabel("Keyword:");
+		lblKeyword.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblKeyword);
+		
+		textField_keyword = new JTextField();
+		panel_1.add(textField_keyword);
+		textField_keyword.setColumns(10);
+		
+		JPanel panel_2 = new JPanel();
+		panel_1.add(panel_2);
+		panel_2.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		JButton btnSearch = new JButton("");
+		btnSearch.setIcon(new ImageIcon(Panel_CodePatternCompleteView.class.getResource("/com/smartAPI/view/res/searchIcon.png")));
+		panel_2.add(btnSearch);
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setContinuousLayout(true);
@@ -64,6 +93,11 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		treeView = new TreeViewCP();
 		TreeViewCP treeView_1 = new TreeViewCP();
 		treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		
 		treeView.addTreePathListener(this);
 		treeView.addTreePathListener(treeView_1);
