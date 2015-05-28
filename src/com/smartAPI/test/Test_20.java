@@ -20,6 +20,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.swing.JFrame;
+
+import com.smartAPI.view.Desktop_0;
+
 /**
  * Ricerca dei metodi all'interno del code pattern inserito.
  * @author iolrin
@@ -30,9 +34,7 @@ public class Test_20 {
 	public static Logger logger = Logger.getLogger("global");
 	public static String CLASS_DEF = "public class Prova{ ";
     public static void main(String[] args) throws Exception {
-    	String code = "private static File createFile(String testo) throws "+ "IOException{String content = testo; File file = new File(\"test1.java\");if (!file.exists())"
-    			+ "{file.createNewFile();}FileWriter fw = new FileWriter(file.getAbsoluteFile()); "
-    			+ "BufferedWriter bw = new BufferedWriter(fw);bw.write(content);bw.close(); return file;}";
+    	String code = "	public static JFrame f; public static void main(String[] args) {f = new JFrame(); f.setSize(1300, 900);f.add(new Desktop_0(f));f.setVisible(true);f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);}";
     	
     	
     /*	String code = "public class Prova{private static File createFile(String testo) throws "+ "IOException{String content = testo; File file = new File(\"test1.java\");if (!file.exists())"
@@ -56,7 +58,7 @@ public class Test_20 {
         VariableVisitor varVisitor = new VariableVisitor();
         varVisitor.visit(cu, null);
         ArrayList<VariableDeclarationExpr> variables = varVisitor.getVarList();
-       
+       System.out.println("variables "+variables);
         MethodVisitor methVisitor = new MethodVisitor();
         methVisitor.visit(cu, null);
         ArrayList<MethodCallExpr> methods = methVisitor.getMethodList();

@@ -65,29 +65,16 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 	 */
 	public Panel_ShowCodePattern() {
 		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		setLayout(null);
+		setLayout(new BorderLayout(0, 0));
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(2, 26, 436, 273);
-		add(scrollPane);
-		
-		txtpnCode = new JTextPane();
-		txtpnCode.setEditable(false);
-		scrollPane.setViewportView(txtpnCode);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(2, 299, 436, 84);
-		add(scrollPane_1);
-		
-		txtpaneKeyWord = new JTextPane();
-		txtpaneKeyWord.setEditable(false);
-		scrollPane_1.setViewportView(txtpaneKeyWord);
+		JPanel panel_2 = new JPanel();
+		add(panel_2);
+		panel_2.setLayout(new BorderLayout(0, 0));
 		
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(2, 2, 436, 24);
+		panel_2.add(panel_1, BorderLayout.NORTH);
 		panel_1.setBorder(new LineBorder(SystemColor.activeCaption, 1, true));
-		add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 5, 0, 0));
 		
 		labelUserName = new MyJLabel("Username");
@@ -121,11 +108,51 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		infoButton.setIcon(new ImageIcon(Panel_ShowCodePattern.class.getResource("/com/smartAPI/view/res/questionMark.gif")));
 		infoButton.setEnabled(false);
 		infoButton.setVisible(false);
+		
+		JLabel label_3 = new JLabel("");
+		panel.add(label_3);
 		panel.add(infoButton);
 		
+		JPanel panel_5 = new JPanel();
+		panel_2.add(panel_5, BorderLayout.CENTER);
+		GridBagLayout gbl_panel_5 = new GridBagLayout();
+		gbl_panel_5.columnWidths = new int[]{379, 0};
+		gbl_panel_5.rowHeights = new int[] {191, 51, 0};
+		gbl_panel_5.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_5.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		panel_5.setLayout(gbl_panel_5);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.weighty = 1.0;
+		gbc_scrollPane.weightx = 1.0;
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 0;
+		panel_5.add(scrollPane, gbc_scrollPane);
+		
+		txtpnCode = new JTextPane();
+		txtpnCode.setEditable(false);
+		scrollPane.setViewportView(txtpnCode);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
+		gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane_1.gridx = 0;
+		gbc_scrollPane_1.gridy = 1;
+		panel_5.add(scrollPane_1, gbc_scrollPane_1);
+		
+		txtpaneKeyWord = new JTextPane();
+		txtpaneKeyWord.setEditable(false);
+		scrollPane_1.setViewportView(txtpaneKeyWord);
+		
+		JPanel panel_4 = new JPanel();
+		panel_2.add(panel_4, BorderLayout.SOUTH);
+		panel_4.setLayout(new GridLayout(2, 1, 0, 0));
+		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(2, 426, 436, 42);
-		add(panel_3);
+		panel_4.add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
 		MyJLabel mjlblVota = new MyJLabel("Username");
@@ -138,8 +165,7 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		panel_3.add(panel_CodePatternSetScore);
 		
 		Panel_CodePatternScore panel_CodePatternScore = new Panel_CodePatternScore();
-		panel_CodePatternScore.setBounds(0, 382, 438, 42);
-		add(panel_CodePatternScore);
+		panel_4.add(panel_CodePatternScore);
 		panel_CodePatternScore.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(153, 180, 209), SystemColor.inactiveCaption, null, null));
 
 	}
