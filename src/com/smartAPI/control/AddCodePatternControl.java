@@ -78,6 +78,7 @@ public class AddCodePatternControl {
 	public int addCodePattern(){
 		try {
 			ArrayList<String> method_s = new JavaMethodParser().parse(val_CP);
+			//System.out.println("Categoria*******:"+category);
 			model.addToMethodClass(method_s);
 			model.addPatternCategory(category);
 			model.associateCatAndCodePattern(category, val_name);
@@ -88,6 +89,7 @@ public class AddCodePatternControl {
 			model.setOwner(val_name);
 			model.setLibrary(val_name, val_lib);
 			model.addUseLanguage(val_lib, val_language);
+			model.initScoreVoters(val_name);
 			model.storeOntModel();
 			return 1;
 		} catch (ParseException e) {
