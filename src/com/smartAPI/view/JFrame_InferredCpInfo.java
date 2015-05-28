@@ -160,8 +160,7 @@ public class JFrame_InferredCpInfo extends JFrame {
 		textPane_Probability.setText(df.format(cp.getScore()) + "%");
 		if(cp.getScore()<30)
 			textPane_Probability.setBackground(Color.red);
-		if(cp.getScore()<60)
-			//textPane_Probability.setBackground(Color.yellow);
+		if(cp.getScore()<60 && cp.getScore()>=30)
 			textPane_Probability.setBackground(Color.yellow);
 
 		if(cp.getScore()>=60)

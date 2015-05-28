@@ -39,6 +39,20 @@
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Owl">
+    <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#jena"/>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
+    <SmartAPI:hasKeyword>ontology</SmartAPI:hasKeyword>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Individual_addProperty"/>
+    <SmartAPI:hasCode> public void initScoreVoters(String risorsa){
+		Individual ind = getOntModel().getIndividual(Common.NS + risorsa);
+		DatatypeProperty hasVoters = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_VOTERS);
+		ind.addProperty(hasVoters, "0");
+		DatatypeProperty hasScore = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_SCORE);
+		ind.addProperty(hasScore, "0");
+	}</SmartAPI:hasCode>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useParser">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Parser"/>
@@ -399,8 +413,8 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
     <SmartAPI:hasName>amedeo</SmartAPI:hasName>
     <SmartAPI:hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</SmartAPI:hasStars>
-    <SmartAPI:hasAvatar>res/admin-2.png</SmartAPI:hasAvatar>
     <SmartAPI:isAdministrator>si</SmartAPI:isAdministrator>
+    <SmartAPI:hasAvatar>res/8.png</SmartAPI:hasAvatar>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:hasVoted>p1,</SmartAPI:hasVoted>
     <SmartAPI:hasEmail>amedeo.leo@gmail.com</SmartAPI:hasEmail>
@@ -421,6 +435,10 @@
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#JDBC">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Library"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Ste_CodePattern">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m7">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
