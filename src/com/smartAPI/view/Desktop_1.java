@@ -21,6 +21,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	private Panel_InsertCP panel_InsertCP;
 	private Panel_CodePatternCompleteView panel_showCP;
 	private Panel_ShowAllUser panel_ShowUser;
+	private UserInfoJPanel userInfoJPanel;
 	private AdminInfoJPanel adminInfoJPanel;
 	private About panel_About;
 	private IUserPanelListener mainFrame;
@@ -61,7 +62,8 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		add(splitPane);
 
 		if (!Common.UTENTE.isAdmin()){
-			UserInfoJPanel userInfoJPanel = new UserInfoJPanel();
+			userInfoJPanel = new UserInfoJPanel();
+			userInfoJPanel.addLogOutListener(this);
 			splitPane.setLeftComponent(userInfoJPanel);
 			GroupLayout gl_userInfoJPanel = new GroupLayout(userInfoJPanel);
 			gl_userInfoJPanel.setHorizontalGroup(

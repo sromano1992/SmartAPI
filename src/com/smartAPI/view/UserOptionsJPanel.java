@@ -47,7 +47,7 @@ public class UserOptionsJPanel extends JPanel {
 	
 	public UserOptionsJPanel() {
 		setBackground(new Color(228, 230, 235));
-		setLayout(null);
+		setLayout(new GridLayout(1, 4));
 				
 				
 		
