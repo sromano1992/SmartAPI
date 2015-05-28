@@ -73,7 +73,7 @@ import java.awt.event.ActionEvent;
 			MyImageIcon imgicon1 = new MyImageIcon(pathIcon1,140,115);
 			String path2="res/ciro.png";
 			String pathIcon2 = getClass().getResource(path2).getFile();
-			MyImageIcon imgicon2 = new MyImageIcon(pathIcon2,140,115);
+			MyImageIcon imgicon2 = new MyImageIcon(pathIcon2,100,115);
 			String path3="res/iole.png";
 			String pathIcon3 = getClass().getResource(path3).getFile();
 			MyImageIcon imgicon3 = new MyImageIcon(pathIcon3,140,134);

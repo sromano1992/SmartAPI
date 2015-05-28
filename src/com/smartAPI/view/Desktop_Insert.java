@@ -27,7 +27,7 @@ import java.awt.FlowLayout;
 
 public class Desktop_Insert extends JPanel implements IUserOptionListener{
 	private Panel_InsertCP panel_InsertCP;
-	private JPanel panel_showCP;
+	private Panel_CodePatternCompleteView panel_showCP;
 	private Panel_ShowAllUser panel_ShowUser;
 	private About panel_About;
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3;
@@ -106,6 +106,7 @@ public class Desktop_Insert extends JPanel implements IUserOptionListener{
 			panel.remove(panel_About);
 		actualPanel = SHOW_CODE_PATTERN;
 		
+		panel_showCP.refresh();
 		panel.add(panel_showCP);
 		updateGUI();
 	}
