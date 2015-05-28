@@ -39,25 +39,66 @@
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Owl">
-    <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#jena"/>
-    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
-    <SmartAPI:hasKeyword>ontology</SmartAPI:hasKeyword>
-    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Individual_addProperty"/>
-    <SmartAPI:hasCode> public void initScoreVoters(String risorsa){
-		Individual ind = getOntModel().getIndividual(Common.NS + risorsa);
-		DatatypeProperty hasVoters = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_VOTERS);
-		ind.addProperty(hasVoters, "0");
-		DatatypeProperty hasScore = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_SCORE);
-		ind.addProperty(hasScore, "0");
-	}</SmartAPI:hasCode>
-    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useParser">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Parser"/>
     <rdfs:range rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ParserMethod"/>
     <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useMethod"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#storage3">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
+    <SmartAPI:hasCode>public void setCodePattern_s(ArrayList&lt;CodePattern_Category&gt; cp_s, String rootName, boolean inferred){
+		this.cp_s = cp_s;
+		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(rootName);
+		for (CodePattern_Category tmp:cp_s){
+			if(inferred){
+				DefaultMutableTreeNode categoryNode = new DefaultMutableTreeNode(tmp.getCategoryName());
+				for (int i=0; i&lt;tmp.getInferredCodePattern().size(); i++){
+					DefaultMutableTreeNode cp_instance = new DefaultMutableTreeNode(tmp.getInferredCodePattern().get(i).getResource().getLocalName());
+					categoryNode.add(cp_instance);
+				}
+				rootNode.add(categoryNode);
+			}
+			else{	//all basic cp
+				DefaultMutableTreeNode categoryNode = new DefaultMutableTreeNode(tmp.getCategoryName());
+				for (int i=0; i&lt;tmp.getBasicCodePattern().size(); i++){
+					DefaultMutableTreeNode cp_instance = new DefaultMutableTreeNode(tmp.getBasicCodePattern().get(i).getResource().getLocalName());
+					categoryNode.add(cp_instance);
+				}
+				rootNode.add(categoryNode);
+			}
+		}
+		if (tree != null){
+			this.remove(tree);
+		}
+		tree = new JTree(rootNode);
+		if( scroll == null){
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
+		else{
+			this.remove(scroll);
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
+		tree.addMouseListener(new MouseAdapter() {
+		      public void mouseClicked(MouseEvent me) {
+		    	  TreePath tp = tree.getPathForLocation(me.getX(), me.getY());
+		    	    if (tp != null){
+		    	    	for(TreePathListener t:treePathListener){
+		    	    		t.treePathChanged(tp);
+		    	    	}		    	      
+		    	    }
+		      }
+	    });
+	}</SmartAPI:hasCode>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#DefaultMutableTreeNode_add"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern_Category_getCategoryName"/>
+    <SmartAPI:hasKeyword>db</SmartAPI:hasKeyword>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
+    <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#jena"/>
+    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
+    <SmartAPI:hasScore>0</SmartAPI:hasScore>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m10">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -99,6 +140,24 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#testOwl">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
+    <SmartAPI:hasCode> public void treePathChanged(TreePath t) {
+		log.info("updating gui...");
+		SwingUtilities.updateComponentTreeUI(this);
+		Component c = getParent();
+		while (c!=null){
+			SwingUtilities.updateComponentTreeUI(this);
+			c = c.getParent();
+		}
+	}</SmartAPI:hasCode>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Component_getParent"/>
+    <SmartAPI:hasKeyword>ontology</SmartAPI:hasKeyword>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
+    <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#jena"/>
+    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
+    <SmartAPI:hasScore>0</SmartAPI:hasScore>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasName">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
@@ -116,6 +175,61 @@
     <SmartAPI:hasSurname>Cardamone</SmartAPI:hasSurname>
     <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
     <SmartAPI:hasName>Stefania</SmartAPI:hasName>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#owl6">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
+    <SmartAPI:hasCode>public void setCodePattern_s(ArrayList&lt;CodePattern_Category&gt; cp_s, String rootName, boolean inferred){
+		this.cp_s = cp_s;
+		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(rootName);
+		for (CodePattern_Category tmp:cp_s){
+			if(inferred){
+				DefaultMutableTreeNode categoryNode = new DefaultMutableTreeNode(tmp.getCategoryName());
+				for (int i=0; i&lt;tmp.getInferredCodePattern().size(); i++){
+					DefaultMutableTreeNode cp_instance = new DefaultMutableTreeNode(tmp.getInferredCodePattern().get(i).getResource().getLocalName());
+					categoryNode.add(cp_instance);
+				}
+				rootNode.add(categoryNode);
+			}
+			else{	//all basic cp
+				DefaultMutableTreeNode categoryNode = new DefaultMutableTreeNode(tmp.getCategoryName());
+				for (int i=0; i&lt;tmp.getBasicCodePattern().size(); i++){
+					DefaultMutableTreeNode cp_instance = new DefaultMutableTreeNode(tmp.getBasicCodePattern().get(i).getResource().getLocalName());
+					categoryNode.add(cp_instance);
+				}
+				rootNode.add(categoryNode);
+			}
+		}
+		if (tree != null){
+			this.remove(tree);
+		}
+		tree = new JTree(rootNode);
+		if( scroll == null){
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
+		else{
+			this.remove(scroll);
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
+		tree.addMouseListener(new MouseAdapter() {
+		      public void mouseClicked(MouseEvent me) {
+		    	  TreePath tp = tree.getPathForLocation(me.getX(), me.getY());
+		    	    if (tp != null){
+		    	    	for(TreePathListener t:treePathListener){
+		    	    		t.treePathChanged(tp);
+		    	    	}		    	      
+		    	    }
+		      }
+	    });
+	} </SmartAPI:hasCode>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#DefaultMutableTreeNode_add"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern_Category_getCategoryName"/>
+    <SmartAPI:hasKeyword>ontology</SmartAPI:hasKeyword>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
+    <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#jena"/>
+    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
+    <SmartAPI:hasScore>0</SmartAPI:hasScore>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Language">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -258,6 +372,9 @@
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#DefaultMutableTreeNode_add">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m5">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
@@ -265,10 +382,123 @@
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Library">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#owl9">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
+    <SmartAPI:hasCode>public void setCodePattern_s(ArrayList&lt;CodePattern_Category&gt; cp_s, String rootName, boolean inferred){
+		this.cp_s = cp_s;
+		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(rootName);
+		for (CodePattern_Category tmp:cp_s){
+			if(inferred){
+				DefaultMutableTreeNode categoryNode = new DefaultMutableTreeNode(tmp.getCategoryName());
+				for (int i=0; i&lt;tmp.getInferredCodePattern().size(); i++){
+					DefaultMutableTreeNode cp_instance = new DefaultMutableTreeNode(tmp.getInferredCodePattern().get(i).getResource().getLocalName());
+					categoryNode.add(cp_instance);
+				}
+				rootNode.add(categoryNode);
+			}
+			else{	//all basic cp
+				DefaultMutableTreeNode categoryNode = new DefaultMutableTreeNode(tmp.getCategoryName());
+				for (int i=0; i&lt;tmp.getBasicCodePattern().size(); i++){
+					DefaultMutableTreeNode cp_instance = new DefaultMutableTreeNode(tmp.getBasicCodePattern().get(i).getResource().getLocalName());
+					categoryNode.add(cp_instance);
+				}
+				rootNode.add(categoryNode);
+			}
+		}
+		if (tree != null){
+			this.remove(tree);
+		}
+		tree = new JTree(rootNode);
+		if( scroll == null){
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
+		else{
+			this.remove(scroll);
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
+		tree.addMouseListener(new MouseAdapter() {
+		      public void mouseClicked(MouseEvent me) {
+		    	  TreePath tp = tree.getPathForLocation(me.getX(), me.getY());
+		    	    if (tp != null){
+		    	    	for(TreePathListener t:treePathListener){
+		    	    		t.treePathChanged(tp);
+		    	    	}		    	      
+		    	    }
+		      }
+	    });
+	} </SmartAPI:hasCode>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#DefaultMutableTreeNode_add"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern_Category_getCategoryName"/>
+    <SmartAPI:hasKeyword>ontology</SmartAPI:hasKeyword>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
+    <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#jena"/>
+    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
+    <SmartAPI:hasScore>0</SmartAPI:hasScore>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Component_getParent">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasLanguage">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:range rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Language"/>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Library"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#owl5">
+    <SmartAPI:hasScore>0</SmartAPI:hasScore>
+    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
+    <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#jena"/>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
+    <SmartAPI:hasKeyword>ontology</SmartAPI:hasKeyword>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern_Category_getCategoryName"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#DefaultMutableTreeNode_add"/>
+    <SmartAPI:hasCode>public void setCodePattern_s(ArrayList&lt;CodePattern_Category&gt; cp_s, String rootName, boolean inferred){
+		this.cp_s = cp_s;
+		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(rootName);
+		for (CodePattern_Category tmp:cp_s){
+			if(inferred){
+				DefaultMutableTreeNode categoryNode = new DefaultMutableTreeNode(tmp.getCategoryName());
+				for (int i=0; i&lt;tmp.getInferredCodePattern().size(); i++){
+					DefaultMutableTreeNode cp_instance = new DefaultMutableTreeNode(tmp.getInferredCodePattern().get(i).getResource().getLocalName());
+					categoryNode.add(cp_instance);
+				}
+				rootNode.add(categoryNode);
+			}
+			else{	//all basic cp
+				DefaultMutableTreeNode categoryNode = new DefaultMutableTreeNode(tmp.getCategoryName());
+				for (int i=0; i&lt;tmp.getBasicCodePattern().size(); i++){
+					DefaultMutableTreeNode cp_instance = new DefaultMutableTreeNode(tmp.getBasicCodePattern().get(i).getResource().getLocalName());
+					categoryNode.add(cp_instance);
+				}
+				rootNode.add(categoryNode);
+			}
+		}
+		if (tree != null){
+			this.remove(tree);
+		}
+		tree = new JTree(rootNode);
+		if( scroll == null){
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
+		else{
+			this.remove(scroll);
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
+		tree.addMouseListener(new MouseAdapter() {
+		      public void mouseClicked(MouseEvent me) {
+		    	  TreePath tp = tree.getPathForLocation(me.getX(), me.getY());
+		    	    if (tp != null){
+		    	    	for(TreePathListener t:treePathListener){
+		    	    		t.treePathChanged(tp);
+		    	    	}		    	      
+		    	    }
+		      }
+	    });
+	} </SmartAPI:hasCode>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -295,6 +525,7 @@
     <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#jena"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#jena">
+    <SmartAPI:hasLanguage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#java"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:hasLanguage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Java"/>
   </rdf:Description>
@@ -371,6 +602,9 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern_Category_getCategoryName">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useGUI">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
