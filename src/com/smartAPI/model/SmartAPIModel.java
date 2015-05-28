@@ -45,7 +45,6 @@ public class SmartAPIModel {
 	private static Logger log = Logger.getLogger("global");
 	private static OntModel base;
 	private static OntModel inf;
-	private static boolean toUpdateInfModel;
 
 	public OntModel getOntModel(){
 		if(base != null)
@@ -69,13 +68,12 @@ public class SmartAPIModel {
 	}
 
 	public OntModel getInfModel(){
-		if (inf != null && !toUpdateInfModel){
+		if (inf != null){
 			log.info("returning inf model...");
 			return inf;
 		}
 		inf = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RDFS_INF, getOntModel());
 		log.info("Inf Model created...");
-		toUpdateInfModel = false;
 		return inf;
 	}
 
@@ -218,7 +216,6 @@ public class SmartAPIModel {
 				throw new IllegalArgumentException("File: " + "SmartAPI_1.2.owl"+ " not found");
 			}
 			getOntModel().write(out);
-			toUpdateInfModel = true;
 			log.info("Model written to file...");
 		} catch (FileNotFoundException e) {
 			log.severe("Exception writing owl file!");
@@ -858,7 +855,8 @@ public class SmartAPIModel {
 	 */
 	public boolean modificaUtente(String username, String password, String nome, String cognome, String email, String avatar) {
 		ArrayList<Resource> list = getIndividualOfClass("User");
-				//non gli setto voti, mi serve solo per controllare se i campi inseriti sono corretti
+		
+		//non gli setto voti, mi serve solo per controllare se i campi inseriti sono corretti
 		Utente u = new Utente(nome,cognome,email,username,password,false, avatar, "inutile", 0);
 
 		boolean modificaPassword = false;
@@ -1249,10 +1247,9 @@ public class SmartAPIModel {
 	
 	public void initScoreVoters(String risorsa){
 		Individual ind = getOntModel().getIndividual(Common.NS + risorsa);
-		Literal l = getOntModel().createTypedLiteral(new Integer(0));
 		DatatypeProperty hasVoters = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_VOTERS);
-		ind.addProperty(hasVoters, l);
+		ind.addProperty(hasVoters, "0");
 		DatatypeProperty hasScore = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_SCORE);
-		ind.addProperty(hasScore, l);
+		ind.addProperty(hasScore, "0");
 	}
 }
