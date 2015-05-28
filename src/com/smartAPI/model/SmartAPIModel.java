@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
@@ -1124,6 +1126,7 @@ public class SmartAPIModel {
 				}
 			}
 		}
+		
 		return utenteCodePattern;
 	}
 
@@ -1144,7 +1147,7 @@ public class SmartAPIModel {
 
 	/**
 	 * get info from classificaUtenti() end create UserClassification Objects
-	 * @author Amati Ciro
+	 * @author Amati Ciro 
 	 */
 
 
@@ -1157,6 +1160,7 @@ public class SmartAPIModel {
 			listUserClassification.add(uc);
 
 		}
+		Collections.sort(listUserClassification, new ComparatorClassifica());
 		
 	return listUserClassification;
 
