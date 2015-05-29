@@ -84,6 +84,14 @@ public class About extends JPanel {
 		lblTxtAme.setBounds(252, 227, 180, 16);
 		add(lblTxtAme);
 		
+		JLabel label = new JLabel("New label");
+		path="res/amedeoQr.jpg";
+		 pathIcon = getClass().getResource(path).getFile();
+		 imgicon = new MyImageIcon(pathIcon,50,50);
+		 label.setIcon(imgicon.getImageResponsive());
+		label.setBounds(325, 245, 50, 50);
+		add(label);
+		
 		JLabel lblTxtCiro = new JLabel("Ciro Amati");
 		lblTxtCiro.setOpaque(true);
 		lblTxtCiro.setHorizontalAlignment(SwingConstants.CENTER);
@@ -92,6 +100,14 @@ public class About extends JPanel {
 		lblTxtCiro.setBackground(new Color(228, 230, 235));
 		lblTxtCiro.setBounds(481, 227, 180, 16);
 		add(lblTxtCiro);
+		
+		JLabel label_1 = new JLabel("New label");
+		path="res/ciroQr.jpg";
+		 pathIcon = getClass().getResource(path).getFile();
+		 imgicon = new MyImageIcon(pathIcon,50,50);
+		 label_1.setIcon(imgicon.getImageResponsive());
+		label_1.setBounds(549, 245, 50, 50);
+		add(label_1);
 		
 		JLabel lblTxtIole = new JLabel("Iolanda Rinaldi");
 		lblTxtIole.setOpaque(true);
@@ -102,6 +118,15 @@ public class About extends JPanel {
 		lblTxtIole.setBounds(145, 471, 180, 16);
 		add(lblTxtIole);
 		
+		JLabel label_2 = new JLabel("New label");
+		path="res/ioleQr.jpg";
+		 pathIcon = getClass().getResource(path).getFile();
+		 imgicon = new MyImageIcon(pathIcon,50,50);
+		 label_2.setIcon(imgicon.getImageResponsive());
+		label_2.setBounds(215, 493, 50, 50);
+		add(label_2);
+		
+		
 		JLabel lblTxtSte = new JLabel("Stefania Cardamone");
 		lblTxtSte.setOpaque(true);
 		lblTxtSte.setHorizontalAlignment(SwingConstants.CENTER);
@@ -110,5 +135,18 @@ public class About extends JPanel {
 		lblTxtSte.setBackground(new Color(228, 230, 235));
 		lblTxtSte.setBounds(374, 472, 180, 16);
 		add(lblTxtSte);
+		
+		JLabel label_3 = new JLabel("New label");
+		path="res/steQr.jpg";
+		 pathIcon = getClass().getResource(path).getFile();
+		 imgicon = new MyImageIcon(pathIcon,50,50);
+		 label_3.setIcon(imgicon.getImageResponsive());
+		label_3.setBounds(442, 493, 50, 50);
+		add(label_3);
+		
+		
+		
+		
+		
 	}
 }
