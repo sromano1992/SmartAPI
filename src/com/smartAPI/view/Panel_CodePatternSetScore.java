@@ -20,18 +20,22 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import com.smartAPI.control.ISetScoreListener;
 
-public class Panel_CodePatternSetScore extends JPanel {
+
+public class Panel_CodePatternSetScore extends JPanel{
 	private static Logger log = Logger.getLogger("global");
 	private static int _MAX_SCORE = 10;
 	private static int _MIN_SCORE = 0;
 	private int storedScoreValue;
 	private boolean storedScore;
 	private ArrayList<JLabel> stars;
+	private ArrayList<ISetScoreListener> listener_s;
 	/**
 	 * Create the panel.
 	 */
 	public Panel_CodePatternSetScore() {
+		listener_s = new ArrayList<ISetScoreListener>();
 		storedScoreValue = 0;
 		storedScore = false;
 		stars = new ArrayList<JLabel>();
@@ -102,7 +106,9 @@ public class Panel_CodePatternSetScore extends JPanel {
 					public void mouseClicked(MouseEvent arg0) {
 						storedScore = true;
 						storedScoreValue = j.getPos() ;
-						System.out.println("storedScoreValue: "+storedScoreValue);
+						for (ISetScoreListener listener : listener_s){
+							listener.setScoreClicked(storedScoreValue);
+						}
 
 					}
 		    	});
@@ -110,5 +116,9 @@ public class Panel_CodePatternSetScore extends JPanel {
 	    	stars.add(j);
 	    	add(j);
 	    }
+	}
+	
+	public void addListener(ISetScoreListener listener){
+		listener_s.add(listener);
 	}
 }

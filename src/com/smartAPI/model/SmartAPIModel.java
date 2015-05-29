@@ -804,7 +804,7 @@ public class SmartAPIModel {
 	 * each category of codePattern which has specified 'kewyord'.
 	 * @return
 	 */
-	public ArrayList<CodePattern_Category> getAllCodePatternForCategory(String keyword){
+	public ArrayList<CodePattern_Category> getAllCodePatternForCategory_byKeyword(String keyword){
 		ArrayList<CodePattern_Category> toReturn = new ArrayList<CodePattern_Category>();
 		ArrayList<Resource> patternCategory_s = getPatternCategory();
 		for (Resource r:patternCategory_s){
@@ -836,7 +836,74 @@ public class SmartAPIModel {
 			return null;
 	}
 
-
+	/**
+	 * This method will return one 'CodePattern_Category' for
+	 * each category of codePattern which has specified 'language'.
+	 * @return
+	 */
+	public ArrayList<CodePattern_Category> getAllCodePatternForCategory_byLanguage(String language){
+		ArrayList<CodePattern_Category> toReturn = new ArrayList<CodePattern_Category>();
+		ArrayList<Resource> patternCategory_s = getPatternCategory();
+		for (Resource r:patternCategory_s){
+			toReturn.add(getPatternOfCategory(r.getLocalName()));
+		}
+		
+		//lang check
+		for (CodePattern_Category cp_c : toReturn){
+			ArrayList<CodePattern> toRemove = new ArrayList<CodePattern>();
+			for (CodePattern c: cp_c.getBasicCodePattern()){
+				if (!hasLanguage(c.getResource().getLocalName(), language)){
+					toRemove.add(c);
+				}
+			}
+			for(CodePattern c:toRemove){
+				cp_c.getBasicCodePattern().remove(c);
+			}
+		}
+		boolean someCpFound = false;
+		for (CodePattern_Category cp_c : toReturn){
+			if (cp_c.getBasicCodePattern().size() != 0){
+				someCpFound = true;
+				break;
+			}
+		}
+		if (someCpFound)
+			return toReturn;
+		else
+			return null;
+	}
+	
+	/**
+	 * This method will return one 'CodePattern_Category' for
+	 * each category of codePattern which has specified 'language'.
+	 * @return
+	 */
+	public ArrayList<CodePattern_Category> getAllCodePatternForCategory_byLanguage(String language, ArrayList<CodePattern_Category> patternToCheckLanguage){		
+		//lang check
+		for (CodePattern_Category cp_c : patternToCheckLanguage){
+			ArrayList<CodePattern> toRemove = new ArrayList<CodePattern>();
+			for (CodePattern c: cp_c.getBasicCodePattern()){
+				if (!hasLanguage(c.getResource().getLocalName(), language)){
+					toRemove.add(c);
+				}
+			}
+			for(CodePattern c:toRemove){
+				cp_c.getBasicCodePattern().remove(c);
+			}
+		}
+		boolean someCpFound = false;
+		for (CodePattern_Category cp_c : patternToCheckLanguage){
+			if (cp_c.getBasicCodePattern().size() != 0){
+				someCpFound = true;
+				break;
+			}
+		}
+		if (someCpFound)
+			return patternToCheckLanguage;
+		else
+			return null;
+	}
+	
 	/**
 	 * Associare il code pattern inserito ad una categoria.
 	 * @author Stefania Cardamone
@@ -1322,5 +1389,32 @@ public class SmartAPIModel {
 			if(getOntModel().getResource(Common.NS + codePattern).getProperty(getProperty(Common.NS + Common.HAS_KEYWORD)).getString().equals(keyword))
 				return true;
 		return false;
+	}
+	
+	/**
+	 * Controlla se un codePattern ha il linguaggio passato in input.
+	 * @author Amedeo Leo
+	 */
+	public boolean hasLanguage(String codePattern, String language) {
+		Resource cp = getOntModel().getResource(Common.NS + codePattern);
+		Property hasLib = getOntModel().getProperty(Common.NS + Common.HAS_LIBRARY);
+		if (cp.hasProperty(hasLib)){
+			Resource library = getOntModel().getResource(Common.NS + codePattern).getProperty(getProperty(Common.NS + Common.HAS_LIBRARY)).getResource();
+			
+			Property hasLang = getOntModel().getProperty(Common.NS + Common.HAS_LANGUAGE);
+			if (library.hasProperty(hasLang)){
+				String langRes = library.getProperty(hasLang).getObject().asResource().getLocalName();
+				if(langRes.equals(language))
+					return true;
+			}
+		}
+		return false;
+	}
+
+	public ArrayList<CodePattern_Category> getAllCodePatternForCategory_byKeywordAndLang(String keyword, String language) {
+		//first checks for keyword
+		ArrayList<CodePattern_Category> patternWithKeyword = getAllCodePatternForCategory_byKeyword(keyword);
+		//then checks for language
+		return getAllCodePatternForCategory_byLanguage(language, patternWithKeyword);
 	}
 }

@@ -8,6 +8,7 @@ import javax.swing.tree.TreePath;
 
 import com.smartAPI.control.TreePathListener;
 import com.smartAPI.model.CodePattern_Category;
+import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 
 import java.awt.BorderLayout;
@@ -68,35 +69,51 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		panel_1.setLayout(new GridLayout(0, 10, 0, 0));
 		
 		final JRadioButton rdbtnJava = new JRadioButton("Java");
+		rdbtnJava.setBackground(new Color(228,230,235));
 		language=rdbtnJava.getText();
 		rdbtnJava.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				language=rdbtnJava.getText();
-				//log.info("language:"+language);
+				language = rdbtnJava.getText();
+				textField_keyword.setText("");
+				treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory_byLanguage(Common.JAVA), "Basic", false);
 			}
 		});
-		rdbtnJava.setSelected(true);
 		
 		final JRadioButton rdbtnPython = new JRadioButton("Python");
+		rdbtnPython.setBackground(new Color(228,230,235));
 		rdbtnPython.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				language=rdbtnPython.getText();
-				//log.info("language:"+language);
+				language = rdbtnPython.getText();
+				textField_keyword.setText("");
+				treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory_byLanguage(Common.PYTHON), "Basic", false);
 			}
 		});
+		
+
+		JRadioButton rdbtnShowAll = new JRadioButton("Show all");
+		rdbtnShowAll.setBackground(new Color(228, 230, 235));
+		rdbtnShowAll.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
+				buttonDeleteKeyword.setEnabled(false);
+				textField_keyword.setText("");
+				textField_keyword.setBackground(Color.white);
+			}
+		});
+		rdbtnShowAll.setSelected(true);
 		
 		ButtonGroup buttonGroup = new ButtonGroup();
 		buttonGroup.add(rdbtnJava);
 		buttonGroup.add(rdbtnPython);
+		buttonGroup.add(rdbtnShowAll);
 		panel_1.add(rdbtnJava);
 		panel_1.add(rdbtnPython);
+		
+		panel_1.add(rdbtnShowAll);
 		
 		
 		JLabel label_5 = new JLabel("");
 		panel_1.add(label_5);
-		
-		JLabel label_4 = new JLabel("");
-		panel_1.add(label_4);
 		
 		JLabel label_3 = new JLabel("");
 		panel_1.add(label_3);
@@ -159,11 +176,11 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ArrayList<CodePattern_Category> patternWithKeyword = new SmartAPIModel().getAllCodePatternForCategory(textField_keyword.getText());
-				if (patternWithKeyword != null){
+				ArrayList<CodePattern_Category> patternWithKeywordAndLang = new SmartAPIModel().getAllCodePatternForCategory_byKeywordAndLang(textField_keyword.getText(), language);
+				if (patternWithKeywordAndLang != null){
 					textField_keyword.setBackground(Color.white);
 					buttonDeleteKeyword.setEnabled(true);
-					treeView.setCodePattern_s(patternWithKeyword, "Basic", false);
+					treeView.setCodePattern_s(patternWithKeywordAndLang, "Basic", false);
 					Border border = BorderFactory.createLineBorder(Color.GRAY);
 					textField_keyword.setBorder(border);
 				}

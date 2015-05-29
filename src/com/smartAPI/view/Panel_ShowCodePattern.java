@@ -33,6 +33,7 @@ import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
 import javax.swing.tree.TreePath;
 
+import com.smartAPI.control.ISetScoreListener;
 import com.smartAPI.control.TreePathListener;
 import com.smartAPI.model.CodePattern;
 import com.smartAPI.model.CodePattern_Category;
@@ -44,6 +45,7 @@ import java.awt.Font;
 
 import javax.swing.SwingConstants;
 
+import java.awt.event.InputMethodListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -55,11 +57,13 @@ import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
 
+
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Arrays;
 
-public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
+public class Panel_ShowCodePattern extends JPanel implements TreePathListener, ISetScoreListener{
 	private MyJLabel labelUserName;
 	private JTextPane txtpaneKeyWord;
 	private RSyntaxTextArea txtpnCode;
@@ -175,6 +179,7 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		panel_3.add(mjlblVota, BorderLayout.WEST);
 		
 		Panel_CodePatternSetScore panel_CodePatternSetScore = new Panel_CodePatternSetScore();
+		panel_CodePatternSetScore.addListener(this);
 		panel_3.add(panel_CodePatternSetScore);
 		
 		Panel_CodePatternScore panel_CodePatternScore = new Panel_CodePatternScore();
@@ -212,5 +217,10 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 			}
 			setCodePattern(cpToSearch);
 		}
+	}
+
+	@Override
+	public void setScoreClicked(int storedScoreValue) {
+		new SmartAPIModel().aggiungiVotoCodePattern(Common.UTENTE.getNickname(), actualCP.getResource().getLocalName(), storedScoreValue + "");
 	}
 }
