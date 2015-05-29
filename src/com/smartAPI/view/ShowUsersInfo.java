@@ -33,6 +33,7 @@ public class ShowUsersInfo extends JPanel{
 	private JLabel lblUser;
 	private JLabel lblName;
 	private JLabel lblSurname;
+	private ImageIcon blackstar;
 	private String avatar="";//iniz. con avatar user
 	
 	public ShowUsersInfo() {
@@ -144,6 +145,18 @@ public class ShowUsersInfo extends JPanel{
 		emailField.setBackground(new Color(230, 230, 230));
 		emailField.setBounds(374, 149, 204, 37);
 		add(emailField);
+		
+		
+		blackstar=new ImageIcon();
+		String blackpath = "res/grey_star.png";
+		String blackpathIcon = getClass().getResource(blackpath).getFile();
+		MyImageIcon blackimgicon = new MyImageIcon(blackpathIcon,20,20);
+		blackstar=blackimgicon.getImageResponsive();
+		
+		for (int i=0; i<10; i++){
+			panelStar.add(new JLabel(blackstar));
+	    }
+		panelStar.setVisible(true);
 	}
 			
 	public void setUser(Utente u) {
@@ -164,10 +177,15 @@ public class ShowUsersInfo extends JPanel{
 				imgicon = new MyImageIcon(pathIcon,20,20);
 				star=imgicon.getImageResponsive();
 				
-				//int numStelle = 10;
+				
 				int numStelle = LoginGrafica.getModel().cambiaStelle(userField.getText());
+				int blackStars = 10 - numStelle;
 				for (int i=0; i<numStelle; i++){
 					panelStar.add(new JLabel(star));
+			    }
+				
+				for (int i=0; i<blackStars; i++){
+					panelStar.add(new JLabel(blackstar));
 			    }
 				panelStar.setVisible(true);
 			}
