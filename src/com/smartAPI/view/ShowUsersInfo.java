@@ -164,10 +164,21 @@ public class ShowUsersInfo extends JPanel{
 				imgicon = new MyImageIcon(pathIcon,20,20);
 				star=imgicon.getImageResponsive();
 				
-				//int numStelle = 10;
+				ImageIcon blackstar=new ImageIcon();
+				String blackpath = "res/grey_star.png";
+				String blackpathIcon = getClass().getResource(blackpath).getFile();
+				MyImageIcon blackimgicon = new MyImageIcon(blackpathIcon,20,20);
+				blackstar=blackimgicon.getImageResponsive();
+				
+				
 				int numStelle = LoginGrafica.getModel().cambiaStelle(userField.getText());
+				int blackStars = 10 - numStelle;
 				for (int i=0; i<numStelle; i++){
 					panelStar.add(new JLabel(star));
+			    }
+				
+				for (int i=0; i<blackStars; i++){
+					panelStar.add(new JLabel(blackstar));
 			    }
 				panelStar.setVisible(true);
 			}
