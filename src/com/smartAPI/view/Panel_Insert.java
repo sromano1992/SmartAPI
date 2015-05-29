@@ -11,6 +11,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 
+/**
+ * 
+ * @author Simone Romamo - http://www.sromano.altervista.org
+ *
+ */
 public class Panel_Insert extends JPanel {
 	private static final String INSERT_PROJECT = "Insert Project";
 	private static final String INSERT_CP = "Insert cp";

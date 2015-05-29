@@ -19,7 +19,7 @@ import java.awt.Color;
 
 public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanelListener{
 	private Panel_Insert panel_Insert;
-	private Panel_CodePatternCompleteView panel_showCP;
+	private Panel_Search panel_search;
 	private Panel_ShowAllUser panel_ShowUser;
 	private UserInfoJPanel userInfoJPanel;
 	private AdminInfoJPanel adminInfoJPanel;
@@ -34,11 +34,11 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		panel = addControl_s();
 
 		panel_Insert = new Panel_Insert();
-		panel_Insert.setBounds(0, 181, 920, 564);
+		panel_Insert.setBounds(0, 181, 920, 480);
 		panel.add(panel_Insert);
 
-		panel_showCP = new Panel_CodePatternCompleteView();
-		panel_showCP.setBounds(20, 107, 811, 582);		
+		panel_search = new Panel_Search();
+		panel_search.setBounds(20, 107, 811, 582);		
 		panel_ShowUser = new Panel_ShowAllUser();
 		panel_ShowUser.setBounds(0, 181, 920, 508);		
 		panel_About = new About();
@@ -111,7 +111,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	public void searchClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
-			panel.remove(panel_showCP);
+			panel.remove(panel_search);
 		else if(actualPanel == SHOW_USER)
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
@@ -121,8 +121,8 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 
 		actualPanel = SHOW_CODE_PATTERN;
 
-		panel_showCP.refresh();
-		panel.add(panel_showCP);
+		panel_search.refresh();
+		panel.add(panel_search);
 		updateGUI();
 	}
 
@@ -130,7 +130,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	public void insertClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
-			panel.remove(panel_showCP);
+			panel.remove(panel_search);
 		else if(actualPanel == SHOW_USER)
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
@@ -148,7 +148,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	public void showUserClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
-			panel.remove(panel_showCP);
+			panel.remove(panel_search);
 		else if(actualPanel == SHOW_USER)
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
@@ -166,7 +166,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	public void aboutClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
-			panel.remove(panel_showCP);
+			panel.remove(panel_search);
 		else if(actualPanel == SHOW_USER)
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)

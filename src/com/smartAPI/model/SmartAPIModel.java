@@ -1415,6 +1415,144 @@ public class SmartAPIModel {
 		//first checks for keyword
 		ArrayList<CodePattern_Category> patternWithKeyword = getAllCodePatternForCategory_byKeyword(keyword);
 		//then checks for language
+		if (patternWithKeyword == null){
+			return null;
+		}
 		return getAllCodePatternForCategory_byLanguage(language, patternWithKeyword);
+	}
+	
+	/**
+	 * This method will add a project into knowledge base.
+	 * Will be added also all 'hasCategory' dataProperties.
+	 * @param name
+	 * @param description
+	 * @param categories
+	 */
+	public boolean addProject(String name, String description, ArrayList<String> categories){
+		ArrayList<Resource> project_s = getIndividualOfClass(Common.PROJECT);
+		for (Resource p:project_s){
+			if (p.getLocalName().equals(name)){
+				log.warning("Project " + name + " already in kb...");
+				return false;
+			}
+		}
+		
+		OntClass projectClass = getOntClass(Common.PROJECT);
+		Individual project = getOntModel().createIndividual(Common.NS + name, projectClass);	//added project
+
+		DatatypeProperty hasCategory = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_CATEGORY);
+		for (String category:categories)
+			project.addProperty(hasCategory, category);
+		log.info("Added property " + hasCategory.getLocalName());
+		DatatypeProperty hasDescription = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_DESCRIPTION);
+		project.addProperty(hasDescription, description);
+		log.info("Added property " + hasDescription.getLocalName());
+		
+		storeOntModel();
+		return true;
+	}
+	
+	/**
+	 * Add relation 'follow' from user to project.
+	 * @param projectName
+	 * @param nickname
+	 */
+	public void addFollowerToProject(String projectName, String nickname){
+		ObjectProperty followProject = getOntModel().getObjectProperty(Common.NS + Common.FOLLOW_PROJECT);
+		Resource project = getResourceFromBase(Common.NS + projectName);
+		Resource user = getResourceFromBase(Common.NS + nickname);
+
+		user.addProperty(followProject, project);
+		storeOntModel();
+		log.info("Property " + Common.FOLLOW_PROJECT + " added between " + nickname + " and " + projectName);
+	}
+	
+	/**
+	 * Will remove follower from project.
+	 * @param projectName
+	 * @param nickname
+	 */
+	public void removeFollowerFromProject(String projectName, String nickname){
+		ObjectProperty followProject = getOntModel().getObjectProperty(Common.NS + Common.FOLLOW_PROJECT);
+		Resource user = getResourceFromBase(Common.NS + nickname);
+		
+		for (Iterator<Statement> s=user.listProperties(followProject); s.hasNext();){
+			Statement stm = s.next();
+			if (stm.getObject().asResource().getLocalName().equals(projectName)){
+				stm.remove();
+				log.info("Removed property follow_" + projectName + " from " + nickname);
+				storeOntModel();
+				break;
+			}
+		}
+	}
+	
+	/**
+	 * Return true if nickName follow projectName
+	 * @param nickName
+	 * @param projectName
+	 * @return
+	 */
+	public boolean followProject(String nickName, String projectName){
+		ObjectProperty followProject = getOntModel().getObjectProperty(Common.NS + Common.FOLLOW_PROJECT);
+		Resource user = getResourceFromBase(Common.NS + nickName);
+		
+		for (Iterator<Statement> s=user.listProperties(followProject); s.hasNext();){
+			Statement stm = s.next();
+			if (stm.getObject().asResource().getLocalName().equals(projectName)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * This method will return a list of
+	 * all projects.
+	 * @return
+	 */
+	public ArrayList<Project> getProject_s(){
+		ArrayList<Resource> project_s = getIndividualOfClass(Common.PROJECT);
+		ArrayList<Project> toReturn = new ArrayList<Project>();
+		DatatypeProperty hasCategory = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_CATEGORY);
+		DatatypeProperty hasDescription = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_DESCRIPTION);
+		for (Resource project : project_s){
+			String description = project.getProperty(hasDescription).getObject().toString();
+			ArrayList<String> categories = new ArrayList<String>();
+			for (Iterator<Statement> s=project.listProperties(hasCategory); s.hasNext();){
+				Statement stm = s.next();
+				categories.add(stm.getObject().toString());
+			}
+			String name = project.getLocalName();
+			toReturn.add(new Project(name, description, categories));
+		}
+		log.info("Loaded " + toReturn.size() + " projects...");
+		return toReturn;
+	}
+
+	/**
+	 * Return a list of project followed by input user.s
+	 * @param uTENTE
+	 * @return
+	 */
+	public ArrayList<Project> followedProject(Utente uTENTE) {
+		ArrayList<Project> followed = new ArrayList<Project>();
+		ArrayList<Project> project_s = getProject_s();
+		for (Project p:project_s){
+			if (followProject(uTENTE.getNickname(), p.getName()))
+				followed.add(p);
+		}
+		return followed;
+	}
+	
+	
+	public Project getProject(String projectName) {
+		ArrayList<Project> project_s = getProject_s();
+		for (Project p:project_s){
+			if (p.getName().equals(projectName)){
+				return p;
+			}
+		}
+		return null;
 	}
 }

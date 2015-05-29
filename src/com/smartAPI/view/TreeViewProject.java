@@ -5,10 +5,13 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
+
+import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.core.TreeNode;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -18,8 +21,10 @@ import com.smartAPI.model.Common;
 import com.smartAPI.model.Project;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.Utente;
+import com.sun.java.swing.SwingUtilities3;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -33,9 +38,11 @@ public class TreeViewProject extends JPanel implements TreePathListener{
 	private JScrollPane scrollPane;
 	private JPopupMenu p_menu;
 	private JMenuItem remItem;
+	private JScrollPane scroll;
 	private TreePath toRemoveNode;
 	private DefaultTreeModel model = null; //(DefaultTreeModel)tree.getModel();
 	private DefaultMutableTreeNode rootNode = null; //(DefaultMutableTreeNode)model.getRoot();
+	private static Logger log = Logger.getLogger("global");
 	
 	/**
 	 * Create the panel.
@@ -49,6 +56,7 @@ public class TreeViewProject extends JPanel implements TreePathListener{
 	}
 
 	public void setProject_s(ArrayList<Project> project_s, String rootName){
+		log.info("Adding " + project_s.size() + " projects...");
 		rootNode = new DefaultMutableTreeNode(rootName);
 		for (Project tmp:project_s){
 			DefaultMutableTreeNode us_node = new DefaultMutableTreeNode(tmp.getName());
@@ -60,7 +68,15 @@ public class TreeViewProject extends JPanel implements TreePathListener{
 		}
 		tree = new JTree(rootNode);
 		model = (DefaultTreeModel)tree.getModel();
-		add(new JScrollPane(tree));
+		if( scroll == null){
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
+		else{
+			this.remove(scroll);
+			scroll = new JScrollPane(tree);
+			add(scroll);
+		}
 		tree.addMouseListener(new MouseAdapter() {
 		      public void mouseClicked(MouseEvent me) {
 		    	  TreePath tp = tree.getPathForLocation(me.getX(), me.getY());
@@ -125,6 +141,8 @@ public class TreeViewProject extends JPanel implements TreePathListener{
 					//tree.update(getGraphics());
 				}
 			});
+			model.reload();
+			SwingUtilities.updateComponentTreeUI(this);
 		}
 		
 	}

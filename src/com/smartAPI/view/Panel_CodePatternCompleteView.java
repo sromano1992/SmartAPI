@@ -9,6 +9,7 @@ import javax.swing.tree.TreePath;
 import com.smartAPI.control.TreePathListener;
 import com.smartAPI.model.CodePattern_Category;
 import com.smartAPI.model.Common;
+import com.smartAPI.model.Project;
 import com.smartAPI.model.SmartAPIModel;
 
 import java.awt.BorderLayout;
@@ -44,6 +45,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JRadioButton;
+import javax.swing.JComboBox;
 
 /**
  * 
@@ -67,6 +69,21 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		panel_1.setBackground(new Color(228, 230, 235));
 
 		panel_1.setLayout(new GridLayout(0, 10, 0, 0));
+
+		final JComboBox comboBox_myProject = new JComboBox();
+		comboBox_myProject.setEnabled(false);
+		comboBox_myProject.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String projectName = comboBox_myProject.getSelectedItem().toString();
+				SmartAPIModel s = new SmartAPIModel();
+				Project selectedProject = s.getProject(projectName);
+				ArrayList<CodePattern_Category> toShow = new ArrayList<CodePattern_Category>();
+				for (String category:selectedProject.getCategories()){
+					toShow.add(s.getPatternOfCategory(category));
+				}
+				treeView.setCodePattern_s(toShow, "Basic", false);
+			}
+		});
 		
 		final JRadioButton rdbtnJava = new JRadioButton("Java");
 		rdbtnJava.setBackground(new Color(228,230,235));
@@ -76,6 +93,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 				language = rdbtnJava.getText();
 				textField_keyword.setText("");
 				treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory_byLanguage(Common.JAVA), "Basic", false);
+				comboBox_myProject.setEnabled(false);
 			}
 		});
 		
@@ -86,6 +104,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 				language = rdbtnPython.getText();
 				textField_keyword.setText("");
 				treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory_byLanguage(Common.PYTHON), "Basic", false);
+				comboBox_myProject.setEnabled(false);
 			}
 		});
 		
@@ -98,25 +117,33 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 				buttonDeleteKeyword.setEnabled(false);
 				textField_keyword.setText("");
 				textField_keyword.setBackground(Color.white);
+				language = "all";
+				comboBox_myProject.setEnabled(false);
 			}
 		});
 		rdbtnShowAll.setSelected(true);
+		JRadioButton rdbtnByProject = new JRadioButton("By Project");
+		rdbtnByProject.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				comboBox_myProject.setEnabled(true);
+			}
+		});
+		rdbtnByProject.setBackground(new Color(228, 230, 235));
 		
 		ButtonGroup buttonGroup = new ButtonGroup();
 		buttonGroup.add(rdbtnJava);
 		buttonGroup.add(rdbtnPython);
 		buttonGroup.add(rdbtnShowAll);
+		buttonGroup.add(rdbtnByProject);
 		panel_1.add(rdbtnJava);
 		panel_1.add(rdbtnPython);
 		
 		panel_1.add(rdbtnShowAll);
 		
+		panel_1.add(rdbtnByProject);
 		
-		JLabel label_5 = new JLabel("");
-		panel_1.add(label_5);
-		
-		JLabel label_3 = new JLabel("");
-		panel_1.add(label_3);
+		comboBox_myProject.setEnabled(false);
+		panel_1.add(comboBox_myProject);
 		
 		JLabel label_2 = new JLabel("");
 		panel_1.add(label_2);
@@ -176,7 +203,13 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		treeView.setCodePattern_s(new SmartAPIModel().getAllCodePatternForCategory(), "Basic", false);
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ArrayList<CodePattern_Category> patternWithKeywordAndLang = new SmartAPIModel().getAllCodePatternForCategory_byKeywordAndLang(textField_keyword.getText(), language);
+				ArrayList<CodePattern_Category> patternWithKeywordAndLang;
+				if (language == "all"){
+					patternWithKeywordAndLang = new SmartAPIModel().getAllCodePatternForCategory_byKeyword(textField_keyword.getText());
+				}
+				else{
+					patternWithKeywordAndLang = new SmartAPIModel().getAllCodePatternForCategory_byKeywordAndLang(textField_keyword.getText(), language);
+				}
 				if (patternWithKeywordAndLang != null){
 					textField_keyword.setBackground(Color.white);
 					buttonDeleteKeyword.setEnabled(true);
@@ -200,6 +233,15 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		treeView.addTreePathListener(panel_InferredCodePattern.getPanel_ShowCodePattern());
 		
 		treeView_1.addTreePathListener(panel_InferredCodePattern.getPanel_ShowCodePattern_1());
+		
+		//projectCombo
+		SmartAPIModel s = new SmartAPIModel();
+		ArrayList<Project> userFollowedProject = s.followedProject(Common.UTENTE);
+		if (userFollowedProject.size() > 0){
+			for (Project p:userFollowedProject){
+				comboBox_myProject.addItem(p.getName());
+			}
+		}
 	}
 
 	@Override

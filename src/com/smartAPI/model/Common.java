@@ -34,6 +34,10 @@ public class Common {
 	public static final String PYTHON = "Python";
 	public static final String PYTHON_CP_TMP_FILE = "pythonCodePattern.sat";
 	public static final String PY_PARSER_SCRIPT = "/pyParser.py";
+	public static final String PROJECT = "Project";
+	public static final String HAS_CATEGORY = "hasCategory";
+	public static final String FOLLOW_PROJECT = "followProject";
+	public static final String HAS_DESCRIPTION = "hasDescription";
 	public static Utente UTENTE = null;
 	
 	public static void setUser(Utente u){
