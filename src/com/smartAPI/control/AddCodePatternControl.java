@@ -25,6 +25,10 @@ public class AddCodePatternControl {
 		this.val_language = val_language;
 		this.val_lib = val_lib;
 		this.category = categoria;
+		if (val_language.equals(Common.JAVA))
+			parser = new JavaMethodParser();
+		else if(val_language.equals(Common.PYTHON))
+			parser = new PythonMethodParser();
 	}
 
 	public String getVal_name() {
@@ -78,10 +82,6 @@ public class AddCodePatternControl {
 	
 	public int addCodePattern(){
 		try {
-			if (val_language.equals(Common.JAVA))
-				parser = new JavaMethodParser();
-			else if(val_language.equals(Common.PYTHON))
-				parser = new PythonMethodParser();
 			ArrayList<String> method_s = parser.getMethod(val_CP);
 			System.out.println("metodi*******:"+method_s);
 			model.addToMethodClass(method_s);
