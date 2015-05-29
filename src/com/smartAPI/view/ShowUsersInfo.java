@@ -25,7 +25,7 @@ import java.awt.event.MouseEvent;
 public class ShowUsersInfo extends JPanel{
 
 	public static JLabel lblImage, lblStar;
-	private static int SCORE = 10;
+	private static int MAX_STARS = 10;
 	public static JTextField userField;
 	public static JTextField nameField;
 	public static JTextField surnameField;
@@ -198,7 +198,7 @@ public class ShowUsersInfo extends JPanel{
 		MyImageIcon blackimgicon = new MyImageIcon(blackpathIcon,20,20);
 		blackstar=blackimgicon.getImageResponsive();
 		
-		for (int i=0; i<10; i++){
+		for (int i=0; i<MAX_STARS; i++){
 			panelStar.add(new JLabel(blackstar));
 	    }
 		panelStar.setVisible(true);
@@ -224,7 +224,7 @@ public class ShowUsersInfo extends JPanel{
 				
 				
 				int numStelle = LoginGrafica.getModel().cambiaStelle(userField.getText());
-				int blackStars = 10 - numStelle;
+				int blackStars = MAX_STARS - numStelle;
 				for (int i=0; i<numStelle; i++){
 					panelStar.add(new JLabel(star));
 			    }
