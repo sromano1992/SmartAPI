@@ -397,10 +397,13 @@ public class SmartAPIModel {
 	}
 
 	public void addUseLanguage(String library, String language) {
-		ObjectProperty useLibrary = getOntModel().getObjectProperty(Common.NS + Common.HAS_LANGUAGE);
+		ObjectProperty useLibrary = getOntModel().getObjectProperty(
+				Common.NS + Common.HAS_LANGUAGE);
 		Resource languageRis = getResourceFromBase(Common.NS + language);
-		Resource lib = getResourceFromBase(Common.NS + library);
-
+		Individual lib = getOntModel().getIndividual(Common.NS + library);
+		if (lib == null){
+			lib = getOntClass("Library").createIndividual(Common.NS + library);
+		}
 		lib.addProperty(useLibrary, languageRis);
 	}
 

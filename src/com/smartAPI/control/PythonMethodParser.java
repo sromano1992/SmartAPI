@@ -4,11 +4,15 @@ import japa.parser.ParseException;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import com.smartAPI.model.Common;
 
 
 /**
@@ -21,12 +25,19 @@ public class PythonMethodParser implements IMethodParser{
 
 	public ArrayList<String> getMethod(String pyCode) throws ParseException{
 		ArrayList<String> method_s = new ArrayList<String>();
-		String pyPath = this.getClass().getResource("/pyParser.py").getFile();
-		File file;
 		try {
-			file = new File(new java.net.URI(pyPath).getPath());
-			String[] szCmd = { "python", file.getAbsolutePath(), pyCode };
-			String command = "python " + file.getAbsolutePath() + " " + pyCode;
+			URL location = this.getClass().getProtectionDomain().getCodeSource().getLocation();
+			String codePath = location.getFile() + Common.PYTHON_CP_TMP_FILE;
+			String pyPath = this.getClass().getResource(Common.PY_PARSER_SCRIPT).getFile();
+			
+			File f_codePath = new File(new java.net.URI(codePath).getPath());
+			File f_pyPath = new File(new java.net.URI(pyPath).getPath());
+			
+			FileOutputStream fos = new FileOutputStream(new File(codePath));
+			fos.write(pyCode.getBytes());
+			fos.close();
+			String[] szCmd = { "python", f_pyPath.getAbsolutePath(), f_codePath.getAbsolutePath() };
+			String command = "python " + f_pyPath.getAbsolutePath() + " " + f_codePath.getAbsolutePath();
 			log.info("Running command: " + command);
 			Process p = Runtime.getRuntime().exec(szCmd);
 			p.waitFor();
@@ -39,13 +50,13 @@ public class PythonMethodParser implements IMethodParser{
 			in.close();
 			log.info("Found py method: " + method_s);
 			return method_s;
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		} catch (NumberFormatException e) {
+		}  catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
 		return null;

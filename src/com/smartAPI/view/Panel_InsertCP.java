@@ -179,14 +179,22 @@ public class Panel_InsertCP extends JPanel {
 					lblError.setVisible(true);
 				}
 				else{
-					if(new AddCodePatternControl(val_nome, val_CP, val_keyword, language, val_lib, categoria).addCodePattern() == 1){
+					int insertStatus = new AddCodePatternControl(val_nome, val_CP, val_keyword, language, val_lib, categoria).addCodePattern();
+					if(insertStatus == 1){
 						lblError.setVisible(false);
 						lblOk.setText("Code pattern inserted!");
 						lblOk.setVisible(true);
 					}
+					else if(insertStatus == -2){
+						lblOk.setVisible(false);
+						lblError.setText("No method invocation found");
+						lblError.setVisible(true);
+					}
 					else{
 						lblOk.setVisible(false);
 						lblError.setText("Code pattern not inserted!");
+						if (language.equals(Common.PYTHON))
+							lblError.setText(lblError.getText() + " - Check code indentation");
 						lblError.setVisible(true);
 					}
 				}
@@ -230,6 +238,7 @@ public class Panel_InsertCP extends JPanel {
 	    ta = new RSyntaxTextArea(20, 60);
 	    ta.setRows(13);
 	    ta.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+	    ta.setAutoIndentEnabled(true);
 	    ta.setCodeFoldingEnabled(true);
 	    ta.canRedo();
 	    ta.canUndo();
@@ -276,8 +285,10 @@ public class Panel_InsertCP extends JPanel {
 				language = (String) jcbLanguage.getSelectedItem();
 				if (language.equals(Common.JAVA))
 					ta.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
-				if (language.equals(Common.PYTHON))
+				if (language.equals(Common.PYTHON)){
 					ta.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PYTHON);
+					ta.setTabSize(4);
+				}
 			}
 		});
 	    jcbLanguage.setBounds(105, 145, 190, 37);

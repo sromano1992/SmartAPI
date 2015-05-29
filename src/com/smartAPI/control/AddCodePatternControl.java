@@ -83,6 +83,8 @@ public class AddCodePatternControl {
 	public int addCodePattern(){
 		try {
 			ArrayList<String> method_s = parser.getMethod(val_CP);
+			if(method_s.size() == 0)
+				return -2;
 			System.out.println("metodi*******:"+method_s);
 			model.addToMethodClass(method_s);
 			//model.addPatternCategory(category);
