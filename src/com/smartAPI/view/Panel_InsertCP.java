@@ -268,8 +268,8 @@ public class Panel_InsertCP extends JPanel {
 	    v1.add(Common.JAVA);
 		v1.add(Common.PYTHON);
 		
-		model = new DefaultComboBoxModel(v1);
-		JComboBox jcbLanguage = new JComboBox(model);
+		DefaultComboBoxModel model_lang = new DefaultComboBoxModel(v1);
+		JComboBox jcbLanguage = new JComboBox(model_lang);
 		language = (String) v1.get(0);
 		jcbLanguage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
