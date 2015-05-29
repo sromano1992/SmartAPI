@@ -63,7 +63,6 @@ public class Panel_InsertCP extends JPanel {
 	private RSyntaxTextArea ta;
 	private JTextField keyword;
 	private JTextField newCategoria;
-	private JTextField langTextField;
 	private JTextField libTextField;
 	private String categoria;
 	private String language;	
@@ -201,11 +200,6 @@ public class Panel_InsertCP extends JPanel {
 		lblLanguage.setBounds(27, 145, 80, 32);
 		add(lblLanguage);
 
-		langTextField = new JTextField();
-		langTextField.setBounds(105, 182, 190, 37);
-		add(langTextField);
-		langTextField.setColumns(10);
-
 		MyJLabel library = new MyJLabel("*Library");
 		library.setBackground(new Color(231, 76, 60));
 		library.setBounds(546, 69, 80, 32);
@@ -266,8 +260,8 @@ public class Panel_InsertCP extends JPanel {
 	    
 	    JComboBox jcbLanguage = new JComboBox();
 	    v.add("Java");
-		v.add("Database");
-		v.add("Other...");
+		v.add("Python");
+		
 		model = new DefaultComboBoxModel(v);
 		language = (String) v.get(0);
 		jcbCategory.addActionListener(new ActionListener() {
