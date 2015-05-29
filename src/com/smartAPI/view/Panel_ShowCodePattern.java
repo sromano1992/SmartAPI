@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -49,13 +50,23 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rtextarea.RTextScrollPane;
+
+import prettify.PrettifyParser;
+import prettify.theme.ThemeDefault;
+import syntaxhighlight.Parser;
+import syntaxhighlight.SyntaxHighlighter;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
 
 public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 	private MyJLabel labelUserName;
 	private JTextPane txtpaneKeyWord;
-	private JTextPane txtpnCode;
+	private RSyntaxTextArea txtpnCode;
 	private JButton infoButton;
 	private CodePattern actualCP;
 	private String actualCP_category;
@@ -130,11 +141,14 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 0;
-		panel_5.add(scrollPane, gbc_scrollPane);
 		
-		txtpnCode = new JTextPane();
-		txtpnCode.setEditable(false);
-		scrollPane.setViewportView(txtpnCode);
+		txtpnCode = new RSyntaxTextArea(20, 60);
+		txtpnCode.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+		txtpnCode.setCodeFoldingEnabled(true);
+      	txtpnCode.setEditable(false);
+      	RTextScrollPane sp = new RTextScrollPane(txtpnCode);
+      	panel_5.add(sp, gbc_scrollPane);
+		
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
