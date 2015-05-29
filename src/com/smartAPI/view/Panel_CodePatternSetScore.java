@@ -71,6 +71,8 @@ public class Panel_CodePatternSetScore extends JPanel {
 					}				
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
+						
+
 						storedScore = true;
 						storedScoreValue = 0;
 					}
@@ -99,7 +101,9 @@ public class Panel_CodePatternSetScore extends JPanel {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
 						storedScore = true;
-						storedScoreValue = j.getPos() + 1;
+						storedScoreValue = j.getPos() ;
+						System.out.println("storedScoreValue: "+storedScoreValue);
+
 					}
 		    	});
 	    	}
