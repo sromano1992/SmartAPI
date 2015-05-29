@@ -31,6 +31,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -40,6 +41,7 @@ import javax.swing.ImageIcon;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JRadioButton;
 
 /**
@@ -52,7 +54,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 	private TreeViewCP treeView;
 	private JTextField textField_keyword;
 	private JButton buttonDeleteKeyword;
-	
+	private String language;
 	/**
 	 * Create the panel.
 	 */
@@ -63,13 +65,32 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		add(panel_1, BorderLayout.NORTH);
 		panel_1.setBackground(new Color(228, 230, 235));
 
-		panel_1.setLayout(new GridLayout(0, 11, 0, 0));
+		panel_1.setLayout(new GridLayout(0, 10, 0, 0));
 		
-		JRadioButton rdbtnJava = new JRadioButton("Java");
+		final JRadioButton rdbtnJava = new JRadioButton("Java");
+		language=rdbtnJava.getText();
+		rdbtnJava.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				language=rdbtnJava.getText();
+				//log.info("language:"+language);
+			}
+		});
+		rdbtnJava.setSelected(true);
+		
+		final JRadioButton rdbtnPython = new JRadioButton("Python");
+		rdbtnPython.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				language=rdbtnPython.getText();
+				//log.info("language:"+language);
+			}
+		});
+		
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(rdbtnJava);
+		buttonGroup.add(rdbtnPython);
 		panel_1.add(rdbtnJava);
-		
-		JRadioButton rdbtnPython = new JRadioButton("Python");
 		panel_1.add(rdbtnPython);
+		
 		
 		JLabel label_5 = new JLabel("");
 		panel_1.add(label_5);
@@ -83,9 +104,6 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		JLabel label_2 = new JLabel("");
 		panel_1.add(label_2);
 		
-		JLabel label_1 = new JLabel("");
-		panel_1.add(label_1);
-		
 		JLabel label = new JLabel("");
 		panel_1.add(label);
 		
@@ -98,6 +116,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		textField_keyword.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();
+		panel_1.setBackground(new Color(228, 230, 235));
 		panel_1.add(panel_2);
 		panel_2.setLayout(new GridLayout(0, 2, 0, 0));
 		
