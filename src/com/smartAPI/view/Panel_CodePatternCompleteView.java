@@ -72,7 +72,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		rdbtnJava.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				language=rdbtnJava.getText();
-				log.info("language:"+language);
+				//log.info("language:"+language);
 			}
 		});
 		rdbtnJava.setSelected(true);
@@ -81,7 +81,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		rdbtnPython.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				language=rdbtnPython.getText();
-				log.info("language:"+language);
+				//log.info("language:"+language);
 			}
 		});
 		

@@ -1014,7 +1014,7 @@ public class SmartAPIModel {
 				if(isOwner(username, codePattern))
 					throw new UserException("Non puoi votare un tuo code pattern");
 				if(hasAlreadyVoted(username, codePattern))
-					throw new UserException("Hai gi� votato questo code pattern");
+					throw new UserException("Hai già votato questo code pattern");
 				int vecchiVotanti = resource.getProperty(getProperty(Common.NS + Common.HAS_VOTERS)).getObject().asLiteral().getInt();
 				int nuoviVotanti = vecchiVotanti + 1;
 				Literal nVotanti = getOntModel().createTypedLiteral(new Integer(nuoviVotanti));
