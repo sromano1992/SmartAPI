@@ -46,6 +46,7 @@ import java.awt.ScrollPane;
 import javax.swing.ImageIcon;
 
 import com.smartAPI.control.AddCodePatternControl;
+
 import javax.swing.JEditorPane;
 
 /**
@@ -61,7 +62,9 @@ public class Panel_InsertCP extends JPanel {
 	private JTextField langTextField;
 	private JTextField libTextField;
 	private String categoria;
+	private String language;	
 	private  JLabel lblError, lblOk;
+	private MyJLabel lblLanguage;
 
 	/**
 	 * Create the panel.
@@ -102,14 +105,14 @@ public class Panel_InsertCP extends JPanel {
 		v.add("Database");
 		v.add("Other...");
 		DefaultComboBoxModel model = new DefaultComboBoxModel(v);
-		final JComboBox jcb = new JComboBox(model);
-		jcb.setBounds(624, 144, 190, 37);
-		add(jcb);
+		final JComboBox jcbCategory = new JComboBox(model);
+		jcbCategory.setBounds(624, 144, 190, 37);
+		add(jcbCategory);
 		categoria = (String) v.get(0);
-		jcb.addActionListener(new ActionListener() {
+		jcbCategory.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				 categoria = (String) jcb.getSelectedItem();
+				 categoria = (String) jcbCategory.getSelectedItem();
 				if(categoria.equals("Other...")){
 					newCategoria.setVisible(true);
 				}
@@ -189,13 +192,14 @@ public class Panel_InsertCP extends JPanel {
 		});
 		add(addCP);
 
-		MyJLabel language = new MyJLabel("*Language");
-		language.setBackground(new Color(231, 76, 60));
-		language.setBounds(27, 145, 80, 32);
-		add(language);
+		
+		lblLanguage = new MyJLabel("*Language");
+		lblLanguage.setBackground(new Color(231, 76, 60));
+		lblLanguage.setBounds(27, 145, 80, 32);
+		add(lblLanguage);
 
 		langTextField = new JTextField();
-		langTextField.setBounds(105, 142, 190, 37);
+		langTextField.setBounds(105, 182, 190, 37);
 		add(langTextField);
 		langTextField.setColumns(10);
 
@@ -247,6 +251,24 @@ public class Panel_InsertCP extends JPanel {
 	    lblOk.setForeground(new Color(0, 168, 107));
 		lblOk.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 	    add(lblOk);
+	    
+	    JComboBox jcbLanguage = new JComboBox();
+	    v.add("Java");
+		v.add("Database");
+		v.add("Other...");
+		model = new DefaultComboBoxModel(v);
+		language = (String) v.get(0);
+		jcbCategory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 categoria = (String) jcbCategory.getSelectedItem();
+				if(categoria.equals("Other...")){
+					newCategoria.setVisible(true);
+				}
+				if(!categoria.equals("Other..."))System.out.println("Categoria: "+categoria);
+			}
+		});
+	    jcbLanguage.setBounds(105, 145, 190, 37);
+	    add(jcbLanguage);
 	    
 	    lblOk.setVisible(false);
 	    //panel.add(new JScrollPane());
