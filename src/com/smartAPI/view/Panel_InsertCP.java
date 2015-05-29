@@ -49,6 +49,10 @@ import com.smartAPI.control.AddCodePatternControl;
 
 import javax.swing.JEditorPane;
 
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rtextarea.RTextScrollPane;
+
 /**
  * Pannello che permette all'utente di inserire un code pattern
  * @author iolrin
@@ -56,15 +60,15 @@ import javax.swing.JEditorPane;
  */
 public class Panel_InsertCP extends JPanel {
 	private JTextField nomeCP;
-	private JTextArea ta;
+	private RSyntaxTextArea ta;
 	private JTextField keyword;
 	private JTextField newCategoria;
 	private JTextField langTextField;
 	private JTextField libTextField;
 	private String categoria;
 	private String language;	
-	private  JLabel lblError, lblOk;
 	private MyJLabel lblLanguage;
+	private JLabel lblError, lblOk;
 
 	/**
 	 * Create the panel.
@@ -174,7 +178,6 @@ public class Panel_InsertCP extends JPanel {
 					lblError.setText("Fields with * are required!");
 					lblError.setVisible(true);
 				}
-				
 				else{
 					if(new AddCodePatternControl(val_nome, val_CP, val_keyword, val_language, val_lib, categoria).addCodePattern() == 1){
 						lblError.setVisible(false);
@@ -217,7 +220,7 @@ public class Panel_InsertCP extends JPanel {
 		panel.setBackground(new Color(228, 230, 235));
 		add(panel);
 		panel.setBounds(69, 231, 738, 220);
-		ta = new JTextArea(" ", 13, 60);
+		/*ta = new JTextArea(" ", 13, 60);
 		//panel.add(ta);
 		ta.setVisible(true);
 	    ta.setLineWrap(true);
@@ -226,8 +229,17 @@ public class Panel_InsertCP extends JPanel {
 	    scrollPane.setVisible(true);
 	    scrollPane.setBounds(69,231,80,80);
 	    scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-	    panel.add(scrollPane);
+	    panel.add(scrollPane);*/
 	    
+	    
+	    ta = new RSyntaxTextArea(20, 60);
+	    ta.setRows(13);
+	    ta.setSyntaxEditingStyle("text/java");
+	    ta.setCodeFoldingEnabled(true);
+	    ta.canRedo();
+	    ta.canUndo();
+      	RTextScrollPane sp = new RTextScrollPane(ta);
+	    panel.add(sp);
 	    
 	    JLabel lblPattern = new JLabel("Pattern");
 	    lblPattern.setOpaque(true);

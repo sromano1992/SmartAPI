@@ -30,6 +30,8 @@ public class Common {
 	public static final String HAS_VOTERS = "hasVoters";
 	public static final String HAS_SCORE = "hasScore";
 	public static final String HAS_STARS = "hasStars";
+	public static final String JAVA = "Java";
+	public static final String PYTHON = "Python";
 	public static Utente UTENTE = null;
 	
 	public static void setUser(Utente u){

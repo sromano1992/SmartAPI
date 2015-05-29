@@ -19,16 +19,15 @@ import java.util.logging.Logger;
 /**
  * This class will contains method to parser 
  * code inserted by user to find method declaration.
- * @author Simone Romamo - http://www.sromano.altervista.org
  *
  */
-public class JavaMethodParser{
+public class JavaMethodParser implements IMethodParser{
 
 	public static Logger logger = Logger.getLogger("global");
 	public static String CLASS_DEF = "public class Prova{ ";
 	
 	
-    public ArrayList<String> parse(String code) throws ParseException {
+    public ArrayList<String> getMethod(String code) throws ParseException {
     	InputStream is = new ByteArrayInputStream(code.getBytes());
         CompilationUnit cu=null;
         try {
