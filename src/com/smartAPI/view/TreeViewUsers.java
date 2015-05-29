@@ -32,7 +32,6 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 	private JScrollPane scrollPane;
 	private JPopupMenu p_menu;
 	private JMenuItem remItem;
-	private JMenuItem adminItem;
 	private TreePath toRemoveNode;
 	private DefaultTreeModel model = null; //(DefaultTreeModel)tree.getModel();
 	private DefaultMutableTreeNode rootNode = null; //(DefaultMutableTreeNode)model.getRoot();
@@ -45,9 +44,7 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 		this.treePathListener = new ArrayList<TreePathListener>();		
 		p_menu = new JPopupMenu("test");
 		remItem = new JMenuItem("Remove");
-		adminItem = new JMenuItem("Make admin");
 		p_menu.add(remItem);
-		p_menu.add(adminItem);
 	}
 
 	public void setUser_s(ArrayList<Utente> user_s, String rootName){
