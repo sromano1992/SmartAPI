@@ -228,7 +228,7 @@ public class Panel_InsertCP extends JPanel {
 	    
 	    ta = new RSyntaxTextArea(20, 60);
 	    ta.setRows(13);
-	    ta.setSyntaxEditingStyle("text/java");
+	    ta.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
 	    ta.setCodeFoldingEnabled(true);
 	    ta.canRedo();
 	    ta.canUndo();
