@@ -16,12 +16,12 @@ import javax.swing.WindowConstants;
 import javax.swing.JEditorPane;
 import javax.swing.text.EditorKit;
 
-import prettify.PrettifyParser;
-import prettify.example.Example;
-import prettify.theme.ThemeDefault;
-import syntaxhighlight.Parser;
-import syntaxhighlight.SyntaxHighlighter;
-import jsyntaxpane.*;
+//import prettify.PrettifyParser;
+//import prettify.example.Example;
+//import prettify.theme.ThemeDefault;
+//import syntaxhighlight.Parser;
+//import syntaxhighlight.SyntaxHighlighter;
+//import jsyntaxpane.*;
 
 import javax.swing.JFormattedTextField;
 

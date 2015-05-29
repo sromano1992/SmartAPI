@@ -169,17 +169,17 @@ public class Panel_InsertCP extends JPanel {
 				String val_nome = nomeCP.getText();
 				String val_CP = ta.getText();
 				String val_keyword = keyword.getText();
-				String val_language = langTextField.getText();
+				//String val_language = langTextField.getText();
 				String val_lib = libTextField.getText();
 				if(!newCategoria.getText().equals("")) categoria = newCategoria.getText();
 				
-				if(val_nome.equals("") | val_language.equals("") | val_lib.equals("") | val_CP.equals("")){
+				if(val_nome.equals("") | val_lib.equals("") | val_CP.equals("")){
 					lblOk.setVisible(false);
 					lblError.setText("Fields with * are required!");
 					lblError.setVisible(true);
 				}
 				else{
-					if(new AddCodePatternControl(val_nome, val_CP, val_keyword, val_language, val_lib, categoria).addCodePattern() == 1){
+					if(new AddCodePatternControl(val_nome, val_CP, val_keyword, language, val_lib, categoria).addCodePattern() == 1){
 						lblError.setVisible(false);
 						lblOk.setText("Code pattern inserted!");
 						lblOk.setVisible(true);
@@ -272,11 +272,8 @@ public class Panel_InsertCP extends JPanel {
 		language = (String) v.get(0);
 		jcbCategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 categoria = (String) jcbCategory.getSelectedItem();
-				if(categoria.equals("Other...")){
-					newCategoria.setVisible(true);
-				}
-				if(!categoria.equals("Other..."))System.out.println("Categoria: "+categoria);
+				language = (String) jcbCategory.getSelectedItem();
+				
 			}
 		});
 	    jcbLanguage.setBounds(105, 145, 190, 37);
