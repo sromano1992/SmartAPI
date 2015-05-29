@@ -269,11 +269,11 @@ public class Panel_InsertCP extends JPanel {
 		v1.add(Common.PYTHON);
 		
 		DefaultComboBoxModel model_lang = new DefaultComboBoxModel(v1);
-		JComboBox jcbLanguage = new JComboBox(model_lang);
+		final JComboBox jcbLanguage = new JComboBox(model_lang);
 		language = (String) v1.get(0);
 		jcbLanguage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				language = (String) jcbCategory.getSelectedItem();
+				language = (String) jcbLanguage.getSelectedItem();
 				if (language.equals(Common.JAVA))
 					ta.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
 				if (language.equals(Common.PYTHON))

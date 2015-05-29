@@ -40,6 +40,7 @@ import javax.swing.ImageIcon;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
 
 /**
  * 
@@ -61,6 +62,18 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.NORTH);
 		panel_1.setLayout(new GridLayout(0, 11, 0, 0));
+		
+		JRadioButton rdbtnJava = new JRadioButton("Java");
+		panel_1.add(rdbtnJava);
+		
+		JRadioButton rdbtnPython = new JRadioButton("Python");
+		panel_1.add(rdbtnPython);
+		
+		JLabel label_5 = new JLabel("");
+		panel_1.add(label_5);
+		
+		JLabel label_4 = new JLabel("");
+		panel_1.add(label_4);
 		
 		JLabel label_3 = new JLabel("");
 		panel_1.add(label_3);
