@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.smartAPI.model.Utente;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ShowUsersInfo extends JPanel{
 
@@ -35,6 +37,8 @@ public class ShowUsersInfo extends JPanel{
 	private JLabel lblSurname;
 	private ImageIcon blackstar;
 	private String avatar="";//iniz. con avatar user
+	private JTextField textFieldOn;
+	private JTextField textFieldOff;
 	
 	public ShowUsersInfo() {
 		setLayout(null);
@@ -146,6 +150,47 @@ public class ShowUsersInfo extends JPanel{
 		emailField.setBounds(374, 149, 204, 37);
 		add(emailField);
 		
+		JLabel lblMakeAdmin = new JLabel("Make admin");
+		lblMakeAdmin.setOpaque(true);
+		lblMakeAdmin.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMakeAdmin.setForeground(Color.WHITE);
+		lblMakeAdmin.setBackground(new Color(250, 172, 88));
+		lblMakeAdmin.setBounds(282, 200, 95, 31);
+		add(lblMakeAdmin);
+		
+		textFieldOn = new JTextField();
+		textFieldOn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textFieldOff.setForeground(Color.BLACK);
+				textFieldOn.setBackground(Color.GREEN);
+				textFieldOff.setBackground(new Color(230, 230, 230));
+			}
+		});
+		textFieldOn.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldOn.setText("ON");
+		textFieldOn.setEditable(false);
+		textFieldOn.setBackground(new Color(230, 230, 230));
+		textFieldOn.setBounds(374, 196, 48, 37);
+		add(textFieldOn);
+		
+		textFieldOff = new JTextField();
+		textFieldOff.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textFieldOff.setForeground(Color.BLACK);
+				textFieldOff.setBackground(Color.red);
+				textFieldOn.setBackground(new Color(230, 230, 230));
+			}
+		});
+		textFieldOff.setForeground(Color.BLACK);
+		textFieldOff.setText("OFF");
+		textFieldOff.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldOff.setEditable(false);
+		textFieldOff.setBackground(Color.red);
+		textFieldOff.setBounds(413, 196, 48, 37);
+		add(textFieldOff);
+		
 		
 		blackstar=new ImageIcon();
 		String blackpath = "res/grey_star.png";
@@ -189,6 +234,5 @@ public class ShowUsersInfo extends JPanel{
 			    }
 				panelStar.setVisible(true);
 			}
-
 	}
 
