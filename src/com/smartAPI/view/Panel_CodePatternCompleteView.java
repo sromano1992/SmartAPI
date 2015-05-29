@@ -61,6 +61,8 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.NORTH);
+		panel_1.setBackground(new Color(228, 230, 235));
+
 		panel_1.setLayout(new GridLayout(0, 11, 0, 0));
 		
 		JRadioButton rdbtnJava = new JRadioButton("Java");

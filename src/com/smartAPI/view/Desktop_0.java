@@ -79,7 +79,7 @@ public class Desktop_0 extends JPanel implements ILogInPanelListner, IUserPanelL
 	@Override
 	public void loginClicked() {
 		log.info("Log in event intercepted");
-		if (d1 == null)
+		//if (d1 == null)
 			d1 = new Desktop_1(this);
 		mainContainer.remove(this);
 		mainContainer.getContentPane().add(d1);
