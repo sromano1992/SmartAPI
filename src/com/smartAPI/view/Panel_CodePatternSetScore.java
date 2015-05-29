@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
 
 import java.awt.GridLayout;
 
@@ -19,6 +20,8 @@ import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
+import sun.swing.SwingUtilities2;
 
 import com.smartAPI.control.ISetScoreListener;
 
@@ -35,6 +38,15 @@ public class Panel_CodePatternSetScore extends JPanel{
 	 * Create the panel.
 	 */
 	public Panel_CodePatternSetScore() {
+		addControl_s();
+	}
+	public void restore(){
+		removeAll();
+		addControl_s();
+		SwingUtilities.updateComponentTreeUI(this);
+	}
+	
+	private void addControl_s() {
 		listener_s = new ArrayList<ISetScoreListener>();
 		storedScoreValue = 0;
 		storedScore = false;

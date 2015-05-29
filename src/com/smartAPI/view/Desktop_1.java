@@ -18,24 +18,24 @@ import com.smartAPI.model.Common;
 import java.awt.Color;
 
 public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanelListener{
-	private Panel_InsertCP panel_InsertCP;
+	private Panel_Insert panel_Insert;
 	private Panel_CodePatternCompleteView panel_showCP;
 	private Panel_ShowAllUser panel_ShowUser;
 	private UserInfoJPanel userInfoJPanel;
 	private AdminInfoJPanel adminInfoJPanel;
 	private About panel_About;
 	private IUserPanelListener mainFrame;
-
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3, LOGOUT = 4;
 	private int actualPanel = INSERT_CP;
 	private JPanel panel;
+	
 	public Desktop_1(IUserPanelListener desktop_0) {
 		this.mainFrame = desktop_0;
 		panel = addControl_s();
 
-		panel_InsertCP = new Panel_InsertCP();
-		panel_InsertCP.setBounds(0, 181, 920, 564);
-		panel.add(panel_InsertCP);
+		panel_Insert = new Panel_Insert();
+		panel_Insert.setBounds(0, 181, 920, 564);
+		panel.add(panel_Insert);
 
 		panel_showCP = new Panel_CodePatternCompleteView();
 		panel_showCP.setBounds(20, 107, 811, 582);		
@@ -115,7 +115,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		else if(actualPanel == SHOW_USER)
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
-			panel.remove(panel_InsertCP);
+			panel.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
 			panel.remove(panel_About);
 
@@ -134,13 +134,13 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		else if(actualPanel == SHOW_USER)
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
-			panel.remove(panel_InsertCP);
+			panel.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
 			panel.remove(panel_About);
 
 		actualPanel = INSERT_CP;
 
-		panel.add(panel_InsertCP);
+		panel.add(panel_Insert);
 		updateGUI();
 	}
 
@@ -152,7 +152,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		else if(actualPanel == SHOW_USER)
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
-			panel.remove(panel_InsertCP);
+			panel.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
 			panel.remove(panel_About);
 
@@ -170,7 +170,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		else if(actualPanel == SHOW_USER)
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
-			panel.remove(panel_InsertCP);
+			panel.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
 			panel.remove(panel_About);
 

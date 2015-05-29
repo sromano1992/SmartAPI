@@ -71,6 +71,8 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener, I
 	private CodePattern actualCP;
 	private String actualCP_category;
 	private MyJLabel mjlblVota;
+	private Panel_CodePatternScore panel_CodePatternScore;
+	private Panel_CodePatternSetScore panel_CodePatternSetScore;
 	
 	/**
 	 * Create the panel.
@@ -178,11 +180,11 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener, I
 		mjlblVota.setText("CLICK ON STARS TO VOTE");
 		panel_3.add(mjlblVota, BorderLayout.WEST);
 		
-		Panel_CodePatternSetScore panel_CodePatternSetScore = new Panel_CodePatternSetScore();
+		panel_CodePatternSetScore = new Panel_CodePatternSetScore();
 		panel_CodePatternSetScore.addListener(this);
 		panel_3.add(panel_CodePatternSetScore);
 		
-		Panel_CodePatternScore panel_CodePatternScore = new Panel_CodePatternScore();
+		panel_CodePatternScore = new Panel_CodePatternScore();
 		panel_4.add(panel_CodePatternScore);
 		panel_CodePatternScore.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(153, 180, 209), SystemColor.inactiveCaption, null, null));
 
@@ -194,6 +196,8 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener, I
 		txtpaneKeyWord.setText(cp.getKeyWord());
 		infoButton.setVisible(cp.getRelativeBasicCodePattern() != null);
 		infoButton.setEnabled(cp.getRelativeBasicCodePattern() != null);
+		panel_CodePatternScore.setScore(new SmartAPIModel().getMediaVotazioni(cp.getResource().getLocalName()));
+		panel_CodePatternSetScore.restore();
 		this.actualCP = cp;
 	}
 
@@ -222,5 +226,6 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener, I
 	@Override
 	public void setScoreClicked(int storedScoreValue) {
 		new SmartAPIModel().aggiungiVotoCodePattern(Common.UTENTE.getNickname(), actualCP.getResource().getLocalName(), storedScoreValue + "");
+		panel_CodePatternScore.setScore(new SmartAPIModel().getMediaVotazioni(actualCP.getResource().getLocalName()));
 	}
 }
