@@ -258,13 +258,19 @@ public class Panel_InsertCP extends JPanel {
 		lblOk.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 	    add(lblOk);
 	    
-	    JComboBox jcbLanguage = new JComboBox();
-	    v.add("Java");
-		v.add("Python");
+	    
+
 		
-		model = new DefaultComboBoxModel(v);
+		
+	    
+	    Vector v1 = new Vector();
+	    v1.add("Java");
+		v1.add("Python");
+		
+		model = new DefaultComboBoxModel(v1);
+		JComboBox jcbLanguage = new JComboBox(model);
 		language = (String) v.get(0);
-		jcbCategory.addActionListener(new ActionListener() {
+		jcbLanguage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				language = (String) jcbCategory.getSelectedItem();
 				
