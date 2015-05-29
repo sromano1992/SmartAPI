@@ -46,6 +46,7 @@ import java.awt.ScrollPane;
 import javax.swing.ImageIcon;
 
 import com.smartAPI.control.AddCodePatternControl;
+import com.smartAPI.model.Common;
 
 import javax.swing.JEditorPane;
 
@@ -228,7 +229,7 @@ public class Panel_InsertCP extends JPanel {
 	    
 	    ta = new RSyntaxTextArea(20, 60);
 	    ta.setRows(13);
-	    ta.setSyntaxEditingStyle("text/java");
+	    ta.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
 	    ta.setCodeFoldingEnabled(true);
 	    ta.canRedo();
 	    ta.canUndo();
@@ -264,16 +265,19 @@ public class Panel_InsertCP extends JPanel {
 		
 	    
 	    Vector v1 = new Vector();
-	    v1.add("Java");
-		v1.add("Python");
+	    v1.add(Common.JAVA);
+		v1.add(Common.PYTHON);
 		
 		model = new DefaultComboBoxModel(v1);
 		JComboBox jcbLanguage = new JComboBox(model);
-		language = (String) v.get(0);
+		language = (String) v1.get(0);
 		jcbLanguage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				language = (String) jcbCategory.getSelectedItem();
-				
+				if (language.equals(Common.JAVA))
+					ta.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+				if (language.equals(Common.PYTHON))
+					ta.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PYTHON);
 			}
 		});
 	    jcbLanguage.setBounds(105, 145, 190, 37);
