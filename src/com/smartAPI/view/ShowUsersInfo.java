@@ -31,7 +31,7 @@ public class ShowUsersInfo extends JPanel{
 
 	private static Logger log = Logger.getLogger("global");
 	public static JLabel lblImage, lblStar;
-	private static int SCORE = 10;
+	private static int MAX_STARS = 10;
 	public static JTextField userField;
 	public static JTextField nameField;
 	public static JTextField surnameField;
@@ -193,7 +193,11 @@ public class ShowUsersInfo extends JPanel{
 		MyImageIcon blackimgicon = new MyImageIcon(blackpathIcon,20,20);
 		blackstar=blackimgicon.getImageResponsive();
 
-		for (int i=0; i<10; i++){
+
+		
+
+		
+		for (int i=0; i<MAX_STARS; i++){
 			panelStar.add(new JLabel(blackstar));
 		}
 		panelStar.setVisible(true);
@@ -234,6 +238,7 @@ public class ShowUsersInfo extends JPanel{
 				textFieldNo.setBackground(new Color(230, 230, 230));
 				SmartAPIModel m = new SmartAPIModel();
 				m.modificaPermessiUtente( username, true);
+				
 				
 				//JOptionPane.showMessageDialog(null, "User: "+username+"now is admin", "InfoBox: " , JOptionPane.INFORMATION_MESSAGE);
 				textFieldYes.setBackground(Color.GREEN);
