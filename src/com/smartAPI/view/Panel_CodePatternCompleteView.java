@@ -130,9 +130,13 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 					textField_keyword.setBackground(Color.white);
 					buttonDeleteKeyword.setEnabled(true);
 					treeView.setCodePattern_s(patternWithKeyword, "Basic", false);
+					Border border = BorderFactory.createLineBorder(Color.GRAY);
+					textField_keyword.setBorder(border);
 				}
 				else{
-					textField_keyword.setBackground(Color.red);
+					Border border = BorderFactory.createLineBorder(Color.red);
+					textField_keyword.setBorder(border);
+					//textField_keyword.setBackground(Color.red);
 				}
 			}
 		});
