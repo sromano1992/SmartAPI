@@ -66,6 +66,7 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 	private JButton infoButton;
 	private CodePattern actualCP;
 	private String actualCP_category;
+	private MyJLabel mjlblVota;
 	
 	/**
 	 * Create the panel.
@@ -165,10 +166,11 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		panel_4.add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
-		MyJLabel mjlblVota = new MyJLabel("Username");
+		mjlblVota = new MyJLabel("Username");
+		
 		mjlblVota.setOpaque(true);
 		mjlblVota.setBackground(new Color(4, 113, 36));
-		mjlblVota.setText("   Vota   ");
+		mjlblVota.setText("CLICK STAR TO VOTE");
 		panel_3.add(mjlblVota, BorderLayout.WEST);
 		
 		Panel_CodePatternSetScore panel_CodePatternSetScore = new Panel_CodePatternSetScore();
