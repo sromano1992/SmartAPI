@@ -1,6 +1,7 @@
 package com.smartAPI.view;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -21,7 +22,7 @@ import com.smartAPI.model.Utente;
 
 public class ShowUsersInfo extends JPanel{
 
-	public static JLabel lblImage;
+	public static JLabel lblImage, lblStar;
 	private static int SCORE = 10;
 	public static JTextField userField;
 	public static JTextField nameField;
@@ -29,7 +30,7 @@ public class ShowUsersInfo extends JPanel{
 	public static JTextField emailField;
 	private JLabel lblEmail;
 	private JPanel panelStar;
-	private JLabel lblUser ;
+	private JLabel lblUser;
 	private JLabel lblName;
 	private JLabel lblSurname;
 	private String avatar="";//iniz. con avatar user
@@ -44,12 +45,13 @@ public class ShowUsersInfo extends JPanel{
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblImage.setIcon(imgicon.getImageResponsive());
 		
-		lblImage.setBounds(77, 29, 80, 70);
+		lblImage.setBounds(60, 29, 80, 70);
 		add(lblImage);
 		
 		panelStar = new JPanel();
 		panelStar.setBackground(new Color(2, 94, 137));
-		panelStar.setBounds(57, 127, 127, 50);
+		panelStar.setLayout(new FlowLayout());
+		panelStar.setBounds(57, 127, 130,70);
 		add(panelStar);
 		
 		lblUser = new JLabel("User");
@@ -145,6 +147,7 @@ public class ShowUsersInfo extends JPanel{
 	}
 			
 	public void setUser(Utente u) {
+				panelStar.removeAll();
 				String path=u.getAvatar();
 				String pathIcon = getClass().getResource(path).getFile();
 				MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
@@ -154,6 +157,19 @@ public class ShowUsersInfo extends JPanel{
 				nameField.setText(u.getNome());
 				surnameField.setText(u.getCognome());
 				emailField.setText(u.getEmail());
+			
+				ImageIcon star=new ImageIcon();
+				path="res/star.png";
+				pathIcon = getClass().getResource(path).getFile();
+				imgicon = new MyImageIcon(pathIcon,20,20);
+				star=imgicon.getImageResponsive();
+				
+				//int numStelle = 10;
+				int numStelle = LoginGrafica.getModel().cambiaStelle(userField.getText());
+				for (int i=0; i<numStelle; i++){
+					panelStar.add(new JLabel(star));
+			    }
+				panelStar.setVisible(true);
 			}
 
 	}
