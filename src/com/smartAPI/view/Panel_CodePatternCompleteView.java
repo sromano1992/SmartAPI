@@ -68,7 +68,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		add(panel_1, BorderLayout.NORTH);
 		panel_1.setBackground(new Color(228, 230, 235));
 
-		panel_1.setLayout(new GridLayout(0, 10, 0, 0));
+		panel_1.setLayout(new GridLayout(0, 9, 0, 0));
 
 		final JComboBox comboBox_myProject = new JComboBox();
 		comboBox_myProject.setEnabled(false);
@@ -144,9 +144,6 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		
 		comboBox_myProject.setEnabled(false);
 		panel_1.add(comboBox_myProject);
-		
-		JLabel label_2 = new JLabel("");
-		panel_1.add(label_2);
 		
 		JLabel label = new JLabel("");
 		panel_1.add(label);

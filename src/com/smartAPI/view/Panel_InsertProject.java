@@ -1,6 +1,5 @@
 package com.smartAPI.view;
 
-import javafx.scene.control.CheckBox;
 
 import javax.swing.JPanel;
 
@@ -13,7 +12,6 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import javax.swing.JTextPane;
 import javax.swing.border.Border;
 
 import java.awt.BorderLayout;

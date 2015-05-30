@@ -624,7 +624,7 @@ print "Time:",distance/rate</SmartAPI:hasCode>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</SmartAPI:hasStars>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
-    <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
+    <SmartAPI:isAdministrator>si</SmartAPI:isAdministrator>
     <SmartAPI:hasUsername>simone</SmartAPI:hasUsername>
     <SmartAPI:hasEmail>simoneromano@gmail.com</SmartAPI:hasEmail>
   </rdf:Description>
@@ -1753,6 +1753,7 @@ def printAllNodes(G1):
     <SmartAPI:hasPassword>amedeo</SmartAPI:hasPassword>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
     <SmartAPI:hasName>amedeo</SmartAPI:hasName>
+    <SmartAPI:followProject rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#asd"/>
     <SmartAPI:hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</SmartAPI:hasStars>
     <SmartAPI:followProject rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#HadoopAnalyzerJR"/>
     <SmartAPI:hasVoted>p1,c1,</SmartAPI:hasVoted>
