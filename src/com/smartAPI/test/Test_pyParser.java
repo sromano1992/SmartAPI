@@ -28,6 +28,14 @@ public class Test_pyParser {
 				+"	for char in actor.findall('role:character', ns):\n"
 				+"		print ' |-->', char.text\n";
 		
+		pyCode = "def inductGraph(G1, u):\n"
+				+"	#crea il grafo indotto (vicinato) di u\n"
+			    +"	nodes = snap.TIntV()\n"
+			    +"	for N in G1.GetNI(u).GetOutEdges():\n"
+			    +"		nodes.Add(N)\n"
+			    +"		SubGraph1 = snap.GetSubGraph(G1, nodes)\n"
+			    +"		return SubGraph1\n";
+		
 		String pyPath = this.getClass().getResource("/pyParser.py").getFile();
 		File file;
 			try {

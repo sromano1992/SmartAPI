@@ -16,6 +16,7 @@ public class AddCodePatternControl {
 	private String val_lib;
 	private String category;
 	private SmartAPIModel model = new SmartAPIModel();
+	private IMethodParser parser;
 	
 	public AddCodePatternControl(String val_nome, String val_CP,String val_keyword, String val_language, String val_lib, String categoria) {
 		this.val_name=val_nome;
@@ -24,6 +25,10 @@ public class AddCodePatternControl {
 		this.val_language = val_language;
 		this.val_lib = val_lib;
 		this.category = categoria;
+		if (val_language.equals(Common.JAVA))
+			parser = new JavaMethodParser();
+		else if(val_language.equals(Common.PYTHON))
+			parser = new PythonMethodParser();
 	}
 
 	public String getVal_name() {
@@ -77,7 +82,9 @@ public class AddCodePatternControl {
 	
 	public int addCodePattern(){
 		try {
-			ArrayList<String> method_s = new JavaMethodParser().parse(val_CP);
+			ArrayList<String> method_s = parser.getMethod(val_CP);
+			if(method_s.size() == 0)
+				return -2;
 			System.out.println("metodi*******:"+method_s);
 			model.addToMethodClass(method_s);
 			//model.addPatternCategory(category);

@@ -4,56 +4,41 @@ import javax.swing.JPanel;
 
 import java.awt.Component;
 import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
-
-import java.awt.BorderLayout;
 
 import javax.swing.JSplitPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-import com.smartAPI.control.ILogInPanelListner;
 import com.smartAPI.control.IUserOptionListener;
 import com.smartAPI.control.IUserPanelListener;
 import com.smartAPI.model.Common;
-import com.smartAPI.test.Main;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 
 public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanelListener{
-	private Panel_InsertCP panel_InsertCP;
-	private Panel_CodePatternCompleteView panel_showCP;
+	private Panel_Insert panel_Insert;
+	private Panel_Search panel_search;
 	private Panel_ShowAllUser panel_ShowUser;
+	private UserInfoJPanel userInfoJPanel;
 	private AdminInfoJPanel adminInfoJPanel;
 	private About panel_About;
 	private IUserPanelListener mainFrame;
-
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3, LOGOUT = 4;
 	private int actualPanel = INSERT_CP;
 	private JPanel panel;
-	private JFrame frame;
-	//private aboutPanel
-
+	
 	public Desktop_1(IUserPanelListener desktop_0) {
 		this.mainFrame = desktop_0;
 		panel = addControl_s();
 
-		panel_InsertCP = new Panel_InsertCP();
-		panel_InsertCP.setBounds(0, 181, 920, 564);
-		panel.add(panel_InsertCP);
+		panel_Insert = new Panel_Insert();
+		panel_Insert.setBounds(0, 181, 920, 480);
+		panel.add(panel_Insert);
 
-		panel_showCP = new Panel_CodePatternCompleteView();
-		panel_showCP.setBounds(20, 107, 811, 582);		
+		panel_search = new Panel_Search();
+		panel_search.setBounds(20, 107, 811, 582);		
 		panel_ShowUser = new Panel_ShowAllUser();
 		panel_ShowUser.setBounds(0, 181, 920, 508);		
 		panel_About = new About();
@@ -77,7 +62,8 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		add(splitPane);
 
 		if (!Common.UTENTE.isAdmin()){
-			UserInfoJPanel userInfoJPanel = new UserInfoJPanel();
+			userInfoJPanel = new UserInfoJPanel();
+			userInfoJPanel.addLogOutListener(this);
 			splitPane.setLeftComponent(userInfoJPanel);
 			GroupLayout gl_userInfoJPanel = new GroupLayout(userInfoJPanel);
 			gl_userInfoJPanel.setHorizontalGroup(
@@ -125,18 +111,18 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	public void searchClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
-			panel.remove(panel_showCP);
+			panel.remove(panel_search);
 		else if(actualPanel == SHOW_USER)
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
-			panel.remove(panel_InsertCP);
+			panel.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
 			panel.remove(panel_About);
 
 		actualPanel = SHOW_CODE_PATTERN;
 
-		panel_showCP.refresh();
-		panel.add(panel_showCP);
+		panel_search.refresh();
+		panel.add(panel_search);
 		updateGUI();
 	}
 
@@ -144,17 +130,17 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	public void insertClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
-			panel.remove(panel_showCP);
+			panel.remove(panel_search);
 		else if(actualPanel == SHOW_USER)
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
-			panel.remove(panel_InsertCP);
+			panel.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
 			panel.remove(panel_About);
 
 		actualPanel = INSERT_CP;
 
-		panel.add(panel_InsertCP);
+		panel.add(panel_Insert);
 		updateGUI();
 	}
 
@@ -162,11 +148,11 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	public void showUserClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
-			panel.remove(panel_showCP);
+			panel.remove(panel_search);
 		else if(actualPanel == SHOW_USER)
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
-			panel.remove(panel_InsertCP);
+			panel.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
 			panel.remove(panel_About);
 
@@ -180,11 +166,11 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	public void aboutClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
-			panel.remove(panel_showCP);
+			panel.remove(panel_search);
 		else if(actualPanel == SHOW_USER)
 			panel.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
-			panel.remove(panel_InsertCP);
+			panel.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
 			panel.remove(panel_About);
 

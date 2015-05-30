@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
 
 import java.awt.GridLayout;
 
@@ -11,6 +12,7 @@ import javax.swing.JTextArea;
 
 import java.awt.Canvas;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
@@ -25,7 +27,8 @@ public class Panel_CodePatternScore extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Panel_CodePatternScore(double score) {
+	public void setScore(double score) {
+		removeAll();
 		if(score > _MAX_SCORE){
 			log.severe("Max score is " + _MAX_SCORE + "; will be show " + _MAX_SCORE);
 			score = _MAX_SCORE;
@@ -38,7 +41,13 @@ public class Panel_CodePatternScore extends JPanel {
 	    }
 	    for (int i=0; i<_MAX_SCORE-score; i++)
 	    	add(new JLabel());
-	    add(new JLabel(""+score));
+	    if(score == 0)
+	    	add(new JLabel(""+ score));
+	    else{
+		    DecimalFormat df = new DecimalFormat("#.00");
+		    add(new JLabel(""+df.format(score)));
+	    }
+	    SwingUtilities.updateComponentTreeUI(this);
 	}
 
 	public Panel_CodePatternScore() {

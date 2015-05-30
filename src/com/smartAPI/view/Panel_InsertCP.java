@@ -46,7 +46,13 @@ import java.awt.ScrollPane;
 import javax.swing.ImageIcon;
 
 import com.smartAPI.control.AddCodePatternControl;
+import com.smartAPI.model.Common;
+
 import javax.swing.JEditorPane;
+
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rtextarea.RTextScrollPane;
 
 /**
  * Pannello che permette all'utente di inserire un code pattern
@@ -55,13 +61,14 @@ import javax.swing.JEditorPane;
  */
 public class Panel_InsertCP extends JPanel {
 	private JTextField nomeCP;
-	private JTextArea ta;
+	private RSyntaxTextArea ta;
 	private JTextField keyword;
 	private JTextField newCategoria;
-	private JTextField langTextField;
 	private JTextField libTextField;
 	private String categoria;
-	private  JLabel lblError, lblOk;
+	private String language;	
+	private MyJLabel lblLanguage;
+	private JLabel lblError, lblOk;
 
 	/**
 	 * Create the panel.
@@ -102,14 +109,14 @@ public class Panel_InsertCP extends JPanel {
 		v.add("Database");
 		v.add("Other...");
 		DefaultComboBoxModel model = new DefaultComboBoxModel(v);
-		final JComboBox jcb = new JComboBox(model);
-		jcb.setBounds(624, 144, 190, 37);
-		add(jcb);
+		final JComboBox jcbCategory = new JComboBox(model);
+		jcbCategory.setBounds(624, 144, 190, 37);
+		add(jcbCategory);
 		categoria = (String) v.get(0);
-		jcb.addActionListener(new ActionListener() {
+		jcbCategory.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				 categoria = (String) jcb.getSelectedItem();
+				 categoria = (String) jcbCategory.getSelectedItem();
 				if(categoria.equals("Other...")){
 					newCategoria.setVisible(true);
 				}
@@ -162,25 +169,32 @@ public class Panel_InsertCP extends JPanel {
 				String val_nome = nomeCP.getText();
 				String val_CP = ta.getText();
 				String val_keyword = keyword.getText();
-				String val_language = langTextField.getText();
+				//String val_language = langTextField.getText();
 				String val_lib = libTextField.getText();
 				if(!newCategoria.getText().equals("")) categoria = newCategoria.getText();
 				
-				if(val_nome.equals("") | val_language.equals("") | val_lib.equals("") | val_CP.equals("")){
+				if(val_nome.equals("") | val_lib.equals("") | val_CP.equals("")){
 					lblOk.setVisible(false);
 					lblError.setText("Fields with * are required!");
 					lblError.setVisible(true);
 				}
-				
 				else{
-					if(new AddCodePatternControl(val_nome, val_CP, val_keyword, val_language, val_lib, categoria).addCodePattern() == 1){
+					int insertStatus = new AddCodePatternControl(val_nome, val_CP, val_keyword, language, val_lib, categoria).addCodePattern();
+					if(insertStatus == 1){
 						lblError.setVisible(false);
 						lblOk.setText("Code pattern inserted!");
 						lblOk.setVisible(true);
 					}
+					else if(insertStatus == -2){
+						lblOk.setVisible(false);
+						lblError.setText("No method invocation found");
+						lblError.setVisible(true);
+					}
 					else{
 						lblOk.setVisible(false);
 						lblError.setText("Code pattern not inserted!");
+						if (language.equals(Common.PYTHON))
+							lblError.setText(lblError.getText() + " - Check code indentation");
 						lblError.setVisible(true);
 					}
 				}
@@ -189,15 +203,11 @@ public class Panel_InsertCP extends JPanel {
 		});
 		add(addCP);
 
-		MyJLabel language = new MyJLabel("*Language");
-		language.setBackground(new Color(231, 76, 60));
-		language.setBounds(27, 145, 80, 32);
-		add(language);
-
-		langTextField = new JTextField();
-		langTextField.setBounds(105, 142, 190, 37);
-		add(langTextField);
-		langTextField.setColumns(10);
+		
+		lblLanguage = new MyJLabel("*Language");
+		lblLanguage.setBackground(new Color(231, 76, 60));
+		lblLanguage.setBounds(27, 145, 80, 32);
+		add(lblLanguage);
 
 		MyJLabel library = new MyJLabel("*Library");
 		library.setBackground(new Color(231, 76, 60));
@@ -213,7 +223,7 @@ public class Panel_InsertCP extends JPanel {
 		panel.setBackground(new Color(228, 230, 235));
 		add(panel);
 		panel.setBounds(69, 231, 738, 220);
-		ta = new JTextArea(" ", 13, 60);
+		/*ta = new JTextArea(" ", 13, 60);
 		//panel.add(ta);
 		ta.setVisible(true);
 	    ta.setLineWrap(true);
@@ -222,8 +232,18 @@ public class Panel_InsertCP extends JPanel {
 	    scrollPane.setVisible(true);
 	    scrollPane.setBounds(69,231,80,80);
 	    scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-	    panel.add(scrollPane);
+	    panel.add(scrollPane);*/
 	    
+	    
+	    ta = new RSyntaxTextArea(20, 60);
+	    ta.setRows(13);
+	    ta.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+	    ta.setAutoIndentEnabled(true);
+	    ta.setCodeFoldingEnabled(true);
+	    ta.canRedo();
+	    ta.canUndo();
+      	RTextScrollPane sp = new RTextScrollPane(ta);
+	    panel.add(sp);
 	    
 	    JLabel lblPattern = new JLabel("Pattern");
 	    lblPattern.setOpaque(true);
@@ -247,6 +267,32 @@ public class Panel_InsertCP extends JPanel {
 	    lblOk.setForeground(new Color(0, 168, 107));
 		lblOk.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 	    add(lblOk);
+	    
+	    
+
+		
+		
+	    
+	    Vector v1 = new Vector();
+	    v1.add(Common.JAVA);
+		v1.add(Common.PYTHON);
+		
+		DefaultComboBoxModel model_lang = new DefaultComboBoxModel(v1);
+		final JComboBox jcbLanguage = new JComboBox(model_lang);
+		language = (String) v1.get(0);
+		jcbLanguage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				language = (String) jcbLanguage.getSelectedItem();
+				if (language.equals(Common.JAVA))
+					ta.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+				if (language.equals(Common.PYTHON)){
+					ta.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PYTHON);
+					ta.setTabSize(4);
+				}
+			}
+		});
+	    jcbLanguage.setBounds(105, 145, 190, 37);
+	    add(jcbLanguage);
 	    
 	    lblOk.setVisible(false);
 	    //panel.add(new JScrollPane());

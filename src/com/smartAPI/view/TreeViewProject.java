@@ -8,71 +8,61 @@ import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 
+import org.apache.log4j.Logger;
+
+import com.fasterxml.jackson.core.TreeNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.smartAPI.control.TreePathListener;
-import com.smartAPI.model.CodePattern;
 import com.smartAPI.model.CodePattern_Category;
 import com.smartAPI.model.Common;
+import com.smartAPI.model.Project;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.Utente;
 import com.sun.java.swing.SwingUtilities3;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-public class TreeViewCP extends JPanel implements TreePathListener{
+public class TreeViewProject extends JPanel implements TreePathListener{
 	private JTree tree;
 	private ArrayList<TreePathListener> treePathListener;
 	private JScrollPane scrollPane;
-	private JScrollPane scroll;
-	private ArrayList<CodePattern_Category> cp_s;
 	private JPopupMenu p_menu;
 	private JMenuItem remItem;
+	private JScrollPane scroll;
 	private TreePath toRemoveNode;
 	private DefaultTreeModel model = null; //(DefaultTreeModel)tree.getModel();
-	private DefaultMutableTreeNode rootNode = null; //(DefaultMutableTreeNode)model.getRoot();		
-	private String lastRemoved;
-
+	private DefaultMutableTreeNode rootNode = null; //(DefaultMutableTreeNode)model.getRoot();
+	private static Logger log = Logger.getLogger("global");
 	
 	/**
 	 * Create the panel.
 	 */
-	public TreeViewCP() {
+	public TreeViewProject() {
 		setLayout(new BorderLayout(0, 0));
-		this.treePathListener = new ArrayList<TreePathListener>();	
+		this.treePathListener = new ArrayList<TreePathListener>();		
 		p_menu = new JPopupMenu("test");
 		remItem = new JMenuItem("Remove");
 		p_menu.add(remItem);
-		lastRemoved = "";
 	}
 
-	public void setCodePattern_s(ArrayList<CodePattern_Category> cp_s, String rootName, boolean inferred){
+	public void setProject_s(ArrayList<Project> project_s, String rootName){
+		log.info("Adding " + project_s.size() + " projects...");
 		rootNode = new DefaultMutableTreeNode(rootName);
-		this.cp_s = cp_s;
-		for (CodePattern_Category tmp:cp_s){
-			if(inferred){
-				DefaultMutableTreeNode categoryNode = new DefaultMutableTreeNode(tmp.getCategoryName());
-				for (int i=0; i<tmp.getInferredCodePattern().size(); i++){
-					DefaultMutableTreeNode cp_instance = new DefaultMutableTreeNode(tmp.getInferredCodePattern().get(i).getResource().getLocalName());
-					categoryNode.add(cp_instance);
-				}
-				rootNode.add(categoryNode);
-			}
-			else{	//all basic cp
-				DefaultMutableTreeNode categoryNode = new DefaultMutableTreeNode(tmp.getCategoryName());
-				for (int i=0; i<tmp.getBasicCodePattern().size(); i++){
-					DefaultMutableTreeNode cp_instance = new DefaultMutableTreeNode(tmp.getBasicCodePattern().get(i).getResource().getLocalName());
-					categoryNode.add(cp_instance);
-				}
-				rootNode.add(categoryNode);
-			}
+		for (Project tmp:project_s){
+			DefaultMutableTreeNode us_node = new DefaultMutableTreeNode(tmp.getName());
+			rootNode.add(us_node);	
 		}
+		
 		if (tree != null){
 			this.remove(tree);
 		}
@@ -107,8 +97,8 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 							toRemoveNode = tp;
 							tree.setSelectionPath(tp);
 							String me = toRemoveNode.getLastPathComponent().toString();
-							String cp = tp.getPathComponent(0).toString();
-							if (tp.getPathCount() > 2)
+							String user = tp.getPathComponent(0).toString();
+							if (tp.getPathCount() > 0 && !me.equals(Common.UTENTE.getNickname()) && !me.equals(user))
 								p_menu.show(arg0.getComponent(), arg0.getX(), arg0.getY());
 						}
 					}
@@ -120,30 +110,41 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 						toRemoveNode = tp;
 						tree.setSelectionPath(tp);
 						String me = toRemoveNode.getLastPathComponent().toString();
-						if (tp.getPathCount() > 2)
+						String user = tp.getPathComponent(0).toString();
+						if (tp.getPathCount() > 0 && !me.equals(Common.UTENTE.getNickname()) && !me.equals(user))
 							p_menu.show(arg0.getComponent(), arg0.getX(), arg0.getY());
 					}
 				}
 			});
 			
-			remItem.addActionListener(new ActionListener() {		
-
+			remItem.addActionListener(new ActionListener() {				
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					if (lastRemoved.equals(toRemoveNode.getPathComponent(2).toString()))
-						return;
-					lastRemoved = toRemoveNode.getPathComponent(2).toString();
 					SmartAPIModel s = new SmartAPIModel();
-					s.deleteCodePattern(toRemoveNode.getPathComponent(2).toString());
+					Utente toRemove = s.getUtente(toRemoveNode.getPathComponent(1).toString());
+					s.deleteUser(toRemove.getNickname());
 					DefaultMutableTreeNode node = (DefaultMutableTreeNode)toRemoveNode.getLastPathComponent();
-					DefaultMutableTreeNode nodeAsDef = (DefaultMutableTreeNode) node.getParent();
-					nodeAsDef.remove(node);
+					//int index = model.getIndexOfChild(rootNode, node);
+					rootNode.remove(node);
+					//tree.removeSelectionPath(toRemoveNode);
 					model.reload();
+					ShowUsersInfo.userField.setText(" ");
+					ShowUsersInfo.emailField.setText(" ");
+					ShowUsersInfo.surnameField.setText(" ");
+					ShowUsersInfo.nameField.setText(" ");
+					
+					String path="res/nouser.png";
+					String pathIcon = getClass().getResource(path).getFile();
+					MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
+					ShowUsersInfo.lblImage.setIcon(imgicon.getImageResponsive());
+					
+					//tree.update(getGraphics());
 				}
 			});
+			model.reload();
+			SwingUtilities.updateComponentTreeUI(this);
 		}
-		model.reload();
-		SwingUtilities.updateComponentTreeUI(this);
+		
 	}
 	
 	public void addTreePathListener(TreePathListener o){
@@ -157,16 +158,6 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 	 * of inferredCodePattern for same category.
 	 */
 	public void treePathChanged(TreePath t) {
-		SmartAPIModel s = new SmartAPIModel();
-		if(t.getPathCount() >= 2){
-			CodePattern_Category cp_s = s.getPatternOfCategory(t.getPathComponent(1).toString());
-			ArrayList<CodePattern_Category> tmp = new ArrayList<CodePattern_Category>();
-			tmp.add(cp_s);
-			setCodePattern_s(tmp, "Inferred", true);
-		}		
+		
 	}
-
-	public ArrayList<CodePattern_Category> getCp_s() {
-		return cp_s;
-	}	
 }

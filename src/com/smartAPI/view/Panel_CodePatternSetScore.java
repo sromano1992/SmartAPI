@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
 
 import java.awt.GridLayout;
 
@@ -20,18 +21,33 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import sun.swing.SwingUtilities2;
 
-public class Panel_CodePatternSetScore extends JPanel {
+import com.smartAPI.control.ISetScoreListener;
+
+
+public class Panel_CodePatternSetScore extends JPanel{
 	private static Logger log = Logger.getLogger("global");
 	private static int _MAX_SCORE = 10;
 	private static int _MIN_SCORE = 0;
 	private int storedScoreValue;
 	private boolean storedScore;
 	private ArrayList<JLabel> stars;
+	private ArrayList<ISetScoreListener> listener_s;
 	/**
 	 * Create the panel.
 	 */
 	public Panel_CodePatternSetScore() {
+		addControl_s();
+	}
+	public void restore(){
+		removeAll();
+		addControl_s();
+		SwingUtilities.updateComponentTreeUI(this);
+	}
+	
+	private void addControl_s() {
+		listener_s = new ArrayList<ISetScoreListener>();
 		storedScoreValue = 0;
 		storedScore = false;
 		stars = new ArrayList<JLabel>();
@@ -71,6 +87,8 @@ public class Panel_CodePatternSetScore extends JPanel {
 					}				
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
+						
+
 						storedScore = true;
 						storedScoreValue = 0;
 					}
@@ -99,12 +117,20 @@ public class Panel_CodePatternSetScore extends JPanel {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
 						storedScore = true;
-						storedScoreValue = j.getPos() + 1;
+						storedScoreValue = j.getPos() ;
+						for (ISetScoreListener listener : listener_s){
+							listener.setScoreClicked(storedScoreValue);
+						}
+
 					}
 		    	});
 	    	}
 	    	stars.add(j);
 	    	add(j);
 	    }
+	}
+	
+	public void addListener(ISetScoreListener listener){
+		listener_s.add(listener);
 	}
 }

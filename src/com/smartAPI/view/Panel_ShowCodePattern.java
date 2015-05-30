@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -32,6 +33,7 @@ import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
 import javax.swing.tree.TreePath;
 
+import com.smartAPI.control.ISetScoreListener;
 import com.smartAPI.control.TreePathListener;
 import com.smartAPI.model.CodePattern;
 import com.smartAPI.model.CodePattern_Category;
@@ -43,22 +45,34 @@ import java.awt.Font;
 
 import javax.swing.SwingConstants;
 
+import java.awt.event.InputMethodListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rtextarea.RTextScrollPane;
+
+
+
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
 
-public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
+public class Panel_ShowCodePattern extends JPanel implements TreePathListener, ISetScoreListener{
 	private MyJLabel labelUserName;
 	private JTextPane txtpaneKeyWord;
-	private JTextPane txtpnCode;
+	private RSyntaxTextArea txtpnCode;
 	private JButton infoButton;
 	private CodePattern actualCP;
 	private String actualCP_category;
+	private MyJLabel mjlblVota;
+	private Panel_CodePatternScore panel_CodePatternScore;
+	private Panel_CodePatternSetScore panel_CodePatternSetScore;
 	
 	/**
 	 * Create the panel.
@@ -130,11 +144,14 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 0;
-		panel_5.add(scrollPane, gbc_scrollPane);
 		
-		txtpnCode = new JTextPane();
-		txtpnCode.setEditable(false);
-		scrollPane.setViewportView(txtpnCode);
+		txtpnCode = new RSyntaxTextArea(20, 60);
+		txtpnCode.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+		txtpnCode.setCodeFoldingEnabled(true);
+      	txtpnCode.setEditable(false);
+      	RTextScrollPane sp = new RTextScrollPane(txtpnCode);
+      	panel_5.add(sp, gbc_scrollPane);
+		
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
@@ -155,16 +172,19 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		panel_4.add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
-		MyJLabel mjlblVota = new MyJLabel("Username");
+		mjlblVota = new MyJLabel("Username");
+		mjlblVota.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+		
 		mjlblVota.setOpaque(true);
 		mjlblVota.setBackground(new Color(4, 113, 36));
-		mjlblVota.setText("   Vota   ");
+		mjlblVota.setText("CLICK ON STARS TO VOTE");
 		panel_3.add(mjlblVota, BorderLayout.WEST);
 		
-		Panel_CodePatternSetScore panel_CodePatternSetScore = new Panel_CodePatternSetScore();
+		panel_CodePatternSetScore = new Panel_CodePatternSetScore();
+		panel_CodePatternSetScore.addListener(this);
 		panel_3.add(panel_CodePatternSetScore);
 		
-		Panel_CodePatternScore panel_CodePatternScore = new Panel_CodePatternScore();
+		panel_CodePatternScore = new Panel_CodePatternScore();
 		panel_4.add(panel_CodePatternScore);
 		panel_CodePatternScore.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(153, 180, 209), SystemColor.inactiveCaption, null, null));
 
@@ -176,6 +196,8 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 		txtpaneKeyWord.setText(cp.getKeyWord());
 		infoButton.setVisible(cp.getRelativeBasicCodePattern() != null);
 		infoButton.setEnabled(cp.getRelativeBasicCodePattern() != null);
+		panel_CodePatternScore.setScore(new SmartAPIModel().getMediaVotazioni(cp.getResource().getLocalName()));
+		panel_CodePatternSetScore.restore();
 		this.actualCP = cp;
 	}
 
@@ -199,5 +221,11 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener{
 			}
 			setCodePattern(cpToSearch);
 		}
+	}
+
+	@Override
+	public void setScoreClicked(int storedScoreValue) {
+		new SmartAPIModel().aggiungiVotoCodePattern(Common.UTENTE.getNickname(), actualCP.getResource().getLocalName(), storedScoreValue + "");
+		panel_CodePatternScore.setScore(new SmartAPIModel().getMediaVotazioni(actualCP.getResource().getLocalName()));
 	}
 }

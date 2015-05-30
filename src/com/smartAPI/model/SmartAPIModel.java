@@ -397,10 +397,13 @@ public class SmartAPIModel {
 	}
 
 	public void addUseLanguage(String library, String language) {
-		ObjectProperty useLibrary = getOntModel().getObjectProperty(Common.NS + Common.HAS_LANGUAGE);
+		ObjectProperty useLibrary = getOntModel().getObjectProperty(
+				Common.NS + Common.HAS_LANGUAGE);
 		Resource languageRis = getResourceFromBase(Common.NS + language);
-		Resource lib = getResourceFromBase(Common.NS + library);
-
+		Individual lib = getOntModel().getIndividual(Common.NS + library);
+		if (lib == null){
+			lib = getOntClass("Library").createIndividual(Common.NS + library);
+		}
 		lib.addProperty(useLibrary, languageRis);
 	}
 
@@ -801,7 +804,7 @@ public class SmartAPIModel {
 	 * each category of codePattern which has specified 'kewyord'.
 	 * @return
 	 */
-	public ArrayList<CodePattern_Category> getAllCodePatternForCategory(String keyword){
+	public ArrayList<CodePattern_Category> getAllCodePatternForCategory_byKeyword(String keyword){
 		ArrayList<CodePattern_Category> toReturn = new ArrayList<CodePattern_Category>();
 		ArrayList<Resource> patternCategory_s = getPatternCategory();
 		for (Resource r:patternCategory_s){
@@ -820,10 +823,87 @@ public class SmartAPIModel {
 				cp_c.getBasicCodePattern().remove(c);
 			}
 		}
-		return toReturn;
+		boolean someCpFound = false;
+		for (CodePattern_Category cp_c : toReturn){
+			if (cp_c.getBasicCodePattern().size() != 0){
+				someCpFound = true;
+				break;
+			}
+		}
+		if (someCpFound)
+			return toReturn;
+		else
+			return null;
 	}
 
-
+	/**
+	 * This method will return one 'CodePattern_Category' for
+	 * each category of codePattern which has specified 'language'.
+	 * @return
+	 */
+	public ArrayList<CodePattern_Category> getAllCodePatternForCategory_byLanguage(String language){
+		ArrayList<CodePattern_Category> toReturn = new ArrayList<CodePattern_Category>();
+		ArrayList<Resource> patternCategory_s = getPatternCategory();
+		for (Resource r:patternCategory_s){
+			toReturn.add(getPatternOfCategory(r.getLocalName()));
+		}
+		
+		//lang check
+		for (CodePattern_Category cp_c : toReturn){
+			ArrayList<CodePattern> toRemove = new ArrayList<CodePattern>();
+			for (CodePattern c: cp_c.getBasicCodePattern()){
+				if (!hasLanguage(c.getResource().getLocalName(), language)){
+					toRemove.add(c);
+				}
+			}
+			for(CodePattern c:toRemove){
+				cp_c.getBasicCodePattern().remove(c);
+			}
+		}
+		boolean someCpFound = false;
+		for (CodePattern_Category cp_c : toReturn){
+			if (cp_c.getBasicCodePattern().size() != 0){
+				someCpFound = true;
+				break;
+			}
+		}
+		if (someCpFound)
+			return toReturn;
+		else
+			return null;
+	}
+	
+	/**
+	 * This method will return one 'CodePattern_Category' for
+	 * each category of codePattern which has specified 'language'.
+	 * @return
+	 */
+	public ArrayList<CodePattern_Category> getAllCodePatternForCategory_byLanguage(String language, ArrayList<CodePattern_Category> patternToCheckLanguage){		
+		//lang check
+		for (CodePattern_Category cp_c : patternToCheckLanguage){
+			ArrayList<CodePattern> toRemove = new ArrayList<CodePattern>();
+			for (CodePattern c: cp_c.getBasicCodePattern()){
+				if (!hasLanguage(c.getResource().getLocalName(), language)){
+					toRemove.add(c);
+				}
+			}
+			for(CodePattern c:toRemove){
+				cp_c.getBasicCodePattern().remove(c);
+			}
+		}
+		boolean someCpFound = false;
+		for (CodePattern_Category cp_c : patternToCheckLanguage){
+			if (cp_c.getBasicCodePattern().size() != 0){
+				someCpFound = true;
+				break;
+			}
+		}
+		if (someCpFound)
+			return patternToCheckLanguage;
+		else
+			return null;
+	}
+	
 	/**
 	 * Associare il code pattern inserito ad una categoria.
 	 * @author Stefania Cardamone
@@ -1004,7 +1084,7 @@ public class SmartAPIModel {
 				if(isOwner(username, codePattern))
 					throw new UserException("Non puoi votare un tuo code pattern");
 				if(hasAlreadyVoted(username, codePattern))
-					throw new UserException("Hai gi� votato questo code pattern");
+					throw new UserException("Hai già votato questo code pattern");
 				int vecchiVotanti = resource.getProperty(getProperty(Common.NS + Common.HAS_VOTERS)).getObject().asLiteral().getInt();
 				int nuoviVotanti = vecchiVotanti + 1;
 				Literal nVotanti = getOntModel().createTypedLiteral(new Integer(nuoviVotanti));
@@ -1305,8 +1385,174 @@ public class SmartAPIModel {
 	 * @author Amedeo Leo
 	 */
 	public boolean hasKeyword(String codePattern, String keyword) {
-		if(getOntModel().getResource(Common.NS + codePattern).getProperty(getProperty(Common.NS + Common.HAS_KEYWORD)).getString().equals(keyword))
-			return true;
+		if(getOntModel().getResource(Common.NS + codePattern).hasProperty(getProperty(Common.NS + Common.HAS_KEYWORD)))
+			if(getOntModel().getResource(Common.NS + codePattern).getProperty(getProperty(Common.NS + Common.HAS_KEYWORD)).getString().equals(keyword))
+				return true;
 		return false;
+	}
+	
+	/**
+	 * Controlla se un codePattern ha il linguaggio passato in input.
+	 * @author Amedeo Leo
+	 */
+	public boolean hasLanguage(String codePattern, String language) {
+		Resource cp = getOntModel().getResource(Common.NS + codePattern);
+		Property hasLib = getOntModel().getProperty(Common.NS + Common.HAS_LIBRARY);
+		if (cp.hasProperty(hasLib)){
+			Resource library = getOntModel().getResource(Common.NS + codePattern).getProperty(getProperty(Common.NS + Common.HAS_LIBRARY)).getResource();
+			
+			Property hasLang = getOntModel().getProperty(Common.NS + Common.HAS_LANGUAGE);
+			if (library.hasProperty(hasLang)){
+				String langRes = library.getProperty(hasLang).getObject().asResource().getLocalName();
+				if(langRes.equals(language))
+					return true;
+			}
+		}
+		return false;
+	}
+
+	public ArrayList<CodePattern_Category> getAllCodePatternForCategory_byKeywordAndLang(String keyword, String language) {
+		//first checks for keyword
+		ArrayList<CodePattern_Category> patternWithKeyword = getAllCodePatternForCategory_byKeyword(keyword);
+		//then checks for language
+		if (patternWithKeyword == null){
+			return null;
+		}
+		return getAllCodePatternForCategory_byLanguage(language, patternWithKeyword);
+	}
+	
+	/**
+	 * This method will add a project into knowledge base.
+	 * Will be added also all 'hasCategory' dataProperties.
+	 * @param name
+	 * @param description
+	 * @param categories
+	 */
+	public boolean addProject(String name, String description, ArrayList<String> categories){
+		ArrayList<Resource> project_s = getIndividualOfClass(Common.PROJECT);
+		for (Resource p:project_s){
+			if (p.getLocalName().equals(name)){
+				log.warning("Project " + name + " already in kb...");
+				return false;
+			}
+		}
+		
+		OntClass projectClass = getOntClass(Common.PROJECT);
+		Individual project = getOntModel().createIndividual(Common.NS + name, projectClass);	//added project
+
+		DatatypeProperty hasCategory = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_CATEGORY);
+		for (String category:categories)
+			project.addProperty(hasCategory, category);
+		log.info("Added property " + hasCategory.getLocalName());
+		DatatypeProperty hasDescription = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_DESCRIPTION);
+		project.addProperty(hasDescription, description);
+		log.info("Added property " + hasDescription.getLocalName());
+		
+		storeOntModel();
+		return true;
+	}
+	
+	/**
+	 * Add relation 'follow' from user to project.
+	 * @param projectName
+	 * @param nickname
+	 */
+	public void addFollowerToProject(String projectName, String nickname){
+		ObjectProperty followProject = getOntModel().getObjectProperty(Common.NS + Common.FOLLOW_PROJECT);
+		Resource project = getResourceFromBase(Common.NS + projectName);
+		Resource user = getResourceFromBase(Common.NS + nickname);
+
+		user.addProperty(followProject, project);
+		storeOntModel();
+		log.info("Property " + Common.FOLLOW_PROJECT + " added between " + nickname + " and " + projectName);
+	}
+	
+	/**
+	 * Will remove follower from project.
+	 * @param projectName
+	 * @param nickname
+	 */
+	public void removeFollowerFromProject(String projectName, String nickname){
+		ObjectProperty followProject = getOntModel().getObjectProperty(Common.NS + Common.FOLLOW_PROJECT);
+		Resource user = getResourceFromBase(Common.NS + nickname);
+		
+		for (Iterator<Statement> s=user.listProperties(followProject); s.hasNext();){
+			Statement stm = s.next();
+			if (stm.getObject().asResource().getLocalName().equals(projectName)){
+				stm.remove();
+				log.info("Removed property follow_" + projectName + " from " + nickname);
+				storeOntModel();
+				break;
+			}
+		}
+	}
+	
+	/**
+	 * Return true if nickName follow projectName
+	 * @param nickName
+	 * @param projectName
+	 * @return
+	 */
+	public boolean followProject(String nickName, String projectName){
+		ObjectProperty followProject = getOntModel().getObjectProperty(Common.NS + Common.FOLLOW_PROJECT);
+		Resource user = getResourceFromBase(Common.NS + nickName);
+		
+		for (Iterator<Statement> s=user.listProperties(followProject); s.hasNext();){
+			Statement stm = s.next();
+			if (stm.getObject().asResource().getLocalName().equals(projectName)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * This method will return a list of
+	 * all projects.
+	 * @return
+	 */
+	public ArrayList<Project> getProject_s(){
+		ArrayList<Resource> project_s = getIndividualOfClass(Common.PROJECT);
+		ArrayList<Project> toReturn = new ArrayList<Project>();
+		DatatypeProperty hasCategory = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_CATEGORY);
+		DatatypeProperty hasDescription = getOntModel().getDatatypeProperty(Common.NS + Common.HAS_DESCRIPTION);
+		for (Resource project : project_s){
+			String description = project.getProperty(hasDescription).getObject().toString();
+			ArrayList<String> categories = new ArrayList<String>();
+			for (Iterator<Statement> s=project.listProperties(hasCategory); s.hasNext();){
+				Statement stm = s.next();
+				categories.add(stm.getObject().toString());
+			}
+			String name = project.getLocalName();
+			toReturn.add(new Project(name, description, categories));
+		}
+		log.info("Loaded " + toReturn.size() + " projects...");
+		return toReturn;
+	}
+
+	/**
+	 * Return a list of project followed by input user.s
+	 * @param uTENTE
+	 * @return
+	 */
+	public ArrayList<Project> followedProject(Utente uTENTE) {
+		ArrayList<Project> followed = new ArrayList<Project>();
+		ArrayList<Project> project_s = getProject_s();
+		for (Project p:project_s){
+			if (followProject(uTENTE.getNickname(), p.getName()))
+				followed.add(p);
+		}
+		return followed;
+	}
+	
+	
+	public Project getProject(String projectName) {
+		ArrayList<Project> project_s = getProject_s();
+		for (Project p:project_s){
+			if (p.getName().equals(projectName)){
+				return p;
+			}
+		}
+		return null;
 	}
 }

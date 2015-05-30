@@ -18,11 +18,13 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Logger;
 
 import javax.swing.JComboBox;
 import javax.swing.ComboBoxModel;
 
 import com.smartAPI.control.IUserOptionListener;
+import com.smartAPI.control.IUserPanelListener;
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.Utente;
@@ -33,7 +35,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class UserInfoJPanel extends JPanel {
-
+	private static Logger log;
 	JLabel lblImage;
 	private static int SCORE = 10;
 	private JTextField userField;
@@ -45,8 +47,10 @@ public class UserInfoJPanel extends JPanel {
 	private JButton btnSave;
 	private String avatar="";//iniz. con avatar user
 	private ArrayList<IUserOptionListener> listener_s;
+	private ArrayList<IUserPanelListener> logOutListener_s;
 	
 	public UserInfoJPanel() {
+		log = Logger.getLogger("global");
 		setLayout(null);
 		setBackground(new Color(228, 230, 235));
 
@@ -210,7 +214,10 @@ public class UserInfoJPanel extends JPanel {
 		JButton btnOut = new JButton("Log out");
 		btnOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				for (IUserPanelListener i:logOutListener_s){
+					i.logOutClicked();
+				}
+				log.info("LOGOUT");
 			}
 		});
 		
@@ -277,5 +284,12 @@ public class UserInfoJPanel extends JPanel {
 			listener_s = new ArrayList<IUserOptionListener>();
 		}
 		listener_s.add(i);
+	}
+	
+	public void addLogOutListener(IUserPanelListener i){
+		if (logOutListener_s == null){
+			logOutListener_s = new ArrayList<IUserPanelListener>();
+		}
+		logOutListener_s.add(i);
 	}
 }

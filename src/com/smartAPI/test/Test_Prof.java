@@ -529,9 +529,7 @@ public class Test_Prof {
 		System.out.println("");
 		infmodel.write(System.out);
 
-		for (Iterator<Statement> i = infmodel
-				.listStatements(new SimpleSelector(res2, RDF.type,
-						(RDFNode) null)); i.hasNext();) {
+		for (Iterator<Statement> i = infmodel.listStatements(new SimpleSelector(res2, RDF.type,	(RDFNode) null)); i.hasNext();) {
 			Statement c = i.next();
 			System.out.println(c.getPredicate() + " " + c.getObject());
 		}
