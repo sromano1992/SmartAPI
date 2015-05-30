@@ -1,6 +1,6 @@
 package com.smartAPI.view;
 
-import javafx.scene.control.CheckBox;
+
 
 import javax.swing.JPanel;
 
