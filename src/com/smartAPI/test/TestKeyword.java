@@ -6,6 +6,6 @@ public class TestKeyword {
 
 	public static void main(String[] args) {
 		SmartAPIModel model = new SmartAPIModel();
-		System.out.println(model.hasKeyword("s4", "k1"));
+		System.out.println(model.hasKeyword("s4", "k12"));
 	}
 }
