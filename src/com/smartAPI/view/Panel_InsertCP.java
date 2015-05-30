@@ -53,6 +53,8 @@ import javax.swing.JEditorPane;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
 
 /**
  * Pannello che permette all'utente di inserire un code pattern

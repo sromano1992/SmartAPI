@@ -1,9 +1,11 @@
 package com.smartAPI.view;
 
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -20,20 +22,26 @@ public class Panel_Insert extends JPanel {
 	private static final String INSERT_PROJECT = "Insert Project";
 	private static final String INSERT_CP = "Insert cp";
 	private JPanel panel_1, panel, thisPanel;
-
+	private Border border;
 	/**
 	 * Create the panel.
 	 */
 	public Panel_Insert() {
 		thisPanel = this;
 		setLayout(new BorderLayout(0, 0));
+		setBackground(new Color(228, 230, 235));
 		
 		final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBackground(new Color(228, 230, 235));
+
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
 		panel = new JPanel();
+		border = BorderFactory.createLineBorder(new Color(228, 230, 235), 1);
+		panel.setBorder(border);
 		panel.setName(INSERT_PROJECT);
 		panel.setLayout(new BorderLayout(0, 0));
+		//panel.setBackground(new Color(228, 230, 235));
 		panel.add(new Panel_InsertCP());
 		
 		panel_1 = new JPanel();
