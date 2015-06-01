@@ -16,9 +16,13 @@ import com.smartAPI.control.IUserPanelListener;
 import com.smartAPI.model.Common;
 
 import java.awt.Color;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
 
 public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanelListener{
-	private Panel_Insert panel_Insert;
 	private Panel_Search panel_search;
 	private Panel_ShowAllUser panel_ShowUser;
 	private UserInfoJPanel userInfoJPanel;
@@ -28,14 +32,11 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3, LOGOUT = 4;
 	private int actualPanel = INSERT_CP;
 	private JPanel panel;
+	private Panel_Insert panel_Insert;
 	
 	public Desktop_1(IUserPanelListener desktop_0) {
 		this.mainFrame = desktop_0;
 		panel = addControl_s();
-
-		panel_Insert = new Panel_Insert();
-		panel_Insert.setBounds(0, 181, 920, 480);
-		panel.add(panel_Insert);
 
 		panel_search = new Panel_Search();
 		panel_search.setBounds(20, 107, 811, 582);		
@@ -96,15 +97,61 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 
 		JPanel panel = new JPanel();
 		splitPane.setRightComponent(panel);
-		panel.setLayout(null);
 		panel.setBackground(new Color(228, 230, 235));
-
-		UserOptionsJPanel panel_UserOptionsColors = new UserOptionsJPanel();
-		panel_UserOptionsColors.addListener(this);
-		panel_UserOptionsColors.setBounds(0, 6, 875, 100);
-		panel.add(panel_UserOptionsColors);
-		panel_UserOptionsColors.setLayout(null);
-		return panel;
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
+				
+				JLabel label = new JLabel("");
+				
+				JLabel label_1 = new JLabel("");
+				
+				JLabel label_2 = new JLabel("");
+				
+				JLabel label_3 = new JLabel("");
+				
+				JPanel panel_2 = new JPanel();
+				panel.add(panel_2);
+				GridBagLayout gbl_panel_2 = new GridBagLayout();
+				gbl_panel_2.columnWidths = new int[]{0, 0};
+				gbl_panel_2.rowHeights = new int[] {20, 500, 0};
+				gbl_panel_2.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+				gbl_panel_2.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+				panel_2.setLayout(gbl_panel_2);
+				
+				JPanel panel_3 = new JPanel();
+				GridBagConstraints gbc_panel_3 = new GridBagConstraints();
+				gbc_panel_3.insets = new Insets(0, 0, 5, 0);
+				gbc_panel_3.fill = GridBagConstraints.BOTH;
+				gbc_panel_3.gridx = 0;
+				gbc_panel_3.gridy = 0;
+				panel_2.add(panel_3, gbc_panel_3);
+				panel_3.setLayout(new BorderLayout(0, 0));
+				
+				UserOptionsJPanel userOptionsJPanel = new UserOptionsJPanel();
+				userOptionsJPanel.addListener(this);
+				userOptionsJPanel.setLayout(null);
+				panel_3.add(userOptionsJPanel);
+				
+				JPanel panel_4 = new JPanel();
+				GridBagConstraints gbc_panel_4 = new GridBagConstraints();
+				gbc_panel_4.fill = GridBagConstraints.BOTH;
+				gbc_panel_4.gridx = 0;
+				gbc_panel_4.gridy = 1;
+				panel_2.add(panel_4, gbc_panel_4);
+				panel_4.setLayout(new BorderLayout(0, 0));
+				
+				panel_Insert = new Panel_Insert();
+				panel_4.add(panel_Insert);
+				
+				JLabel label_4 = new JLabel("");
+				
+				JLabel label_5 = new JLabel("");
+				
+				JLabel label_6 = new JLabel("");
+				
+				JLabel label_7 = new JLabel("");
+				
+		
+		return panel_4;
 	}
 
 	@Override

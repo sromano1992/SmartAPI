@@ -155,6 +155,7 @@ public class LoginGrafica extends JPanel{
 												panel_1.add(passwordField, gbc_passwordField);
 														
 														lblerror = new JLabel("");
+														lblerror.setOpaque(true);
 														GridBagConstraints gbc_lblerror = new GridBagConstraints();
 														gbc_lblerror.fill = GridBagConstraints.BOTH;
 														gbc_lblerror.insets = new Insets(0, 0, 5, 5);
