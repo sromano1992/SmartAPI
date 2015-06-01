@@ -74,10 +74,17 @@ public class UserOptionsJPanel extends JPanel {
 		pathIcon = getClass().getResource(path).getFile();
 		btnSearch.setIcon(new ImageIcon(pathIcon));
 		btnSearch.setBounds(214, 28, 200, 52);
+		btnSearch.setBorderPainted(false);
+		btnSearch.setFocusPainted(false);
+		btnSearch.setContentAreaFilled(false);
 		
 		add(btnSearch);
 		
 		btnInsert = new JButton("");
+
+		btnInsert.setBorderPainted(false);
+		btnInsert.setFocusPainted(false);
+		btnInsert.setContentAreaFilled(false);
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -103,6 +110,10 @@ public class UserOptionsJPanel extends JPanel {
 		add(btnInsert);
 		
 		btnShow = new JButton("");
+
+		btnShow.setBorderPainted(false);
+		btnShow.setFocusPainted(false);
+		btnShow.setContentAreaFilled(false);
 		btnShow.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -121,9 +132,13 @@ public class UserOptionsJPanel extends JPanel {
 		pathIcon = getClass().getResource(path).getFile();
 		btnShow.setIcon(new ImageIcon(pathIcon));
 		btnShow.setBounds(417, 28, 200, 51);
+		
 		add(btnShow);
 		
 		btnAbout = new JButton("");
+		btnAbout.setBorderPainted(false);
+		btnAbout.setFocusPainted(false);
+		btnAbout.setContentAreaFilled(false);
 		btnAbout.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

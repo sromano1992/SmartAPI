@@ -32,6 +32,7 @@
     <SmartAPI:hasDescription>300515_0048</SmartAPI:hasDescription>
     <SmartAPI:hasCategory>Storage</SmartAPI:hasCategory>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Project"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasCategory">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
@@ -376,6 +377,7 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#JFrame_setDefaultCloseOperation">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useCalendar">
     <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useMethod"/>
@@ -480,7 +482,7 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ciro">
     <SmartAPI:hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3</SmartAPI:hasStars>
-    <SmartAPI:hasAvatar>res/3.png</SmartAPI:hasAvatar>
+    <SmartAPI:hasAvatar>res/6.png</SmartAPI:hasAvatar>
     <SmartAPI:hasPassword>cirociro</SmartAPI:hasPassword>
     <SmartAPI:hasSurname>amati</SmartAPI:hasSurname>
     <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
@@ -499,12 +501,14 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#test_0100">
-    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Project"/>
-    <SmartAPI:hasCategory>Storage</SmartAPI:hasCategory>
     <SmartAPI:hasDescription>test insert</SmartAPI:hasDescription>
+    <SmartAPI:hasCategory>Storage</SmartAPI:hasCategory>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Project"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#cp_99">
     <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#jena"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#JFrame_setVisible"/>
     <SmartAPI:hasCode>public static void setVisible() {
 		JFrame f = new JFrame();
@@ -522,6 +526,7 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#JFrame_add">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#pycp45">
     <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#pyLib"/>
@@ -672,6 +677,7 @@ print "Time:",distance/rate</SmartAPI:hasCode>
     <SmartAPI:hasDescription>projasd</SmartAPI:hasDescription>
     <SmartAPI:hasCategory>Storage</SmartAPI:hasCategory>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Project"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#commonNeighbors">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
@@ -808,15 +814,17 @@ print "Time:",distance/rate</SmartAPI:hasCode>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#HadoopAnalyzerJR">
+    <SmartAPI:hasCategory>Calendar</SmartAPI:hasCategory>
     <SmartAPI:hasDescription>This project will paint all hadoop chart		</SmartAPI:hasDescription>
     <SmartAPI:hasCategory>Parser</SmartAPI:hasCategory>
-    <SmartAPI:hasCategory>Calendar</SmartAPI:hasCategory>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Project"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#dddd">
-    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Project"/>
     <SmartAPI:hasCategory>Storage</SmartAPI:hasCategory>
     <SmartAPI:hasDescription>dddnsd</SmartAPI:hasDescription>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Project"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#write">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
@@ -1042,6 +1050,7 @@ for node in ast.walk(tree):
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#JFrame_setVisible">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetId">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
@@ -1175,8 +1184,8 @@ for node in ast.walk(tree):
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#int"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#avg_dispersion"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#PrintInfo"/>
-    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#norm"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#write"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#norm"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#debug"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#search"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#TIntV"/>
@@ -1759,11 +1768,12 @@ def printAllNodes(G1):
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#nextProject">
-    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Project"/>
+    <SmartAPI:hasCategory>Parser</SmartAPI:hasCategory>
     <SmartAPI:hasCategory>Storage</SmartAPI:hasCategory>
     <SmartAPI:hasCategory>Calendar</SmartAPI:hasCategory>
-    <SmartAPI:hasCategory>Parser</SmartAPI:hasCategory>
     <SmartAPI:hasDescription>this is nextproj</SmartAPI:hasDescription>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Project"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#s2">
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m106"/>
@@ -1811,8 +1821,8 @@ def printAllNodes(G1):
         nodes.Add(N)
     SubGraph1 = snap.GetSubGraph(G1, nodes)
     return SubGraph1</SmartAPI:hasCode>
-    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetOutEdges"/>
     <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetOutEdges"/>
     <SmartAPI:hasScore>0</SmartAPI:hasScore>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
@@ -1892,8 +1902,8 @@ def printAllNodes(G1):
     return SubGraph1</SmartAPI:hasCode>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetOutEdges"/>
     <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
-    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <SmartAPI:hasScore>0</SmartAPI:hasScore>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#TIntV"/>
