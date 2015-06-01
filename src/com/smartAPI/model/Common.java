@@ -38,6 +38,7 @@ public class Common {
 	public static final String HAS_CATEGORY = "hasCategory";
 	public static final String FOLLOW_PROJECT = "followProject";
 	public static final String HAS_DESCRIPTION = "hasDescription";
+	public static final String SHOW_FRAME_TITLE = "Search codePattern/project";
 	public static Utente UTENTE = null;
 	
 	public static void setUser(Utente u){

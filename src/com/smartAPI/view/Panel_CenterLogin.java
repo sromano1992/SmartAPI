@@ -39,7 +39,7 @@ public class Panel_CenterLogin extends JPanel {
 		lblLogoTxt.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblLogoTxt, BorderLayout.SOUTH);
 		
-		JLabel lblNewLabel = new JLabel("OR");
+		JLabel lblNewLabel = new JLabel("");
 		panel_1.add(lblNewLabel);
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));

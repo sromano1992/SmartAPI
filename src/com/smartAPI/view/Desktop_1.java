@@ -1,6 +1,7 @@
 package com.smartAPI.view;
 
 import javax.swing.GroupLayout;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.GroupLayout.Alignment;
@@ -10,6 +11,7 @@ import com.smartAPI.control.IUserPanelListener;
 import com.smartAPI.model.Common;
 
 import java.awt.Component;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -26,6 +28,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3, LOGOUT = 4;
 	private int actualPanel = INSERT_CP;
 	private JPanel panel, panel_4;
+	private	JFrame f;
 	private Panel_Insert panel_Insert;
 
 	/**
@@ -34,16 +37,13 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	public Desktop_1(IUserPanelListener desktop_0) {
 		this.mainFrame = desktop_0;
 
-		panel_search = new Panel_Search();
-		panel_search.setBounds(20, 107, 811, 582);		
-		panel_ShowUser = new Panel_ShowAllUser();
-		panel_ShowUser.setBounds(0, 181, 920, 508);		
+		panel_search = new Panel_Search();	
+		panel_ShowUser = new Panel_ShowAllUser();		
 		panel_About = new About();
-		panel_About.setBounds(20, 107, 811, 582);
 		
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] {500, 300};
+		gridBagLayout.columnWidths = new int[] {500, 250};
 		gridBagLayout.rowWeights = new double[]{1.0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0};
 		setLayout(gridBagLayout);
@@ -75,7 +75,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[]{0, 0};
+		gbl_panel_2.columnWidths = new int[] {0};
 		gbl_panel_2.rowHeights = new int[] {20, 660};
 		gbl_panel_2.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel_2.rowWeights = new double[]{1.0, 1.0};
@@ -115,21 +115,18 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	
 	@Override
 	public void searchClicked() {
-		// TODO Auto-generated method stub
-		if(actualPanel == SHOW_CODE_PATTERN)
-			panel_4.remove(panel_search);
-		else if(actualPanel == SHOW_USER)
-			panel_4.remove(panel_ShowUser);
-		else if(actualPanel == INSERT_CP)
-			panel_4.remove(panel_Insert);
-		else if(actualPanel == SHOW_ABOUT)
-			panel_4.remove(panel_About);
-
-		actualPanel = SHOW_CODE_PATTERN;
-
-		panel_search.refresh();
-		panel_4.add(panel_search);
-		updateGUI();
+		if (f == null){
+			f = new JFrame_Search();
+		}
+		if (f.isVisible())
+			f.toFront();
+		if (f.getState() == Frame.ICONIFIED){
+			f.setState(Frame.NORMAL);
+		}
+		else{
+			f.setVisible(true);
+			f.toFront();
+		}
 	}
 
 	@Override

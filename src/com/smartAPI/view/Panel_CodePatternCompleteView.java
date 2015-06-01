@@ -178,10 +178,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setContinuousLayout(true);
 	    splitPane.setOneTouchExpandable(true);
-		add(splitPane, BorderLayout.CENTER);
-		splitPane.setSize(new Dimension(0, 250));
-		splitPane.setPreferredSize(new Dimension(193, 250));
-		splitPane.setMinimumSize(new Dimension(193, 250));
+	    add(splitPane, BorderLayout.CENTER);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);		
 		
 		Panel_InferredCodePattern panel_InferredCodePattern = new Panel_InferredCodePattern();
