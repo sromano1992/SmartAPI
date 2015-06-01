@@ -21,6 +21,7 @@ import com.smartAPI.control.IUserPanelListener;
 import com.smartAPI.model.Common;
 
 import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 
 /**
  * Login page.
@@ -40,15 +41,27 @@ public class Desktop_0 extends JPanel implements ILogInPanelListner, IUserPanelL
 		mainContainer = f;
 		setLayout(new GridLayout(1, 3, 0, 0));
 		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(2,94,137));
+		add(panel);
+		panel.setLayout(new GridLayout(3, 1, 0, 0));
+		
+		JLabel label = new JLabel("");
+		panel.add(label);
+		
 		loginGrafica = new LoginGrafica();
-		add(loginGrafica);
+		panel.add(loginGrafica);
 		loginGrafica.addLoginPanelListner(this);
 		
 		Panel_CenterLogin panel_CenterLogin = new Panel_CenterLogin();
 		add(panel_CenterLogin);
 		
+		JPanel panel_1 = new JPanel();
+		add(panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
 		CreateNewAccountJPanel createNewAccountJPanel = new CreateNewAccountJPanel();
-		add(createNewAccountJPanel);
+		panel_1.add(createNewAccountJPanel);
 	}
 
 	@Override
