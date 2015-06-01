@@ -161,6 +161,7 @@ public class LoginGrafica extends JPanel{
 														gbc_lblerror.gridx = 1;
 														gbc_lblerror.gridy = 6;
 														panel_1.add(lblerror, gbc_lblerror);
+														lblerror.setBackground(Color.red);
 												
 														//BUTTON LOGIN
 														JButton btnLogin = new JButton("Login");
