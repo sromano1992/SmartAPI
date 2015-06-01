@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 
 import java.awt.BorderLayout;
 
@@ -29,20 +28,13 @@ import java.awt.Insets;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import javax.swing.UIManager;
-import javax.swing.border.LineBorder;
-
-import java.awt.Dimension;
-import java.awt.Component;
-import java.awt.Font;
 
 
 public class Panel_InsertProject extends JPanel {
 	private ArrayList<JCheckBox> chkBox_s;
 	private JTextField textField_name;
 	private RSyntaxTextArea textPane_description; 
-	private Border border;
 
 	/**
 	 * Create the panel.
@@ -51,9 +43,6 @@ public class Panel_InsertProject extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_1 = new JPanel();
-		border = BorderFactory.createLineBorder(new Color(228, 230, 235), 0);
-		panel_1.setBorder(border);
-		panel_1.setBackground(new Color(228, 230, 235));
 		add(panel_1, BorderLayout.NORTH);
 		
 		JPanel panel_2 = new JPanel();
@@ -73,78 +62,73 @@ public class Panel_InsertProject extends JPanel {
 		panel_5.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		//panel.setBorder(new EmptyBorder(10, 10, 10, 10) );
-		
-		panel.setBackground(new Color(228, 230, 235));
 		panel_5.add(panel);
-		panel.setLayout(null);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0};
+		gbl_panel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
 		
-		
-		MyJLabel lblName = new MyJLabel("*Name");
-		lblName.setBounds(26, 3, 56, 22);
-		lblName.setAlignmentY(Component.TOP_ALIGNMENT);
-		lblName.setBackground(new Color(231, 76, 60));
-		panel.add(lblName);
+		JLabel lblName = new JLabel("Name:");
+		GridBagConstraints gbc_lblName = new GridBagConstraints();
+		gbc_lblName.insets = new Insets(0, 0, 5, 5);
+		gbc_lblName.anchor = GridBagConstraints.EAST;
+		gbc_lblName.gridx = 0;
+		gbc_lblName.gridy = 0;
+		panel.add(lblName, gbc_lblName);
 		
 		textField_name = new JTextField();
-		textField_name.setBounds(82, 0, 364, 28);
-		panel.add(textField_name);
+		GridBagConstraints gbc_textField_name = new GridBagConstraints();
+		gbc_textField_name.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_name.weightx = 0.5;
+		gbc_textField_name.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_name.gridx = 1;
+		gbc_textField_name.gridy = 0;
+		panel.add(textField_name, gbc_textField_name);
 		textField_name.setColumns(10);
 		
-		MyJLabel lblDescription = new MyJLabel("Description:");
-		lblDescription.setText("*Description");
-		lblDescription.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
-		lblDescription.setBackground(new Color(231, 76, 60));
-		lblDescription.setBounds(0, 136, 80, 22);
-		panel.add(lblDescription);
+		JLabel lblDescription = new JLabel("Description:");
+		GridBagConstraints gbc_lblDescription = new GridBagConstraints();
+		gbc_lblDescription.insets = new Insets(0, 0, 0, 5);
+		gbc_lblDescription.gridx = 0;
+		gbc_lblDescription.gridy = 1;
+		panel.add(lblDescription, gbc_lblDescription);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(82, 28, 364, 233);
-		panel.add(scrollPane_1);
+		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
+		gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane_1.gridx = 1;
+		gbc_scrollPane_1.gridy = 1;
+		panel.add(scrollPane_1, gbc_scrollPane_1);
 		
 		textPane_description = new RSyntaxTextArea();
-		textPane_description.setTabSize(4);
-		border = BorderFactory.createLineBorder(new Color(228, 230, 235), 0);
-		textPane_description.setBorder(border);
 		textPane_description.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_NONE);
 		scrollPane_1.setViewportView(textPane_description);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		border = BorderFactory.createLineBorder(new Color(228, 230, 235), 1);
-		scrollPane.setBorder(border);
 		panel_3.add(scrollPane, BorderLayout.EAST);
 		final JPanel chkBoxPanel = new JPanel();
 		chkBoxPanel.setBounds(0, 0, 80, 400);
 		scrollPane.setViewportView(chkBoxPanel);
 		
 		JPanel panel_6 = new JPanel();
-		panel_6.setBackground(new Color(228, 230, 235));
 		panel_7.add(panel_6, BorderLayout.SOUTH);
 		panel_6.setLayout(new GridLayout(0, 6, 0, 0));
 		
 		JLabel label = new JLabel("");
-		label.setBackground(new Color(228, 230, 235));
-		label.setOpaque(true);
 		panel_6.add(label);
 		
 		JLabel label_1 = new JLabel("");
-		label_1.setBackground(new Color(228, 230, 235));
-		label_1.setOpaque(true);
 		panel_6.add(label_1);
 		
 		JLabel label_2 = new JLabel("");
-		label_2.setBackground(new Color(228, 230, 235));
-		label_2.setOpaque(true);
 		panel_6.add(label_2);
 		
 		JLabel label_4 = new JLabel("");
-		label_4.setBackground(new Color(228, 230, 235));
-		label_4.setOpaque(true);
 		panel_6.add(label_4);
 		
 		final JLabel label_required = new JLabel("");
-		label_required.setBackground(new Color(228, 230, 235));
-		label_required.setOpaque(true);
 		label_required.setForeground(UIManager.getColor("ToolBar.dockingForeground"));
 		panel_6.add(label_required);
 		
@@ -211,25 +195,13 @@ public class Panel_InsertProject extends JPanel {
 		
 		SmartAPIModel s = new SmartAPIModel();
 		ArrayList<Resource> categories = s.getPatternCategory();
-		//chkBoxPanel.setLayout(new GridLayout((int) Math.round((categories.size() + 0.00)/4), 4, 0, 0));
-		chkBoxPanel.setBackground(new Color(228, 230, 235));
-		border = BorderFactory.createLineBorder(new Color(228, 230, 235), 1);
-		chkBoxPanel.setBorder(border);
+		chkBoxPanel.setLayout(new GridLayout((int) Math.round((categories.size() + 0.00)/4), 4, 0, 0));
 		this.chkBox_s = new ArrayList<JCheckBox>();
 		for (int i=0; i<categories.size(); i++){
 			JCheckBox toAdd = new JCheckBox(categories.get(i).getLocalName());
 			chkBoxPanel.add(toAdd);
 			chkBox_s.add(toAdd);
 		}
-
-
 	}
-	
-	public static void main(String[] args) {
-		JFrame f = new JFrame();
-		f.setSize(300, 400);
-		f.setVisible(true);
-		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
-		f.getContentPane().add(new Panel_InsertProject());
-	}
+
 }
