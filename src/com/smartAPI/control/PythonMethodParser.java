@@ -25,13 +25,12 @@ public class PythonMethodParser implements IMethodParser{
 
 	public ArrayList<String> getMethod(String pyCode) throws ParseException{
 		ArrayList<String> method_s = new ArrayList<String>();
-		try {
-			URL location = this.getClass().getProtectionDomain().getCodeSource().getLocation();
-			String codePath = location.getFile() + Common.PYTHON_CP_TMP_FILE;
-			String pyPath = this.getClass().getResource(Common.PY_PARSER_SCRIPT).getFile();
+		try { 
+			String codePath = System.getProperty("user.dir") + Common.PYTHON_CP_TMP_FILE;
+			String pyPath = System.getProperty("user.dir") + Common.PY_PARSER_SCRIPT;
 			
-			File f_codePath = new File(new java.net.URI(codePath).getPath());
-			File f_pyPath = new File(new java.net.URI(pyPath).getPath());
+			File f_codePath = new File(codePath);
+			File f_pyPath = new File(pyPath);
 			
 			FileOutputStream fos = new FileOutputStream(new File(codePath));
 			fos.write(pyCode.getBytes());
@@ -55,8 +54,6 @@ public class PythonMethodParser implements IMethodParser{
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
 		return null;

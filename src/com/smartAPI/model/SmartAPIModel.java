@@ -8,28 +8,21 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
-import org.apache.xerces.impl.xs.XSDDescription;
-
-import com.hp.hpl.jena.datatypes.xsd.impl.XSDBaseStringType;
 import com.hp.hpl.jena.ontology.DatatypeProperty;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.ObjectProperty;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.rdf.model.Selector;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
@@ -203,27 +196,21 @@ public class SmartAPIModel {
 		return false;
 	}
 
-	public void storeOntModel(){
-		String modelPath = this.getClass().getResource(OWL_FILE_PATH).getFile();
-		File file;
+	public void storeOntModel(){		
+		String modelPath = System.getProperty("user.dir") + OWL_FILE_PATH;
+		File file = new File(modelPath);
+		OutputStream out;
 		try {
-			file = new File(new java.net.URI(modelPath).getPath());
-			OutputStream out = new FileOutputStream(new File(file.getAbsolutePath()));
+			out = new FileOutputStream(new File(file.getAbsolutePath()));
 			if (out == null) {
 				throw new IllegalArgumentException("File: " + "SmartAPI_1.2.owl"+ " not found");
 			}
 			getOntModel().write(out);
 			log.info("Model written to file...");
 		} catch (FileNotFoundException e) {
-			log.severe("Exception writing owl file!");
+			log.severe("File not found! Cannot store OntModel...");
 			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			log.severe("Exception writing owl file!");
-			e.printStackTrace();
-		} catch (IOException e) {
-			log.severe("Exception closing owl file!");
-			e.printStackTrace();
-		}		
+		}
 	}
 
 	public void printOntModel(){

@@ -1,0 +1,12 @@
+def commonNeighbors(G1, u, h):
+    a = set()
+    b = set()
+    for N in G1.GetNI(u).GetOutEdges():
+        a.add(N)
+    for N in G1.GetNI(h).GetOutEdges():
+        b.add(N)
+    intersect = a.intersection(b)
+    nodes = snap.TIntV()
+    for n in intersect:
+        nodes.Add(n)
+    return nodes
