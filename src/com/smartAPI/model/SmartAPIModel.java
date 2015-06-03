@@ -688,6 +688,43 @@ public class SmartAPIModel {
 		}
 		return false;
 	}
+	
+	public boolean deleteProject(String name){
+		ArrayList<Resource> list = getIndividualOfClass("Project");
+		OntModel o = getOntModel();
+		ArrayList<Statement> statements = new ArrayList<Statement>();
+		for(int i = 0; i < list.size(); i++) {
+			Resource resource = list.get(i);
+			StmtIterator iter = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
+			while (iter.hasNext()) {
+				Statement stmt = iter.nextStatement();
+				Resource project = stmt.getSubject();
+			
+
+				if(project.getLocalName().equals(name)) {
+						StmtIterator iterProj = getOntModel().listStatements(new SimpleSelector(project,null,(RDFNode)null));
+						while (iterProj.hasNext()) {
+							Statement stmtProj = iterProj.nextStatement();
+							statements.add(stmtProj);
+						}
+				}
+			}
+		}
+		
+		ArrayList<Utente> users = getUsers();
+		for(Utente u : users){
+			if(followProject(u.getNickname(), name))
+				removeFollowerFromProject(name, u.getNickname());
+		}
+		
+		if(statements.size() != 0) {
+			o.remove(statements);
+			storeOntModel();
+			return true;
+		}
+		
+		return false;
+	}
 
 	/** 
 	 * Elimina un codePattern.
@@ -1119,7 +1156,7 @@ public class SmartAPIModel {
 		float score =  resource.getProperty(getProperty(Common.NS + Common.HAS_SCORE)).getObject().asLiteral().getInt();
 		if(n_votanti == 0.0)
 			return 0;
-		System.out.println("Media votazione = " + score / n_votanti);
+		//System.out.println("Media votazione = " + score / n_votanti);
 		return (score / n_votanti);
 	}
 
@@ -1206,7 +1243,7 @@ public class SmartAPIModel {
 					String subject = subjectResource.getLocalName();
 					if(predicateResource.getLocalName().equals(Common.HAS_OWNER)) {
 						String string_object = object.toString().substring(object.toString().indexOf("#") + 1);
-						System.out.println(string_object);
+						//System.out.println(string_object);
 						for(String s : utenteCodePattern) {
 							String[] array = s.split(",");
 							float votoCorrente = Float.parseFloat(array[1]);
@@ -1335,7 +1372,7 @@ public class SmartAPIModel {
 	public int cambiaStelle(String username) {
 		Resource resource = getOntModel().getResource(Common.NS + username);
 		int vecchieStelle = resource.getProperty(getProperty(Common.NS + Common.HAS_STARS)).getInt();
-		System.out.println("vecchie stelle (3): "+vecchieStelle);
+		//System.out.println("vecchie stelle (3): "+vecchieStelle);
 		int nuoveStelle = getNumeroStelle(username);
 		if (vecchieStelle!= nuoveStelle){
 		resource.getProperty(getProperty(Common.NS + Common.HAS_STARS)).changeLiteralObject(nuoveStelle);
