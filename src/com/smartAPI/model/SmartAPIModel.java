@@ -193,6 +193,7 @@ public class SmartAPIModel {
 		OntClass toReturn = null;
 		for (Iterator<OntClass> i=getOntModel().listClasses(); i.hasNext();){
 			OntClass tempClass = i.next();
+			//System.out.println();
 			if (tempClass.getLocalName().equals(className))
 				toReturn = tempClass;
 		}
