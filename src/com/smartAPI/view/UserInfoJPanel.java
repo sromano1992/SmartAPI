@@ -351,11 +351,16 @@ public class UserInfoJPanel extends JPanel {
 	
 
 		ImageIcon star = new ImageIcon();
-		path = "res/star.png";
+		if(Common.UTENTE.isAdmin())
+		path = "res/starwhite.png";
+		else
+			path = "res/star.png";
 		pathIcon = getClass().getResource(path).getFile();
 		imgicon = new MyImageIcon(pathIcon, 20, 20);
 		star = imgicon.getImageResponsive();
 		for (int i = 0; i < numStelle; i++) {
+			panel_star.add(new JLabel(star));
+			panel_star.add(new JLabel(star));
 			panel_star.add(new JLabel(star));
 		}
 	}
