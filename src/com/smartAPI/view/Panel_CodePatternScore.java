@@ -34,10 +34,13 @@ public class Panel_CodePatternScore extends JPanel {
 			score = _MAX_SCORE;
 		}
 		setLayout(new GridLayout(1, _MAX_SCORE, 0, 0));
-		String starIco = this.getClass().getResource("res/star.png").getFile();
-		ImageIcon pic = new ImageIcon(starIco);
+		String starIco = "res/star.png";
+		MyImageIcon pic = new MyImageIcon(starIco, 20, 20);
+		log.info(this.getClass().getResource(starIco).toString());
 	    for (int i=0; i<score; i++){
-	    	add(new JLabel(pic));
+	    	JLabel starLabel = new JLabel();
+	    	starLabel.setIcon(pic.getImageResponsive());
+	    	add(starLabel);
 	    }
 	    for (int i=0; i<_MAX_SCORE-score; i++)
 	    	add(new JLabel());
@@ -54,10 +57,10 @@ public class Panel_CodePatternScore extends JPanel {
 		log.info("Score not defined...will be showed 4 stars");
 		setLayout(new GridLayout(1, _MAX_SCORE, 0, 0));
 		
-		String starIco = this.getClass().getResource("res/star.png").getFile();
-		ImageIcon pic = new ImageIcon(starIco);
+		String starIco = "res/star.png";
+		MyImageIcon pic = new MyImageIcon(starIco, 20, 20);
 	    for (int i=0; i<4; i++){
-	    	add(new JLabel(pic));
+	    	add(new JLabel(pic.getImageResponsive()));
 	    }
 	    for (int i=0; i<_MAX_SCORE-4; i++)
 	    	add(new JLabel());

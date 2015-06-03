@@ -129,8 +129,7 @@ public class CreateAdminJPanel extends JPanel {
 		add(lblEmail);
 
 		lblIcon = new JLabel("");
-		String path="res/admin-1.png";
-		String pathIcon = getClass().getResource(path).getFile();
+		String pathIcon="res/admin-1.png";
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblIcon.setIcon(imgicon.getImageResponsive());
 		lblIcon.setBounds(502, 273, 80, 71);
@@ -147,8 +146,7 @@ public class CreateAdminJPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String s=(String)comboBox.getSelectedItem();
 				String[] parts = s.split(" - ");
-				String path="res/admin-"+parts[1]+".png";
-				String pathIcon = getClass().getResource(path).getFile();				
+				String pathIcon="res/admin-"+parts[1]+".png";				
 				MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 				lblIcon.setIcon(imgicon.getImageResponsive());
 			}

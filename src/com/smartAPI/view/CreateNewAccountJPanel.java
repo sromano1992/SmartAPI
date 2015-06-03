@@ -63,8 +63,7 @@ public class CreateNewAccountJPanel extends JPanel {
 		panel_1.setLayout(gbl_panel_1);
 
 
-		String path="res/1.png";
-		String pathIcon = getClass().getResource(path).getFile();
+		String pathIcon="res/1.png";
 		
 
 		lblIcon = new JLabel("");
@@ -106,8 +105,7 @@ public class CreateNewAccountJPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String s=(String)comboBox.getSelectedItem();
 				String[] parts = s.split(" - ");
-				String path="res/"+parts[1]+".png";
-				String pathIcon = getClass().getResource(path).getFile();				
+				String pathIcon="res/"+parts[1]+".png";			
 				MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 				lblIcon.setIcon(imgicon.getImageResponsive());
 			}

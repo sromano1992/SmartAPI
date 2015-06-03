@@ -187,8 +187,7 @@ public class UserClassificationJPanel extends JPanel {
 		panelFirst.add(lblIconOne);
 
 		if (first){
-			path=u1.getAvatar();
-			pathIcon = getClass().getResource(path).getFile();
+			pathIcon=u1.getAvatar();
 			imgicon = new MyImageIcon(pathIcon,33,23);
 			lblIconOne.setIcon(imgicon.getImageResponsive());
 			panelFirst.add(lblIconOne);
@@ -256,8 +255,7 @@ public class UserClassificationJPanel extends JPanel {
 		panelSecond.add(lblIconTwo);
 
 		if (second){
-			path=u2.getAvatar();
-			pathIcon = getClass().getResource(path).getFile();
+			pathIcon=u2.getAvatar();
 			imgicon = new MyImageIcon(pathIcon,33,23);
 			lblIconTwo.setIcon(imgicon.getImageResponsive());
 		}
@@ -322,8 +320,7 @@ public class UserClassificationJPanel extends JPanel {
 		panelThird.add(lblIconThree);
 
 		if (third){
-			path=u3.getAvatar();
-			pathIcon = getClass().getResource(path).getFile();
+			pathIcon=u3.getAvatar();
 			imgicon = new MyImageIcon(pathIcon,33,23);
 			lblIconThree.setIcon(imgicon.getImageResponsive());
 		}
@@ -386,8 +383,7 @@ public class UserClassificationJPanel extends JPanel {
 			lblGenericIcon.setBounds(79, 6, 45, 27);
 			panelGeneric.add(lblGenericIcon);
 
-			path="res/4.png";
-			pathIcon = getClass().getResource(path).getFile();
+			pathIcon="res/4.png";
 			imgicon = new MyImageIcon(pathIcon,33,23);
 			lblGenericIcon.setIcon(imgicon.getImageResponsive());
 

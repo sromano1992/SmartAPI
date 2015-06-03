@@ -77,8 +77,7 @@ public class UserInfoJPanel extends JPanel {
 		
 		setBackground(new Color(2, 94, 137));
 		// path dipende dall'avatar dell'utente
-		String path = Common.UTENTE.getAvatar();
-		String pathIcon = getClass().getResource(path).getFile();
+		String pathIcon = Common.UTENTE.getAvatar();
 		MyImageIcon imgicon = new MyImageIcon(pathIcon, 80, 70);
 		setLayout(new BorderLayout(0, 0));
 
@@ -115,8 +114,7 @@ public class UserInfoJPanel extends JPanel {
 		gbc_btnModify.insets = new Insets(0, 0, 5, 0);
 		gbc_btnModify.gridx = 3;
 		gbc_btnModify.gridy = 1;
-		path = "res/pencil.png";
-		pathIcon = getClass().getResource(path).getFile();
+		pathIcon = "res/pencil.png";
 		imgicon = new MyImageIcon(pathIcon, 20, 20);
 		btnModify.setIcon(imgicon.getImageResponsive());
 		panel_2.add(btnModify, gbc_btnModify);
@@ -141,8 +139,7 @@ public class UserInfoJPanel extends JPanel {
 		gbc_lblImage.insets = new Insets(0, 0, 5, 5);
 		gbc_lblImage.gridx = 1;
 		gbc_lblImage.gridy = 4;
-		path = Common.UTENTE.getAvatar();
-		pathIcon = getClass().getResource(path).getFile();
+		pathIcon = Common.UTENTE.getAvatar();
 		imgicon = new MyImageIcon(pathIcon, 80, 70);
 		panel_2.add(lblImage, gbc_lblImage);
 		lblImage.setIcon(imgicon.getImageResponsive());
@@ -352,10 +349,9 @@ public class UserInfoJPanel extends JPanel {
 
 		ImageIcon star = new ImageIcon();
 		if(Common.UTENTE.isAdmin())
-		path = "res/starwhite.png";
+			pathIcon = "res/starwhite.png";
 		else
-			path = "res/star.png";
-		pathIcon = getClass().getResource(path).getFile();
+			pathIcon = "res/star.png";
 		imgicon = new MyImageIcon(pathIcon, 20, 20);
 		star = imgicon.getImageResponsive();
 		for (int i = 0; i < numStelle; i++) {
@@ -455,11 +451,9 @@ public class UserInfoJPanel extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					String s = (String) comboBox.getSelectedItem();
 					String[] parts = s.split(" - ");
-					String path="";
-					path = "res/" + parts[1] + ".png";
-					System.out.println("------ path: "+path);
-					avatar = path;
-					String pathIcon = getClass().getResource(path).getFile();
+					String pathIcon="";
+					pathIcon = "res/" + parts[1] + ".png";
+					avatar = pathIcon;
 					MyImageIcon imgicon = new MyImageIcon(pathIcon, 80, 70);
 					lblImage.setIcon(imgicon.getImageResponsive());
 				}

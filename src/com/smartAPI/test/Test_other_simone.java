@@ -9,11 +9,12 @@ public class Test_other_simone {
 		//System.out.println(s.getPatternOfCategory("Storage").getBasicCodePattern());
 		//System.out.println(s.getPatternOfCategory("Storage").getInferredCodePattern());
 
-		s.associateCatAndCodePattern("Storage", "s6");
+		/*s.associateCatAndCodePattern("Storage", "s6");
 		s.addKeyword("s6", "keyword");
 		s.setCPSourceCode("println", "s6");
 		s.initScoreVoters("s6");
-		s.storeOntModel();
+		s.storeOntModel();*/
+		System.out.println(System.getProperty("user.dir"));	  
 	}
 
 }

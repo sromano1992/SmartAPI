@@ -116,8 +116,7 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 					ShowUsersInfo.surnameField.setText(" ");
 					ShowUsersInfo.nameField.setText(" ");
 					
-					String path="res/nouser.png";
-					String pathIcon = getClass().getResource(path).getFile();
+					String pathIcon="res/nouser.png";
 					MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 					ShowUsersInfo.lblImage.setIcon(imgicon.getImageResponsive());
 					

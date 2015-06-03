@@ -55,8 +55,7 @@ public class ShowUsersInfo extends JPanel{
 		setBackground(new Color(2, 94, 137));
 		lblImage = new JLabel();
 		//path dipende dall'avatar dell'utente
-		String path= "res/nouser.png";
-		String pathIcon = getClass().getResource(path).getFile();
+		String pathIcon= "res/nouser.png";
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblImage.setIcon(imgicon.getImageResponsive());
 
@@ -190,8 +189,7 @@ public class ShowUsersInfo extends JPanel{
 		//}
 
 		blackstar=new ImageIcon();
-		String blackpath = "res/grey_star.png";
-		String blackpathIcon = getClass().getResource(blackpath).getFile();
+		String blackpathIcon = "res/grey_star.png";
 		MyImageIcon blackimgicon = new MyImageIcon(blackpathIcon,20,20);
 		blackstar=blackimgicon.getImageResponsive();
 
@@ -265,8 +263,7 @@ public class ShowUsersInfo extends JPanel{
 		}
 		
 		panelStar.removeAll();
-		String path=u.getAvatar();
-		String pathIcon = getClass().getResource(path).getFile();
+		String pathIcon=u.getAvatar();
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblImage.setIcon(imgicon.getImageResponsive());
 		userField.setText(u.getNickname());
@@ -276,8 +273,7 @@ public class ShowUsersInfo extends JPanel{
 		emailField.setText(u.getEmail());
 
 		ImageIcon star=new ImageIcon();
-		path="res/star.png";
-		pathIcon = getClass().getResource(path).getFile();
+		pathIcon="res/star.png";
 		imgicon = new MyImageIcon(pathIcon,20,20);
 		star=imgicon.getImageResponsive();
 

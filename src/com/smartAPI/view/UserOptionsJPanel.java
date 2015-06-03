@@ -71,8 +71,7 @@ public class UserOptionsJPanel extends JPanel {
 
 		});
 		path="res/search.png";
-		pathIcon = getClass().getResource(path).getFile();
-		btnSearch.setIcon(new ImageIcon(pathIcon));
+		btnSearch.setIcon(new ImageIcon(this.getClass().getResource(path)));
 		btnSearch.setBounds(214, 28, 200, 52);
 		btnSearch.setBorderPainted(false);
 		btnSearch.setFocusPainted(false);
@@ -104,8 +103,7 @@ public class UserOptionsJPanel extends JPanel {
 
 		});
 		path="res/insert.png";
-		pathIcon = getClass().getResource(path).getFile();
-		btnInsert.setIcon(new ImageIcon(pathIcon));
+		btnInsert.setIcon(new ImageIcon(this.getClass().getResource(path)));
 		btnInsert.setBounds(11, 28, 200, 51);
 		add(btnInsert);
 		
@@ -129,8 +127,7 @@ public class UserOptionsJPanel extends JPanel {
 
 		});
 		path="res/show.png";
-		pathIcon = getClass().getResource(path).getFile();
-		btnShow.setIcon(new ImageIcon(pathIcon));
+		btnShow.setIcon(new ImageIcon(this.getClass().getResource(path)));
 		btnShow.setBounds(417, 28, 200, 51);
 		
 		add(btnShow);
@@ -154,8 +151,7 @@ public class UserOptionsJPanel extends JPanel {
 
 		});
 		path="res/about.png";
-		pathIcon = getClass().getResource(path).getFile();
-		btnAbout.setIcon(new ImageIcon(pathIcon));
+		btnAbout.setIcon(new ImageIcon(this.getClass().getResource(path)));
 		btnAbout.setBounds(621, 28, 200, 51);
 		add(btnAbout);
 		

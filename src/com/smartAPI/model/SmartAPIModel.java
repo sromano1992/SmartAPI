@@ -43,7 +43,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
  * This class manages '*.owl' knowledge base.
  */
 public class SmartAPIModel {
-	private static final String OWL_FILE_PATH = "/SmartAPI_1.2.owl";
+	private static final String OWL_FILE_PATH = File.separator + "SmartAPI_1.2.owl";
 	private static Logger log = Logger.getLogger("global");
 	private static OntModel base;
 	private static OntModel inf;
@@ -52,20 +52,14 @@ public class SmartAPIModel {
 		if(base != null)
 			return base;
 		base = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);		
-		String modelPath = this.getClass().getResource(OWL_FILE_PATH).getFile();
-		File file;
-		try {
-			file = new File(new java.net.URI(modelPath).getPath());
-			InputStream in = FileManager.get().open(file.getAbsolutePath());
-			if (in == null) {
-				throw new IllegalArgumentException("File: " + file.getAbsolutePath() + " not found");
-			}
-			base.read(in, null);		
-			log.info("Model created...");
-		} catch (URISyntaxException e) {
-			log.severe("Exception creating file: '" + modelPath + "'");
-			e.printStackTrace();
+		String modelPath = System.getProperty("user.dir") + OWL_FILE_PATH;
+		File file = new File(modelPath);
+		InputStream in = FileManager.get().open(file.getAbsolutePath());
+		if (in == null) {
+			throw new IllegalArgumentException("File: " + file.getAbsolutePath() + " not found");
 		}
+		base.read(in, null);		
+		log.info("Model created...");
 		return base;	
 	}
 

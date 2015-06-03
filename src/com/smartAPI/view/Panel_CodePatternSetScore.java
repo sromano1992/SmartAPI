@@ -52,10 +52,12 @@ public class Panel_CodePatternSetScore extends JPanel{
 		storedScore = false;
 		stars = new ArrayList<JLabel>();
 		setLayout(new GridLayout(1, _MAX_SCORE, 0, 0));
-		String starGreyIco = this.getClass().getResource("res/grey_star.png").getFile();
-		final String starIco = this.getClass().getResource("res/star.png").getFile();
-		final ImageIcon picGrey = new ImageIcon(starGreyIco);
-		final ImageIcon pic = new ImageIcon(starIco);
+		
+		String starGreyIco = "res/grey_star.png";
+		final MyImageIcon picGrey = new MyImageIcon(starGreyIco, 20, 20);
+		
+		String starIco = "res/star.png";
+		final MyImageIcon pic = new MyImageIcon(starIco, 20, 20);
 
 	    for (int i=0; i<=_MAX_SCORE; i++){
 	    	final JLabelWithPosition j;
@@ -72,23 +74,21 @@ public class Panel_CodePatternSetScore extends JPanel{
 					@Override
 					public void mouseEntered(MouseEvent arg0) {	
 						for (int i=1; i<_MAX_SCORE+1; i++){
-							stars.get(i).setIcon(picGrey);
+							stars.get(i).setIcon(picGrey.getImageResponsive());
 						}
 					}
 					public void mouseExited(MouseEvent arg0) {
 						if (!storedScore){
 							for (int i=1; i<storedScoreValue; i++)
-								stars.get(i).setIcon(pic);
+								stars.get(i).setIcon(pic.getImageResponsive());
 							for (int i=storedScoreValue+1; i<_MAX_SCORE; i++){
-								stars.get(i).setIcon(picGrey);
+								stars.get(i).setIcon(picGrey.getImageResponsive());
 							}
 						}
 						storedScore = false;
 					}				
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
-						
-
 						storedScore = true;
 						storedScoreValue = 0;
 					}
@@ -99,9 +99,9 @@ public class Panel_CodePatternSetScore extends JPanel{
 					@Override
 					public void mouseEntered(MouseEvent arg0) {					
 						for (int i=1; i<=j.getPos(); i++)
-							stars.get(i).setIcon(pic);
+							stars.get(i).setIcon(pic.getImageResponsive());
 						for (int i=j.getPos()+1; i<_MAX_SCORE+1; i++){
-							stars.get(i).setIcon(picGrey);
+							stars.get(i).setIcon(picGrey.getImageResponsive());
 						}
 					}
 					public void mouseExited(MouseEvent arg0) {
@@ -109,7 +109,7 @@ public class Panel_CodePatternSetScore extends JPanel{
 							for (int i=1; i<storedScoreValue; i++)
 								stars.get(i).setIcon(pic);
 							for (int i=storedScoreValue+1; i<_MAX_SCORE+1; i++){
-								stars.get(i).setIcon(picGrey);
+								stars.get(i).setIcon(picGrey.getImageResponsive());
 							}
 						}
 						storedScore = false;
@@ -128,6 +128,9 @@ public class Panel_CodePatternSetScore extends JPanel{
 	    	stars.add(j);
 	    	add(j);
 	    }
+	    for (int i=1; i<_MAX_SCORE+1; i++){
+			stars.get(i).setIcon(picGrey.getImageResponsive());
+		}
 	}
 	
 	public void addListener(ISetScoreListener listener){

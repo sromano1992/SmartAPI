@@ -35,8 +35,7 @@ public class RemoveUser extends JPanel{
 				setBackground(new Color(2, 94, 137));
 				lblImage = new JLabel("");
 				//path dipende dall'avatar dell'utente
-				String path="res/4.png";
-				String pathIcon = getClass().getResource(path).getFile();
+				String pathIcon="res/4.png";
 				MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 				lblImage.setIcon(imgicon.getImageResponsive());
 				
@@ -138,8 +137,7 @@ public class RemoveUser extends JPanel{
 				emailField.setBackground(new Color(230, 230, 230));
 				emailField.setBounds(110, 314, 204, 37);
 				add(emailField);
-				path="res/pencil.png";
-				pathIcon = getClass().getResource(path).getFile();
+				pathIcon="res/pencil.png";
 				imgicon = new MyImageIcon(pathIcon,20,20);
 				
 				Vector comboBoxItems=new Vector();
@@ -150,15 +148,12 @@ public class RemoveUser extends JPanel{
 			    comboBoxItems.add("avatar - 5");
 			    comboBoxItems.add("avatar - 6");
 			    final DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
-				path="res/pencil.png";
-				pathIcon = getClass().getResource(path).getFile();
+			    pathIcon="res/pencil.png";
 				imgicon = new MyImageIcon(pathIcon,20,20);
-				path="res/pencil.png";
-				pathIcon = getClass().getResource(path).getFile();
+				pathIcon="res/pencil.png";
 				imgicon = new MyImageIcon(pathIcon,20,20);
 				ImageIcon star=new ImageIcon();
-				path="res/star.png";
-				pathIcon = getClass().getResource(path).getFile();
+				pathIcon="res/star.png";
 				imgicon = new MyImageIcon(pathIcon,20,20);
 				star=imgicon.getImageResponsive();
 				for (int i=0; i<SCORE; i++){

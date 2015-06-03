@@ -11,7 +11,7 @@ public class MyImageIcon extends ImageIcon{
 	private ImageIcon imageIcon;
 	
 	public MyImageIcon(String path, int width, int height){
-		imageIcon = new ImageIcon(path);
+		imageIcon = new ImageIcon(this.getClass().getResource(path));
 		image = imageIcon.getImage();
 		newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); 
 		imageIcon = new ImageIcon(newimg);

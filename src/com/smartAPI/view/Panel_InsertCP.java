@@ -35,6 +35,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 
 import java.awt.Font;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JLabel;
@@ -46,8 +47,10 @@ import java.awt.ScrollPane;
 
 import javax.swing.ImageIcon;
 
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.smartAPI.control.AddCodePatternControl;
 import com.smartAPI.model.Common;
+import com.smartAPI.model.SmartAPIModel;
 
 import javax.swing.JEditorPane;
 
@@ -95,8 +98,11 @@ public class Panel_InsertCP extends JPanel {
 
 		Vector v = new Vector();
 
-		v.add("Storage");
-		v.add("Database");
+		SmartAPIModel s = new SmartAPIModel();
+		ArrayList<Resource> categories = s.getPatternCategory();
+		for (Resource r:categories){
+			v.add(r.getLocalName());
+		}
 		v.add("Other...");
 		DefaultComboBoxModel model = new DefaultComboBoxModel(v);
 		categoria = (String) v.get(0);
