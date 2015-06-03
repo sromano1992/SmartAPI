@@ -9,6 +9,7 @@ import java.awt.event.FocusListener;
 import java.util.Vector;
 import java.util.logging.Logger;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
@@ -168,7 +170,8 @@ public class ShowUsersInfo extends JPanel{
 			add(lblMakeAdmin);
 
 			textFieldYes = new JTextField();
-
+			Border border = BorderFactory.createLineBorder(new Color(250, 172, 88), 0);
+			textFieldYes.setBorder(border);
 			textFieldYes.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldYes.setText("YES");
 			textFieldYes.setEditable(false);
@@ -179,6 +182,7 @@ public class ShowUsersInfo extends JPanel{
 			textFieldNo = new JTextField();
 			
 			textFieldNo.setForeground(Color.BLACK);
+			textFieldNo.setBorder(border);
 			textFieldNo.setText("NO");
 			textFieldNo.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldNo.setEditable(false);

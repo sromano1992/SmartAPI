@@ -43,23 +43,38 @@ import java.awt.BorderLayout;
 public class UserInfoJPanel extends JPanel {
 	private static Logger log;
 	JLabel lblImage;
+	JLabel lblUser;
+	JLabel lblPassword;
+	JLabel lblName;
+	JLabel lblSurname;
+	JLabel lblEmail;
+	JLabel lblPersonalData;
 	private static int SCORE = 10;
 	private JTextField userField;
 	private JPasswordField passwordField;
 	private JTextField nameField;
 	private JTextField surnameField;
 	private JTextField emailField;
-	private final JComboBox comboBox;
+	private JComboBox comboBox;
 	private JButton btnSave;
-	private String avatar = "";// iniz. con avatar user
 	private ArrayList<IUserOptionListener> listener_s;
 	private ArrayList<IUserPanelListener> logOutListener_s;
 	private JLabel lblYourInfo;
 	private JPanel panel_2;
 	private JPanel panel_star;
-
+	Vector comboBoxItems;
+	DefaultComboBoxModel model;
+	private String avatar=Common.UTENTE.getAvatar();//iniz. con avatar user
+	
 	public UserInfoJPanel() {
 		log = Logger.getLogger("global");
+		comboBoxItems = new Vector();
+		comboBoxItems.add("");
+		model = new DefaultComboBoxModel(
+				comboBoxItems);
+		comboBox = new JComboBox(model);
+		
+		
 		setBackground(new Color(2, 94, 137));
 		// path dipende dall'avatar dell'utente
 		String path = Common.UTENTE.getAvatar();
@@ -141,27 +156,10 @@ public class UserInfoJPanel extends JPanel {
 		panel_2.add(panel_star, gbc_panelStar);
 		panel_star.setBackground(new Color(2, 94, 137));
 
-		Vector comboBoxItems = new Vector();
-		comboBoxItems.add("avatar - 1");
-		comboBoxItems.add("avatar - 2");
-		comboBoxItems.add("avatar - 3");
-		comboBoxItems.add("avatar - 4");
-		comboBoxItems.add("avatar - 5");
-		comboBoxItems.add("avatar - 6");
-		comboBoxItems.add("avatar - 7");
-		comboBoxItems.add("avatar - 8");
+		 
+		
 
-		final DefaultComboBoxModel model = new DefaultComboBoxModel(
-				comboBoxItems);
-		comboBox = new JComboBox(model);
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.fill = GridBagConstraints.BOTH;
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.gridx = 1;
-		gbc_comboBox.gridy = 5;
-		panel_2.add(comboBox, gbc_comboBox);
-
-		JLabel lblUser = new JLabel("User");
+		lblUser = new JLabel("User");
 		GridBagConstraints gbc_lblUser = new GridBagConstraints();
 		gbc_lblUser.fill = GridBagConstraints.BOTH;
 		gbc_lblUser.insets = new Insets(0, 0, 5, 0);
@@ -184,7 +182,7 @@ public class UserInfoJPanel extends JPanel {
 		userField.setColumns(10);
 		userField.setBackground(new Color(230, 230, 230));
 
-		JLabel lblPassword = new JLabel("Password");
+		lblPassword = new JLabel("Password");
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.fill = GridBagConstraints.BOTH;
 		gbc_lblPassword.insets = new Insets(0, 0, 5, 0);
@@ -206,7 +204,7 @@ public class UserInfoJPanel extends JPanel {
 		passwordField.setEditable(false);
 		passwordField.setBackground(new Color(230, 230, 230));
 
-		JLabel lblPersonalData = new JLabel("Personal Data");
+		lblPersonalData = new JLabel("Personal Data");
 		GridBagConstraints gbc_lblPersonalData = new GridBagConstraints();
 		gbc_lblPersonalData.fill = GridBagConstraints.BOTH;
 		gbc_lblPersonalData.gridwidth = 4;
@@ -220,7 +218,7 @@ public class UserInfoJPanel extends JPanel {
 		lblPersonalData.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblPersonalData.setBackground(new Color(27, 147, 225));
 
-		JLabel lblName = new JLabel("Name");
+		lblName = new JLabel("Name");
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
 		gbc_lblName.fill = GridBagConstraints.BOTH;
 		gbc_lblName.insets = new Insets(0, 0, 5, 0);
@@ -243,7 +241,7 @@ public class UserInfoJPanel extends JPanel {
 		nameField.setBackground(new Color(230, 230, 230));
 		nameField.setColumns(10);
 
-		JLabel lblSurname = new JLabel("Surname");
+		 lblSurname = new JLabel("Surname");
 		GridBagConstraints gbc_lblSurname = new GridBagConstraints();
 		gbc_lblSurname.fill = GridBagConstraints.BOTH;
 		gbc_lblSurname.insets = new Insets(0, 0, 5, 0);
@@ -265,7 +263,7 @@ public class UserInfoJPanel extends JPanel {
 		surnameField.setEditable(false);
 		surnameField.setBackground(new Color(230, 230, 230));
 
-		JLabel lblEmail = new JLabel("Email");
+		lblEmail = new JLabel("Email");
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
 		gbc_lblEmail.fill = GridBagConstraints.BOTH;
 		gbc_lblEmail.insets = new Insets(0, 0, 5, 0);
@@ -350,19 +348,7 @@ public class UserInfoJPanel extends JPanel {
 		int numStelle = LoginGrafica.getModel().cambiaStelle(
 				userField.getText());
 
-		comboBox.setVisible(false);
-		comboBox.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				String s = (String) comboBox.getSelectedItem();
-				String[] parts = s.split(" - ");
-				String path = "res/" + parts[1] + ".png";
-				avatar = path;
-				String pathIcon = getClass().getResource(path).getFile();
-				MyImageIcon imgicon = new MyImageIcon(pathIcon, 80, 70);
-				lblImage.setIcon(imgicon.getImageResponsive());
-			}
-		});
+	
 
 		ImageIcon star = new ImageIcon();
 		path = "res/star.png";
@@ -394,12 +380,85 @@ public class UserInfoJPanel extends JPanel {
 			setBackground(new Color(250, 172, 88));
 			panel_2.setBackground(new Color(250, 172, 88));
 			lblYourInfo.setText("ADMIN INFO");
+			lblYourInfo.setBackground(new Color(151, 121, 102));
+			comboBoxItems = new Vector();
+			comboBoxItems.add("admin - 1");
+			comboBoxItems.add("admin - 2");
+
+			model = new DefaultComboBoxModel(
+					comboBoxItems);
+			comboBox = new JComboBox(model);
+			comboBox.setVisible(false);
+			GridBagConstraints gbc_comboBox = new GridBagConstraints();
+			gbc_comboBox.fill = GridBagConstraints.BOTH;
+			gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+			gbc_comboBox.gridx = 1;
+			gbc_comboBox.gridy = 5;
+			panel_2.add(comboBox, gbc_comboBox);
+			comboBox.addActionListener(new ActionListener() {
+
+				public void actionPerformed(ActionEvent e) {
+					String s = (String) comboBox.getSelectedItem();
+					String[] parts = s.split(" - ");
+					String path="";
+					path = "res/admin-" + parts[1] + ".png";
+					System.out.println("------ path: "+path);
+					avatar = path;
+					String pathIcon = getClass().getResource(path).getFile();
+					MyImageIcon imgicon = new MyImageIcon(pathIcon, 80, 70);
+					lblImage.setIcon(imgicon.getImageResponsive());
+				}
+			});
+			
+			
+			lblUser.setBackground(new Color(180, 95, 4));
+			lblPassword.setBackground(new Color(180, 95, 4));
+			lblName.setBackground(new Color(180, 95, 4));
+			lblSurname.setBackground(new Color(180, 95, 4));
+			lblEmail.setBackground(new Color(180, 95, 4));
+			lblPersonalData.setBackground(new Color(151, 121, 102));
+			
 		}
 		else{
 			panel_star.setBackground(new Color(2, 94, 137));
 			setBackground(new Color(2, 94, 137));
 			panel_2.setBackground(new Color(2, 94, 137));
 			lblYourInfo.setText("YOUR INFO");
+			comboBoxItems = new Vector();
+			
+			comboBoxItems.add("avatar - 1");
+			comboBoxItems.add("avatar - 2");
+			comboBoxItems.add("avatar - 3");
+			comboBoxItems.add("avatar - 4");
+			comboBoxItems.add("avatar - 5");
+			comboBoxItems.add("avatar - 6");
+			comboBoxItems.add("avatar - 7");
+			comboBoxItems.add("avatar - 8");
+
+			model = new DefaultComboBoxModel(
+					comboBoxItems);
+			comboBox = new JComboBox(model);
+			comboBox.setVisible(false);
+			GridBagConstraints gbc_comboBox = new GridBagConstraints();
+			gbc_comboBox.fill = GridBagConstraints.BOTH;
+			gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+			gbc_comboBox.gridx = 1;
+			gbc_comboBox.gridy = 5;
+			panel_2.add(comboBox, gbc_comboBox);
+			comboBox.addActionListener(new ActionListener() {
+
+				public void actionPerformed(ActionEvent e) {
+					String s = (String) comboBox.getSelectedItem();
+					String[] parts = s.split(" - ");
+					String path="";
+					path = "res/" + parts[1] + ".png";
+					System.out.println("------ path: "+path);
+					avatar = path;
+					String pathIcon = getClass().getResource(path).getFile();
+					MyImageIcon imgicon = new MyImageIcon(pathIcon, 80, 70);
+					lblImage.setIcon(imgicon.getImageResponsive());
+				}
+			});
 		}
 	}
 }
