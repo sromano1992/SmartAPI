@@ -710,8 +710,8 @@ public class SmartAPIModel {
 			}
 		}
 		
-		ArrayList<Utente> utenti = getUsers();
-		for(Utente u : utenti){
+		ArrayList<Utente> users = getUsers();
+		for(Utente u : users){
 			if(followProject(u.getNickname(), name))
 				removeFollowerFromProject(name, u.getNickname());
 		}
