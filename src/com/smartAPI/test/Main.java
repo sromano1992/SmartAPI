@@ -1,10 +1,14 @@
 package com.smartAPI.test;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
+import com.smartAPI.control.OSValidator;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.view.CreateAdminJPanel;
 import com.smartAPI.view.Desktop_0;
+import java.awt.Toolkit;
 
 public class Main {
 	public static  JFrame f;
@@ -27,7 +31,12 @@ public class Main {
 			f.setVisible(true);
 			f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
 		}
-		//f.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		if (OSValidator.isWindows())
+			f.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		/*else{
+			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+			f.setSize(dim.width, dim.height);
+		}*/
 		
 		
 	}

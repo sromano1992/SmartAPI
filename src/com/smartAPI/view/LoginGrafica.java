@@ -32,6 +32,11 @@ import com.smartAPI.model.Utente;
 
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Rectangle;
 
 
 public class LoginGrafica extends JPanel{
@@ -42,12 +47,15 @@ public class LoginGrafica extends JPanel{
 	private JLabel lblPassword;
 	private JLabel lblNewAccount;
 	private static final Logger Log = Logger.getLogger( "InfoLogging" );
-	private JLabel lblError;
 	private static SmartAPIModel model;
 	private ArrayList<ILogInPanelListner> logInListener_s;
 	private JLabel lblLogo;
 	JLabel lblLogin;
 	private JProgressBar progressBar;
+	private JPanel panel_1;
+	private JLabel label;
+	private JLabel label_1;
+	private JLabel lblerror;
 
 	/**
 	 * Initialize the contents of the frame.
@@ -57,100 +65,136 @@ public class LoginGrafica extends JPanel{
 		model = new SmartAPIModel();
 		this.setBackground(new Color(2, 94, 137));
 		this.setBounds(100, 100, 606, 660);
-		this.setLayout(null);
+		setLayout(new BorderLayout(0, 0));
+		
+		panel_1 = new JPanel();
+		panel_1.setBackground(new Color(2,94,137));
+		add(panel_1);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[] {0, 0, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
+						
+								//LABEL LOGIN
+								lblLogin = new JLabel("LOGIN");
+								GridBagConstraints gbc_lblLogin = new GridBagConstraints();
+								gbc_lblLogin.insets = new Insets(0, 0, 5, 5);
+								gbc_lblLogin.gridx = 2;
+								gbc_lblLogin.gridy = 0;
+								panel_1.add(lblLogin, gbc_lblLogin);
+								lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
+								lblLogin.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+								lblLogin.setForeground(Color.WHITE);
+						
+						label = new JLabel("");
+						GridBagConstraints gbc_label = new GridBagConstraints();
+						gbc_label.weightx = 0.2;
+						gbc_label.insets = new Insets(0, 0, 5, 5);
+						gbc_label.gridx = 0;
+						gbc_label.gridy = 4;
+						panel_1.add(label, gbc_label);
+				
+						//LABEL USER
+						lblUser = new JLabel("User");
+						lblUser.setBounds(new Rectangle(0, 0, 100, 100));
+						GridBagConstraints gbc_lblUser = new GridBagConstraints();
+						gbc_lblUser.weightx = 0.1;
+						gbc_lblUser.fill = GridBagConstraints.BOTH;
+						gbc_lblUser.insets = new Insets(0, 0, 5, 0);
+						gbc_lblUser.gridx = 1;
+						gbc_lblUser.gridy = 4;
+						panel_1.add(lblUser, gbc_lblUser);
+						lblUser.setHorizontalAlignment(SwingConstants.CENTER);
+						lblUser.setForeground(Color.WHITE);
+						lblUser.setBackground(new Color(2, 66, 96));
+						lblUser.setOpaque(true);
+						
+								//USER FIELD
+								userField = new JTextField();
+								GridBagConstraints gbc_userField = new GridBagConstraints();
+								gbc_userField.weightx = 0.2;
+								gbc_userField.fill = GridBagConstraints.BOTH;
+								gbc_userField.insets = new Insets(0, 0, 5, 5);
+								gbc_userField.gridx = 2;
+								gbc_userField.gridy = 4;
+								panel_1.add(userField, gbc_userField);
+								userField.setText("amedeo");
+								userField.setColumns(10);
+										
+										label_1 = new JLabel("");
+										GridBagConstraints gbc_label_1 = new GridBagConstraints();
+										gbc_label_1.weightx = 0.2;
+										gbc_label_1.insets = new Insets(0, 0, 5, 0);
+										gbc_label_1.gridx = 3;
+										gbc_label_1.gridy = 4;
+										panel_1.add(label_1, gbc_label_1);
+								
+										//LABEL PASSWORD
+										lblPassword = new JLabel("Password");
+										GridBagConstraints gbc_lblPassword = new GridBagConstraints();
+										gbc_lblPassword.fill = GridBagConstraints.BOTH;
+										gbc_lblPassword.insets = new Insets(0, 0, 5, 0);
+										gbc_lblPassword.gridx = 1;
+										gbc_lblPassword.gridy = 5;
+										panel_1.add(lblPassword, gbc_lblPassword);
+										lblPassword.setOpaque(true);
+										lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
+										lblPassword.setForeground(Color.WHITE);
+										lblPassword.setBackground(new Color(2, 66, 96));
+										
+												//PASSWORD FIELD
+												passwordField = new JPasswordField("amedeo");
+												GridBagConstraints gbc_passwordField = new GridBagConstraints();
+												gbc_passwordField.weightx = 0.1;
+												gbc_passwordField.fill = GridBagConstraints.BOTH;
+												gbc_passwordField.insets = new Insets(0, 0, 5, 5);
+												gbc_passwordField.gridx = 2;
+												gbc_passwordField.gridy = 5;
+												panel_1.add(passwordField, gbc_passwordField);
+														
+														lblerror = new JLabel("");
+														lblerror.setOpaque(true);
+														GridBagConstraints gbc_lblerror = new GridBagConstraints();
+														gbc_lblerror.fill = GridBagConstraints.BOTH;
+														gbc_lblerror.insets = new Insets(0, 0, 5, 5);
+														gbc_lblerror.gridx = 1;
+														gbc_lblerror.gridy = 6;
+														panel_1.add(lblerror, gbc_lblerror);
+														lblerror.setBackground(Color.red);
+												
+														//BUTTON LOGIN
+														JButton btnLogin = new JButton("Login");
+														GridBagConstraints gbc_btnLogin = new GridBagConstraints();
+														gbc_btnLogin.fill = GridBagConstraints.BOTH;
+														gbc_btnLogin.insets = new Insets(0, 0, 0, 5);
+														gbc_btnLogin.gridx = 2;
+														gbc_btnLogin.gridy = 7;
+														panel_1.add(btnLogin, gbc_btnLogin);
+														btnLogin.addActionListener(new ActionListener() {
 
-		//USER FIELD
-		userField = new JTextField();
-		userField.setText("amedeo");
-		userField.setBounds(138, 427, 282, 52);
-		this.add(userField);
-		userField.setColumns(10);
+															public void actionPerformed(ActionEvent arg0) {
+																try {
+																	LoginControl loginControl = new LoginControl(model);
 
-		//PASSWORD FIELD
-		passwordField = new JPasswordField("amedeo");
-		passwordField.setBounds(138, 472, 282, 52);
-		this.add(passwordField);
+																	if(loginControl.controllaUtente(userField.getText(), passwordField.getPassword())) {
+																		Utente utente = loginControl.getUtente(userField.getText());
+																		Common.setUser(utente);
+																		for (ILogInPanelListner c:logInListener_s){
+																			c.loginClicked();
+																		}
+																		log.info("raised evento to " + logInListener_s.size() + " listeners...");
+																	}
+																}
 
-		//LABEL USER
-		lblUser = new JLabel("User");
-		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUser.setForeground(Color.WHITE);
-		lblUser.setBackground(new Color(2, 66, 96));
-		lblUser.setOpaque(true);
-		lblUser.setBounds(63, 430, 79, 45);
-		this.add(lblUser);
+																catch(UserException u) {
 
-		//LABEL PASSWORD
-		lblPassword = new JLabel("Password");
-		lblPassword.setOpaque(true);
-		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword.setForeground(Color.WHITE);
-		lblPassword.setBackground(new Color(2, 66, 96));
-		lblPassword.setBounds(63, 475, 79, 45);
-		this.add(lblPassword);
-
-		//BUTTON LOGIN
-		JButton btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					LoginControl loginControl = new LoginControl(model);
-
-					if(loginControl.controllaUtente(userField.getText(), passwordField.getPassword())) {
-						Utente utente = loginControl.getUtente(userField.getText());
-						Common.setUser(utente);
-						for (ILogInPanelListner c:logInListener_s){
-							c.loginClicked();
-						}
-						log.info("raised evento to " + logInListener_s.size() + " listeners...");
-					}
-				}
-
-				catch(UserException u) {
-
-					lblError.setVisible(true);
-					lblError.setText(u.getMessage());
-				} 		
-			}
-		});
-		btnLogin.setBounds(106, 578, 274, 37);
-		this.add(btnLogin);
-
-		//LABEL LOGIN
-		lblLogin = new JLabel("LOGIN");
-		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogin.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
-		lblLogin.setForeground(Color.WHITE);
-		lblLogin.setBounds(94, 340, 274, 37);
-		this.add(lblLogin);
-
-		//LABEL NEWACCOUNT
-//		lblNewAccount = new JLabel("Create an account");
-//		lblNewAccount.addMouseListener(new MouseAdapter() {
-//			public void mouseClicked(MouseEvent e) {
-//				for (ILogInPanelListner c:logInListener_s){
-//					c.newAccountClicked();
-//				}
-//				log.info("raised evento to " + logInListener_s.size() + " listeners...");
-//			}
-//			public void mouseEntered(MouseEvent e) {
-//				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-//			}
-//		});
-//		lblNewAccount.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-//		lblNewAccount.setForeground(new Color(7, 201, 155));
-//		lblNewAccount.setHorizontalAlignment(SwingConstants.RIGHT);
-//		lblNewAccount.setBounds(215, 526, 177, 16);
-//		this.add(lblNewAccount);
-
-		//LABEL ERROR
-		lblError = new JLabel("");
-		lblError.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-		lblError.setHorizontalAlignment(SwingConstants.LEFT);
-		lblError.setForeground(Color.RED);
-		lblError.setBounds(63, 526, 197, 16);
-		this.add(lblError);
+																	lblerror.setVisible(true);
+																	lblerror.setText(u.getMessage());
+																} 		
+															}
+														});
 
 		//lblLogo = new JLabel("");
 		//lblLogo.setHorizontalAlignment(SwingConstants.TRAILING);

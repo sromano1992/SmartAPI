@@ -21,7 +21,7 @@ import java.awt.Component;
  * 		second one to show projects
  */
 public class Panel_Search extends JPanel {
-	private static final String SHOW_CP = "Show code patterns";
+	private static final String SHOW_CP = "Show cp";
 	private static final String SHOW_PROJECTS = "Show projects";
 	private JPanel panel, thisPanel;
 	private Panel_ShowProjects panel_1;

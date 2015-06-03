@@ -11,7 +11,6 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import javax.swing.JTextPane;
 import javax.swing.border.Border;
 
 import java.awt.BorderLayout;
@@ -203,15 +202,6 @@ public class Panel_InsertProject extends JPanel {
 			chkBoxPanel.add(toAdd);
 			chkBox_s.add(toAdd);
 		}
-
-
 	}
-	
-	public static void main(String[] args) {
-		JFrame f = new JFrame();
-		f.setSize(300, 400);
-		f.setVisible(true);
-		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
-		f.getContentPane().add(new Panel_InsertProject());
-	}
+
 }

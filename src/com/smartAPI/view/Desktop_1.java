@@ -1,146 +1,149 @@
 package com.smartAPI.view;
 
-import javax.swing.JPanel;
-
-import java.awt.Component;
-import java.awt.GridLayout;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-
-import javax.swing.JSplitPane;
 import javax.swing.GroupLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.GroupLayout.Alignment;
 
 import com.smartAPI.control.IUserOptionListener;
 import com.smartAPI.control.IUserPanelListener;
 import com.smartAPI.model.Common;
 
+import java.awt.Component;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.awt.Color;
+import java.awt.BorderLayout;
 
 public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanelListener{
-	private Panel_Insert panel_Insert;
 	private Panel_Search panel_search;
 	private Panel_ShowAllUser panel_ShowUser;
 	private UserInfoJPanel userInfoJPanel;
-	private AdminInfoJPanel adminInfoJPanel;
 	private About panel_About;
 	private IUserPanelListener mainFrame;
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3, LOGOUT = 4;
 	private int actualPanel = INSERT_CP;
-	private JPanel panel;
-	
-	public Desktop_1(IUserPanelListener desktop_0) {
-		this.mainFrame = desktop_0;
-		panel = addControl_s();
-
-		panel_Insert = new Panel_Insert();
-		panel_Insert.setBounds(0, 181, 920, 480);
-		panel.add(panel_Insert);
-
-		panel_search = new Panel_Search();
-		panel_search.setBounds(20, 107, 811, 582);		
-		panel_ShowUser = new Panel_ShowAllUser();
-		panel_ShowUser.setBounds(0, 181, 920, 508);		
-		panel_About = new About();
-		panel_About.setBounds(20, 107, 811, 582);
-	}
+	private JPanel panel, panel_4;
+	private	JFrame f;
+	private Panel_Insert panel_Insert;
 
 	/**
-	 * Will create GUI and will return
-	 * left panel where already has been added
-	 * options bar (insert-search...)
-	 * @return
+	 * Create the panel.
 	 */
-	private JPanel addControl_s() {
-		setLayout(new GridLayout(1, 0, 0, 0));
-		setSize(1416,858);
-		setBackground(new Color(228, 230, 235));
-		JSplitPane splitPane = new JSplitPane();
-		splitPane.setEnabled(false);
-		splitPane.setBackground(new Color(228, 230, 235));
-		splitPane.setDividerSize(0);
-		add(splitPane);
+	public Desktop_1(IUserPanelListener desktop_0) {
+		this.mainFrame = desktop_0;
 
-		if (!Common.UTENTE.isAdmin()){
-			userInfoJPanel = new UserInfoJPanel();
-			userInfoJPanel.addLogOutListener(this);
-			splitPane.setLeftComponent(userInfoJPanel);
-			GroupLayout gl_userInfoJPanel = new GroupLayout(userInfoJPanel);
-			gl_userInfoJPanel.setHorizontalGroup(
-					gl_userInfoJPanel.createParallelGroup(Alignment.LEADING)
-					.addGap(0, 400, Short.MAX_VALUE)
-					);
-			gl_userInfoJPanel.setVerticalGroup(
-					gl_userInfoJPanel.createParallelGroup(Alignment.LEADING)
-					.addGap(0, 542, Short.MAX_VALUE)
-					);
-			userInfoJPanel.setLayout(gl_userInfoJPanel);
-		}
-		else{
-			adminInfoJPanel  = new AdminInfoJPanel();
-			adminInfoJPanel.addUserInfoJPanelListener(this);
-			splitPane.setLeftComponent(adminInfoJPanel);
-			GroupLayout gl_AdminInfoJPanel = new GroupLayout(adminInfoJPanel);
-			gl_AdminInfoJPanel.setHorizontalGroup(
-					gl_AdminInfoJPanel.createParallelGroup(Alignment.LEADING)
-					.addGap(0, 400, Short.MAX_VALUE)
-					);
-			gl_AdminInfoJPanel.setVerticalGroup(
-					gl_AdminInfoJPanel.createParallelGroup(Alignment.LEADING)
-					.addGap(0, 542, Short.MAX_VALUE)
-					);
-			adminInfoJPanel.setLayout(gl_AdminInfoJPanel);
-		}
+		panel_search = new Panel_Search();	
+		panel_ShowUser = new Panel_ShowAllUser();		
+		panel_About = new About();
+		
+		
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[] {500, 250};
+		gridBagLayout.rowWeights = new double[]{1.0};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0};
+		setLayout(gridBagLayout);
+		
+		panel = new JPanel();
+		panel.setBackground(Color.BLACK);
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.insets = new Insets(0, 0, 0, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 0;
+		add(panel, gbc_panel);
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		userInfoJPanel = new UserInfoJPanel();
+		userInfoJPanel.addLogOutListener(this);
+		userInfoJPanel.isAdmin(Common.UTENTE.isAdmin());
+		panel.add(userInfoJPanel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.ORANGE);
+		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+		gbc_panel_1.gridx = 1;
+		gbc_panel_1.fill = GridBagConstraints.BOTH;
+		gbc_panel_1.gridy = 0;
+		add(panel_1, gbc_panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_2 = new JPanel();
+		panel_1.add(panel_2, BorderLayout.CENTER);
+		GridBagLayout gbl_panel_2 = new GridBagLayout();
+		gbl_panel_2.columnWidths = new int[] {0};
+		gbl_panel_2.rowHeights = new int[] {20, 660};
+		gbl_panel_2.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_2.rowWeights = new double[]{1.0, 1.0};
+		panel_2.setLayout(gbl_panel_2);
+		
+		JPanel panel_3 = new JPanel();
+		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
+		gbc_panel_3.fill = GridBagConstraints.BOTH;
+		gbc_panel_3.insets = new Insets(0, 0, 5, 0);
+		gbc_panel_3.gridx = 0;
+		gbc_panel_3.gridy = 0;
+		panel_2.add(panel_3, gbc_panel_3);
+		panel_3.setLayout(new BorderLayout(0, 0));
+		
+		UserOptionsJPanel userOptionsJPanel = new UserOptionsJPanel();
+		userOptionsJPanel.addListener(this);
+		/*GridBagLayout gridBagLayout_1 = (GridBagLayout) userOptionsJPanel.getLayout();
+		gridBagLayout_1.rowWeights = new double[]{0.0};
+		gridBagLayout_1.rowHeights = new int[]{94};
+		gridBagLayout_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
+		gridBagLayout_1.columnWidths = new int[]{208, 208, 208, 208};
+		panel_3.add(userOptionsJPanel, BorderLayout.NORTH);*/
+		panel_3.add(userOptionsJPanel);
+		
+		panel_4 = new JPanel();
+		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
+		gbc_panel_4.fill = GridBagConstraints.BOTH;
+		gbc_panel_4.gridx = 0;
+		gbc_panel_4.gridy = 1;
+		panel_2.add(panel_4, gbc_panel_4);
+		panel_4.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		panel_Insert = new Panel_Insert();
+		panel_4.add(panel_Insert);
 
-
-
-		JPanel panel = new JPanel();
-		splitPane.setRightComponent(panel);
-		panel.setLayout(null);
-		panel.setBackground(new Color(228, 230, 235));
-
-		UserOptionsJPanel panel_UserOptionsColors = new UserOptionsJPanel();
-		panel_UserOptionsColors.addListener(this);
-		panel_UserOptionsColors.setBounds(0, 6, 875, 100);
-		panel.add(panel_UserOptionsColors);
-		panel_UserOptionsColors.setLayout(null);
-		return panel;
 	}
-
+	
 	@Override
 	public void searchClicked() {
-		// TODO Auto-generated method stub
-		if(actualPanel == SHOW_CODE_PATTERN)
-			panel.remove(panel_search);
-		else if(actualPanel == SHOW_USER)
-			panel.remove(panel_ShowUser);
-		else if(actualPanel == INSERT_CP)
-			panel.remove(panel_Insert);
-		else if(actualPanel == SHOW_ABOUT)
-			panel.remove(panel_About);
-
-		actualPanel = SHOW_CODE_PATTERN;
-
-		panel_search.refresh();
-		panel.add(panel_search);
-		updateGUI();
+		if (f == null){
+			f = new JFrame_Search();
+		}
+		if (f.isVisible())
+			f.toFront();
+		if (f.getState() == Frame.ICONIFIED){
+			f.setState(Frame.NORMAL);
+		}
+		else{
+			f.setVisible(true);
+			f.toFront();
+		}
 	}
 
 	@Override
 	public void insertClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
-			panel.remove(panel_search);
+			panel_4.remove(panel_search);
 		else if(actualPanel == SHOW_USER)
-			panel.remove(panel_ShowUser);
+			panel_4.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
-			panel.remove(panel_Insert);
+			panel_4.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
-			panel.remove(panel_About);
+			panel_4.remove(panel_About);
 
 		actualPanel = INSERT_CP;
 
-		panel.add(panel_Insert);
+		panel_4.add(panel_Insert);
 		updateGUI();
 	}
 
@@ -148,17 +151,17 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	public void showUserClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
-			panel.remove(panel_search);
+			panel_4.remove(panel_search);
 		else if(actualPanel == SHOW_USER)
-			panel.remove(panel_ShowUser);
+			panel_4.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
-			panel.remove(panel_Insert);
+			panel_4.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
-			panel.remove(panel_About);
+			panel_4.remove(panel_About);
 
 		actualPanel = SHOW_USER;
 
-		panel.add(panel_ShowUser);
+		panel_4.add(panel_ShowUser);
 		updateGUI();
 	}
 
@@ -166,16 +169,16 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	public void aboutClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
-			panel.remove(panel_search);
+			panel_4.remove(panel_search);
 		else if(actualPanel == SHOW_USER)
-			panel.remove(panel_ShowUser);
+			panel_4.remove(panel_ShowUser);
 		else if(actualPanel == INSERT_CP)
-			panel.remove(panel_Insert);
+			panel_4.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
-			panel.remove(panel_About);
+			panel_4.remove(panel_About);
 
 		actualPanel = SHOW_ABOUT;
-		panel.add(panel_About);
+		panel_4.add(panel_About);
 		updateGUI();
 	}
 
