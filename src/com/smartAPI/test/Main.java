@@ -31,12 +31,12 @@ public class Main {
 			f.setVisible(true);
 			f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
 		}
-		if (OSValidator.isWindows())
+		/*if (OSValidator.isWindows())
 			f.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		else{
 			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 			f.setSize(dim.width, dim.height);
-		}
+		}*/
 		
 		
 	}
