@@ -356,8 +356,6 @@ public class UserInfoJPanel extends JPanel {
 		star = imgicon.getImageResponsive();
 		for (int i = 0; i < numStelle; i++) {
 			panel_star.add(new JLabel(star));
-			panel_star.add(new JLabel(star));
-			panel_star.add(new JLabel(star));
 		}
 	}
 
