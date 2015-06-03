@@ -5,6 +5,7 @@ import java.awt.Cursor;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -52,7 +53,8 @@ public class AdminInfoJPanel extends JPanel {
 	public AdminInfoJPanel() {
 		setLayout(null);
 		setBackground(new Color(228, 230, 235));
-		
+		JOptionPane.showMessageDialog(null, "avatar:"+avatar, "InfoBox: " , JOptionPane.INFORMATION_MESSAGE);
+
 		lblImage = new JLabel("");
 		//path dipende dall'avatar dell'utente
 		String path=Common.UTENTE.getAvatar();
@@ -199,14 +201,15 @@ public class AdminInfoJPanel extends JPanel {
 		btnSave.setBounds(75, 428, 181, 29);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				String nick = Common.UTENTE.getNickname();
 				SmartAPIModel m = new SmartAPIModel();
 
-				System.out.println("Passw: "+passwordField.getText());
-				System.out.println("Name: "+nameField.getText());
-				System.out.println("Surname: "+surnameField.getText());
-				System.out.println("Email: "+emailField.getText());
-				System.out.println("Avatar: "+avatar);
+				log.info("Passw: "+passwordField.getText());
+				log.info("Name: "+nameField.getText());
+				log.info("Surname: "+surnameField.getText());
+				log.info("Email: "+emailField.getText());
+				log.info("Avatar: "+avatar);
 
 				try{
 					m.modificaUtente(nick, passwordField.getText(), nameField.getText(), surnameField.getText(), emailField.getText(), avatar);		
@@ -245,7 +248,7 @@ public class AdminInfoJPanel extends JPanel {
 			}
 
 		});
-		
+
 		btnLogout.setBounds(75, 453, 181, 29);
 		panel.add(btnLogout);
 
@@ -292,7 +295,7 @@ public class AdminInfoJPanel extends JPanel {
 		//	    }
 
 	}
-	
+
 	public void addUserInfoJPanelListener(IUserPanelListener toAdd){
 		if (listener_s == null){
 			listener_s = new ArrayList<IUserPanelListener>();

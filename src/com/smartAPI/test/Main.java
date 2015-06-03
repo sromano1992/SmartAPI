@@ -33,10 +33,10 @@ public class Main {
 		}
 		if (OSValidator.isWindows())
 			f.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		else{
+		/*else{
 			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 			f.setSize(dim.width, dim.height);
-		}
+		}*/
 		
 		
 	}

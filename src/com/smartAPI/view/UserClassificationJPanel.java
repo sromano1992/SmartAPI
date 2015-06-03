@@ -258,7 +258,7 @@ public class UserClassificationJPanel extends JPanel {
 		if (second){
 			path=u2.getAvatar();
 			pathIcon = getClass().getResource(path).getFile();
-			imgicon = new MyImageIcon(pathIcon,35,25);
+			imgicon = new MyImageIcon(pathIcon,33,23);
 			lblIconTwo.setIcon(imgicon.getImageResponsive());
 		}
 
@@ -318,13 +318,13 @@ public class UserClassificationJPanel extends JPanel {
 		lblIconThree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIconThree.setForeground(Color.WHITE);
 		lblIconThree.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblIconThree.setBounds(78, 6, 45, 27);
+		lblIconThree.setBounds(73, 6, 45, 27);
 		panelThird.add(lblIconThree);
 
 		if (third){
 			path=u3.getAvatar();
 			pathIcon = getClass().getResource(path).getFile();
-			imgicon = new MyImageIcon(pathIcon,40,30);
+			imgicon = new MyImageIcon(pathIcon,33,23);
 			lblIconThree.setIcon(imgicon.getImageResponsive());
 		}
 
@@ -388,7 +388,7 @@ public class UserClassificationJPanel extends JPanel {
 
 			path="res/4.png";
 			pathIcon = getClass().getResource(path).getFile();
-			imgicon = new MyImageIcon(pathIcon,30,20);
+			imgicon = new MyImageIcon(pathIcon,33,23);
 			lblGenericIcon.setIcon(imgicon.getImageResponsive());
 
 			lblGenericUsername = new JLabel(uN.getUsername());
