@@ -115,9 +115,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	
 	@Override
 	public void searchClicked() {
-		if (f == null){
-			f = new JFrame_Search();
-		}
+		f = new JFrame_Search();
 		if (f.isVisible())
 			f.toFront();
 		if (f.getState() == Frame.ICONIFIED){

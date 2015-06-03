@@ -71,7 +71,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		panel_1.setLayout(new GridLayout(0, 8, 0, 0));
 
 		final JComboBox comboBox_myProject = new JComboBox();
-		comboBox_myProject.setEnabled(false);
+		comboBox_myProject.setEnabled(true);
 		comboBox_myProject.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String projectName = comboBox_myProject.getSelectedItem().toString();
@@ -121,7 +121,6 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 				comboBox_myProject.setEnabled(false);
 			}
 		});
-		rdbtnShowAll.setSelected(true);
 		JRadioButton rdbtnByProject = new JRadioButton("By Project");
 		rdbtnByProject.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -142,7 +141,7 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		
 		panel_1.add(rdbtnByProject);
 		
-		comboBox_myProject.setEnabled(false);
+		comboBox_myProject.setEnabled(true);
 		panel_1.add(comboBox_myProject);
 		
 		JLabel lblKeyword = new JLabel("Keyword:");
@@ -224,7 +223,8 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		treeView.addTreePathListener(panel_InferredCodePattern.getPanel_ShowCodePattern());
 		
 		treeView_1.addTreePathListener(panel_InferredCodePattern.getPanel_ShowCodePattern_1());
-		
+
+		rdbtnByProject.setSelected(true);
 		//projectCombo
 		SmartAPIModel s = new SmartAPIModel();
 		ArrayList<Project> userFollowedProject = s.followedProject(Common.UTENTE);
