@@ -96,9 +96,7 @@ public class TreeViewProject extends JPanel implements TreePathListener{
 							TreePath tp = tree.getPathForLocation(arg0.getX(), arg0.getY());
 							toRemoveNode = tp;
 							tree.setSelectionPath(tp);
-							String me = toRemoveNode.getLastPathComponent().toString();
-							String user = tp.getPathComponent(0).toString();
-							if (tp.getPathCount() > 0 && !me.equals(Common.UTENTE.getNickname()) && !me.equals(user))
+							if (tp.getPathCount() > 0)
 								p_menu.show(arg0.getComponent(), arg0.getX(), arg0.getY());
 						}
 					}
@@ -109,9 +107,7 @@ public class TreeViewProject extends JPanel implements TreePathListener{
 						TreePath tp = tree.getPathForLocation(arg0.getX(), arg0.getY());
 						toRemoveNode = tp;
 						tree.setSelectionPath(tp);
-						String me = toRemoveNode.getLastPathComponent().toString();
-						String user = tp.getPathComponent(0).toString();
-						if (tp.getPathCount() > 0 && !me.equals(Common.UTENTE.getNickname()) && !me.equals(user))
+						if (tp.getPathCount() > 0)
 							p_menu.show(arg0.getComponent(), arg0.getX(), arg0.getY());
 					}
 				}
@@ -121,24 +117,12 @@ public class TreeViewProject extends JPanel implements TreePathListener{
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					SmartAPIModel s = new SmartAPIModel();
-					Utente toRemove = s.getUtente(toRemoveNode.getPathComponent(1).toString());
-					s.deleteUser(toRemove.getNickname());
+					Project toRemove = s.getProject(toRemoveNode.getPathComponent(1).toString());
+					if(s.deleteProject(toRemove.getName())) {
 					DefaultMutableTreeNode node = (DefaultMutableTreeNode)toRemoveNode.getLastPathComponent();
-					//int index = model.getIndexOfChild(rootNode, node);
 					rootNode.remove(node);
-					//tree.removeSelectionPath(toRemoveNode);
 					model.reload();
-					ShowUsersInfo.userField.setText(" ");
-					ShowUsersInfo.emailField.setText(" ");
-					ShowUsersInfo.surnameField.setText(" ");
-					ShowUsersInfo.nameField.setText(" ");
-					
-					String path="res/nouser.png";
-					String pathIcon = getClass().getResource(path).getFile();
-					MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
-					ShowUsersInfo.lblImage.setIcon(imgicon.getImageResponsive());
-					
-					//tree.update(getGraphics());
+					}
 				}
 			});
 			model.reload();

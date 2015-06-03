@@ -687,6 +687,37 @@ public class SmartAPIModel {
 		}
 		return false;
 	}
+	
+	public boolean deleteProject(String name){
+		ArrayList<Resource> list = getIndividualOfClass("Project");
+		OntModel o = getOntModel();
+		ArrayList<Statement> statements = new ArrayList<Statement>();
+		for(int i = 0; i < list.size(); i++) {
+			Resource resource = list.get(i);
+			StmtIterator iter = getOntModel().listStatements(new SimpleSelector(resource,null,(RDFNode)null));
+			while (iter.hasNext()) {
+				Statement stmt = iter.nextStatement();
+				Resource project = stmt.getSubject();
+			
+
+				if(project.getLocalName().equals(name)) {
+						StmtIterator iterProj = getOntModel().listStatements(new SimpleSelector(project,null,(RDFNode)null));
+						while (iterProj.hasNext()) {
+							Statement stmtProj = iterProj.nextStatement();
+							statements.add(stmtProj);
+						}
+				}
+			}
+		}
+		
+		if(statements.size() != 0) {
+			o.remove(statements);
+			storeOntModel();
+			return true;
+		}
+		
+		return false;
+	}
 
 	/** 
 	 * Elimina un codePattern.
