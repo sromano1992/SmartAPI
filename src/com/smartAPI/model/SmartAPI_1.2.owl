@@ -860,9 +860,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#dddd -->
+    <!-- http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#gpsproject -->
 
-    <owl:NamedIndividual rdf:about="&SmartAPI;dddd">
+    <owl:NamedIndividual rdf:about="&SmartAPI;gpsproject">
         <rdf:type rdf:resource="&SmartAPI;Project"/>
         <hasDescription>dddnsd</hasDescription>
         <hasCategory>Storage</hasCategory>
@@ -2558,12 +2558,12 @@ for node in ast.walk(tree):
     
 
 
-    <!-- http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#test0048 -->
+    <!-- http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#securityProject -->
 
-    <owl:NamedIndividual rdf:about="&SmartAPI;test0048">
+    <owl:NamedIndividual rdf:about="&SmartAPI;securityProject">
         <rdf:type rdf:resource="&SmartAPI;Project"/>
         <hasCategory>Storage</hasCategory>
-        <hasDescription>300515_0048</hasDescription>
+        <hasDescription>security Project</hasDescription>
     </owl:NamedIndividual>
     
 
@@ -2591,12 +2591,12 @@ for node in ast.walk(tree):
     
 
 
-    <!-- http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#test_0100 -->
+    <!-- http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#gadproject -->
 
-    <owl:NamedIndividual rdf:about="&SmartAPI;test_0100">
+    <owl:NamedIndividual rdf:about="&SmartAPI;gadproject">
         <rdf:type rdf:resource="&SmartAPI;Project"/>
         <hasCategory>Storage</hasCategory>
-        <hasDescription>test insert</hasDescription>
+        <hasDescription>Gad project</hasDescription>
     </owl:NamedIndividual>
     
 
