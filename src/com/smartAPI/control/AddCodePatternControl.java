@@ -4,6 +4,8 @@ import japa.parser.ParseException;
 
 import java.util.ArrayList;
 
+import org.python.jline.internal.Log;
+
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 
@@ -98,6 +100,7 @@ public class AddCodePatternControl {
 			model.addUseLanguage(val_lib, val_language);
 			model.initScoreVoters(val_name);
 			model.storeOntModel();
+			Log.info("Code pattern added...");
 			return 1;
 		} catch (ParseException e) {
 			e.printStackTrace();
