@@ -29,12 +29,14 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
+import javax.swing.SwingConstants;
 
 
 public class Panel_InsertProject extends JPanel {
 	private ArrayList<JCheckBox> chkBox_s;
 	private JTextField textField_name;
 	private RSyntaxTextArea textPane_description; 
+	private JLabel lblName;
 
 	/**
 	 * Create the panel.
@@ -70,12 +72,17 @@ public class Panel_InsertProject extends JPanel {
 		gbl_panel.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblName = new JLabel("Name:");
+		lblName = new JLabel("Name");
+		lblName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblName.setOpaque(true);
+		lblName.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
 		gbc_lblName.insets = new Insets(0, 0, 5, 5);
 		gbc_lblName.anchor = GridBagConstraints.EAST;
 		gbc_lblName.gridx = 0;
 		gbc_lblName.gridy = 0;
+		lblName.setBackground(new Color(231, 76, 60));
+		gbc_lblName.fill = GridBagConstraints.BOTH;
 		panel.add(lblName, gbc_lblName);
 		
 		textField_name = new JTextField();
@@ -88,11 +95,14 @@ public class Panel_InsertProject extends JPanel {
 		panel.add(textField_name, gbc_textField_name);
 		textField_name.setColumns(10);
 		
-		JLabel lblDescription = new JLabel("Description:");
+		JLabel lblDescription = new JLabel("Description");
+		lblDescription.setOpaque(true);
 		GridBagConstraints gbc_lblDescription = new GridBagConstraints();
 		gbc_lblDescription.insets = new Insets(0, 0, 0, 5);
 		gbc_lblDescription.gridx = 0;
 		gbc_lblDescription.gridy = 1;
+		lblDescription.setBackground(new Color(231, 76, 60));
+		gbc_lblDescription.fill = GridBagConstraints.BOTH;
 		panel.add(lblDescription, gbc_lblDescription);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
