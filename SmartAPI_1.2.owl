@@ -389,7 +389,7 @@
     <SmartAPI:followProject rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#HadoopAnalyzerJR"/>
     <SmartAPI:hasVoted>p1,c1,</SmartAPI:hasVoted>
     <SmartAPI:isAdministrator>si</SmartAPI:isAdministrator>
-    <SmartAPI:hasAvatar>res/8.png</SmartAPI:hasAvatar>
+    <SmartAPI:hasAvatar>res/admin-1.png</SmartAPI:hasAvatar>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:followProject rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#nbaproject"/>
     <SmartAPI:followProject rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#nextProject"/>
