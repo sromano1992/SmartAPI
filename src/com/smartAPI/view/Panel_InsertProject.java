@@ -96,6 +96,7 @@ public class Panel_InsertProject extends JPanel {
 		textField_name.setColumns(10);
 		
 		JLabel lblDescription = new JLabel("Description");
+		lblDescription.setForeground(Color.WHITE);
 		lblDescription.setOpaque(true);
 		GridBagConstraints gbc_lblDescription = new GridBagConstraints();
 		gbc_lblDescription.insets = new Insets(0, 0, 0, 5);
