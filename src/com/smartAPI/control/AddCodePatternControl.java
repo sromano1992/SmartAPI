@@ -3,14 +3,17 @@ package com.smartAPI.control;
 import japa.parser.ParseException;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
-import org.python.jline.internal.Log;
+//import org.python.jline.internal.Log;
 
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 
 public class AddCodePatternControl {
 	
+	//private static Logger Log = Logger.getLogger("global");
+
 	private String val_name; 
 	private String val_CP;
 	private String val_keyword;
@@ -100,7 +103,7 @@ public class AddCodePatternControl {
 			model.addUseLanguage(val_lib, val_language);
 			model.initScoreVoters(val_name);
 			model.storeOntModel();
-			Log.info("Code pattern added...");
+			//Log.info("Code pattern added...");
 			return 1;
 		} catch (ParseException e) {
 			e.printStackTrace();

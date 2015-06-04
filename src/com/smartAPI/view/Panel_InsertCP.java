@@ -242,7 +242,7 @@ public class Panel_InsertCP extends JPanel {
 										gbc_nomeCP.gridx = 2;
 										gbc_nomeCP.gridy = 1;
 										panel_6.add(nomeCP, gbc_nomeCP);
-										nomeCP.setColumns(20);
+										nomeCP.setColumns(10);
 		
 		JPanel panel_5 = new JPanel();
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
