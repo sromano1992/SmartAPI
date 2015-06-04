@@ -17,6 +17,95 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#parser">
+    <SmartAPI:useParser rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Statement_executeQuery"/>
+    <SmartAPI:useParser rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#DocumentBuilderFactory_newDocumentBuilder"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Parser"/>
+    <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#java.xml"/>
+    <SmartAPI:useParser rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Statement_close"/>
+    <SmartAPI:hasKeyword>xml</SmartAPI:hasKeyword>
+    <SmartAPI:hasCode>public class FirstExample {
+   // JDBC driver name and database URL
+   static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+   static final String DB_URL = "jdbc:mysql://localhost/EMP";
+
+   //  Database credentials
+   static final String USER = "username";
+   static final String PASS = "password";
+   
+   public static void main(String[] args) {
+   Connection conn = null;
+   Statement stmt = null;
+   try{
+      //STEP 2: Register JDBC driver
+      Class.forName("com.mysql.jdbc.Driver");
+
+      //STEP 3: Open a connection
+      System.out.println("Connecting to database...");
+      conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+      //STEP 4: Execute a query
+      System.out.println("Creating statement...");
+      stmt = conn.createStatement();
+      String sql;
+      sql = "SELECT id, first, last, age FROM Employees";
+      ResultSet rs = stmt.executeQuery(sql);
+
+
+	 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+		try {
+
+			//Using factory get an instance of document builder
+			DocumentBuilder db = dbf.newDocumentBuilder();
+
+			//parse using builder to get DOM representation of the XML file
+			dom = db.parse("employees.xml");
+
+
+		}catch(ParserConfigurationException pce) {
+			pce.printStackTrace();
+		}catch(SAXException se) {
+			se.printStackTrace();
+		}catch(IOException ioe) {
+			ioe.printStackTrace();
+		}
+	
+      //STEP 6: Clean-up environment
+      rs.close();
+      stmt.close();
+      conn.close();
+   }catch(SQLException se){
+      //Handle errors for JDBC
+      se.printStackTrace();
+   }catch(Exception e){
+      //Handle errors for Class.forName
+      e.printStackTrace();
+   }finally{
+      //finally block used to close resources
+      try{
+         if(stmt!=null)
+            stmt.close();
+      }catch(SQLException se2){
+      }// nothing we can do
+      try{
+         if(conn!=null)
+            conn.close();
+      }catch(SQLException se){
+         se.printStackTrace();
+      }//end finally try
+   }//end try
+   System.out.println("Goodbye!");
+}//end main
+}//end FirstExample</SmartAPI:hasCode>
+    <SmartAPI:useParser rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#DocumentBuilder_parse"/>
+    <SmartAPI:hasScore>0</SmartAPI:hasScore>
+    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
+    <SmartAPI:useParser rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ResultSet_close"/>
+    <SmartAPI:useParser rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Connection_createStatement"/>
+    <SmartAPI:useParser rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Connection_close"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetDegreeCentr">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -46,15 +135,15 @@
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#have_common_neighbors"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#close"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Len"/>
-    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#set"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Add"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#set"/>
     <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#snap"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#commonNeighbors"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#DelAll"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#IsEdge"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#PrintInfo"/>
-    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#norm"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#group"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#norm"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetId"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Nodes"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#range"/>
@@ -616,6 +705,9 @@ def printAllNodes(G1):
     <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#TIntV"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#DocumentBuilderFactory_newDocumentBuilder">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#float">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -873,6 +965,9 @@ def printAllNodes(G1):
     <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Statement_close">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#libpy">
     <SmartAPI:hasLanguage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Python"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -981,6 +1076,9 @@ def printAllNodes(G1):
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Library"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Connection_createStatement">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#graph">
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -1079,6 +1177,9 @@ print "Time:",distance/rate</SmartAPI:hasCode>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ResultSet_getInt">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#useMethod">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
@@ -1159,8 +1260,8 @@ print "Time:",distance/rate</SmartAPI:hasCode>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#commonNeighbors">
     <SmartAPI:usegraph rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#set"/>
-    <SmartAPI:hasScore>0</SmartAPI:hasScore>
     <SmartAPI:usegraph rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#add"/>
+    <SmartAPI:hasScore>0</SmartAPI:hasScore>
     <SmartAPI:hasKeyword>graph</SmartAPI:hasKeyword>
     <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
     <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#snap"/>
@@ -1294,6 +1395,9 @@ print "Time:",distance/rate</SmartAPI:hasCode>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Connection_close">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#usegraph">
     <rdfs:range rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#graphMethod"/>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#graph"/>
@@ -1371,6 +1475,9 @@ print "Time:",distance/rate</SmartAPI:hasCode>
     <SmartAPI:hasCategory>Storage</SmartAPI:hasCategory>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Project"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ResultSet_next">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#pydebug">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
@@ -1461,6 +1568,12 @@ print "Time:",distance/rate</SmartAPI:hasCode>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#dispersionCentrality">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#DocumentBuilder_parse">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ResultSet_close">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#TIntPrFltH">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
@@ -1697,6 +1810,90 @@ for node in ast.walk(tree):
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#database">
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Connection_createStatement"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ResultSet_getString"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Statement_close"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ResultSet_getInt"/>
+    <SmartAPI:hasKeyword>db</SmartAPI:hasKeyword>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Connection_close"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ResultSet_close"/>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ResultSet_next"/>
+    <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#java.sql"/>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
+    <SmartAPI:hasCode>public class FirstExample {
+   // JDBC driver name and database URL
+   static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+   static final String DB_URL = "jdbc:mysql://localhost/EMP";
+
+   //  Database credentials
+   static final String USER = "username";
+   static final String PASS = "password";
+   
+   public static void main(String[] args) {
+   Connection conn = null;
+   Statement stmt = null;
+   try{
+      //STEP 2: Register JDBC driver
+      Class.forName("com.mysql.jdbc.Driver");
+
+      //STEP 3: Open a connection
+      System.out.println("Connecting to database...");
+      conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+      //STEP 4: Execute a query
+      System.out.println("Creating statement...");
+      stmt = conn.createStatement();
+      String sql;
+      sql = "SELECT id, first, last, age FROM Employees";
+      ResultSet rs = stmt.executeQuery(sql);
+
+      //STEP 5: Extract data from result set
+      while(rs.next()){
+         //Retrieve by column name
+         int id  = rs.getInt("id");
+         int age = rs.getInt("age");
+         String first = rs.getString("first");
+         String last = rs.getString("last");
+
+         //Display values
+         System.out.print("ID: " + id);
+         System.out.print(", Age: " + age);
+         System.out.print(", First: " + first);
+         System.out.println(", Last: " + last);
+      }
+      //STEP 6: Clean-up environment
+      rs.close();
+      stmt.close();
+      conn.close();
+   }catch(SQLException se){
+      //Handle errors for JDBC
+      se.printStackTrace();
+   }catch(Exception e){
+      //Handle errors for Class.forName
+      e.printStackTrace();
+   }finally{
+      //finally block used to close resources
+      try{
+         if(stmt!=null)
+            stmt.close();
+      }catch(SQLException se2){
+      }// nothing we can do
+      try{
+         if(conn!=null)
+            conn.close();
+      }catch(SQLException se){
+         se.printStackTrace();
+      }//end finally try
+   }//end try
+   System.out.println("Goodbye!");
+}//end main
+}//end FirstExample</SmartAPI:hasCode>
+    <SmartAPI:hasScore>0</SmartAPI:hasScore>
+    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
+    <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Statement_executeQuery"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m101">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -1724,9 +1921,16 @@ for node in ast.walk(tree):
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#java.xml">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Library"/>
+    <SmartAPI:hasLanguage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Java"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m109">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ResultSet_getString">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#hasCode">
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
@@ -1769,10 +1973,10 @@ for node in ast.walk(tree):
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
     <SmartAPI:hasName>amedeo</SmartAPI:hasName>
     <SmartAPI:hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</SmartAPI:hasStars>
+    <SmartAPI:hasAvatar>res/admin-2.png</SmartAPI:hasAvatar>
     <SmartAPI:followProject rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#HadoopAnalyzerJR"/>
     <SmartAPI:hasVoted>p1,c1,</SmartAPI:hasVoted>
     <SmartAPI:isAdministrator>si</SmartAPI:isAdministrator>
-    <SmartAPI:hasAvatar>res/8.png</SmartAPI:hasAvatar>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:followProject rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#nbaproject"/>
     <SmartAPI:followProject rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#nextProject"/>
@@ -1800,8 +2004,8 @@ for node in ast.walk(tree):
         nodes.Add(N)
     SubGraph1 = snap.GetSubGraph(G1, nodes)
     return SubGraph1</SmartAPI:hasCode>
-    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetOutEdges"/>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
     <SmartAPI:hasScore>0</SmartAPI:hasScore>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
@@ -1846,6 +2050,10 @@ for node in ast.walk(tree):
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#java.sql">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Library"/>
+    <SmartAPI:hasLanguage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Java"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CalendarMethod">
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -1872,6 +2080,9 @@ for node in ast.walk(tree):
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Statement_executeQuery">
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#dispersion">
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetSubGraph"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Add"/>
@@ -1887,8 +2098,8 @@ for node in ast.walk(tree):
     return SubGraph1</SmartAPI:hasCode>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetOutEdges"/>
     <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
-    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+    <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
     <SmartAPI:hasScore>0</SmartAPI:hasScore>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#TIntV"/>
