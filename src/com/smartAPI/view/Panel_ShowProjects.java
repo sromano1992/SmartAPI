@@ -2,6 +2,7 @@ package com.smartAPI.view;
 
 import javax.swing.JPanel;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
@@ -100,14 +101,18 @@ public class Panel_ShowProjects extends JPanel implements TreePathListener{
 		gbl_panel.rowWeights = new double[]{0.0, 1.0};
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblName_1 = new JLabel("Name:");
-		GridBagConstraints gbc_lblName_1 = new GridBagConstraints();
-		gbc_lblName_1.anchor = GridBagConstraints.EAST;
-		gbc_lblName_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblName_1.gridx = 0;
-		gbc_lblName_1.gridy = 0;
-		panel.add(lblName_1, gbc_lblName_1);
-		
+		JLabel lblName = new JLabel("Name");
+		lblName.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblName.setForeground(Color.WHITE);
+		lblName.setOpaque(true);
+		GridBagConstraints gbc_lblName = new GridBagConstraints();
+		gbc_lblName.anchor = GridBagConstraints.NORTHEAST;
+		gbc_lblName.insets = new Insets(5, 0, 0, 5);
+		gbc_lblName.gridx = 0;
+		gbc_lblName.gridy = 0;
+		panel.add(lblName, gbc_lblName);
+		lblName.setBackground(new Color(231, 76, 60));
+
 		textField_name = new JTextField();
 		textField_name.setEditable(false);
 		GridBagConstraints gbc_textField_name = new GridBagConstraints();
@@ -118,13 +123,17 @@ public class Panel_ShowProjects extends JPanel implements TreePathListener{
 		panel.add(textField_name, gbc_textField_name);
 		textField_name.setColumns(10);
 		
-		JLabel lblName = new JLabel("Description:");
-		GridBagConstraints gbc_lblName = new GridBagConstraints();
-		gbc_lblName.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblName.insets = new Insets(0, 0, 5, 5);
-		gbc_lblName.gridx = 0;
-		gbc_lblName.gridy = 1;
-		panel.add(lblName, gbc_lblName);
+		JLabel lblDescription = new JLabel("Description");
+		lblDescription.setForeground(Color.WHITE);
+		lblDescription.setOpaque(true);
+		GridBagConstraints gbc_lblDescription = new GridBagConstraints();
+		gbc_lblDescription.anchor = GridBagConstraints.NORTHEAST;
+		//gbc_lblName.anchor = GridBagConstraints.BOTH;
+		gbc_lblDescription.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDescription.gridx = 0;
+		gbc_lblDescription.gridy = 1;
+		lblDescription.setBackground(new Color(231, 76, 60));
+		panel.add(lblDescription, gbc_lblDescription);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -148,12 +157,16 @@ public class Panel_ShowProjects extends JPanel implements TreePathListener{
 		panel_4.setLayout(gbl_panel_4);
 		
 		JLabel lblCategory = new JLabel("Categories");
+		lblCategory.setForeground(Color.WHITE);
+		lblCategory.setOpaque(true);
 		GridBagConstraints gbc_lblCategory = new GridBagConstraints();
 		gbc_lblCategory.insets = new Insets(0, 0, 0, 5);
 		gbc_lblCategory.anchor = GridBagConstraints.EAST;
 		gbc_lblCategory.gridx = 0;
 		gbc_lblCategory.gridy = 0;
 		panel_4.add(lblCategory, gbc_lblCategory);
+		lblCategory.setBackground(new Color(231, 76, 60));
+
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
