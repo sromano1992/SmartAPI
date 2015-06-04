@@ -1659,7 +1659,7 @@ for node in ast.walk(tree):
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
     <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
     <SmartAPI:hasVoted>0</SmartAPI:hasVoted>
-    <SmartAPI:hasAvatar>res/4.png</SmartAPI:hasAvatar>
+    <SmartAPI:hasAvatar>res/6.png</SmartAPI:hasAvatar>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#c4">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
