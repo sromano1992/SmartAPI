@@ -123,6 +123,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 			panel_4.remove(panel_UserInfo);
 		actualPanel = SHOW_CODE_PATTERN;
 
+		panel_search = new Panel_Search();	//updating search panel
 		panel_4.add(panel_search);
 		updateGUI();
 
