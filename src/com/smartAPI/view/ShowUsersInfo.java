@@ -48,7 +48,7 @@ public class ShowUsersInfo extends JPanel{
 	private JTextField textFieldYes;
 	private JTextField textFieldNo;
 	private String username="";
-	private boolean isAdmin =false;
+	private boolean isAdmin = false;
 
 	public ShowUsersInfo() {
 		setLayout(null);
@@ -159,7 +159,7 @@ public class ShowUsersInfo extends JPanel{
 		emailField.setBounds(374, 149, 204, 37);
 		add(emailField);
 
-		//if(Common.UTENTE.isAdmin()){
+		if(Common.UTENTE.isAdmin()){
 			JLabel lblMakeAdmin = new JLabel("Make admin");
 			lblMakeAdmin.setOpaque(true);
 			lblMakeAdmin.setHorizontalAlignment(SwingConstants.CENTER);
@@ -186,7 +186,7 @@ public class ShowUsersInfo extends JPanel{
 			textFieldNo.setBackground(new Color(230, 230, 230));
 			textFieldNo.setBounds(475, 198, 97, 34);
 			add(textFieldNo);
-		//}
+		}
 
 		blackstar=new ImageIcon();
 		String blackpathIcon = "res/grey_star.png";
@@ -212,15 +212,16 @@ public class ShowUsersInfo extends JPanel{
 		if(isAdmin){
 			//JOptionPane.showMessageDialog(null, "User: "+u.getNickname()+" is admin", "InfoBox: " , JOptionPane.INFORMATION_MESSAGE);
 
-			
+			if(Common.UTENTE.isAdmin()){
 				textFieldYes.setBackground(Color.ORANGE);
 				textFieldNo.setBackground(Color.ORANGE);
 			textFieldYes.setText(u.getNickname());
 			textFieldNo.setText("is Admin");
+			}
 		}
 		else{
 			//JOptionPane.showMessageDialog(null, "User: "+u.getNickname()+" not is admin", "InfoBox: " , JOptionPane.INFORMATION_MESSAGE);
-
+			if(Common.UTENTE.isAdmin()){
 			textFieldYes.setText("YES");
 			textFieldYes.setEditable(false);
 			textFieldYes.setBackground(new Color(230, 230, 230));
@@ -260,6 +261,7 @@ public class ShowUsersInfo extends JPanel{
 				}
 			}
 		});
+			}
 		}
 		
 		panelStar.removeAll();
