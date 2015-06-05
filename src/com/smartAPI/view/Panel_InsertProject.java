@@ -186,6 +186,8 @@ public class Panel_InsertProject extends JPanel {
 						textPane_description.setBorder(border);
 						textField_name.setBorder(border);
 						label_required.setText("Project added");
+						textField_name.setText("");
+						textPane_description.setText("");
 					}
 				}
 			}
