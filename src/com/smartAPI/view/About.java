@@ -23,35 +23,35 @@ public class About extends JPanel {
 		pathIcon = "res/simo.png";
 		imgicon = new MyImageIcon(pathIcon, 180, 150);
 		lblIconSimo.setIcon(imgicon.getImageResponsive());
-		lblIconSimo.setBounds(24, 73, 180, 152);
+		lblIconSimo.setBounds(74, 73, 180, 152);
 		add(lblIconSimo);
 
 		JLabel lblIconAme = new JLabel("");
 		pathIcon = "res/amedeo.png";
 		imgicon = new MyImageIcon(pathIcon, 180, 150);
 		lblIconAme.setIcon(imgicon.getImageResponsive());
-		lblIconAme.setBounds(252, 73, 180, 152);
+		lblIconAme.setBounds(302, 73, 180, 152);
 		add(lblIconAme);
 
 		JLabel lblIconCiro = new JLabel("");
 		pathIcon = "res/ciro.png";
 		imgicon = new MyImageIcon(pathIcon, 180, 150);
 		lblIconCiro.setIcon(imgicon.getImageResponsive());
-		lblIconCiro.setBounds(481, 73, 180, 152);
+		lblIconCiro.setBounds(531, 73, 180, 152);
 		add(lblIconCiro);
 
 		JLabel lblIconIole = new JLabel("");
 		pathIcon = "res/iole.jpg";
 		imgicon = new MyImageIcon(pathIcon, 180, 150);
 		lblIconIole.setIcon(imgicon.getImageResponsive());
-		lblIconIole.setBounds(145, 318, 180, 152);
+		lblIconIole.setBounds(195, 318, 180, 152);
 		add(lblIconIole);
 
 		JLabel lblIconSte = new JLabel("");
 		pathIcon = "res/ste.jpg";
 		imgicon = new MyImageIcon(pathIcon, 180, 150);
 		lblIconSte.setIcon(imgicon.getImageResponsive());
-		lblIconSte.setBounds(374, 318, 180, 152);
+		lblIconSte.setBounds(424, 318, 180, 152);
 		add(lblIconSte);
 
 		JLabel lblTxtSimo = new JLabel("Simone Romano");
