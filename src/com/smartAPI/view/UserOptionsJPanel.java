@@ -185,7 +185,7 @@ public class UserOptionsJPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				
 				for (IUserOptionListener i:listener_s){
-					//i.aboutClicked();
+					i.userInfoClicked();
 				}
 				log.info("user info");
 			}

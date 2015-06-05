@@ -24,11 +24,12 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	private Panel_ShowAllUser panel_ShowUser;
 	private About panel_About;
 	private IUserPanelListener mainFrame;
-	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3, LOGOUT = 4;
+	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3, LOGOUT = 4, USERINFO=5;
 	private int actualPanel = INSERT_CP;
 	private JPanel panel, panel_4;
 	private	JFrame f;
 	private Panel_Insert panel_Insert;
+	private UserInfoJPanel panel_UserInfo;
 
 	/**
 	 * Create the panel.
@@ -39,7 +40,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		panel_search = new Panel_Search();	
 		panel_ShowUser = new Panel_ShowAllUser();		
 		panel_About = new About();
-		
+		panel_UserInfo = new UserInfoJPanel();
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {0, 600};
@@ -118,7 +119,8 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 			panel_4.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
 			panel_4.remove(panel_About);
-
+		else if(actualPanel == USERINFO)
+			panel_4.remove(panel_UserInfo);
 		actualPanel = SHOW_CODE_PATTERN;
 
 		panel_4.add(panel_search);
@@ -137,7 +139,8 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 			panel_4.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
 			panel_4.remove(panel_About);
-
+		else if(actualPanel == USERINFO)
+			panel_4.remove(panel_UserInfo);
 		actualPanel = INSERT_CP;
 
 		panel_4.add(panel_Insert);
@@ -155,7 +158,8 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 			panel_4.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
 			panel_4.remove(panel_About);
-
+		else if(actualPanel == USERINFO)
+			panel_4.remove(panel_UserInfo);
 		actualPanel = SHOW_USER;
 
 		panel_4.add(panel_ShowUser);
@@ -173,7 +177,8 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 			panel_4.remove(panel_Insert);
 		else if(actualPanel == SHOW_ABOUT)
 			panel_4.remove(panel_About);
-
+		else if(actualPanel == USERINFO)
+			panel_4.remove(panel_UserInfo);
 		actualPanel = SHOW_ABOUT;
 		panel_4.add(panel_About);
 		updateGUI();
@@ -185,6 +190,22 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		insertClicked();
 	}
 
+	@Override
+	public void userInfoClicked() {
+		if(actualPanel == SHOW_CODE_PATTERN)
+			panel_4.remove(panel_search);
+		else if(actualPanel == SHOW_USER)
+			panel_4.remove(panel_ShowUser);
+		else if(actualPanel == INSERT_CP)
+			panel_4.remove(panel_Insert);
+		else if(actualPanel == SHOW_ABOUT)
+			panel_4.remove(panel_About);
+		else if(actualPanel == USERINFO)
+			panel_4.remove(panel_UserInfo);
+		actualPanel = USERINFO;
+		panel_4.add(panel_UserInfo);
+		updateGUI();
+	}
 
 	private void updateGUI(){
 		SwingUtilities.updateComponentTreeUI(this);
@@ -194,4 +215,6 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 			c = c.getParent();
 		}
 	}
+
+	
 }
