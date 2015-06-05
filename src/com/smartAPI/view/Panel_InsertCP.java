@@ -424,6 +424,12 @@ public class Panel_InsertCP extends JPanel {
 														lblError.setVisible(false);
 														lblOk.setText("Code pattern inserted!");
 														lblOk.setVisible(true);
+														nomeCP.setText("");
+														ta.setText("");
+														keyword.setText("");
+														libTextField.setText("");
+														newCategoria.setText("");
+														newCategoria.setVisible(false);
 													}
 													else if(insertStatus == -2){
 														lblOk.setVisible(false);
