@@ -59,7 +59,7 @@ public class ShowUsersInfo extends JPanel{
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
 		lblImage.setIcon(imgicon.getImageResponsive());
 
-		lblImage.setBounds(60, 29, 80, 70);
+		lblImage.setBounds(72, 31, 80, 70);
 		add(lblImage);
 
 		panelStar = new JPanel();
