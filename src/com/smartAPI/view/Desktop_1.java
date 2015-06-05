@@ -22,7 +22,6 @@ import java.awt.BorderLayout;
 public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanelListener{
 	private Panel_Search panel_search;
 	private Panel_ShowAllUser panel_ShowUser;
-	private UserInfoJPanel userInfoJPanel;
 	private About panel_About;
 	private IUserPanelListener mainFrame;
 	private static int INSERT_CP = 0, SHOW_USER = 1, SHOW_CODE_PATTERN = 2, SHOW_ABOUT = 3, LOGOUT = 4;
@@ -43,9 +42,9 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] {100, 600};
+		gridBagLayout.columnWidths = new int[] {0, 600};
 		gridBagLayout.rowWeights = new double[]{1.0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0};
+		gridBagLayout.columnWeights = new double[]{0, 1.0};
 		setLayout(gridBagLayout);
 		
 		panel = new JPanel();
@@ -57,11 +56,6 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		gbc_panel.gridy = 0;
 		add(panel, gbc_panel);
 		panel.setLayout(new BorderLayout(0, 0));
-		
-		userInfoJPanel = new UserInfoJPanel();
-		userInfoJPanel.addLogOutListener(this);
-		userInfoJPanel.isAdmin(Common.UTENTE.isAdmin());
-		panel.add(userInfoJPanel);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.ORANGE);
@@ -77,7 +71,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
 		gbl_panel_2.columnWidths = new int[] {0};
 		gbl_panel_2.rowHeights = new int[] {20, 660};
-		gbl_panel_2.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_2.columnWeights = new double[]{1.0};
 		gbl_panel_2.rowWeights = new double[]{1.0, 1.0};
 		panel_2.setLayout(gbl_panel_2);
 		
@@ -115,16 +109,21 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	
 	@Override
 	public void searchClicked() {
-		f = new JFrame_Search();
-		if (f.isVisible())
-			f.toFront();
-		if (f.getState() == Frame.ICONIFIED){
-			f.setState(Frame.NORMAL);
-		}
-		else{
-			f.setVisible(true);
-			f.toFront();
-		}
+		// TODO Auto-generated method stub
+		if(actualPanel == SHOW_CODE_PATTERN)
+			panel_4.remove(panel_search);
+		else if(actualPanel == SHOW_USER)
+			panel_4.remove(panel_ShowUser);
+		else if(actualPanel == INSERT_CP)
+			panel_4.remove(panel_Insert);
+		else if(actualPanel == SHOW_ABOUT)
+			panel_4.remove(panel_About);
+
+		actualPanel = SHOW_CODE_PATTERN;
+
+		panel_4.add(panel_search);
+		updateGUI();
+
 	}
 
 	@Override
