@@ -10,13 +10,20 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 
 
 
+
+
+
+
+
 import com.smartAPI.control.IUserOptionListener;
+import com.smartAPI.model.Common;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -24,6 +31,8 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 /**
  * Pannello che mostra all'utente le operazioni che può effettuare
@@ -44,6 +53,7 @@ public class UserOptionsJPanel extends JPanel {
 	private JButton btnInsert;
 	private JButton btnShow;
 	private JButton btnAbout;
+	private JButton btnUserInfo;
 	
 	public UserOptionsJPanel() {
 		setBackground(new Color(228, 230, 235));
@@ -154,6 +164,34 @@ public class UserOptionsJPanel extends JPanel {
 		btnAbout.setIcon(new ImageIcon(this.getClass().getResource(path)));
 		btnAbout.setBounds(621, 28, 200, 51);
 		add(btnAbout);
+		
+		btnUserInfo = new JButton("");
+		btnUserInfo.setBackground(Color.WHITE);
+		btnUserInfo.setHorizontalAlignment(SwingConstants.RIGHT);
+		btnUserInfo.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		
+		pathIcon = Common.UTENTE.getAvatar();
+		MyImageIcon imgicon = new MyImageIcon(pathIcon, 30, 30);
+		btnUserInfo.setIcon(imgicon.getImageResponsive());
+		btnUserInfo.setFocusPainted(false);
+		btnUserInfo.setText("Benvenuto, "+Common.UTENTE.getNome());
+		btnUserInfo.setContentAreaFilled(false);
+		btnUserInfo.setBorderPainted(false);
+		btnUserInfo.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+			}
+			public void mouseClicked(MouseEvent e) {
+				
+				for (IUserOptionListener i:listener_s){
+					i.userInfoClicked();
+				}
+				log.info("user info");
+			}
+
+		});
+		add(btnUserInfo);
 		
 		
 	}

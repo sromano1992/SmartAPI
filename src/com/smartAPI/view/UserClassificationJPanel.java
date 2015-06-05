@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.JLabel;
@@ -418,7 +419,8 @@ public class UserClassificationJPanel extends JPanel {
 			lblGenericVoteUs.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 			lblGenericVoteUs.setBounds(532, 6, 78, 27);
 			panelGeneric.add(lblGenericVoteUs);
-
+			
+			SwingUtilities.updateComponentTreeUI(panelGeneric);
 			 
 		}
 
