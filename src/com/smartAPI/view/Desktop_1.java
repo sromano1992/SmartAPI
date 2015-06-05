@@ -109,16 +109,21 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 	
 	@Override
 	public void searchClicked() {
-		f = new JFrame_Search();
-		if (f.isVisible())
-			f.toFront();
-		if (f.getState() == Frame.ICONIFIED){
-			f.setState(Frame.NORMAL);
-		}
-		else{
-			f.setVisible(true);
-			f.toFront();
-		}
+		// TODO Auto-generated method stub
+		if(actualPanel == SHOW_CODE_PATTERN)
+			panel_4.remove(panel_search);
+		else if(actualPanel == SHOW_USER)
+			panel_4.remove(panel_ShowUser);
+		else if(actualPanel == INSERT_CP)
+			panel_4.remove(panel_Insert);
+		else if(actualPanel == SHOW_ABOUT)
+			panel_4.remove(panel_About);
+
+		actualPanel = SHOW_CODE_PATTERN;
+
+		panel_4.add(panel_search);
+		updateGUI();
+
 	}
 
 	@Override
