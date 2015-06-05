@@ -43,7 +43,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] {500, 250};
+		gridBagLayout.columnWidths = new int[] {100, 600};
 		gridBagLayout.rowWeights = new double[]{1.0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0};
 		setLayout(gridBagLayout);

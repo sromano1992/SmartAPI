@@ -1,6 +1,8 @@
 package com.smartAPI.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -12,6 +14,7 @@ import javax.swing.SwingConstants;
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.UserClassification;
+import com.smartAPI.test.Main;
 
 import java.awt.Font;
 import java.util.ArrayList;
@@ -361,12 +364,13 @@ public class UserClassificationJPanel extends JPanel {
 		// ******  Generic ******
 
 		if (flag){
-			panelGeneric.setVisible(true);
+			
 			panelGeneric.setBackground(new Color(159, 247, 129));
 			panelGeneric.setLayout(null);
 			border = BorderFactory.createLineBorder(new Color(2, 94, 137), 1);
 			panelGeneric.setBorder(border);
 			panelGeneric.setBounds(128, 202, 645, 39);
+			panelGeneric.setVisible(true);
 			add(panelGeneric);
 
 			JLabel lblGeneric = new JLabel("16");
@@ -415,6 +419,7 @@ public class UserClassificationJPanel extends JPanel {
 			lblGenericVoteUs.setBounds(532, 6, 78, 27);
 			panelGeneric.add(lblGenericVoteUs);
 
+			 
 		}
 
 		//********

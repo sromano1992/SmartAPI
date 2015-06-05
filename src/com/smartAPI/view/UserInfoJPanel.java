@@ -399,11 +399,9 @@ public class UserInfoJPanel extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					String s = (String) comboBox.getSelectedItem();
 					String[] parts = s.split(" - ");
-					String path="";
-					path = "res/admin-" + parts[1] + ".png";
-					System.out.println("------ path: "+path);
-					avatar = path;
-					String pathIcon = getClass().getResource(path).getFile();
+					String pathIcon="";
+					pathIcon = "res/admin-" + parts[1] + ".png";
+					avatar = pathIcon;
 					MyImageIcon imgicon = new MyImageIcon(pathIcon, 80, 70);
 					lblImage.setIcon(imgicon.getImageResponsive());
 				}
@@ -454,6 +452,8 @@ public class UserInfoJPanel extends JPanel {
 					avatar = pathIcon;
 					MyImageIcon imgicon = new MyImageIcon(pathIcon, 80, 70);
 					lblImage.setIcon(imgicon.getImageResponsive());
+					
+					
 				}
 			});
 		}
