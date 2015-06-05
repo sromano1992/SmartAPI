@@ -57,10 +57,6 @@ public class SmartAPIModel {
 	}
 
 	public OntModel getInfModel(){
-		if (inf != null){
-			log.info("returning inf model...");
-			return inf;
-		}
 		inf = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RDFS_INF, getOntModel());
 		log.info("Inf Model created...");
 		return inf;
