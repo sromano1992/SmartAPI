@@ -40,10 +40,10 @@ public class Panel_InferredCodePattern extends JPanel {
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		panel_ShowCodePattern = new Panel_ShowCodePattern();
+		panel_ShowCodePattern = new Panel_ShowCodePattern(false);
 		panel.add(panel_ShowCodePattern);
 		
-		panel_ShowCodePattern_1 = new Panel_ShowCodePattern();
+		panel_ShowCodePattern_1 = new Panel_ShowCodePattern(true);
 		panel.add(panel_ShowCodePattern_1);
 		
 		JPanel panel_3 = new JPanel();

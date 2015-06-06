@@ -42,6 +42,7 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		panel_About = new About();
 		panel_UserInfo = new UserInfoJPanel();
 		
+		panel_UserInfo.addLogOutListener(this);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {0, 600};
 		gridBagLayout.rowWeights = new double[]{1.0};

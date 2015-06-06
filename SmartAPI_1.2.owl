@@ -630,11 +630,11 @@ def printAllNodes(G1):
     <rdfs:domain rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#jeditpane">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <SmartAPI:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#int">17</SmartAPI:hasScore>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
-    <SmartAPI:hasScore>0</SmartAPI:hasScore>
+    <SmartAPI:hasVoters rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</SmartAPI:hasVoters>
     <SmartAPI:hasKeyword>jeditor</SmartAPI:hasKeyword>
-    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:hasCode>	public static void main(String[] args) {
 		SmartAPIModel m = new SmartAPIModel();
 		f = new JFrame();
@@ -673,9 +673,9 @@ def printAllNodes(G1):
     <SmartAPI:hasName>Andrea</SmartAPI:hasName>
     <SmartAPI:followProject rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#nbaproject"/>
     <SmartAPI:hasSurname>Verdi</SmartAPI:hasSurname>
-    <SmartAPI:hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</SmartAPI:hasStars>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
     <SmartAPI:followProject rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#nextProject"/>
+    <SmartAPI:hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3</SmartAPI:hasStars>
     <SmartAPI:hasUsername>a.verdi</SmartAPI:hasUsername>
     <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -694,7 +694,7 @@ def printAllNodes(G1):
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#test_050620150956">
-    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
+    <SmartAPI:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#int">13</SmartAPI:hasScore>
     <SmartAPI:hasCode>public static void main(String[] args) {
 	SmartAPIModel m = new SmartAPIModel();
 	f = new JFrame();
@@ -720,8 +720,8 @@ def printAllNodes(G1):
     <SmartAPI:hasKeyword>key_050620150956</SmartAPI:hasKeyword>
     <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
     <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#lib_050620150956"/>
-    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
-    <SmartAPI:hasScore>0</SmartAPI:hasScore>
+    <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
+    <SmartAPI:hasVoters rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</SmartAPI:hasVoters>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#SmartAPIModel_createAdmin">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -786,11 +786,10 @@ def printAllNodes(G1):
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#CodePattern_Category_getCategoryName"/>
     <SmartAPI:hasKeyword>ontology</SmartAPI:hasKeyword>
     <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
-    <SmartAPI:hasScore>0</SmartAPI:hasScore>
+    <SmartAPI:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4</SmartAPI:hasScore>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#DefaultMutableTreeNode_add"/>
-    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
     <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#jena"/>
     <SmartAPI:hasCode>public void setCodePattern_s(ArrayList&lt;CodePattern_Category&gt; cp_s, String rootName, boolean inferred){
 		this.cp_s = cp_s;
@@ -837,6 +836,7 @@ def printAllNodes(G1):
 		      }
 	    });
 	} </SmartAPI:hasCode>
+    <SmartAPI:hasVoters rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</SmartAPI:hasVoters>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetBetweennessCentr">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -898,17 +898,17 @@ def printAllNodes(G1):
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#py">
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
-    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
+    <SmartAPI:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#int">5</SmartAPI:hasScore>
     <SmartAPI:hasCode>for actor in root.findall('real_person:actor', ns):
 	name = actor.find('real_person:name', ns)
 	name.text
 	for char in actor.findall('role:character', ns):
 	print ' |--&gt;', char.text</SmartAPI:hasCode>
+    <SmartAPI:hasVoters rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</SmartAPI:hasVoters>
     <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#find"/>
     <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#pyt"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#findall"/>
-    <SmartAPI:hasScore>0</SmartAPI:hasScore>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:hasCode>for actor in root.findall('real_person:actor', ns):
 	name = actor.find('real_person:name', ns)
@@ -1047,12 +1047,12 @@ def printAllNodes(G1):
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ciro">
     <SmartAPI:hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</SmartAPI:hasStars>
+    <SmartAPI:hasVoted>c2,c1,testOwl,graph_cp,test_050620150956,SmartAPI,cp_99,commonNeighbors,owl6,dispersion,pydebug,py,</SmartAPI:hasVoted>
     <SmartAPI:hasPassword>cirociro</SmartAPI:hasPassword>
     <SmartAPI:hasSurname>amati</SmartAPI:hasSurname>
     <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:hasEmail>ciro@amati.com</SmartAPI:hasEmail>
-    <SmartAPI:hasVoted>c2,c1,testOwl,graph_cp,</SmartAPI:hasVoted>
     <SmartAPI:hasUsername>ciro</SmartAPI:hasUsername>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
     <SmartAPI:hasName>ciro</SmartAPI:hasName>
@@ -1067,6 +1067,7 @@ def printAllNodes(G1):
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#cp_99">
     <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#jena"/>
+    <SmartAPI:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#int">14</SmartAPI:hasScore>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#JFrame_setVisible"/>
     <SmartAPI:hasCode>public static void setVisible() {
@@ -1075,12 +1076,11 @@ def printAllNodes(G1):
 		f.add(new Desktop_0(f));
 		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
 	}</SmartAPI:hasCode>
+    <SmartAPI:hasVoters rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3</SmartAPI:hasVoters>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#JFrame_setDefaultCloseOperation"/>
-    <SmartAPI:hasScore>2</SmartAPI:hasScore>
     <SmartAPI:hasKeyword>key99</SmartAPI:hasKeyword>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#JFrame_add"/>
-    <SmartAPI:hasVoters>1</SmartAPI:hasVoters>
     <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#JFrame_add">
@@ -1250,12 +1250,11 @@ print "Time:",distance/rate</SmartAPI:hasCode>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#commonNeighbors">
     <SmartAPI:usegraph rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#set"/>
     <SmartAPI:usegraph rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#add"/>
-    <SmartAPI:hasScore>0</SmartAPI:hasScore>
     <SmartAPI:hasKeyword>graph</SmartAPI:hasKeyword>
-    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
     <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#snap"/>
     <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
+    <SmartAPI:hasVoters rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</SmartAPI:hasVoters>
     <SmartAPI:usegraph rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetNI"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#graph"/>
     <SmartAPI:hasCode>def commonNeighbors(G1, u, h):
@@ -1275,6 +1274,7 @@ print "Time:",distance/rate</SmartAPI:hasCode>
     <SmartAPI:usegraph rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetOutEdges"/>
     <SmartAPI:usegraph rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#intersection"/>
     <SmartAPI:usegraph rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Add"/>
+    <SmartAPI:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#int">8</SmartAPI:hasScore>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#debug">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -1343,10 +1343,10 @@ print "Time:",distance/rate</SmartAPI:hasCode>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#p1">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <SmartAPI:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#int">18</SmartAPI:hasScore>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Parser"/>
-    <SmartAPI:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#int">10</SmartAPI:hasScore>
-    <SmartAPI:hasVoters rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3</SmartAPI:hasVoters>
+    <SmartAPI:hasVoters rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4</SmartAPI:hasVoters>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#ciro"/>
     <SmartAPI:useParser rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m2"/>
     <SmartAPI:useParser rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#m3"/>
@@ -1361,8 +1361,8 @@ print "Time:",distance/rate</SmartAPI:hasCode>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#SmartAPI">
-    <SmartAPI:hasScore>2</SmartAPI:hasScore>
-    <SmartAPI:hasVoters>1</SmartAPI:hasVoters>
+    <SmartAPI:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#int">6</SmartAPI:hasScore>
+    <SmartAPI:hasVoters rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</SmartAPI:hasVoters>
     <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Jena"/>
     <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#a.verdi"/>
     <SmartAPI:hasKeyword>modelSmart</SmartAPI:hasKeyword>
@@ -1526,6 +1526,7 @@ print "Time:",distance/rate</SmartAPI:hasCode>
         #print'ppp'
         print "ciao"
         return</SmartAPI:hasCode>
+    <SmartAPI:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4</SmartAPI:hasScore>
     <SmartAPI:hasCode>def dispersion(G1, u=8, h=9):
     #logging.basicConfig(level=logging.DEBUG)
 
@@ -1535,7 +1536,6 @@ print "Time:",distance/rate</SmartAPI:hasCode>
         #print'ppp'
         print "ciao"
         return</SmartAPI:hasCode>
-    <SmartAPI:hasScore>0</SmartAPI:hasScore>
     <SmartAPI:hasLibrary rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#snap"/>
     <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -1554,8 +1554,8 @@ print "Time:",distance/rate</SmartAPI:hasCode>
         #print'ppp'
         return</SmartAPI:hasCode>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#IsEdge"/>
+    <SmartAPI:hasVoters rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</SmartAPI:hasVoters>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#debug"/>
-    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
     <SmartAPI:hasCode>def dispersion(G1, u=8, h=9):
     #logging.basicConfig(level=logging.DEBUG)
 
@@ -1802,11 +1802,11 @@ for node in ast.walk(tree):
     <SmartAPI:hasUsername>iolrin</SmartAPI:hasUsername>
     <SmartAPI:hasEmail>iole.rinaldi@gmail.com</SmartAPI:hasEmail>
     <SmartAPI:hasName>Iolanda</SmartAPI:hasName>
-    <SmartAPI:hasVoted>SmartAPI, </SmartAPI:hasVoted>
     <SmartAPI:hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</SmartAPI:hasStars>
     <SmartAPI:hasAvatar>res/6.png</SmartAPI:hasAvatar>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
     <SmartAPI:isAdministrator>no</SmartAPI:isAdministrator>
+    <SmartAPI:hasVoted>SmartAPI, jeditpane,test_050620150956,jeditpane,cp_99,p1,commonNeighbors,</SmartAPI:hasVoted>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#c4">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -1915,7 +1915,6 @@ for node in ast.walk(tree):
     <SmartAPI:hasPassword>amedeo</SmartAPI:hasPassword>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#User"/>
     <SmartAPI:hasName>amedeo</SmartAPI:hasName>
-    <SmartAPI:hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</SmartAPI:hasStars>
     <SmartAPI:followProject rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#HadoopAnalyzerJR"/>
     <SmartAPI:hasAvatar>res/admin-1.png</SmartAPI:hasAvatar>
     <SmartAPI:hasVoted>p1,c1,</SmartAPI:hasVoted>
@@ -1924,6 +1923,7 @@ for node in ast.walk(tree):
     <SmartAPI:followProject rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#nbaproject"/>
     <SmartAPI:followProject rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#nextProject"/>
     <SmartAPI:hasEmail>amedeo.leo@gmail.com</SmartAPI:hasEmail>
+    <SmartAPI:hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</SmartAPI:hasStars>
     <SmartAPI:hasUsername>amedeo</SmartAPI:hasUsername>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Java">
@@ -2054,6 +2054,7 @@ for node in ast.walk(tree):
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Add"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetNI"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Storage"/>
+    <SmartAPI:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#int">6</SmartAPI:hasScore>
     <SmartAPI:hasCode>def inductGraph(G1, u):
     #crea il grafo indotto (vicinato) di u
     nodes = snap.TIntV()
@@ -2063,10 +2064,9 @@ for node in ast.walk(tree):
     SubGraph1 = snap.GetSubGraph(G1, nodes)
     return SubGraph1</SmartAPI:hasCode>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#GetOutEdges"/>
-    <SmartAPI:hasVoters>0</SmartAPI:hasVoters>
     <rdf:type rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#Method"/>
     <SmartAPI:hasOwner rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#amedeo"/>
-    <SmartAPI:hasScore>0</SmartAPI:hasScore>
+    <SmartAPI:hasVoters rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</SmartAPI:hasVoters>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <SmartAPI:useStorage rdf:resource="http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#TIntV"/>
   </rdf:Description>

@@ -40,6 +40,7 @@ public class Common {
 	public static final String HAS_DESCRIPTION = "hasDescription";
 	public static final String SHOW_FRAME_TITLE = "Search codePattern/project";
 	public static Utente UTENTE = null;
+	public static final int ALREADY_VOTED_STATUS = 1, IS_OWNER_STATUS = 2, CAN_SET_SCORE = 0;
 	
 	public static void setUser(Utente u){
 		UTENTE = u;
