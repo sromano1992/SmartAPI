@@ -77,7 +77,7 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener, I
 	/**
 	 * Create the panel.
 	 */
-	public Panel_ShowCodePattern() {
+	public Panel_ShowCodePattern(boolean enableVotation) {
 		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setLayout(new BorderLayout(0, 0));
 		
@@ -111,7 +111,7 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener, I
 		infoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrame_InferredCpInfo f = new JFrame_InferredCpInfo();
-				f.setInferredCP(actualCP, actualCP_category);
+				f.setInferredCP(actualCP, actualCP_category, new SmartAPIModel().getMediaVotazioni(actualCP.getResource().getLocalName()));
 				f.setVisible(true);
 				Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 				f.setLocation(dim.width/2-f.getSize().width/2, dim.height/2-f.getSize().height/2);
@@ -189,7 +189,11 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener, I
 		panel_CodePatternScore = new Panel_CodePatternScore();
 		panel_4.add(panel_CodePatternScore);
 		panel_CodePatternScore.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(153, 180, 209), SystemColor.inactiveCaption, null, null));
-
+		
+		if (!enableVotation){
+			panel_4.setEnabled(false);
+			panel_4.setVisible(false);
+		}
 	}
 	
 	public void setCodePattern(CodePattern cp){
@@ -199,7 +203,14 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener, I
 		infoButton.setVisible(cp.getRelativeBasicCodePattern() != null);
 		infoButton.setEnabled(cp.getRelativeBasicCodePattern() != null);
 		panel_CodePatternScore.setScore(new SmartAPIModel().getMediaVotazioni(cp.getResource().getLocalName()));
-		panel_CodePatternSetScore.restore();
+		if(new SmartAPIModel().hasAlreadyVoted(Common.UTENTE.getNickname(), cp.getResource().getLocalName())){
+			panel_CodePatternSetScore.restore(Common.ALREADY_VOTED_STATUS);
+		}
+		else if(new SmartAPIModel().isOwner(Common.UTENTE.getNickname(), cp.getResource().getLocalName())){
+			panel_CodePatternSetScore.restore(Common.IS_OWNER_STATUS);
+		}
+		else
+			panel_CodePatternSetScore.restore(Common.CAN_SET_SCORE);
 		this.actualCP = cp;
 	}
 

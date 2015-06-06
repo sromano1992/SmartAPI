@@ -53,6 +53,9 @@ public class JFrame_InferredCpInfo extends JFrame {
 	private JTextArea textArea_Inferred;
 	private JLabel lblInferredCategory;
 	private JPanel panel_4;
+	private JLabel lblUserssOpinions;
+	private JPanel panel_5;
+	private JTextPane textPane_UserOpinion;
 
 	/**
 	 * Create the frame.
@@ -60,9 +63,9 @@ public class JFrame_InferredCpInfo extends JFrame {
 	public JFrame_InferredCpInfo() {
 		setTitle("Inference informations");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 568, 217);
+		setBounds(100, 100, 609, 306);
 		contentPane = new JPanel();
-		contentPane.setBackground(UIManager.getColor("InternalFrame.activeTitleBackground"));
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -100,6 +103,23 @@ public class JFrame_InferredCpInfo extends JFrame {
 		panel_4.add(textPane_Probability);
 		textPane_Probability.setBackground(UIManager.getColor("InternalFrame.activeTitleBackground"));
 		textPane_Probability.setEditable(false);
+		
+		lblUserssOpinions = new JLabel("Users's opinions:");
+		lblUserssOpinions.setOpaque(true);
+		lblUserssOpinions.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUserssOpinions.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblUserssOpinions.setBackground(UIManager.getColor("InternalFrame.activeTitleBackground"));
+		panel.add(lblUserssOpinions);
+		
+		panel_5 = new JPanel();
+		panel_5.setBackground(UIManager.getColor("InternalFrame.activeTitleBackground"));
+		panel.add(panel_5);
+		panel_5.setLayout(new GridLayout(0, 5, 0, 0));
+		
+		textPane_UserOpinion = new JTextPane();
+		textPane_UserOpinion.setEditable(false);
+		textPane_UserOpinion.setBackground(UIManager.getColor("InternalFrame.activeTitleBackground"));
+		panel_5.add(textPane_UserOpinion);
 		
 		lblRelativeBasic = new JLabel("Relative Basic Code Pattern:");
 		lblRelativeBasic.setOpaque(true);
@@ -160,7 +180,7 @@ public class JFrame_InferredCpInfo extends JFrame {
 		panel_3.add(labelBasicMethods);
 	}
 	
-	public void setInferredCP(CodePattern cp, String cpCategory){
+	public void setInferredCP(CodePattern cp, String cpCategory, float userVotationAverage){
 		setTitle("Inference informations for " + cp.getResource().getLocalName());
 		textPane_InferredCategory.setText(cpCategory);
 		DecimalFormat df = new DecimalFormat("#.00");
@@ -169,22 +189,31 @@ public class JFrame_InferredCpInfo extends JFrame {
 			textPane_Probability.setBackground(Color.red);
 		if(cp.getScore()<60 && cp.getScore()>=30)
 			textPane_Probability.setBackground(Color.yellow);
-
 		if(cp.getScore()>=60)
 			textPane_Probability.setBackground(Color.green);
+
+		userVotationAverage *= 10;
+		textPane_UserOpinion.setText(df.format(userVotationAverage) + "%");
+		if(userVotationAverage<30)
+			textPane_UserOpinion.setBackground(Color.red);
+		if(userVotationAverage<60 && userVotationAverage>=30)
+			textPane_UserOpinion.setBackground(Color.yellow);
+		if(userVotationAverage>=60)
+			textPane_UserOpinion.setBackground(Color.green);
+		
 		textPane_RelativeBasic.setText(cp.getRelativeBasicCodePattern().getResource().getLocalName());
 		textArea_CommonMethod.setText("");
 		int cycle = 0;
 		for (Resource method:cp.getCommonWithBasic()){
 			if(cycle > 0)
-				textArea_CommonMethod.setText(textArea_CommonMethod.getText() + " - ");
+				textArea_CommonMethod.setText(textArea_CommonMethod.getText() + "\n");
 			textArea_CommonMethod.setText(textArea_CommonMethod.getText() + method.getLocalName());
 			cycle = 1;
 		}
 		cycle = 0;
 		for (Resource method:cp.getUsedMethod_s()){
 			if(cycle > 0)
-				textArea_Inferred.setText(textArea_Inferred.getText() + " - ");
+				textArea_Inferred.setText(textArea_Inferred.getText() + "\n");
 			textArea_Inferred.setText(textArea_Inferred.getText() + method.getLocalName());
 			cycle = 1;
 		}
@@ -192,7 +221,7 @@ public class JFrame_InferredCpInfo extends JFrame {
 		
 		for (Resource method:cp.getRelativeBasicCodePattern().getUsedMethod_s()){
 			if(cycle > 0)
-				textArea_Basic.setText(textArea_Basic.getText() + " - ");
+				textArea_Basic.setText(textArea_Basic.getText() + "\n");
 			textArea_Basic.setText(textArea_Basic.getText() + method.getLocalName());
 			cycle = 1;
 		}

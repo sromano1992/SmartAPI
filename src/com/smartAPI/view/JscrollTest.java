@@ -23,7 +23,7 @@ public class JscrollTest extends JPanel {
 	 */
 	public JscrollTest() {
 
-		Panel_ShowCodePattern panel_ShowCodePattern = new Panel_ShowCodePattern();
+		Panel_ShowCodePattern panel_ShowCodePattern = new Panel_ShowCodePattern(true);
 		
 		JScrollPane scrollPane = new JScrollPane(panel_ShowCodePattern);
 
