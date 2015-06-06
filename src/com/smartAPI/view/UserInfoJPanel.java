@@ -64,6 +64,7 @@ public class UserInfoJPanel extends JPanel {
 	private JPanel panel_star;
 	Vector comboBoxItems;
 	DefaultComboBoxModel model;
+
 	private String avatar=Common.UTENTE.getAvatar();//iniz. con avatar user
 	
 	public UserInfoJPanel() {
@@ -152,9 +153,6 @@ public class UserInfoJPanel extends JPanel {
 		gbc_panelStar.gridy = 4;
 		panel_2.add(panel_star, gbc_panelStar);
 		panel_star.setBackground(new Color(2, 94, 137));
-
-		 
-		
 
 		lblUser = new JLabel("User");
 		GridBagConstraints gbc_lblUser = new GridBagConstraints();
@@ -348,14 +346,96 @@ public class UserInfoJPanel extends JPanel {
 	
 
 		ImageIcon star = new ImageIcon();
-		if(Common.UTENTE.isAdmin())
+		if(Common.UTENTE.isAdmin()){
 			pathIcon = "res/starwhite.png";
-		else
+			log.info(Common.UTENTE.getNickname()+"is admin!");
+			panel_star.setBackground(new Color(250, 172, 88));
+			setBackground(new Color(250, 172, 88));
+			panel_2.setBackground(new Color(250, 172, 88));
+			lblYourInfo.setText("ADMIN INFO");
+			lblYourInfo.setBackground(new Color(151, 121, 102));
+			comboBoxItems = new Vector();
+			comboBoxItems.add("admin - 1");
+			comboBoxItems.add("admin - 2");
+
+			model = new DefaultComboBoxModel(
+					comboBoxItems);
+			comboBox = new JComboBox(model);
+			comboBox.setVisible(false);
+			GridBagConstraints gbc_comboBox = new GridBagConstraints();
+			gbc_comboBox.fill = GridBagConstraints.BOTH;
+			gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+			gbc_comboBox.gridx = 1;
+			gbc_comboBox.gridy = 5;
+			panel_2.add(comboBox, gbc_comboBox);
+			comboBox.addActionListener(new ActionListener() {
+
+				public void actionPerformed(ActionEvent e) {
+					String s = (String) comboBox.getSelectedItem();
+					String[] parts = s.split(" - ");
+					String pathIcon="";
+					pathIcon = "res/admin-" + parts[1] + ".png";
+					avatar = pathIcon;
+					MyImageIcon imgicon = new MyImageIcon(pathIcon, 80, 70);
+					lblImage.setIcon(imgicon.getImageResponsive());
+				}
+			});
+			
+			
+			lblUser.setBackground(new Color(180, 95, 4));
+			lblPassword.setBackground(new Color(180, 95, 4));
+			lblName.setBackground(new Color(180, 95, 4));
+			lblSurname.setBackground(new Color(180, 95, 4));
+			lblEmail.setBackground(new Color(180, 95, 4));
+			lblPersonalData.setBackground(new Color(151, 121, 102));
+		}
+		else{
+			panel_star.setBackground(new Color(2, 94, 137));
+			setBackground(new Color(2, 94, 137));
+			panel_2.setBackground(new Color(2, 94, 137));
+			lblYourInfo.setText("YOUR INFO");
+			comboBoxItems = new Vector();
+			
+			comboBoxItems.add("avatar - 1");
+			comboBoxItems.add("avatar - 2");
+			comboBoxItems.add("avatar - 3");
+			comboBoxItems.add("avatar - 4");
+			comboBoxItems.add("avatar - 5");
+			comboBoxItems.add("avatar - 6");
+			comboBoxItems.add("avatar - 7");
+			comboBoxItems.add("avatar - 8");
+
+			model = new DefaultComboBoxModel(
+					comboBoxItems);
+			comboBox = new JComboBox(model);
+			comboBox.setVisible(false);
+			GridBagConstraints gbc_comboBox = new GridBagConstraints();
+			gbc_comboBox.fill = GridBagConstraints.BOTH;
+			gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+			gbc_comboBox.gridx = 1;
+			gbc_comboBox.gridy = 5;
+			panel_2.add(comboBox, gbc_comboBox);
+			comboBox.addActionListener(new ActionListener() {
+
+				public void actionPerformed(ActionEvent e) {
+					String s = (String) comboBox.getSelectedItem();
+					String[] parts = s.split(" - ");
+					String pathIcon="";
+					pathIcon = "res/" + parts[1] + ".png";
+					avatar = pathIcon;
+					MyImageIcon imgicon = new MyImageIcon(pathIcon, 80, 70);
+					lblImage.setIcon(imgicon.getImageResponsive());
+					
+					
+				}
+			});
 			pathIcon = "res/star.png";
 		imgicon = new MyImageIcon(pathIcon, 20, 20);
 		star = imgicon.getImageResponsive();
 		for (int i = 0; i < numStelle; i++) {
 			panel_star.add(new JLabel(star));
+		}
+		
 		}
 	}
 
@@ -373,8 +453,9 @@ public class UserInfoJPanel extends JPanel {
 		logOutListener_s.add(i);
 	}
 	
-	public void isAdmin(boolean isAdmin){
+	/*public void isAdmin(boolean isAdmin){
 		if (isAdmin){
+			log.info(Common.UTENTE.getNickname()+"is admin!");
 			panel_star.setBackground(new Color(250, 172, 88));
 			setBackground(new Color(250, 172, 88));
 			panel_2.setBackground(new Color(250, 172, 88));
@@ -457,5 +538,5 @@ public class UserInfoJPanel extends JPanel {
 				}
 			});
 		}
-	}
+	}*/
 }

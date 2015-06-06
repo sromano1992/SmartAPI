@@ -155,6 +155,8 @@ public class LoginGrafica extends JPanel{
 												panel_1.add(passwordField, gbc_passwordField);
 														
 														lblerror = new JLabel("");
+														lblerror.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+														lblerror.setForeground(Color.RED);
 														lblerror.setOpaque(true);
 														GridBagConstraints gbc_lblerror = new GridBagConstraints();
 														gbc_lblerror.fill = GridBagConstraints.BOTH;
@@ -162,7 +164,7 @@ public class LoginGrafica extends JPanel{
 														gbc_lblerror.gridx = 1;
 														gbc_lblerror.gridy = 6;
 														panel_1.add(lblerror, gbc_lblerror);
-														lblerror.setBackground(Color.red);
+														lblerror.setBackground(new Color(2, 94, 137));
 												
 														//BUTTON LOGIN
 														JButton btnLogin = new JButton("Login");

@@ -115,6 +115,7 @@ public class Panel_InsertCP extends JPanel {
 					newCategoria.setVisible(true);
 					SwingUtilities.updateComponentTreeUI(getParent());
 				}
+				else newCategoria.setVisible(false);
 				if(!categoria.equals("Other..."))System.out.println("Categoria: "+categoria);
 			}
 		});
