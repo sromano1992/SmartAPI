@@ -14,7 +14,7 @@ import java.awt.GridLayout;
 
 public class Panel_ShowAllUser extends JPanel implements TreePathListener{
 	private ShowUsersInfo showUserPanel;
-	private UserClassificationJPanel userClassificationJPanel;
+	private UserClassificationNew userClassificationJPanel;
 	/**
 	 * Create the panel.
 	 */
@@ -36,7 +36,7 @@ public class Panel_ShowAllUser extends JPanel implements TreePathListener{
 		treeViewUsers.addTreePathListener(this);
 		splitPane.setLeftComponent(treeViewUsers);
 		
-		userClassificationJPanel = new UserClassificationJPanel(Common.UTENTE.getNickname());
+		userClassificationJPanel = new UserClassificationNew(Common.UTENTE.getNickname());
 		add(userClassificationJPanel);
 	}
 
