@@ -111,7 +111,7 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener, I
 		infoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrame_InferredCpInfo f = new JFrame_InferredCpInfo();
-				f.setInferredCP(actualCP, actualCP_category);
+				f.setInferredCP(actualCP, actualCP_category, new SmartAPIModel().getMediaVotazioni(actualCP.getResource().getLocalName()));
 				f.setVisible(true);
 				Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 				f.setLocation(dim.width/2-f.getSize().width/2, dim.height/2-f.getSize().height/2);
