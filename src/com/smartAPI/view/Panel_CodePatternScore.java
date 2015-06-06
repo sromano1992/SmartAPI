@@ -54,16 +54,6 @@ public class Panel_CodePatternScore extends JPanel {
 	}
 
 	public Panel_CodePatternScore() {
-		log.info("Score not defined...will be showed 4 stars");
-		setLayout(new GridLayout(1, _MAX_SCORE, 0, 0));
-		
-		String starIco = "res/star.png";
-		MyImageIcon pic = new MyImageIcon(starIco, 20, 20);
-	    for (int i=0; i<4; i++){
-	    	add(new JLabel(pic.getImageResponsive()));
-	    }
-	    for (int i=0; i<_MAX_SCORE-4; i++)
-	    	add(new JLabel());
-	    add(new JLabel("4.2"));
+		setScore(0);
 	}
 }
