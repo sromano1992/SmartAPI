@@ -34,6 +34,7 @@ import java.awt.Color;
 
 import javax.swing.border.MatteBorder;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 /**
  * 
  * @author Simone Romamo - http://www.sromano.altervista.org
@@ -61,6 +62,7 @@ public class JFrame_InferredCpInfo extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrame_InferredCpInfo() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JFrame_InferredCpInfo.class.getResource("/com/smartAPI/view/res/light-bulb-icon.png")));
 		setTitle("Inference informations");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 609, 306);
@@ -169,7 +171,7 @@ public class JFrame_InferredCpInfo extends JFrame {
 		panel_3.add(lblInferredMethods);
 		lblInferredMethods.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		labelCommonMethods = new JLabel("Common methods");
+		labelCommonMethods = new JLabel("Commons methods");
 		labelCommonMethods.setHorizontalAlignment(SwingConstants.CENTER);
 		labelCommonMethods.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel_3.add(labelCommonMethods);
