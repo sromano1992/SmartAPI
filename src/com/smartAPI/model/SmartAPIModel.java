@@ -1074,7 +1074,7 @@ public class SmartAPIModel {
 						else {
 							//controllo gi� fatto
 							//if(hasAlreadyVoted(username, codePattern))
-							//throw new UserException("Hai gi� votato questo code pattern");							
+							//throw new UserException("Hai già votato questo code pattern");							
 							stmtResource.changeObject(object.toString() + codePattern + ",");
 							storeOntModel();
 							return true;

@@ -139,24 +139,14 @@ public class Panel_InsertCP extends JPanel {
 		gbc_panel_3.gridx = 0;
 		gbc_panel_3.gridy = 0;
 		panel_2.add(panel_3, gbc_panel_3);
-		GridBagLayout gbl_panel_3 = new GridBagLayout();
-		gbl_panel_3.columnWidths = new int[] {0, 0, 0};
-		gbl_panel_3.rowHeights = new int[] {0};
-		gbl_panel_3.columnWeights = new double[]{1.0, 1.0, 1.0};
-		gbl_panel_3.rowWeights = new double[]{1.0};
-		panel_3.setLayout(gbl_panel_3);
+		panel_3.setLayout(new GridLayout(0, 3, 0, 0));
 		
 		JPanel panel_7 = new JPanel();
-		GridBagConstraints gbc_panel_7 = new GridBagConstraints();
-		gbc_panel_7.insets = new Insets(0, 0, 0, 5);
-		gbc_panel_7.fill = GridBagConstraints.BOTH;
-		gbc_panel_7.gridx = 0;
-		gbc_panel_7.gridy = 0;
-		panel_3.add(panel_7, gbc_panel_7);
+		panel_3.add(panel_7);
 		GridBagLayout gbl_panel_7 = new GridBagLayout();
-		gbl_panel_7.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_panel_7.rowHeights = new int[] {0, 0, 0, 0, 0};
-		gbl_panel_7.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_7.columnWidths = new int[] {30, 0, 65, 133, 30, 0};
+		gbl_panel_7.rowHeights = new int[] {30, 30, 0, 0, 0, 0};
+		gbl_panel_7.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel_7.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_7.setLayout(gbl_panel_7);
 										
@@ -164,7 +154,7 @@ public class Panel_InsertCP extends JPanel {
 												GridBagConstraints gbc_keywordLabel = new GridBagConstraints();
 												gbc_keywordLabel.fill = GridBagConstraints.BOTH;
 												gbc_keywordLabel.insets = new Insets(0, 0, 5, 0);
-												gbc_keywordLabel.gridx = 1;
+												gbc_keywordLabel.gridx = 2;
 												gbc_keywordLabel.gridy = 2;
 												panel_7.add(keywordLabel, gbc_keywordLabel);
 												keywordLabel.setBackground(new Color(231, 76, 60));
@@ -174,8 +164,9 @@ public class Panel_InsertCP extends JPanel {
 										
 												keyword = new JTextField();
 												GridBagConstraints gbc_keyword = new GridBagConstraints();
-												gbc_keyword.insets = new Insets(0, 0, 5, 0);
-												gbc_keyword.gridx = 2;
+												gbc_keyword.fill = GridBagConstraints.HORIZONTAL;
+												gbc_keyword.insets = new Insets(0, 0, 5, 5);
+												gbc_keyword.gridx = 3;
 												gbc_keyword.gridy = 2;
 												panel_7.add(keyword, gbc_keyword);
 												keyword.setColumns(20);
@@ -185,7 +176,7 @@ public class Panel_InsertCP extends JPanel {
 										GridBagConstraints gbc_lblLanguage = new GridBagConstraints();
 										gbc_lblLanguage.fill = GridBagConstraints.BOTH;
 										gbc_lblLanguage.insets = new Insets(0, 0, 5, 0);
-										gbc_lblLanguage.gridx = 1;
+										gbc_lblLanguage.gridx = 2;
 										gbc_lblLanguage.gridy = 3;
 										panel_7.add(lblLanguage, gbc_lblLanguage);
 										lblLanguage.setBackground(new Color(231, 76, 60));
@@ -198,8 +189,10 @@ public class Panel_InsertCP extends JPanel {
 										language = (String) v1.get(0);
 										final JComboBox jcbLanguage = new JComboBox(model_lang);
 										GridBagConstraints gbc_jcbLanguage = new GridBagConstraints();
+										gbc_jcbLanguage.fill = GridBagConstraints.HORIZONTAL;
+										gbc_jcbLanguage.insets = new Insets(0, 0, 5, 5);
 										gbc_jcbLanguage.ipadx = 90;
-										gbc_jcbLanguage.gridx = 2;
+										gbc_jcbLanguage.gridx = 3;
 										gbc_jcbLanguage.gridy = 3;
 										panel_7.add(jcbLanguage, gbc_jcbLanguage);
 								jcbLanguage.addActionListener(new ActionListener() {
@@ -215,23 +208,18 @@ public class Panel_InsertCP extends JPanel {
 								});
 		
 		JPanel panel_6 = new JPanel();
-		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
-		gbc_panel_6.insets = new Insets(0, 0, 0, 5);
-		gbc_panel_6.fill = GridBagConstraints.BOTH;
-		gbc_panel_6.gridx = 1;
-		gbc_panel_6.gridy = 0;
-		panel_3.add(panel_6, gbc_panel_6);
+		panel_3.add(panel_6);
 		GridBagLayout gbl_panel_6 = new GridBagLayout();
-		gbl_panel_6.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_panel_6.columnWidths = new int[] {30, 0, 0, 0};
 		gbl_panel_6.rowHeights = new int[]{0, 0, 0, 0};
-		gbl_panel_6.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_6.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0};
 		gbl_panel_6.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_6.setLayout(gbl_panel_6);
 								
 										MyJLabel nomeLabel = new MyJLabel("*Name");
 										GridBagConstraints gbc_nomeLabel = new GridBagConstraints();
 										gbc_nomeLabel.fill = GridBagConstraints.BOTH;
-										gbc_nomeLabel.insets = new Insets(0, 0, 5, 5);
+										gbc_nomeLabel.insets = new Insets(0, 0, 5, 0);
 										gbc_nomeLabel.gridx = 1;
 										gbc_nomeLabel.gridy = 1;
 										panel_6.add(nomeLabel, gbc_nomeLabel);
@@ -239,23 +227,20 @@ public class Panel_InsertCP extends JPanel {
 								
 										nomeCP = new JTextField();
 										GridBagConstraints gbc_nomeCP = new GridBagConstraints();
-										gbc_nomeCP.insets = new Insets(0, 0, 5, 0);
+										gbc_nomeCP.fill = GridBagConstraints.HORIZONTAL;
+										gbc_nomeCP.weightx = 0.3;
+										gbc_nomeCP.insets = new Insets(0, 0, 5, 5);
 										gbc_nomeCP.gridx = 2;
 										gbc_nomeCP.gridy = 1;
 										panel_6.add(nomeCP, gbc_nomeCP);
 										nomeCP.setColumns(10);
 		
 		JPanel panel_5 = new JPanel();
-		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
-		gbc_panel_5.insets = new Insets(0, 0, 0, 5);
-		gbc_panel_5.fill = GridBagConstraints.BOTH;
-		gbc_panel_5.gridx = 2;
-		gbc_panel_5.gridy = 0;
-		panel_3.add(panel_5, gbc_panel_5);
+		panel_3.add(panel_5);
 		GridBagLayout gbl_panel_5 = new GridBagLayout();
-		gbl_panel_5.columnWidths = new int[]{0, 0, 0};
-		gbl_panel_5.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel_5.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_5.columnWidths = new int[] {30, 0, 65, 133, 30, 0};
+		gbl_panel_5.rowHeights = new int[] {30, 30, 0, 0, 0, 30};
+		gbl_panel_5.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel_5.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_5.setLayout(gbl_panel_5);
 		
@@ -263,17 +248,17 @@ public class Panel_InsertCP extends JPanel {
 		label.setBackground(new Color(231, 76, 60));
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.fill = GridBagConstraints.BOTH;
-		gbc_label.insets = new Insets(0, 0, 5, 5);
-		gbc_label.gridx = 0;
+		gbc_label.insets = new Insets(0, 0, 5, 0);
+		gbc_label.gridx = 2;
 		gbc_label.gridy = 2;
 		panel_5.add(label, gbc_label);
 		
 		libTextField = new JTextField();
 		libTextField.setColumns(10);
 		GridBagConstraints gbc_libTextField = new GridBagConstraints();
-		gbc_libTextField.insets = new Insets(0, 0, 5, 0);
+		gbc_libTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_libTextField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_libTextField.gridx = 1;
+		gbc_libTextField.gridx = 3;
 		gbc_libTextField.gridy = 2;
 		panel_5.add(libTextField, gbc_libTextField);
 		
@@ -281,16 +266,17 @@ public class Panel_InsertCP extends JPanel {
 		label_1.setBackground(new Color(231, 76, 60));
 		GridBagConstraints gbc_label_1 = new GridBagConstraints();
 		gbc_label_1.fill = GridBagConstraints.BOTH;
-		gbc_label_1.insets = new Insets(0, 0, 5, 5);
-		gbc_label_1.gridx = 0;
+		gbc_label_1.insets = new Insets(0, 0, 5, 0);
+		gbc_label_1.gridx = 2;
 		gbc_label_1.gridy = 3;
 		panel_5.add(label_1, gbc_label_1);
 		
 		
 		GridBagConstraints gbc_jcbCategory = new GridBagConstraints();
-		gbc_jcbCategory.insets = new Insets(0, 0, 5, 0);
+		gbc_jcbCategory.ipadx = 90;
+		gbc_jcbCategory.insets = new Insets(0, 0, 5, 5);
 		gbc_jcbCategory.fill = GridBagConstraints.HORIZONTAL;
-		gbc_jcbCategory.gridx = 1;
+		gbc_jcbCategory.gridx = 3;
 		gbc_jcbCategory.gridy = 3;
 		panel_5.add(jcbCategory, gbc_jcbCategory);
 		
@@ -300,8 +286,9 @@ public class Panel_InsertCP extends JPanel {
 		newCategoria.setColumns(10);
 		newCategoria.setVisible(false);
 		GridBagConstraints gbc_newCategoria = new GridBagConstraints();
+		gbc_newCategoria.insets = new Insets(0, 0, 0, 5);
 		gbc_newCategoria.fill = GridBagConstraints.HORIZONTAL;
-		gbc_newCategoria.gridx = 1;
+		gbc_newCategoria.gridx = 3;
 		gbc_newCategoria.gridy = 4;
 		panel_5.add(newCategoria, gbc_newCategoria);
 		newCategoria.setColumns(10);
