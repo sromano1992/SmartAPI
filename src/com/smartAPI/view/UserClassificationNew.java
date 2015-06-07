@@ -45,8 +45,11 @@ public class UserClassificationNew extends JPanel {
 
 	public UserClassificationNew(String username) {
 		panelFirst = new JPanel();
+		setFirstLayout();
 		panelSecond = new JPanel();
+		setSecondLayout();
 		panelThird = new JPanel();
+		setThirdLayout();
 		panelGeneric = new JPanel();
 		setGenericLayout();
 		s = new SmartAPIModel();
