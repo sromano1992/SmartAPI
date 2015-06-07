@@ -27,7 +27,7 @@ public class Panel_ShowAllUser extends JPanel implements TreePathListener{
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
@@ -54,6 +54,20 @@ public class Panel_ShowAllUser extends JPanel implements TreePathListener{
 		treeViewUsers.addTreePathListener(this);
 		splitPane.setLeftComponent(treeViewUsers);
 		
+		JPanel panel = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.insets = new Insets(0, 0, 0, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 3;
+		add(panel, gbc_panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{0};
+		gbl_panel.rowHeights = new int[]{0};
+		gbl_panel.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
+		
 		
 		userClassificationJPanel = new UserClassificationNew(Common.UTENTE.getNickname());
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
@@ -62,6 +76,19 @@ public class Panel_ShowAllUser extends JPanel implements TreePathListener{
 		gbc_panel_5.gridx = 2;
 		gbc_panel_5.gridy = 3;
 		add(userClassificationJPanel, gbc_panel_5);
+		
+		JPanel panel_1 = new JPanel();
+		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+		gbc_panel_1.fill = GridBagConstraints.BOTH;
+		gbc_panel_1.gridx = 4;
+		gbc_panel_1.gridy = 3;
+		add(panel_1, gbc_panel_1);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{0};
+		gbl_panel_1.rowHeights = new int[]{0};
+		gbl_panel_1.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
 
 		
 		

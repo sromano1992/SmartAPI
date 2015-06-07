@@ -93,7 +93,7 @@ public class UserClassificationNew extends JPanel {
 	public void start(String user) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{187, 187, 187, 0};
-		gridBagLayout.rowHeights = new int[]{392, 0, 0};
+		gridBagLayout.rowHeights = new int[]{250, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
@@ -129,7 +129,7 @@ public class UserClassificationNew extends JPanel {
 		ClassificationJPanel.add(panelInfo);
 		GridBagLayout gbl_panelInfo = new GridBagLayout();
 		gbl_panelInfo.columnWidths = new int[]{45, 45, 45, 101, 68, 44, 68, 62, 68, 0};
-		gbl_panelInfo.rowHeights = new int[] {2};
+		gbl_panelInfo.rowHeights = new int[] {0};
 		gbl_panelInfo.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panelInfo.rowWeights = new double[]{0.0};
 		panelInfo.setLayout(gbl_panelInfo);
