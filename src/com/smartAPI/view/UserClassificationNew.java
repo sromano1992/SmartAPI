@@ -34,6 +34,7 @@ public class UserClassificationNew extends JPanel {
 		ArrayList<UserClassification> classifica;
 		UserClassification uN;
 		boolean flag=true; //if user is not one, not two, not three
+		JLabel lblGeneric = null;
 		JLabel lblGenericIcon = null;
 		JLabel lblGenericUsername = null;
 		JLabel lblGenericScore = null;
@@ -81,7 +82,7 @@ public class UserClassificationNew extends JPanel {
 		else flag=false; //username is first or second or third
 		
 		if (flag){
-			initGeneric(uN);
+			initGeneric(uN, positionUser);
 		}
 		
 	}
@@ -124,19 +125,19 @@ public class UserClassificationNew extends JPanel {
 		panelInfo.setBackground(Color.LIGHT_GRAY);
 		ClassificationJPanel.add(panelInfo);
 		GridBagLayout gbl_panelInfo = new GridBagLayout();
-		gbl_panelInfo.columnWidths = new int[]{107, 0, 0, 47, 112, 86, 100, 0};
+		gbl_panelInfo.columnWidths = new int[]{45, 45, 45, 101, 68, 44, 68, 62, 68, 0};
 		gbl_panelInfo.rowHeights = new int[] {2};
-		gbl_panelInfo.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelInfo.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panelInfo.rowWeights = new double[]{0.0};
 		panelInfo.setLayout(gbl_panelInfo);
 
 		JLabel label = new JLabel("Username");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
+		//label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.insets = new Insets(0, 0, 0, 5);
-		gbc_label.gridx = 2;
+		gbc_label.gridx = 3;
 		gbc_label.gridy = 0;
 		panelInfo.add(label, gbc_label);
 
@@ -146,7 +147,7 @@ public class UserClassificationNew extends JPanel {
 		label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		GridBagConstraints gbc_label_1 = new GridBagConstraints();
 		gbc_label_1.insets = new Insets(0, 0, 0, 5);
-		gbc_label_1.gridx = 3;
+		gbc_label_1.gridx = 4;
 		gbc_label_1.gridy = 0;
 		panelInfo.add(label_1, gbc_label_1);
 
@@ -156,17 +157,17 @@ public class UserClassificationNew extends JPanel {
 		label_2.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		GridBagConstraints gbc_label_2 = new GridBagConstraints();
 		gbc_label_2.insets = new Insets(0, 0, 0, 5);
-		gbc_label_2.gridx = 4;
+		gbc_label_2.gridx = 6;
 		gbc_label_2.gridy = 0;
 		panelInfo.add(label_2, gbc_label_2);
 
 		JLabel label_3 = new JLabel("Voters User");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
+		label_3.setHorizontalAlignment(SwingConstants.LEFT);
 		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		GridBagConstraints gbc_label_3 = new GridBagConstraints();
 		gbc_label_3.insets = new Insets(0, 0, 0, 5);
-		gbc_label_3.gridx = 5;
+		gbc_label_3.gridx = 8;
 		gbc_label_3.gridy = 0;
 		panelInfo.add(label_3, gbc_label_3);
 
@@ -426,7 +427,7 @@ public class UserClassificationNew extends JPanel {
 		lblSecondUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblSecondUsername1 = new GridBagConstraints();
 		gbc_lblSecondUsername1.insets = new Insets(0, 0, 0, 5);
-		gbc_lblSecondUsername1.gridx = 2;
+		gbc_lblSecondUsername1.gridx = 3;
 		gbc_lblSecondUsername1.gridy = 0;
 		panelSecond.add(lblSecondUsername, gbc_lblSecondUsername1);
 
@@ -437,7 +438,7 @@ public class UserClassificationNew extends JPanel {
 		lblSecondScore.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblSecondScore1 = new GridBagConstraints();
 		gbc_lblSecondScore1.insets = new Insets(0, 0, 0, 5);
-		gbc_lblSecondScore1.gridx = 3;
+		gbc_lblSecondScore1.gridx = 4;
 		gbc_lblSecondScore1.gridy = 0;
 		panelSecond.add(lblSecondScore, gbc_lblSecondScore1);
 
@@ -448,7 +449,7 @@ public class UserClassificationNew extends JPanel {
 		lblSecondVoteCP.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblSecondVoteCP1 = new GridBagConstraints();
 		gbc_lblSecondVoteCP1.insets = new Insets(0, 0, 0, 5);
-		gbc_lblSecondVoteCP1.gridx = 4;
+		gbc_lblSecondVoteCP1.gridx = 6;
 		gbc_lblSecondVoteCP1.gridy = 0;
 		panelSecond.add(lblSecondVoteCP, gbc_lblSecondVoteCP1);
 
@@ -459,7 +460,7 @@ public class UserClassificationNew extends JPanel {
 		lblSecondVoteUs.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblSecondVoteUs1 = new GridBagConstraints();
 		gbc_lblSecondVoteUs1.insets = new Insets(0, 0, 0, 5);
-		gbc_lblSecondVoteUs1.gridx = 5;
+		gbc_lblSecondVoteUs1.gridx = 8;
 		gbc_lblSecondVoteUs1.gridy = 0;
 		panelSecond.add(lblSecondVoteUs, gbc_lblSecondVoteUs1);
 
@@ -506,7 +507,7 @@ public class UserClassificationNew extends JPanel {
 		lblThirdUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblThirdUsername1 = new GridBagConstraints();
 		gbc_lblThirdUsername1.insets = new Insets(0, 0, 0, 5);
-		gbc_lblThirdUsername1.gridx = 2;
+		gbc_lblThirdUsername1.gridx = 3;
 		gbc_lblThirdUsername1.gridy = 0;
 		panelThird.add(lblThirdUsername, gbc_lblThirdUsername1);
 
@@ -517,7 +518,7 @@ public class UserClassificationNew extends JPanel {
 		lblThirdScore.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		GridBagConstraints lblThirdScore1 = new GridBagConstraints();
 		lblThirdScore1.insets = new Insets(0, 0, 0, 5);
-		lblThirdScore1.gridx = 3;
+		lblThirdScore1.gridx = 4;
 		lblThirdScore1.gridy = 0;
 		panelThird.add(lblThirdScore, lblThirdScore1);
 
@@ -528,7 +529,7 @@ public class UserClassificationNew extends JPanel {
 		lblThirdVoteCP.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblThirdVoteCP1 = new GridBagConstraints();
 		gbc_lblThirdVoteCP1.insets = new Insets(0, 0, 0, 5);
-		gbc_lblThirdVoteCP1.gridx = 4;
+		gbc_lblThirdVoteCP1.gridx = 6;
 		gbc_lblThirdVoteCP1.gridy = 0;
 		panelThird.add(lblThirdVoteCP, gbc_lblThirdVoteCP1);
 
@@ -538,7 +539,7 @@ public class UserClassificationNew extends JPanel {
 		lblThirdVoteUs.setForeground(Color.WHITE);
 		lblThirdVoteUs.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblThirdVoteUs1 = new GridBagConstraints();
-		gbc_lblThirdVoteUs1.gridx = 5;
+		gbc_lblThirdVoteUs1.gridx = 8;
 		gbc_lblThirdVoteUs1.gridy = 0;
 		panelThird.add(lblThirdVoteUs, gbc_lblThirdVoteUs1);
 		
@@ -562,7 +563,7 @@ public class UserClassificationNew extends JPanel {
 		panelGeneric.setBorder(border);
 		//panelGeneric.setVisible(true);
 		
-		JLabel lblGeneric = new JLabel("");
+		lblGeneric = new JLabel("");
 		lblGeneric.setForeground(Color.WHITE);
 		lblGeneric.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGeneric.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
@@ -590,7 +591,7 @@ public class UserClassificationNew extends JPanel {
 		lblGenericUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblGenericUsername1 = new GridBagConstraints();
 		gbc_lblGenericUsername1.insets = new Insets(0, 0, 0, 5);
-		gbc_lblGenericUsername1.gridx = 2;
+		gbc_lblGenericUsername1.gridx = 3;
 		gbc_lblGenericUsername1.gridy = 0;
 		panelGeneric.add(lblGenericUsername, gbc_lblGenericUsername1);
 		
@@ -600,7 +601,7 @@ public class UserClassificationNew extends JPanel {
 		lblGenericScore.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblGenericScore1 = new GridBagConstraints();
 		gbc_lblGenericScore1.insets = new Insets(0, 0, 0, 5);
-		gbc_lblGenericScore1.gridx = 3;
+		gbc_lblGenericScore1.gridx = 4;
 		gbc_lblGenericScore1.gridy = 0;
 		panelGeneric.add(lblGenericScore, gbc_lblGenericScore1);
 		
@@ -610,7 +611,7 @@ public class UserClassificationNew extends JPanel {
 		lblGenericVoteCP.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblGenericVoteCP11 = new GridBagConstraints();
 		gbc_lblGenericVoteCP11.insets = new Insets(0, 0, 0, 5);
-		gbc_lblGenericVoteCP11.gridx = 4;
+		gbc_lblGenericVoteCP11.gridx = 6;
 		gbc_lblGenericVoteCP11.gridy = 0;
 		panelGeneric.add(lblGenericVoteCP, gbc_lblGenericVoteCP11);
 		
@@ -619,7 +620,7 @@ public class UserClassificationNew extends JPanel {
 		lblGenericVoteUs.setForeground(Color.WHITE);
 		lblGenericVoteUs.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblGenericVoteUs1 = new GridBagConstraints();
-		gbc_lblGenericVoteUs1.gridx = 5;
+		gbc_lblGenericVoteUs1.gridx = 8;
 		gbc_lblGenericVoteUs1.gridy = 0;
 		panelGeneric.add(lblGenericVoteUs, gbc_lblGenericVoteUs1);
 
@@ -659,34 +660,34 @@ public class UserClassificationNew extends JPanel {
 		GridBagLayout gbl_panelSecond = new GridBagLayout();
 		gbl_panelSecond.columnWidths = new int[] {45, 45, 45, 101, 68, 44, 68, 62, 68, 0};
 		gbl_panelSecond.rowHeights = new int[] {2};
-		gbl_panelSecond.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelSecond.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panelSecond.rowWeights = new double[]{0.0};
 		panelSecond.setLayout(gbl_panelSecond);
 	}
 
 	public void setThirdLayout(){
 		GridBagLayout gbl_panelThird = new GridBagLayout();
-		gbl_panelThird.columnWidths = new int[] {45, 45, 45, 101, 68, 44, 68, 62, 68, 30};
+		gbl_panelThird.columnWidths = new int[] {45, 45, 45, 101, 68, 44, 68, 62, 68, 0};
 		gbl_panelThird.rowHeights = new int[] {2};
-		gbl_panelThird.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelThird.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panelThird.rowWeights = new double[]{0.0};
 		panelThird.setLayout(gbl_panelThird);
 	}
 	
 	public void setGenericLayout(){
 		GridBagLayout gbl_panelGeneric = new GridBagLayout();
-		gbl_panelGeneric.columnWidths = new int[] {45, 45, 45, 101, 68, 44, 30, 62, 68, 30};
+		gbl_panelGeneric.columnWidths = new int[] {45, 45, 45, 101, 68, 44, 68, 62, 68, 0};
 		gbl_panelGeneric.rowHeights = new int[] {2};
-		gbl_panelGeneric.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelGeneric.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panelGeneric.rowWeights = new double[]{0.0};
 		panelGeneric.setLayout(gbl_panelGeneric);
 	}
 	
-	public void initGeneric(UserClassification uN){
+	public void initGeneric(UserClassification uN, int pos){
 		String pathIcon = "res/4.png";
 		MyImageIcon imgicon = new MyImageIcon(pathIcon,33,23);
 		lblGenericIcon.setIcon(imgicon.getImageResponsive());
-		
+		lblGeneric.setText(pos+"");
 		 lblGenericUsername.setText(uN.getUsername());
 		 lblGenericScore.setText(uN.getSomma_media()) ;
 		 lblGenericVoteCP.setText(uN.getVotanti_codepattern()) ;
