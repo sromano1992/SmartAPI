@@ -13,7 +13,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 
 public class Panel_ShowAllUser extends JPanel implements TreePathListener{
-	private ShowUsersInfo showUserPanel;
+	private ShowUsersInfoNew showUserPanel;
 	private UserClassificationNew userClassificationJPanel;
 	/**
 	 * Create the panel.
@@ -28,7 +28,7 @@ public class Panel_ShowAllUser extends JPanel implements TreePathListener{
 		splitPane.setDividerLocation(220);
 		add(splitPane);
 		
-		showUserPanel = new ShowUsersInfo();
+		showUserPanel = new ShowUsersInfoNew();
 		splitPane.setRightComponent(showUserPanel);
 		
 		TreeViewUsers treeViewUsers = new TreeViewUsers();
