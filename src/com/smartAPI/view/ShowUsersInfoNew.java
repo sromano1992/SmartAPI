@@ -18,11 +18,13 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.Utente;
+
 import java.awt.Rectangle;
 import java.awt.GridLayout;
 
@@ -238,7 +240,7 @@ public class ShowUsersInfoNew extends JPanel {
 		textFieldYes = new JTextField();
 		GridBagConstraints gbc_textFieldYes = new GridBagConstraints();
 		gbc_textFieldYes.insets = new Insets(0, 0, 5, 5);
-		gbc_textFieldYes.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldYes.fill = GridBagConstraints.VERTICAL;
 		gbc_textFieldYes.gridx = 1;
 		gbc_textFieldYes.gridy = 1;
 		panelAdm.add(textFieldYes, gbc_textFieldYes);
@@ -252,7 +254,7 @@ public class ShowUsersInfoNew extends JPanel {
 		textFieldNo = new JTextField();
 		GridBagConstraints gbc_textFieldNo = new GridBagConstraints();
 		gbc_textFieldNo.insets = new Insets(0, 0, 5, 5);
-		gbc_textFieldNo.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldNo.fill = GridBagConstraints.VERTICAL;
 		gbc_textFieldNo.gridx = 2;
 		gbc_textFieldNo.gridy = 1;
 		
@@ -301,6 +303,7 @@ public class ShowUsersInfoNew extends JPanel {
 			textFieldNo.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldNo.setEditable(false);
 			textFieldNo.setBackground(Color.red);
+
 			
 		    textFieldYes.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -313,6 +316,7 @@ public class ShowUsersInfoNew extends JPanel {
 				textFieldNo.setBackground(Color.GREEN);
 				textFieldYes.setText(" "+username+" ");
 				textFieldNo.setText(" is Admin ");
+				SwingUtilities.updateComponentTreeUI(panelAdm);
 			}
 		});
 		
@@ -356,6 +360,7 @@ public class ShowUsersInfoNew extends JPanel {
 			panelStar.add(new JLabel(blackstar));
 		}
 		panelStar.setVisible(true);
+		SwingUtilities.updateComponentTreeUI(this);
 	}
 
 }
