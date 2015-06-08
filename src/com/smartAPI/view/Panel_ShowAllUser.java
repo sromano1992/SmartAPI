@@ -89,32 +89,7 @@ public class Panel_ShowAllUser extends JPanel implements TreePathListener{
 		gbl_panel_1.columnWeights = new double[]{Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
-
-		
-		
-		
-//		setLayout(new GridLayout(0, 1, 0, 0));
-//		
-//		JSplitPane splitPane = new JSplitPane();
-//		splitPane.setBackground(new Color(228, 230, 235));
-//		//splitPane.setEnabled(false);
-//		splitPane.setDividerSize(3);
-//		splitPane.setDividerLocation(220);
-//		add(splitPane);
-//		
-//		showUserPanel = new ShowUsersInfoNew();
-//		splitPane.setRightComponent(showUserPanel);
-//		
-//		TreeViewUsers treeViewUsers = new TreeViewUsers();
-//		treeViewUsers.setUser_s(new SmartAPIModel().getUsers(), "user");
-//		treeViewUsers.addTreePathListener(this);
-//		splitPane.setLeftComponent(treeViewUsers);
-//		
-//		userClassificationJPanel = new UserClassificationNew(Common.UTENTE.getNickname());
-//		add(userClassificationJPanel);
-		
-		
-		
+	
 	}
 
 	@Override
