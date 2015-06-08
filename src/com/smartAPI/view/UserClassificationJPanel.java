@@ -374,7 +374,7 @@ public class UserClassificationJPanel extends JPanel {
 			panelGeneric.setVisible(true);
 			add(panelGeneric);
 
-			JLabel lblGeneric = new JLabel("16");
+			JLabel lblGeneric = new JLabel("");
 			lblGeneric.setForeground(Color.WHITE);
 			lblGeneric.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGeneric.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
