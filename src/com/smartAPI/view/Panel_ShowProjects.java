@@ -95,13 +95,13 @@ public class Panel_ShowProjects extends JPanel implements TreePathListener{
 		JPanel panel = new JPanel();
 		splitPane_1.setLeftComponent(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] {10, 400, 0};
+		gbl_panel.columnWidths = new int[] {90, 300, 0};
 		gbl_panel.rowHeights = new int[] {0, 0};
-		gbl_panel.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 1.0};
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblName = new JLabel("Name");
+		JLabel lblName = new JLabel(" Name ");
 		lblName.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblName.setForeground(Color.WHITE);
 		lblName.setOpaque(true);
@@ -120,10 +120,11 @@ public class Panel_ShowProjects extends JPanel implements TreePathListener{
 		gbc_textField_name.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_name.gridx = 1;
 		gbc_textField_name.gridy = 0;
+		gbc_textField_name.anchor = GridBagConstraints.NORTHWEST;
 		panel.add(textField_name, gbc_textField_name);
 		textField_name.setColumns(10);
 		
-		JLabel lblDescription = new JLabel("Description");
+		JLabel lblDescription = new JLabel(" Description ");
 		lblDescription.setForeground(Color.WHITE);
 		lblDescription.setOpaque(true);
 		GridBagConstraints gbc_lblDescription = new GridBagConstraints();
@@ -145,23 +146,26 @@ public class Panel_ShowProjects extends JPanel implements TreePathListener{
 		
 		textPane_Description = new JTextPane();
 		textPane_Description.setEditable(false);
+		GridBagConstraints gbl_txt = new GridBagConstraints();
+		//gbl_txt.fill = GridBagConstraints.WEST;
+		gbl_txt.anchor = GridBagConstraints.WEST;
 		scrollPane.setViewportView(textPane_Description);
 		
 		JPanel panel_4 = new JPanel();
 		splitPane_1.setRightComponent(panel_4);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
-		gbl_panel_4.columnWidths = new int[]{0, 0, 0};
+		gbl_panel_4.columnWidths = new int[] {90, 0, 0};
 		gbl_panel_4.rowHeights = new int[]{0, 0};
 		gbl_panel_4.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		gbl_panel_4.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panel_4.setLayout(gbl_panel_4);
 		
-		JLabel lblCategory = new JLabel("Categories");
+		JLabel lblCategory = new JLabel(" Categories ");
 		lblCategory.setForeground(Color.WHITE);
 		lblCategory.setOpaque(true);
 		GridBagConstraints gbc_lblCategory = new GridBagConstraints();
 		gbc_lblCategory.insets = new Insets(0, 0, 0, 5);
-		gbc_lblCategory.anchor = GridBagConstraints.EAST;
+		gbc_lblCategory.anchor = GridBagConstraints.NORTHEAST;
 		gbc_lblCategory.gridx = 0;
 		gbc_lblCategory.gridy = 0;
 		panel_4.add(lblCategory, gbc_lblCategory);
