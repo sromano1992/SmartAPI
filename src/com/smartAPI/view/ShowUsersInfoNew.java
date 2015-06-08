@@ -316,6 +316,7 @@ public class ShowUsersInfoNew extends JPanel {
 				textFieldNo.setBackground(Color.GREEN);
 				textFieldYes.setText(" "+username+" ");
 				textFieldNo.setText(" is Admin ");
+				SwingUtilities.updateComponentTreeUI(panelAdm);
 			}
 		});
 		
