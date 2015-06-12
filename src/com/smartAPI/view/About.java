@@ -26,7 +26,6 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.net.URI;
-import java.awt.FlowLayout;
 
 public class About extends JPanel {
 
@@ -100,16 +99,7 @@ public class About extends JPanel {
 		panel_4.add(labelsimoqr, gbc_labelsimoqr);
 		labelsimoqr.setIcon(imgicon.getImageResponsive());
 		
-		JPanel panel_10 = new JPanel();
-		panel_10.setBackground(new Color(228, 230, 235));
-		panel.add(panel_10, BorderLayout.EAST);
-		panel_10.setLayout(new GridLayout(3, 1, 0, 0));
-		
-		JLabel label_11 = new JLabel("");
-		panel_10.add(label_11);
-		
 		JButton buttonSimLink = new JButton("");
-		panel_10.add(buttonSimLink);
 		buttonSimLink.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
@@ -127,6 +117,7 @@ public class About extends JPanel {
 		buttonSimLink.setFocusPainted(false);
 		buttonSimLink.setContentAreaFilled(false);
 		buttonSimLink.setIcon(new ImageIcon(About.class.getResource("/com/smartAPI/view/res/Linkedin.png")));
+		panel.add(buttonSimLink, BorderLayout.EAST);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
@@ -157,16 +148,7 @@ public class About extends JPanel {
 		labelameqr.setIcon(imgicon.getImageResponsive());
 		panel_5.add(labelameqr, gbc_labelameqr);		
 		
-		JPanel panel_11 = new JPanel();
-		panel_11.setBackground(new Color(228, 230, 235));
-		panel_1.add(panel_11, BorderLayout.EAST);
-		panel_11.setLayout(new GridLayout(3, 1, 0, 0));
-		
-		JLabel label_12 = new JLabel("");
-		panel_11.add(label_12);
-		
 		JButton buttonAmeLink = new JButton("");
-		panel_11.add(buttonAmeLink);
 		buttonAmeLink.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 					Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
@@ -184,6 +166,7 @@ public class About extends JPanel {
 		buttonAmeLink.setFocusPainted(false);
 		buttonAmeLink.setContentAreaFilled(false);
 		buttonAmeLink.setIcon(new ImageIcon(About.class.getResource("/com/smartAPI/view/res/Linkedin.png")));
+		panel_1.add(buttonAmeLink, BorderLayout.EAST);
 		
 		
 		
@@ -222,16 +205,7 @@ public class About extends JPanel {
 		//add(label_3);
 		lblciroqr.setIcon(imgicon.getImageResponsive());
 		
-		JPanel panel_12 = new JPanel();
-		panel_12.setBackground(new Color(228, 230, 235));
-		panel_2.add(panel_12, BorderLayout.EAST);
-		panel_12.setLayout(new GridLayout(3, 1, 0, 0));
-		
-		JLabel label_13 = new JLabel("");
-		panel_12.add(label_13);
-		
 		JButton buttonCiroAmati = new JButton("");
-		panel_12.add(buttonCiroAmati);
 		buttonCiroAmati.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
@@ -249,6 +223,7 @@ public class About extends JPanel {
 		buttonCiroAmati.setFocusPainted(false);
 		buttonCiroAmati.setContentAreaFilled(false);
 		buttonCiroAmati.setIcon(new ImageIcon(About.class.getResource("/com/smartAPI/view/res/Linkedin.png")));
+		panel_2.add(buttonCiroAmati, BorderLayout.EAST);
 		//add(lblciroqr);
 		
 		JLabel  lblIconIole = new JLabel("");
@@ -315,16 +290,7 @@ public class About extends JPanel {
 		panel_3.add(labeIole, gbc_labeste);
 		labeIole.setIcon(imgicon.getImageResponsive());
 		
-		JPanel panel_13 = new JPanel();
-		panel_13.setBackground(new Color(228, 230, 235));
-		panel_7.add(panel_13, BorderLayout.EAST);
-		panel_13.setLayout(new GridLayout(3, 1, 0, 0));
-		
-		JLabel label_14 = new JLabel("");
-		panel_13.add(label_14);
-		
 		JButton buttonIolLink = new JButton("");
-		panel_13.add(buttonIolLink);
 		buttonIolLink.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
@@ -342,6 +308,7 @@ public class About extends JPanel {
 		buttonIolLink.setFocusPainted(false);
 		buttonIolLink.setContentAreaFilled(false);
 		buttonIolLink.setIcon(new ImageIcon(About.class.getResource("/com/smartAPI/view/res/Linkedin.png")));
+		panel_7.add(buttonIolLink, BorderLayout.EAST);
 		
 		JLabel lblTxtIole = new JLabel("Iolanda Rinaldi");
 		lblTxtIole.setOpaque(true);
@@ -381,16 +348,7 @@ public class About extends JPanel {
 		panel_9.add(labeste, gbc_labIole);
 		labeste.setIcon(imgicon.getImageResponsive());
 		
-		JPanel panel_14 = new JPanel();
-		panel_14.setBackground(new Color(228, 230, 235));
-		panel_8.add(panel_14, BorderLayout.EAST);
-		panel_14.setLayout(new GridLayout(3, 1, 0, 0));
-		
-		JLabel label_15 = new JLabel("");
-		panel_14.add(label_15);
-		
 		JButton buttonSteLink = new JButton("");
-		panel_14.add(buttonSteLink);
 		buttonSteLink.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
@@ -408,6 +366,7 @@ public class About extends JPanel {
 		buttonSteLink.setFocusPainted(false);
 		buttonSteLink.setContentAreaFilled(false);
 		buttonSteLink.setIcon(new ImageIcon(About.class.getResource("/com/smartAPI/view/res/Linkedin.png")));
+		panel_8.add(buttonSteLink, BorderLayout.EAST);
 
 		pathIcon = "res/steQr.jpg";
 		imgicon = new MyImageIcon(pathIcon, 50, 50);
