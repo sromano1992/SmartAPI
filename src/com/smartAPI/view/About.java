@@ -70,6 +70,7 @@ public class About extends JPanel {
 		add(label_2);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(228, 228, 235));
 		add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		JLabel lblTxtSimo = new JLabel("Simone Romano");
@@ -120,6 +121,7 @@ public class About extends JPanel {
 		panel.add(buttonSimLink, BorderLayout.EAST);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(228, 228, 235));
 		add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		JLabel lblTxtAme = new JLabel("Amedeo Leo");
@@ -171,6 +173,7 @@ public class About extends JPanel {
 		
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(228, 228, 235));
 		add(panel_2);
 		panel_2.setLayout(new BorderLayout(0, 0));
 		
@@ -260,6 +263,7 @@ public class About extends JPanel {
 		
 
 		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(new Color(228, 228, 235));
 		add(panel_7);
 		panel_7.setLayout(new BorderLayout(0, 0));
 		
@@ -319,6 +323,7 @@ public class About extends JPanel {
 			
 		
 		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(new Color(228, 228, 235));
 		add(panel_8);
 		panel_8.setLayout(new BorderLayout(0, 0));
 		

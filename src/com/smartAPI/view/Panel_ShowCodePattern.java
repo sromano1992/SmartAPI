@@ -52,9 +52,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
+import org.apache.log4j.Logger;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
+
 
 
 
@@ -73,11 +75,13 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener, I
 	private MyJLabel mjlblVota;
 	private Panel_CodePatternScore panel_CodePatternScore;
 	private Panel_CodePatternSetScore panel_CodePatternSetScore;
+	private Logger log;
 	
 	/**
 	 * Create the panel.
 	 */
 	public Panel_ShowCodePattern(boolean enableVotation) {
+		log = Logger.getLogger("global");
 		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setLayout(new BorderLayout(0, 0));
 		
@@ -212,6 +216,7 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener, I
 		else
 			panel_CodePatternSetScore.restore(Common.CAN_SET_SCORE);
 		this.actualCP = cp;
+		log.info("Setted cp: " + cp.getResource().getLocalName() + " with methods " + cp.getUsedMethod_s());
 	}
 
 	@Override

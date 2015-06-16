@@ -301,16 +301,14 @@ public class SmartAPIModel {
 				if(predicate.getLocalName().equals(Common.USE_METHOD)){
 					if (object.isResource()){
 						Resource usedMethod = object.asResource();
-						for(Resource r:methodOfCategory){
-							if (r.getLocalName().equals(usedMethod.getLocalName())){
+							if (hasSomeCommonMethod(codePattern, methodOfCategory)){
 								if(!addToInfferred){
 									tmpInferredCP = new CodePattern(codePattern);
 									inferredCodePattern.add(tmpInferredCP);
 									addToInfferred = true;
 								}
-								tmpInferredCP.addMethod(r);
+								tmpInferredCP.addMethod(usedMethod);
 							}
-						}
 					}
 				}
 				if(predicate.getLocalName().equals(property)){
@@ -364,6 +362,28 @@ public class SmartAPIModel {
 			}
 		}
 		return new CodePattern_Category(category, inferredCodePattern, basicCodePattern, methodClass, methodOfCategory);
+	}
+
+	private boolean hasSomeCommonMethod(Resource codePattern,
+			ArrayList<Resource> methodOfCategory) {
+		for (StmtIterator s1 = codePattern.listProperties(); s1.hasNext();){
+			Statement temp = s1.next();
+			Resource subject = temp.getSubject(); // get the subject
+			Property predicate = temp.getPredicate(); // get the predicate
+			RDFNode object = temp.getObject(); // get the object
+			
+			if(predicate.getLocalName().equals(Common.USE_METHOD)){
+				if (object.isResource()){
+					Resource usedMethod = object.asResource();
+					for(Resource r:methodOfCategory){
+						if (r.getLocalName().equals(usedMethod.getLocalName())){
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	public void addUseLibrary(String codePatternName, String libToAdd) {
