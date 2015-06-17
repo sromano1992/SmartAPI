@@ -147,7 +147,7 @@ public class Panel_CodePatternSetScore extends JPanel{
 			}
 		}
 		else if (votedStatus == Common.ALREADY_VOTED_STATUS){
-			add(new JLabel("Hai gi‡ votato questo codePattern"));
+			add(new JLabel("Hai gi√† votato questo codePattern"));
 		}
 		else if (votedStatus == Common.IS_OWNER_STATUS){
 			add(new JLabel("Non puoi votare un tuo code pattern"));			
