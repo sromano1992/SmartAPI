@@ -64,7 +64,6 @@ public class Desktop_0 extends JPanel implements ILogInPanelListner, IUserPanelL
 		panel_1.add(createNewAccountJPanel);
 	}
 
-	@Override
 	public void newAccountClicked() {
 		log.info("new user clicked...");
 		for (Component c:getComponents()){
@@ -89,7 +88,6 @@ public class Desktop_0 extends JPanel implements ILogInPanelListner, IUserPanelL
 		}
 	}
 
-	@Override
 	public void loginClicked() {
 		log.info("Log in event intercepted");
 		//if (d1 == null)
@@ -100,7 +98,6 @@ public class Desktop_0 extends JPanel implements ILogInPanelListner, IUserPanelL
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 
-	@Override
 	public void logOutClicked() {
 		log.info("Log out event intercepted");
 		mainContainer.remove(d1);

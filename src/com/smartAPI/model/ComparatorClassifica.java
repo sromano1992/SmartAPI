@@ -4,7 +4,6 @@ import java.util.Comparator;
 
 public class ComparatorClassifica implements Comparator<UserClassification>{
 
-	@Override
 	public int compare(UserClassification u1, UserClassification u2) {
 		
 		Float punteggio0 = Float.parseFloat(u1.getSomma_media());

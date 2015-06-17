@@ -53,7 +53,6 @@ public class Panel_Search extends JPanel {
 		tabbedPane.setBackground(new Color(228, 230, 235));
 		tabbedPane.addChangeListener(new ChangeListener() {
 			
-			@Override
 			public void stateChanged(ChangeEvent arg0) {
 				if (tabbedPane.getSelectedIndex() == 1){
 					panel_1.refreshTreeView();

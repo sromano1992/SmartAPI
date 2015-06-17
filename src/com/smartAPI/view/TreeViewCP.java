@@ -17,7 +17,6 @@ import com.smartAPI.model.CodePattern_Category;
 import com.smartAPI.model.Common;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.Utente;
-import com.sun.java.swing.SwingUtilities3;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -150,7 +149,7 @@ public class TreeViewCP extends JPanel implements TreePathListener{
 		treePathListener.add(o);
 	}
 
-	@Override
+	
 	/**
 	 * When this event occur I've to get
 	 * cp category from treePath and get the list

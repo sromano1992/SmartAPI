@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 import com.smartAPI.model.Common;
-import com.sun.jndi.toolkit.url.Uri;
 
 import java.awt.Font;
 

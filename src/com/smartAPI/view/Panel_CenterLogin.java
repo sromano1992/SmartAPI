@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import sun.rmi.log.LogOutputStream;
 
 import java.awt.Font;
 import java.awt.BorderLayout;

@@ -109,7 +109,6 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 
 	}
 	
-	@Override
 	public void searchClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
@@ -130,7 +129,6 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 
 	}
 
-	@Override
 	public void insertClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
@@ -149,7 +147,6 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		updateGUI();
 	}
 
-	@Override
 	public void showUserClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
@@ -168,7 +165,6 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		updateGUI();
 	}
 
-	@Override
 	public void aboutClicked() {
 		// TODO Auto-generated method stub
 		if(actualPanel == SHOW_CODE_PATTERN)
@@ -186,13 +182,11 @@ public class Desktop_1 extends JPanel implements IUserOptionListener, IUserPanel
 		updateGUI();
 	}
 
-	@Override
 	public void logOutClicked() {
 		mainFrame.logOutClicked();
 		insertClicked();
 	}
 
-	@Override
 	public void userInfoClicked() {
 		if(actualPanel == SHOW_CODE_PATTERN)
 			panel_4.remove(panel_search);

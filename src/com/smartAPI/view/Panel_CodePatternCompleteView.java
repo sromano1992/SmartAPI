@@ -235,7 +235,6 @@ public class Panel_CodePatternCompleteView extends JPanel implements TreePathLis
 		}
 	}
 
-	@Override
 	public void treePathChanged(TreePath t) {
 		log.info("updating gui...");
 		SwingUtilities.updateComponentTreeUI(this);

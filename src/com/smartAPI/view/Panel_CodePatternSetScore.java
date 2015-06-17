@@ -21,7 +21,6 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import sun.swing.SwingUtilities2;
 
 import com.smartAPI.control.ISetScoreListener;
 import com.smartAPI.model.Common;

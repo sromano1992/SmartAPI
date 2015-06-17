@@ -219,7 +219,6 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener, I
 		log.info("Setted cp: " + cp.getResource().getLocalName() + " with methods " + cp.getUsedMethod_s());
 	}
 
-	@Override
 	public void treePathChanged(TreePath t) {
 		if (t.getPathCount() == 3){	//selected a codePattern
 			String cp = t.getPathComponent(2).toString();
@@ -241,7 +240,6 @@ public class Panel_ShowCodePattern extends JPanel implements TreePathListener, I
 		}
 	}
 
-	@Override
 	public void setScoreClicked(int storedScoreValue) {
 		new SmartAPIModel().aggiungiVotoCodePattern(Common.UTENTE.getNickname(), actualCP.getResource().getLocalName(), storedScoreValue + "");
 		panel_CodePatternScore.setScore(new SmartAPIModel().getMediaVotazioni(actualCP.getResource().getLocalName()));

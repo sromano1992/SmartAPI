@@ -209,7 +209,6 @@ public class Panel_ShowProjects extends JPanel implements TreePathListener{
 		chckbxFollow.setSelected(s.followProject(Common.UTENTE.getNickname(), selectedProject));
 	}
 	
-	@Override
 	public void treePathChanged(TreePath t) {
 		selectedProject = t.getLastPathComponent().toString();
 		for (Project p:addedProject_s){

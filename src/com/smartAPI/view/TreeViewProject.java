@@ -21,7 +21,6 @@ import com.smartAPI.model.Common;
 import com.smartAPI.model.Project;
 import com.smartAPI.model.SmartAPIModel;
 import com.smartAPI.model.Utente;
-import com.sun.java.swing.SwingUtilities3;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -114,7 +113,6 @@ public class TreeViewProject extends JPanel implements TreePathListener{
 			});
 			
 			remItem.addActionListener(new ActionListener() {				
-				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					SmartAPIModel s = new SmartAPIModel();
 					Project toRemove = s.getProject(toRemoveNode.getPathComponent(1).toString());
@@ -135,7 +133,7 @@ public class TreeViewProject extends JPanel implements TreePathListener{
 		treePathListener.add(o);
 	}
 
-	@Override
+	
 	/**
 	 * When this event occur I've to get
 	 * cp category from treePath and get the list

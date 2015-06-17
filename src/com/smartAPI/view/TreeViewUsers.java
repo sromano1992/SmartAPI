@@ -101,7 +101,6 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 			});
 			
 			remItem.addActionListener(new ActionListener() {				
-				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					SmartAPIModel s = new SmartAPIModel();
 					Utente toRemove = s.getUtente(toRemoveNode.getPathComponent(1).toString());
@@ -131,7 +130,7 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 		treePathListener.add(o);
 	}
 
-	@Override
+	
 	/**
 	 * When this event occur I've to get
 	 * cp category from treePath and get the list
