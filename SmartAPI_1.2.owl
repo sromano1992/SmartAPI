@@ -587,7 +587,7 @@
     <owl:NamedIndividual rdf:about="&SmartAPI;HadoopAnalyzerJR">
         <rdf:type rdf:resource="&SmartAPI;Project"/>
         <hasCategory>Parser</hasCategory>
-        <hasDescription>This project will paint all hadoop chart		</hasDescription>
+        <hasDescription>Progetto relativo al framework Hadoop che permette di mostrare a video una serie di grafici.</hasDescription>
         <hasCategory>Calendar</hasCategory>
     </owl:NamedIndividual>
     
@@ -1119,7 +1119,7 @@
 
     <owl:NamedIndividual rdf:about="&SmartAPI;gadproject">
         <rdf:type rdf:resource="&SmartAPI;Project"/>
-        <hasDescription>Gad project</hasDescription>
+        <hasDescription>Progetto dedicato alla gestione avanzata dei dati.</hasDescription>
         <hasCategory>Storage</hasCategory>
     </owl:NamedIndividual>
     
@@ -1138,7 +1138,7 @@
     <owl:NamedIndividual rdf:about="&SmartAPI;gpsproject">
         <rdf:type rdf:resource="&SmartAPI;Project"/>
         <hasCategory>Storage</hasCategory>
-        <hasDescription>dddnsd</hasDescription>
+        <hasDescription>Tool di supporto allo sviluppo dei progetti software.</hasDescription>
     </owl:NamedIndividual>
     
 
@@ -1791,7 +1791,7 @@ def printAllNodes(G1):
 
     <owl:NamedIndividual rdf:about="&SmartAPI;nbaproject">
         <rdf:type rdf:resource="&SmartAPI;Project"/>
-        <hasDescription>project about nba</hasDescription>
+        <hasDescription>Progetto relativo al recupero e alla visualizzazione di informazioni sul mondo dell'NBA, in particolare sulle partite disputate e sulle statistiche dei giocatori.</hasDescription>
         <hasCategory>Storage</hasCategory>
     </owl:NamedIndividual>
     
@@ -1809,7 +1809,7 @@ def printAllNodes(G1):
 
     <owl:NamedIndividual rdf:about="&SmartAPI;nextProject">
         <rdf:type rdf:resource="&SmartAPI;Project"/>
-        <hasDescription>this is nextproj</hasDescription>
+        <hasDescription>Progetto per la gestione e lo sviluppo di un calendario aziendale.</hasDescription>
         <hasCategory>Calendar</hasCategory>
         <hasCategory>Storage</hasCategory>
         <hasCategory>Parser</hasCategory>
@@ -2031,7 +2031,7 @@ def printAllNodes(G1):
     <owl:NamedIndividual rdf:about="&SmartAPI;securityProject">
         <rdf:type rdf:resource="&SmartAPI;Project"/>
         <hasCategory>Storage</hasCategory>
-        <hasDescription>security Project</hasDescription>
+        <hasDescription>Progetto che gestisce e realizza la sicurezza dei database aziendali.</hasDescription>
     </owl:NamedIndividual>
     
 
@@ -2061,13 +2061,13 @@ def printAllNodes(G1):
     
 
 
-    <!-- http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#smartapi3 -->
+    <!-- http://www.semanticweb.org/simone/ontologies/2015/4/SmartAPI#smartapi -->
 
-    <owl:NamedIndividual rdf:about="&SmartAPI;smartapi3">
+    <owl:NamedIndividual rdf:about="&SmartAPI;smartapi">
         <rdf:type rdf:resource="&SmartAPI;Project"/>
         <hasCategory>Storage</hasCategory>
         <hasCategory>Calendar</hasCategory>
-        <hasDescription>here description</hasDescription>
+        <hasDescription>Tool di supporto allo sviluppo e ai programmatori.</hasDescription>
     </owl:NamedIndividual>
     
 

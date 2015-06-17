@@ -111,14 +111,14 @@ public class TreeViewUsers extends JPanel implements TreePathListener{
 					rootNode.remove(node);
 					//tree.removeSelectionPath(toRemoveNode);
 					model.reload();
-					ShowUsersInfo.userField.setText(" ");
-					ShowUsersInfo.emailField.setText(" ");
-					ShowUsersInfo.surnameField.setText(" ");
-					ShowUsersInfo.nameField.setText(" ");
+					ShowUsersInfoNew.userField.setText(" ");
+					ShowUsersInfoNew.emailField.setText(" ");
+					ShowUsersInfoNew.surnameField.setText(" ");
+					ShowUsersInfoNew.nameField.setText(" ");
 					
 					String pathIcon="res/nouser.png";
 					MyImageIcon imgicon = new MyImageIcon(pathIcon,80,70);
-					ShowUsersInfo.lblImage.setIcon(imgicon.getImageResponsive());
+					ShowUsersInfoNew.lblImage.setIcon(imgicon.getImageResponsive());
 					
 					//tree.update(getGraphics());
 				}

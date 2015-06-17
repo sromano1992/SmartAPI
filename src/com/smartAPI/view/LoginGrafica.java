@@ -120,7 +120,7 @@ public class LoginGrafica extends JPanel{
 								gbc_userField.gridx = 2;
 								gbc_userField.gridy = 4;
 								panel_1.add(userField, gbc_userField);
-								userField.setText("amedeo");
+								userField.setText("");
 								userField.setColumns(10);
 										
 										label_1 = new JLabel("");
@@ -145,7 +145,7 @@ public class LoginGrafica extends JPanel{
 										lblPassword.setBackground(new Color(2, 66, 96));
 										
 												//PASSWORD FIELD
-												passwordField = new JPasswordField("amedeo");
+												passwordField = new JPasswordField();
 												GridBagConstraints gbc_passwordField = new GridBagConstraints();
 												gbc_passwordField.weightx = 0.1;
 												gbc_passwordField.fill = GridBagConstraints.BOTH;
