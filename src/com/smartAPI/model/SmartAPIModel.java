@@ -44,6 +44,7 @@ public class SmartAPIModel {
 	public OntModel getOntModel(){
 		if(base != null)
 			return base;
+		//A specification for OWL models that are stored in memory and do no additional entailment reasoning
 		base = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);		
 		String modelPath = System.getProperty("user.dir") + OWL_FILE_PATH;
 		File file = new File(modelPath);
@@ -57,6 +58,8 @@ public class SmartAPIModel {
 	}
 
 	public OntModel getInfModel(){
+		 // A specification for OWL DL models that are stored in memory and use 
+		 // the RDFS inferencer for additional entailments
 		inf = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RDFS_INF, getOntModel());
 		log.info("Inf Model created...");
 		return inf;
@@ -229,7 +232,7 @@ public class SmartAPIModel {
 	}
 
 	/**
-	 * Aggiunge la propriet� hasKeyword ad una risorsa
+	 * Aggiunge la proprietà hasKeyword ad una risorsa
 	 * @author Amedeo Leo
 	 */
 	public boolean addKeyword(String risorsa, String keyword) {
@@ -459,7 +462,7 @@ public class SmartAPIModel {
 	}
 
 	/**
-	 * Controlla se il login effettuato � corretto.
+	 * Controlla se il login effettuato è corretto.
 	 * @author Amedeo Leo
 	 */
 	public boolean exists(String username, String password) {
@@ -612,7 +615,7 @@ public class SmartAPIModel {
 	}
 
 	/**
-	 * Controlla se un utente � un amministratore.
+	 * Controlla se un utente è un amministratore.
 	 * @author Amedeo Leo
 	 */
 	public boolean isAdministrator(String username) {
@@ -953,7 +956,7 @@ public class SmartAPIModel {
 	/**
 	 * 
 	 * @author Stefania Cardamone
-	 * Aggiunta di istanze alla propriet� useMethod (ex. useCalendar)
+	 * Aggiunta di istanze alla proprietà useMethod (ex. useCalendar)
 	 *
 	 */
 	public void addInstanceUseMethod(String category, String pattern, ArrayList<String> method_s){
@@ -1092,7 +1095,7 @@ public class SmartAPIModel {
 							return true;
 						}
 						else {
-							//controllo gi� fatto
+							//controllo già fatto
 							//if(hasAlreadyVoted(username, codePattern))
 							//throw new UserException("Hai già votato questo code pattern");							
 							stmtResource.changeObject(object.toString() + codePattern + ",");
@@ -1169,7 +1172,7 @@ public class SmartAPIModel {
 	}
 
 	/** 
-	 * Controlla se l'utente � il proprietario del code pattern (in modo da non poterlo votare)
+	 * Controlla se l'utente è il proprietario del code pattern (in modo da non poterlo votare)
 	 * @author Amedeo Leo
 	 */
 	public boolean isOwner(String username, String codePattern) {
@@ -1182,7 +1185,7 @@ public class SmartAPIModel {
 	}
 
 	/**
-	 * Controlla se l'utente ha gi� votato il code pattern
+	 * Controlla se l'utente ha già votato il code pattern
 	 * @author Amedeo Leo
 	 */
 	public boolean hasAlreadyVoted(String username, String codePattern) {
